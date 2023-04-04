@@ -310,12 +310,15 @@ window.onload=function(){
             shorthand_newwin.document.write(shorthand_code);  //向这个打开的窗口中写入代码code，这样就实现了运行代码功能。
             shorthand_newwin.document.close();
         }
+       function shorthand_insert(obj)  {document.getElementById("test").innerHTML= obj; }
     </script>
     <input type="file" name="file" id="filePicker" onchange="shorthand_show()"  /><br />
     <textarea id="shorthand_code" rows="15" cols="100%"></textarea><br />
     <textarea id="shorthand_name" rows="1" cols="100%"></textarea><br />
     <button type="button" onclick="shorthand_download()">另存代码</button>
-    <button type="button" onclick="shorthand_runCode(this.offsetParent.getElementsByTagName('textarea')[0])">渲染代码</button>
+    <button type="button" onclick="shorthand_runCode(this.offsetParent.getElementsByTagName('textarea')[0])">新页面打开</button>
+    <button type="button" onclick="shorthand_insert(this.offsetParent.getElementsByTagName('textarea')[0].value)">插入 test</button>
+    <div id="test"></div>
 </li>
 <li class="card" id="inbox">
 - obsidian 插件功能
@@ -4336,7 +4339,7 @@ function $initHighlight(block, cls) {
     </li>
     </ul>
 </li>
-<li>2023.03.26
+<li class="card">2023.03.26
     <ul>
     <li>有奖话题：聊聊「我与少数派」
         <ul>
@@ -4363,7 +4366,7 @@ function $initHighlight(block, cls) {
     </li>
     </ul>    
 </li>
-<li>2023.04.02
+<li class="card">2023.04.02
     <ul>
     <li>做 index.html 筛选的一些构想：
         <ul>
@@ -4381,7 +4384,7 @@ function $initHighlight(block, cls) {
                 &lt;div class=&quot;time&quot;&gt;&lt;/div&gt;
                 &lt;div class=&quot;content&quot;&gt;
             </code></pre></li>
-            <li>一个完整的 flomo 实例：
+            <li><details><summary>一个完整的 flomo 实例：</summary>
             <pre><code>
           &lt;!DOCTYPE html&gt;
           &lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot;&gt;
@@ -4738,7 +4741,7 @@ function $initHighlight(block, cls) {
             &lt;/body&gt;
         &lt;/html&gt;
             </code></pre>
-            </li>
+            </details></li>
             </ul>
         </li>
         <li>自己动手写一个筛选逻辑

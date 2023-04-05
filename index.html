@@ -310,7 +310,9 @@ window.onload=function(){
             shorthand_newwin.document.write(shorthand_code);  //向这个打开的窗口中写入代码code，这样就实现了运行代码功能。
             shorthand_newwin.document.close();
         }
-       function shorthand_insert(obj)  {document.getElementById("test").innerHTML= obj;  // 其实本来想用 documents.write 的，但是发现 documents.write 会覆盖整个 DOM 流（那就是说，把我所有的原有内容自动清空），所以不得已才用了这种朴素的方式。参考 https://www.runoob.com/jsref/met-doc-write.html}
+       function shorthand_insert(obj)  {
+           document.getElementById("test").innerHTML= obj;  // 其实本来想用 documents.write 的，但是发现 documents.write 会覆盖整个 DOM 流（那就是说，把我所有的原有内容自动清空），所以不得已才用了这种朴素的方式。参考 https://www.runoob.com/jsref/met-doc-write.html
+}
     </script>
     <input type="file" name="file" id="filePicker" onchange="shorthand_show()"  /><br />
     <textarea id="shorthand_code" rows="15" cols="100%"></textarea><br />
@@ -373,6 +375,7 @@ window.onload=function(){
         - 这就像武当的梯云纵，左脚踩右脚。
         - 操作系统内核，一定是用无运行时的静态编译型语言完成的，例如 C 、 Rust 。闻名互联网的 Go 语言都不能胜任，因为 Go 语言本身也有一个运行时。
 - view-source:https://www1.nm.zsks.cn/zzweb/prereg.jsp
+
 <details>
 - yaml_refcard.yaml
 ```yaml
@@ -441,6 +444,7 @@ Escape codes:
 ...
 ```
 </details>
+
   <script>document.getElementById('inbox').innerHTML = marked.parse(document.getElementById('inbox').innerHTML);</script>
 </li>
 <li class="card">My Information

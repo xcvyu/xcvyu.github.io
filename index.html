@@ -310,7 +310,7 @@ window.onload=function(){
             shorthand_newwin.document.write(shorthand_code);  //向这个打开的窗口中写入代码code，这样就实现了运行代码功能。
             shorthand_newwin.document.close();
         }
-       function shorthand_insert(obj)  {document.getElementById("test").innerHTML= obj; }
+       function shorthand_insert(obj)  {document.getElementById("test").innerHTML= obj;  // 其实本来想用 documents.write 的，但是发现 documents.write 会覆盖整个 DOM 流（那就是说，把我所有的原有内容自动清空），所以不得已才用了这种朴素的方式。参考 https://www.runoob.com/jsref/met-doc-write.html}
     </script>
     <input type="file" name="file" id="filePicker" onchange="shorthand_show()"  /><br />
     <textarea id="shorthand_code" rows="15" cols="100%"></textarea><br />
@@ -321,6 +321,19 @@ window.onload=function(){
     <div id="test"></div>
 </li>
 <li class="card" id="inbox">
+- 原神 3.6 新地图
+    - Lonerock Desert 荒石苍漠
+    - Dahrian Breach 荼泥黑渊
+    - Hindergorge 阻勒隘
+    - Mt. Temur 铁穆山
+    - Crumbledeep 逾渊地墟
+    - Waftgaol 浮罗囿
+    - Dewflower Sea 甘露花海
+    - Kshuradhara Woods 锋刃林泽
+    - Bolsong Heights 跋松顶
+    - Ghrana Coast 聚香海岸
+    - Lost Tamra 铜城遗壁
+- \frac{1}{\pi}=\frac{\sqrt{8}}{9801}\sum_{n=0}^{\infty}{\frac{(4n)!(1103+26390n)}{(n!)^{4}396^{4n}}}
 - obsidian 插件功能
     - 一键丢垃圾: obsidian42-text-transporter (把选中文字通过右键菜单发送到预先定义的书签位置，支持粒度：文件首尾和标题)
     - txt 和 md 兼容: txt-as-md-obsidian
@@ -360,6 +373,7 @@ window.onload=function(){
         - 这就像武当的梯云纵，左脚踩右脚。
         - 操作系统内核，一定是用无运行时的静态编译型语言完成的，例如 C 、 Rust 。闻名互联网的 Go 语言都不能胜任，因为 Go 语言本身也有一个运行时。
 - view-source:https://www1.nm.zsks.cn/zzweb/prereg.jsp
+<details>
 - yaml_refcard.yaml
 ```yaml
 %YAML 1.1   # Reference card
@@ -426,7 +440,7 @@ Escape codes:
  Additional: { "\e": ESC, "\_": NBSP, "\N": NEL, "\L": LS, "\P": PS }
 ...
 ```
-<details></details>
+</details>
   <script>document.getElementById('inbox').innerHTML = marked.parse(document.getElementById('inbox').innerHTML);</script>
 </li>
 <li class="card">My Information

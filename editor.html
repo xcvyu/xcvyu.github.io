@@ -1,41 +1,46 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
-<script>
-    function shorthand_show()
-    {
-        let shorthand_reader = new FileReader();
-        shorthand_reader.onload = function() 
+    <script>
+        function shorthand_show()
         {
-            //alert(this.result)
-            shorthand_code.value=this.result        
+            let shorthand_reader = new FileReader();
+            shorthand_reader.onload = function() 
+            {
+                //alert(this.result)
+                shorthand_code.value=this.result        
+            }
+            let shorthand_f = document.getElementById("filePicker").files[0];
+            //alert(shorthand_f.name)
+            shorthand_reader.readAsText(shorthand_f);
         }
-        let shorthand_f = document.getElementById("filePicker").files[0];
-        //alert(shorthand_f.name)
-        shorthand_reader.readAsText(shorthand_f);
-    }
-    function shorthand_download(){ 
-        let shorthand_text = document.getElementById("shorthand_code").value; 
-        let shorthand_blob = new Blob([shorthand_text]);
-        let shorthand_anchor = document.createElement("a"); 
-        shorthand_anchor.href = window.URL.createObjectURL(shorthand_blob);
-        //shorthand_anchor.download = "my-filename.txt"; 
-        shorthand_anchor.download = document.getElementById("shorthand_name").value;
-        shorthand_anchor.target ="_blank"; 
-        shorthand_anchor.style.display = "none"; // just to be safe! 
-        document.body.appendChild(shorthand_anchor); 
-        shorthand_anchor.click(); 
-        document.body.removeChild(shorthand_anchor); 
-    }
-    function shorthand_runCode(obj)  {
-        let shorthand_code=obj.value;//即要运行的代码。
-        let shorthand_newwin=window.open();  //打开一个窗口并赋给变量newwin。
-        shorthand_newwin.opener = null // 防止代码修改页面
-        shorthand_newwin.document.write(shorthand_code);  //向这个打开的窗口中写入代码code，这样就实现了运行代码功能。
-        shorthand_newwin.document.close();
-    }
-</script>
-<input type="file" name="file" id="filePicker" onchange="shorthand_show()"  /><br />
-<textarea id="shorthand_code" rows="15" cols="42.5"></textarea><br />
-<textarea id="shorthand_name" rows="1" cols="42.5"></textarea><br />
-<button type="button" onclick="shorthand_download()">另存代码</button>
-<button type="button" onclick="shorthand_runCode(this.offsetParent.getElementsByTagName('textarea')[0])">渲染代码</button>
+        function shorthand_download(){ 
+            let shorthand_text = document.getElementById("shorthand_code").value; 
+            let shorthand_blob = new Blob([shorthand_text]);
+            let shorthand_anchor = document.createElement("a"); 
+            shorthand_anchor.href = window.URL.createObjectURL(shorthand_blob);
+            //shorthand_anchor.download = "my-filename.txt"; 
+            shorthand_anchor.download = document.getElementById("shorthand_name").value;
+            shorthand_anchor.target ="_blank"; 
+            shorthand_anchor.style.display = "none"; // just to be safe! 
+            document.body.appendChild(shorthand_anchor); 
+            shorthand_anchor.click(); 
+            document.body.removeChild(shorthand_anchor); 
+        }
+        function shorthand_runCode(obj)  {
+            let shorthand_code=obj.value;//即要运行的代码。
+            let shorthand_newwin=window.open();  //打开一个窗口并赋给变量newwin。
+            shorthand_newwin.opener = null // 防止代码修改页面
+            shorthand_newwin.document.write(shorthand_code);  //向这个打开的窗口中写入代码code，这样就实现了运行代码功能。
+            shorthand_newwin.document.close();
+        }
+       function shorthand_insert(obj)  {
+           document.getElementById("test").innerHTML= obj;  // 其实本来想用 documents.write 的，但是发现 documents.write 会覆盖整个 DOM 流（那就是说，把我所有的原有内容自动清空），所以不得已才用了这种朴素的方式。参考 https://www.runoob.com/jsref/met-doc-write.html
+}
+    </script>
+    <input type="file" name="file" id="filePicker" onchange="shorthand_show()"  /><br />
+    <textarea id="shorthand_code" rows="15" cols="100%"></textarea><br />
+    <textarea id="shorthand_name" rows="1" cols="100%"></textarea><br />
+    <button type="button" onclick="shorthand_download()">另存代码</button>
+    <button type="button" onclick="shorthand_runCode(this.offsetParent.getElementsByTagName('textarea')[0])">新页面打开</button>
+    <button type="button" onclick="shorthand_insert(this.offsetParent.getElementsByTagName('textarea')[0].value)">插入 test</button>
+    <div id="test"></div>

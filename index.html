@@ -271,13 +271,27 @@ window.onload=function(){
 <script src="https://unpkg.com/vue@2.6.10/dist/vue.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue-markdown/dist/vue-markdown.js"></script>
 <!-- marked -->
+<script src="https://cdn.bootcdn.net/ajax/libs/marked/9.0.0/marked.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script>
+// 引入默认实例
+import { marked } from 'marked'
+
+marked.use({
+  // 开启异步渲染
+  async: true,
+  pedantic: false,
+  gfm: true,
+  mangle: false,
+  headerIds: false
+})
+</script>
 <!--[if lt IE 9]>
   <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 <![endif]-->
 
 <ul>
-<li class="card">速记板
+<li class="card">
 	<script>
 		function shorthand_show()
 		{
@@ -330,9 +344,9 @@ window.onload=function(){
 	<li><a href="weixin://">wechat</a></li>
 	</ul>
 </li>
-<li class="card" id="inbox"><details>
+<li class="card" id="inbox">
 - 三行情书
-	- 总是以为我们会长久，可能因为我们会长久，然后这样我们就长久。	
+- 总是以为我们会长久，可能因为我们会长久，然后这样我们就长久。	
 - 人生亦有命，安能行以复坐愁？  
 - 日暮苍山远，天寒白屋贫。
 - https://twocups.cn/index.php/2020/01/09/10/
@@ -436,74 +450,36 @@ window.onload=function(){
 		- 这就像武当的梯云纵，左脚踩右脚。
 		- 操作系统内核，一定是用无运行时的静态编译型语言完成的，例如 C 、 Rust 。闻名互联网的 Go 语言都不能胜任，因为 Go 语言本身也有一个运行时。
 - view-source:https://www1.nm.zsks.cn/zzweb/prereg.jsp
-- yaml_refcard.yaml
-```yaml
-%YAML 1.1   # Reference card
----
-Collection indicators:
-  '? ' : Key indicator.
-  ': ' : Value indicator.
-  '- ' : Nested series entry indicator.
-  ', ' : Separate in-line branch entries.
-  '[]' : Surround in-line series branch.
-  '{}' : Surround in-line keyed branch.
-Scalar indicators:
-  '''' : Surround in-line unescaped scalar ('' escaped ').
-  '"'  : Surround in-line escaped scalar (see escape codes below).
-  '|'  : Block scalar indicator.
-  '&gt;'  : Folded scalar indicator.
-  '-'  : Strip chomp modifier ('|-' or '&gt;-').
-  '+'  : Keep chomp modifier ('|+' or '&gt;+').
-  1-9  : Explicit indentation modifier ('|1' or '&gt;2').
-		 # Modifiers can be combined ('|2-', '&gt;+1').
-Alias indicators:
-  '&'  : Anchor property.
-  '*'  : Alias indicator.
-Tag property: # Usually unspecified.
-  none	: Unspecified tag (automatically resolved by application).
-  '!'	 : Non-specific tag (by default, "!!map"/"!!seq"/"!!str").
-  '!foo'  : Primary (by convention, means a local "!foo" tag).
-  '!!foo' : Secondary (by convention, means "tag:yaml.org,2002:foo").
-  '!h!foo': Requires "%TAG !h! &lt;prefix&gt;" (and then means "&lt;prefix&gt;foo").
-  '!&lt;foo&gt;': Verbatim tag (always means "foo").
-Document indicators:
-  '%'  : Directive indicator.
-  '---': Document header.
-  '...': Document terminator.
-Misc indicators:
-  ' #' : Throwaway comment indicator.
-  '`@' : Both reserved for future use.
-Special keys:
-  '='  : Default "value" mapping key.
-  '&lt;&lt;' : Merge keys from another mapping.
-Core types: # Default automatic tags.
-  '!!map' : { Hash table, dictionary, mapping }
-  '!!seq' : { List, array, tuple, vector, sequence }
-  '!!str' : Unicode string
-More types:
-  '!!set' : { cherries, plums, apples }
-  '!!omap': [ one: 1, two: 2 ]
-Language Independent Scalar types:
-  { ~, null }			  : Null (no value).
-  [ 1234, 0x4D2, 02333 ]   : [ Decimal int, Hexadecimal int, Octal int ]
-  [ 1_230.15, 12.3015e+02 ]: [ Fixed float, Exponential float ]
-  [ .inf, -.Inf, .NAN ]	: [ Infinity (float), Negative, Not a number ]
-  { Y, true, Yes, ON  }	: Boolean true
-  { n, FALSE, No, off }	: Boolean false
-  ? !!binary &gt;
-	  R0lG...BADS=
-  : &gt;-
-	  Base 64 binary value.
-Escape codes:
- Numeric   : { "\x12": 8-bit, "\u1234": 16-bit, "\U00102030": 32-bit }
- Protective: { "\\": '\', "\"": '"', "\ ": ' ', "\&lt;TAB&gt;": TAB }
- C		 : { "\0": NUL, "\a": BEL, "\b": BS, "\f": FF, "\n": LF, "\r": CR,
-			 "\t": TAB, "\v": VTAB }
- Additional: { "\e": ESC, "\_": NBSP, "\N": NEL, "\L": LS, "\P": PS }
-...
-```
-
-</details><script>document.getElementById('inbox').innerHTML = marked.parse(document.getElementById('inbox').innerHTML);</script></li>
+- [学习笔记：Lambda演算](https://zhuanlan.zhihu.com/p/518185502)
+- [手机里的NFC到底是什么鬼](https://mp.weixin.qq.com/s/wS5MMQCqPqdW4DROhK31cQ)
+- [哔！与刷卡机贴贴的付款卡经历了什么？](https://mp.weixin.qq.com/s/IIUuDsXOClhVLuOxMatM6A)
+- [如何手算任意角度正弦值](https://zhuanlan.zhihu.com/p/376215027)
+- [拉格朗日量与哈密顿量--分析力学入门](https://zhuanlan.zhihu.com/p/62258210)
+- [第1章 拉格朗日量](https://zhuanlan.zhihu.com/p/44597928)
+- [拉格朗日方程](https://zhuanlan.zhihu.com/p/118499552)
+- [什么是高中物理？](https://mp.weixin.qq.com/s/w5h83E9LC9Nsk0qPJnYlkQ)
+- [理论物理学的第一课：最小作用量原理_中国科学院半导体研究所](http://www.semi.ac.cn/kxcb/kpwz/201809/t20180910_5071258.html)
+- [rapid_latex_ocr: 更快更好用的公式图像转latex工具 - 知乎](https://zhuanlan.zhihu.com/p/643820550)
+- [最简洁的弦论（翻译22）](https://zhuanlan.zhihu.com/p/618046506)
+- [弦理论简介]https://mp.weixin.qq.com/s/8RfcLP3qrQ-a0Wi7GIvp3Q
+- https://zhuanlan.zhihu.com/p/642421995
+- https://mp.weixin.qq.com/s/nXl5XSAM0RLVxJE_Bf-y5A
+- [[BBS] 2 玻色弦 2.1 p-膜作用量 - 知乎](https://zhuanlan.zhihu.com/p/143297284)
+- [marketplace.visualstudio.com/items?itemName=mvllow.rose-pine](https://marketplace.visualstudio.com/items?itemName=mvllow.rose-pine)
+- [Something beautiful (rosepinetheme.com)](https://rosepinetheme.com/)
+- 2310082350
+- 2310100008
+- 一个语言及其模型$\mathscr{Z}$在一个元语言环境$\mathscr{X}$中被定义、被说明；与此语言及其模型$\mathscr{Z}$有关的定理在这个元语言环境$\mathscr{X}$中被证明，记作$meta:\mathscr{Z} \mapsto \mathscr{X}$。
+- 那么，归纳地定义元语言图为$\begin{aligned} \lambda &::=\Pi\,|\,meta(\lambda)\,|\,meta^{-1}(\lambda)\,|\,meta\end{aligned}$
+- 关于元语言环境的一些推论：
+- 1. $\lambda (\varphi)$是$\varphi$的充分不必要条件；
+- 2. 可以认为$\lambda (\varphi)$有$\infty$种实例(组合方式)，其中的某一种抽象/简化得到了$\varphi$;
+- [枫丹 Fontaine - QQ音乐](https://i.y.qq.com/v8/playsong.html?songmid=002Sdw5K30mkvV)
+- [Sumeru 须弥 - QQ音乐](https://i.y.qq.com/v8/playsong.html?songmid=001fuwwY2EHlkn)
+- [稻妻 Inazuma - 陈致逸/HOYO-MiX - 单曲 - 网易云音乐](https://y.music.163.com/m/song?id=1879098378&evokeChainInitType=direct&evokeChain=initChain.type_dircet)
+- [璃月 Liyue - 陈致逸/HOYO-MiX - 单曲 - 网易云音乐](https://y.music.163.com/m/song?id=1492276411&evokeChainInitType=direct&evokeChain=initChain.type_dircet)
+<script>document.getElementById("inbox").innerHTML = marked.parse(document.getElementById("inbox").innerHTML);</script>
+</li>
 <li class="card">My Information
 	<ul>
 	<li><a href="http://site-561001-4224-70.sxl.cn/">my-上线了</a></li>
@@ -1022,347 +998,414 @@ Escape codes:
 	<ul>
 	<li>help.cpp
 	<pre><code language="c++">
-#include&lt;bits/stdc++.h&gt;
-//C标准库：#include&lt;cstdio&gt;
-
-using namespace std;
-void Type(){
-	//常量：不会改变的量
-	const int Pi=3.1415926;
-	cout &lt;&lt; "type: \t\t" &lt;&lt; "************size**************"&lt;&lt; endl;  
-	cout &lt;&lt; "bool: \t\t" &lt;&lt; "所占字节数：" &lt;&lt; sizeof(bool);  
-	cout &lt;&lt; "\t最大值：" &lt;&lt; (numeric_limits&lt;bool&gt;::max)();  
-	cout &lt;&lt; "\t\t最小值：" &lt;&lt; (numeric_limits&lt;bool&gt;::min)() &lt;&lt; endl;  
-	cout &lt;&lt; "char: \t\t" &lt;&lt; "所占字节数：" &lt;&lt; sizeof(char);  
-	cout &lt;&lt; "\t最大值：" &lt;&lt; (numeric_limits&lt;char&gt;::max)();  
-	cout &lt;&lt; "\t\t最小值：" &lt;&lt; (numeric_limits&lt;char&gt;::min)() &lt;&lt; endl;  
-	cout &lt;&lt; "signed char: \t" &lt;&lt; "所占字节数：" &lt;&lt; sizeof(signed char);  
-	cout &lt;&lt; "\t最大值：" &lt;&lt; (numeric_limits&lt;signed char&gt;::max)();  
-	cout &lt;&lt; "\t\t最小值：" &lt;&lt; (numeric_limits&lt;signed char&gt;::min)() &lt;&lt; endl;  
-	cout &lt;&lt; "unsigned char: \t" &lt;&lt; "所占字节数：" &lt;&lt; sizeof(unsigned char);  
-	cout &lt;&lt; "\t最大值：" &lt;&lt; (numeric_limits&lt;unsigned char&gt;::max)();  
-	cout &lt;&lt; "\t\t最小值：" &lt;&lt; (numeric_limits&lt;unsigned char&gt;::min)() &lt;&lt; endl;  
-	cout &lt;&lt; "wchar_t: \t" &lt;&lt; "所占字节数：" &lt;&lt; sizeof(wchar_t);  
-	cout &lt;&lt; "\t最大值：" &lt;&lt; (numeric_limits&lt;wchar_t&gt;::max)();  
-	cout &lt;&lt; "\t\t最小值：" &lt;&lt; (numeric_limits&lt;wchar_t&gt;::min)() &lt;&lt; endl;  
-	cout &lt;&lt; "short: \t\t" &lt;&lt; "所占字节数：" &lt;&lt; sizeof(short);  
-	cout &lt;&lt; "\t最大值：" &lt;&lt; (numeric_limits&lt;short&gt;::max)();  
-	cout &lt;&lt; "\t\t最小值：" &lt;&lt; (numeric_limits&lt;short&gt;::min)() &lt;&lt; endl;  
-	cout &lt;&lt; "int: \t\t" &lt;&lt; "所占字节数：" &lt;&lt; sizeof(int);  
-	cout &lt;&lt; "\t最大值：" &lt;&lt; (numeric_limits&lt;int&gt;::max)();  
-	cout &lt;&lt; "\t最小值：" &lt;&lt; (numeric_limits&lt;int&gt;::min)() &lt;&lt; endl;  
-	cout &lt;&lt; "unsigned: \t" &lt;&lt; "所占字节数：" &lt;&lt; sizeof(unsigned);  
-	cout &lt;&lt; "\t最大值：" &lt;&lt; (numeric_limits&lt;unsigned&gt;::max)();  
-	cout &lt;&lt; "\t最小值：" &lt;&lt; (numeric_limits&lt;unsigned&gt;::min)() &lt;&lt; endl;  
-	cout &lt;&lt; "long: \t\t" &lt;&lt; "所占字节数：" &lt;&lt; sizeof(long);  
-	cout &lt;&lt; "\t最大值：" &lt;&lt; (numeric_limits&lt;long&gt;::max)();  
-	cout &lt;&lt; "\t最小值：" &lt;&lt; (numeric_limits&lt;long&gt;::min)() &lt;&lt; endl;  
-	cout &lt;&lt; "unsigned long: \t" &lt;&lt; "所占字节数：" &lt;&lt; sizeof(unsigned long);  
-	cout &lt;&lt; "\t最大值：" &lt;&lt; (numeric_limits&lt;unsigned long&gt;::max)();  
-	cout &lt;&lt; "\t最小值：" &lt;&lt; (numeric_limits&lt;unsigned long&gt;::min)() &lt;&lt; endl;  
-	cout &lt;&lt; "double: \t" &lt;&lt; "所占字节数：" &lt;&lt; sizeof(double);  
-	cout &lt;&lt; "\t最大值：" &lt;&lt; (numeric_limits&lt;double&gt;::max)();  
-	cout &lt;&lt; "\t最小值：" &lt;&lt; (numeric_limits&lt;double&gt;::min)() &lt;&lt; endl;  
-	cout &lt;&lt; "long double: \t" &lt;&lt; "所占字节数：" &lt;&lt; sizeof(long double);  
-	cout &lt;&lt; "\t最大值：" &lt;&lt; (numeric_limits&lt;long double&gt;::max)();  
-	cout &lt;&lt; "\t最小值：" &lt;&lt; (numeric_limits&lt;long double&gt;::min)() &lt;&lt; endl;  
-	cout &lt;&lt; "float: \t\t" &lt;&lt; "所占字节数：" &lt;&lt; sizeof(float);  
-	cout &lt;&lt; "\t最大值：" &lt;&lt; (numeric_limits&lt;float&gt;::max)();  
-	cout &lt;&lt; "\t最小值：" &lt;&lt; (numeric_limits&lt;float&gt;::min)() &lt;&lt; endl;  
-	cout &lt;&lt; "size_t: \t" &lt;&lt; "所占字节数：" &lt;&lt; sizeof(size_t);  
-	cout &lt;&lt; "\t最大值：" &lt;&lt; (numeric_limits&lt;size_t&gt;::max)();  
-	cout &lt;&lt; "\t最小值：" &lt;&lt; (numeric_limits&lt;size_t&gt;::min)() &lt;&lt; endl;  
-	cout &lt;&lt; "string: \t" &lt;&lt; "所占字节数：" &lt;&lt; sizeof(string) &lt;&lt; endl;  
-	// &lt;&lt; "\t最大值：" &lt;&lt; (numeric_limits&lt;string&gt;::max)() &lt;&lt; "\t最小值：" &lt;&lt; (numeric_limits&lt;string&gt;::min)() &lt;&lt; endl;  
-	cout &lt;&lt; "type: \t\t" &lt;&lt; "************size**************"&lt;&lt; endl;  
-	//变量类型：整型
-	int	a=1;//4 个字节	-2147483648 到 2147483647
-	unsigned int b=2048;//4 个字节	0 到 4294967295
-	signed int c=8192;//4 个字节	-2147483648 到 2147483647
-	short int d=128;//2 个字节	-32768 到 32767
-	unsigned short int e=6823;//2 个字节	0 到 65,535
-	signed short int f=64;//2 个字节	-32768 到 32767
-	long int g=8192*2;//8 个字节	-9,223,372,036,854,775,808 到 9,223,372,036,854,775,807
-	signed long int h=8192*2;//8 个字节	-9,223,372,036,854,775,808 到 9,223,372,036,854,775,807
-	unsigned long int i=8192*4;//8 个字节	0 到 18,446,744,073,709,551,615
-	//变量类型：浮点型
-	float x=2.01;//4 个字节	精度型占4个字节（32位）内存空间，+/- 3.4e +/- 38 (~7 个数字)
-	double y=1.4142;//	8 个字节	双精度型占8 个字节（64位）内存空间，+/- 1.7e +/- 308 (~15 个数字)
-	long double	z=1.41423;//16 个字节	长双精度型 16 个字节（128位）内存空间，可提供18-19位有效数字。
-	//注意，各种类型的存储大小与系统位数有关，但目前通用的以64位系统为主。
-	//变量类型：字符型
-	char name='I';//一个char型变量可存储一个ASCII码表字符（本质上存的是数字）,'A'=65,'a'=97
-	//变量类型：布尔型
-	bool OK=true;//一个bool型变量可存储一个真值/假值，默认任意非零实数为真
-	typedef bool outtuo;//将outtuo取名为bool型的别名
-	outtuo noOK=false;//0为假
-	OK=1-2&gt;0;//判断表达式真假，并赋值
-	cout&lt;&lt;"变量命名规则：仅可由字母、数字或\'_'组成，且不能以数字开头、不能使用保留字；变量定义后才可使用。";
-	/*变量类型自动转换(隐式类型转换)
-	规则1:参与运算的变量类型不同时,先转换为同一类型再计算
-	规则2:转换按数据长度增加的方向进行,以保证精度(int→float)
-	规则3:所有浮点运算都以double型进行
-	规则4:char型、short型先转为int型再计算
-	规则5:浮点型变量赋值给整型变量,自动舍弃小数点部分*/
-	//变量类型强制转换(显式类型转换)
-	float b=5.0;
-	int a;
-	a=(int)(b);
-}
-void MaTh(){
-	int a=1,b=2;
-	//算术运算符
-	cout&lt;&lt;a+b&lt;&lt;endl;
-	cout&lt;&lt;a-b&lt;&lt;endl;
-	cout&lt;&lt;a*b&lt;&lt;endl;
-	cout&lt;&lt;a/b&lt;&lt;endl;
-	cout&lt;&lt;a%b&lt;&lt;endl;
-	a+=b;
-	a-=b;
-	a*=b;
-	a/=b;
-	a%=b;
-	a++;
-	a--;
-	++a;
-	--a;
-	//比较运算符(得到结果为布尔型)
-	bool d=a&gt;b;
-	d=a&lt;b;
-	d=a==b;//判断a=b
-	d=a!=b;//判断a≠b
-	d=a&gt;=b;//判断a≥b
-	d=a&lt;=b;//判断a≤b
-	// 一般不会用==判断两浮点数是否相等，因为存在精度误差。一般用作差法
-	float c=1.0,d=1.00000001;
-	if(c-d&lt;0.000001){
-		return 1;
-	}else{
-		return 0;
-	}
-	//运算优先级:算术运算&gt;比较运算&gt;赋值运算
-	
-	//#include&lt;cmath&gt;
-	int c=pow(a,b);
-	c=sqrt(4);
-	c=abs(-1);
-	c=fabs(-1.0);
-	c=ceil(1.5);//c=2
-	c=floor(1.5);//c=1
-}
-void IOstream(){
-	// 流：数据之间的传输操作
-	int a;
-	//#include&lt;iostream&gt;
-	cin&gt;&gt;a;//从标准输入流（stdin，即键盘）读入一个值，并赋值给a。&gt;&gt;：提取运算符
-	cout&lt;&lt;a;//从标准输出流（stdout，即显示屏）输出a的值。&lt;&lt;：插入运算符
-	scanf("%d",&a);//%d为格式控制符，在此处意为接受整型变量，类似cin；第二个参数为变量地址，所以&不要落掉！
-	printf("%d",a);//类似cout，效率更高
-	sscanf("%d",&a,str);//从str读取指定格式的字符并保存到a中
-	sprintf("%d",a,str);//从str中以指定格式处理字符串并输出到a中
-	freopen("help.in","r",stdin);//打开输入文件
-	freopen("help.out","w",stdout);//打开输出文件
-	//此处照常写代码，cin cout直接用
-	fclose(stdin);//关闭输入文件
-	fclose(stdout);//关闭输出文件
-	//system("pause");
-	/*
-	常见格式控制符：
-	%d = int
-		%02d:若输出不足两位，则前方补0
-	%lld = long long
-	%f = float
-		%.2f：输出2位小数
-	%ld = double
-	%c = char
-	*/
-	/*.转义字符(表示特定含义)
-	"\n":换行
-	"\t":制表符
-	"\b":退格
-	"\r":回车(不换行)
-	"\0":空字符
-	"\'"单引号
-	"\"":双引号
-	"\\":一个"\"字符
-	"\ddd":1～3个八进制数代表的ASCII码值
-	"\xdd":2个十六进制数代表的ASCII码值*/
-}
-void repeat(){
-	for(int a=0;a&lt;6;a++){
-		cout&lt;&lt;a&lt;&lt;endl;
-	}
-	int b=0,c=0;
-	while(b&lt;6){
-		cout&lt;&lt;b&lt;&lt;endl;
-		if(b==5)break;
-		b++;
-	}
-	do{
-		cout&lt;&lt;c&lt;&lt;endl;
-		if(c==5)continue;
-		c++;
-	}while(c&lt;6);
-}
-void choose(){
-	int a=1,b=2;
-	int z=a==b?1:2;
-	if(a==1&&b==2){
-		int c=a+b;
-		if(a+b==c){
-			cout&lt;&lt;"Oh!";
+		#include&lt;bits/stdc++.h&gt;
+		//C标准库：#include&lt;cstdio&gt;
+		
+		using namespace std;
+		void quine(){
+			freopen("help.cpp","r",stdin);
+			string it;
+			
 		}
-	}
-	else if(a==2||b==2){
-		int d=a-b;
-	}
-	else if(!a==2){
-		int e=a;
-	}
-	else if(a^b){
-		cout&lt;&lt;"a=b";
-	}
-	else{
-		int f=b;
-	}
-
-	int score=5;
-	switch (score){
-		case 10:
-			cout &lt;&lt; 10 &lt;&lt; endl;
-			break;
-		case 9:
-			cout &lt;&lt; 9 &lt;&lt; endl;
-			break;
-		case 8:
-			cout &lt;&lt; 8 &lt;&lt; endl;
-			break;
-		case 7:
-			cout &lt;&lt; 7 &lt;&lt; endl;
-			break;
-		case 6:
-		case 5:
-			cout &lt;&lt; 5 &lt;&lt; endl;
-			break;
-		default:
-			cout &lt;&lt; "Oh!" &lt;&lt; endl;
-			break;
-	}
-	//switch缺点：判断时候只能是整型或者字符型，不可以是一个区间！优点：结构清晰，执行效率高！
-}
-void array(){
-	int a[10]={1,2,3,4};
-	cout&lt;&lt;a[0];
-	int b[10][10]={{1,2,3},{3,4,5}};
-	int c[2][2][2]={1,2,3,4,5,6,7,8};
-	cout&lt;&lt;b[1][2];
-	cout&lt;&lt;c[1][0][1];
-	//一维数组的插入:插入一个元素，需要先找到插入的位置(假设下标为 x)，将这个元素及其之后的所有元素依次往后移一位(注意要从后往前进行操作)，再将给定的元素插入(覆盖)到位置 x。
-	//一维数组的删除:删除某一个元素，也需要先找到删除的位置(假设下标为 x)，将下标为 x+1 及其之后的所有元素依次向前移一位，覆盖原来位置上的元素。
-	//原码：10000001 反码：11111110（除符号位全部取反） 补码：11111111（+1）
-	//#include&lt;algorithm&gt;
-	fill(a,a+10,8);//fill(起始地址,终止地址,要赋的值)按元素赋值，可以赋任何值
-}
-void chararray(){
-	char a[15]="helloworld!";
-	char b[15]={'h','e','l','l','o','w','o','r','l,'d,'!'};//最后一个元素是'\0'
-	//字符串：由一个或多个字符组成的序列
-	/*用字符常量逐个初始化：char letter［5］={'a'，'e'，'i'，'o'，'u'}；
-	用赋值语句逐个元素赋值：letter［0］='a'；…
-	用 scanf 读入整个数组：scanf （"%s"，letter）；
-	用 scanf 逐个元素读入：scanf （"%c"，&letter［0］）；…
-	用 cin 输入整个数组：cin &gt;&gt; letter；
-	用 cin 逐个元素输入：cin &gt;&gt; letter［0］；…
-	用 gets 读入整个数组：gets（letter）；//c++11标准中删除了此函数，容易越界，用fgets代替
-	用 getchar 逐个读入：letter［0］=getchar（）；if(s==EOF)break;	//未知个数的字符被读完停止
-	*/
-	/*用 cout 输出整个数组：cout &lt;&lt; letter；
-	用 cout 逐个元素输出：cout &lt;&lt;letter［0］；…
-	用 printf 输出整个数组：printf （"%s"，letter）；
-	用 printf 逐个元素输出：printf （"%c"，letter［0］）；…
-	用 puts 输出整个数组：puts（letter）；
-	用 putchar 逐个元素输出：putchar（letter［0］）；…
-	*/
-	strcpy(a,b);//复制字符串 b 到字符串 a。
-	strncpy(a,b,5);//复制字符串 b 的前 5 个字符到字符串 a。
-	strcat(a,b);//连接字符串 b 到字符串 a 的末尾。
-	strcat(a,b,5);//连接字符串 b 的前 5 个字符到字符串 a 的末尾。
-	strlen(a);//返回字符串 a 的长度。
-	strcmp(a, b);//如果 a 和 b 是相同的，则返回 0；如果 a&lt;b 则返回值小于 0；如果 a&gt;b 则返回值大于 0。
-	strncmp(a, b, 5);//如果 a 和 b 的前 5 个字符是相同的，则返回 0；如果 a&lt;b 则返回值小于 0；如果 a&gt;b 则返回值大于 0。
-	strchr(a, ch);//返回一个指针，指向字符串 a 中字符 ch 的第一次出现的位置。
-	strstr(a, b);//返回一个指针，指向字符串 a 中字符串 b 的第一次出现的位置。
-	//#include&lt;cstring&gt;
-	string s="hello";
-	string str = "world!";
-	// 拼接字符串
-	string s += str;
-	s.append(str);
-	// 比较字典序
-	s&lt;str;
-	// 返回字符串长度
-	s.length();
-	s.size();
-	s.substr(pos,len);//从s的第pos个位置截取len个字符并返回
-	s.insert(pos,str);//在s的第pos个位置之前，插入str字符串并返回
-	s.find(pos,[len]);//在字符串s中从第pos个位置开始寻找str并返回str位置，找不到返回-1，pos可省略，默认为0
-	memset(a,0,sizeof(a));//memset(数组名,要赋的值，要给多少个数赋值),仅用于char；int只允许0/-1（因为按字节赋值）
-}
-int scan(){
-	//快速读入字符串函数 
-	int res = 0, flag = 0;
-	char ch;
-	if((ch = getchar()) == '-') flag = 1;
-	else if(ch &gt;= '0' && ch &lt;= '9') res = ch - '0';
-	while((ch = getchar()) &gt;= '0' && ch &lt;= '9')
-		res = res * 10 + (ch - '0');
-	return flag ? -res : res;
-}
-
-struct student{
-	string name;
-	int math,chinese,english;
-}a,cnt;
-void xstruct(){
-	int n;
-	cin&gt;&gt;n;
-	int maxn=-1;
-	for(int i=1;i&lt;=n;i++){
-		cin&gt;&gt;a.name &gt;&gt;a.chinese &gt;&gt;a.math &gt;&gt;a.english ;
-		if(a.chinese +a.math +a.english &gt;maxn){
-			maxn=a.chinese +a.math +a.english ;
-			cnt=a;
+		string readFileToString(const string &filename)
+		{
+			ifstream file(filename);
+			if (!file.is_open())
+			{
+				cerr &lt;&lt; "Failed to open file: " &lt;&lt; filename &lt;&lt; endl;
+				return "";
+			}
+		
+			string content((istreambuf_iterator&lt;char&gt;(file)),
+			istreambuf_iterator&lt;char&gt;());
+		
+			file.close();
+			return content;
 		}
-	}
-	cout&lt;&lt;cnt.name &lt;&lt;" "&lt;&lt;cnt.chinese &lt;&lt;" "&lt;&lt;cnt.math &lt;&lt;" "&lt;&lt;cnt.english ;
-}
-void swap(int &a,int &b){
-	int t=a;
-	a=b;
-	b=t;
-}
-bool function(int num);
-int main(){
-	//main函数：程序首先运行的函数
-	cout&lt;&lt;examplefunction(5);//5为实际参数
-	int c=1,d=2;
-	swap(c,d);
-	cout&lt;&lt;c&lt;&lt;d;
-}
-bool function(int num){
-	//函数：完成特定功能的单元
-	//return语句：可以有多个，但只会执行最上方的一个；当return的数据类型与函数返回值类型不同时，会自动转为返回值类型。
-	//num为形式参数，定义时不知道值，需要传递参数。
-	if(num==2)return 1;
-	if(num%2==0)return 0;
-	for(int i=3;i*i&lt;=num;i+=2){
-		if(num%i==0){
+		
+		int itself(){
+			system("chcp 65001");
+			string filename = "help.cpp";
+			string content = readFileToString(filename);
+			cout &lt;&lt; "File content:\n" &lt;&lt; content &lt;&lt; endl;
 			return 0;
 		}
-	}
-	return 1;
-}
+		void Type(){
+			//常量：不会改变的量
+			const int Pi=3.1415926;
+			cout &lt;&lt; "typE: \t\t" &lt;&lt; "************size**************"&lt;&lt; endl;  
+			cout &lt;&lt; "bool: \t\t" &lt;&lt; "所占字节数：" &lt;&lt; sizeof(bool);  
+			cout &lt;&lt; "\t最大值：" &lt;&lt; (numeric_limits&lt;bool&gt;::max)();  
+			cout &lt;&lt; "\t\t最小值：" &lt;&lt; (numeric_limits&lt;bool&gt;::min)() &lt;&lt; endl;  
+			cout &lt;&lt; "char: \t\t" &lt;&lt; "所占字节数：" &lt;&lt; sizeof(char);  
+			cout &lt;&lt; "\t最大值：" &lt;&lt; (numeric_limits&lt;char&gt;::max)();  
+			cout &lt;&lt; "\t\t最小值：" &lt;&lt; (numeric_limits&lt;char&gt;::min)() &lt;&lt; endl;  
+			cout &lt;&lt; "signed char: \t" &lt;&lt; "所占字节数：" &lt;&lt; sizeof(signed char);  
+			cout &lt;&lt; "\t最大值：" &lt;&lt; (numeric_limits&lt;signed char&gt;::max)();  
+			cout &lt;&lt; "\t\t最小值：" &lt;&lt; (numeric_limits&lt;signed char&gt;::min)() &lt;&lt; endl;  
+			cout &lt;&lt; "unsigned char: \t" &lt;&lt; "所占字节数：" &lt;&lt; sizeof(unsigned char);  
+			cout &lt;&lt; "\t最大值：" &lt;&lt; (numeric_limits&lt;unsigned char&gt;::max)();  
+			cout &lt;&lt; "\t\t最小值：" &lt;&lt; (numeric_limits&lt;unsigned char&gt;::min)() &lt;&lt; endl;  
+			cout &lt;&lt; "wchar_t: \t" &lt;&lt; "所占字节数：" &lt;&lt; sizeof(wchar_t);  
+			cout &lt;&lt; "\t最大值：" &lt;&lt; (numeric_limits&lt;wchar_t&gt;::max)();  
+			cout &lt;&lt; "\t\t最小值：" &lt;&lt; (numeric_limits&lt;wchar_t&gt;::min)() &lt;&lt; endl;  
+			cout &lt;&lt; "short: \t\t" &lt;&lt; "所占字节数：" &lt;&lt; sizeof(short);  
+			cout &lt;&lt; "\t最大值：" &lt;&lt; (numeric_limits&lt;short&gt;::max)();  
+			cout &lt;&lt; "\t\t最小值：" &lt;&lt; (numeric_limits&lt;short&gt;::min)() &lt;&lt; endl;  
+			cout &lt;&lt; "int: \t\t" &lt;&lt; "所占字节数：" &lt;&lt; sizeof(int);  
+			cout &lt;&lt; "\t最大值：" &lt;&lt; (numeric_limits&lt;int&gt;::max)();  
+			cout &lt;&lt; "\t最小值：" &lt;&lt; (numeric_limits&lt;int&gt;::min)() &lt;&lt; endl;  
+			cout &lt;&lt; "unsigned: \t" &lt;&lt; "所占字节数：" &lt;&lt; sizeof(unsigned);  
+			cout &lt;&lt; "\t最大值：" &lt;&lt; (numeric_limits&lt;unsigned&gt;::max)();  
+			cout &lt;&lt; "\t最小值：" &lt;&lt; (numeric_limits&lt;unsigned&gt;::min)() &lt;&lt; endl;  
+			cout &lt;&lt; "lonE: \t\t" &lt;&lt; "所占字节数：" &lt;&lt; sizeof(long);  
+			cout &lt;&lt; "\t最大值：" &lt;&lt; (numeric_limits&lt;long&gt;::max)();  
+			cout &lt;&lt; "\t最小值：" &lt;&lt; (numeric_limits&lt;long&gt;::min)() &lt;&lt; endl;  
+			cout &lt;&lt; "unsigned lonE: \t" &lt;&lt; "所占字节数：" &lt;&lt; sizeof(unsigned long);  
+			cout &lt;&lt; "\t最大值：" &lt;&lt; (numeric_limits&lt;unsigned long&gt;::max)();  
+			cout &lt;&lt; "\t最小值：" &lt;&lt; (numeric_limits&lt;unsigned long&gt;::min)() &lt;&lt; endl;  
+			cout &lt;&lt; "doublE: \t" &lt;&lt; "所占字节数：" &lt;&lt; sizeof(double);  
+			cout &lt;&lt; "\t最大值：" &lt;&lt; (numeric_limits&lt;double&gt;::max)();  
+			cout &lt;&lt; "\t最小值：" &lt;&lt; (numeric_limits&lt;double&gt;::min)() &lt;&lt; endl;  
+			cout &lt;&lt; "long doublE: \t" &lt;&lt; "所占字节数：" &lt;&lt; sizeof(long double);  
+			cout &lt;&lt; "\t最大值：" &lt;&lt; (numeric_limits&lt;long double&gt;::max)();  
+			cout &lt;&lt; "\t最小值：" &lt;&lt; (numeric_limits&lt;long double&gt;::min)() &lt;&lt; endl;  
+			cout &lt;&lt; "float: \t\t" &lt;&lt; "所占字节数：" &lt;&lt; sizeof(float);  
+			cout &lt;&lt; "\t最大值：" &lt;&lt; (numeric_limits&lt;float&gt;::max)();  
+			cout &lt;&lt; "\t最小值：" &lt;&lt; (numeric_limits&lt;float&gt;::min)() &lt;&lt; endl;  
+			cout &lt;&lt; "size_t: \t" &lt;&lt; "所占字节数：" &lt;&lt; sizeof(size_t);  
+			cout &lt;&lt; "\t最大值：" &lt;&lt; (numeric_limits&lt;size_t&gt;::max)();  
+			cout &lt;&lt; "\t最小值：" &lt;&lt; (numeric_limits&lt;size_t&gt;::min)() &lt;&lt; endl;  
+			cout &lt;&lt; "strinE: \t" &lt;&lt; "所占字节数：" &lt;&lt; sizeof(string) &lt;&lt; endl;  
+			// &lt;&lt; "\t最大值：" &lt;&lt; (numeric_limits&lt;string&gt;::max)() &lt;&lt; "\t最小值：" &lt;&lt; (numeric_limits&lt;string&gt;::min)() &lt;&lt; endl;  
+			cout &lt;&lt; "typE: \t\t" &lt;&lt; "************size**************"&lt;&lt; endl;  
+			//变量类型：整型
+			int	a=1;//4 个字节	-2147483648 到 2147483647
+			unsigned int b=2048;//4 个字节	0 到 4294967295
+			signed int c=8192;//4 个字节	-2147483648 到 2147483647
+			short int d=128;//2 个字节	-32768 到 32767
+			unsigned short int e=6823;//2 个字节	0 到 65,535
+			signed short int f=64;//2 个字节	-32768 到 32767
+			long int g=8192*2;//8 个字节	-9,223,372,036,854,775,808 到 9,223,372,036,854,775,807
+			signed long int h=8192*2;//8 个字节	-9,223,372,036,854,775,808 到 9,223,372,036,854,775,807
+			unsigned long int i=8192*4;//8 个字节	0 到 18,446,744,073,709,551,615
+			//变量类型：浮点型
+			float x=2.01;//4 个字节	精度型占4个字节（32位）内存空间，+/- 3.4e +/- 38 (~7 个数字)
+			double y=1.4142;//	8 个字节	双精度型占8 个字节（64位）内存空间，+/- 1.7e +/- 308 (~15 个数字)
+			long double	z=1.41423;//16 个字节	长双精度型 16 个字节（128位）内存空间，可提供18-19位有效数字。
+			//注意，各种类型的存储大小与系统位数有关，但目前通用的以64位系统为主。
+			//变量类型：字符型
+			char name='I';//一个char型变量可存储一个ASCII码表字符（本质上存的是数字）,'A'=65,'a'=97
+			//变量类型：布尔型
+			bool OK=true;//一个bool型变量可存储一个真值/假值，默认任意非零实数为真
+			typedef bool outtuo;//将outtuo取名为bool型的别名
+			outtuo noOK=false;//0为假
+			OK=1-2&gt;0;//判断表达式真假，并赋值
+			cout&lt;&lt;"变量命名规则：仅可由字母、数字或\'_'组成，且不能以数字开头、不能使用保留字；变量定义后才可使用。";
+			/*变量类型自动转换(隐式类型转换)
+			规则1:参与运算的变量类型不同时,先转换为同一类型再计算
+			规则2:转换按数据长度增加的方向进行,以保证精度(int→float)
+			规则3:所有浮点运算都以double型进行
+			规则4:char型、short型先转为int型再计算
+			规则5:浮点型变量赋值给整型变量,自动舍弃小数点部分*/
+			//变量类型强制转换(显式类型转换)
+			float bb=5.0;
+			int aa;
+			aa=(int)(bb);
+		}
+		bool MaTh(){
+			int a=1,b=2;
+			//算术运算符
+			cout&lt;&lt;a+b&lt;&lt;endl;
+			cout&lt;&lt;a-b&lt;&lt;endl;
+			cout&lt;&lt;a*b&lt;&lt;endl;
+			cout&lt;&lt;a/b&lt;&lt;endl;
+			cout&lt;&lt;a%b&lt;&lt;endl;
+			a+=b;
+			a-=b;
+			a*=b;
+			a/=b;
+			a%=b;
+			a++;
+			a--;
+			++a;
+			--a;
+			//比较运算符(得到结果为布尔型)
+			bool d=a&gt;b;
+			d=a&lt;b;
+			d=a==b;//判断a=b
+			d=a!=b;//判断a≠b
+			d=a&gt;=b;//判断a≥b
+			d=a&lt;=b;//判断a≤b
+			// 一般不会用==判断两浮点数是否相等，因为存在精度误差。一般用作差法
+			float cc=1.0,dd=1.00000001;
+			if(cc-dd&lt;0.000001){
+				return 1;
+			}else{
+				return 0;
+			}
+			//运算优先级:算术运算&gt;比较运算&gt;赋值运算
+			
+			//#include&lt;cmath&gt;
+			int c=pow(a,b);
+			c=sqrt(4);
+			c=abs(-1);
+			c=fabs(-1.0);
+			c=ceil(1.5);//c=2
+			c=floor(1.5);//c=1
+		}
+		void IOstream(){
+			// 流：数据之间的传输操作
+			int a;
+			//#include&lt;iostream&gt;
+			cin&gt;&gt;a;//从标准输入流（stdin，即键盘）读入一个值，并赋值给a。&gt;&gt;：提取运算符
+			cout&lt;&lt;a;//从标准输出流（stdout，即显示屏）输出a的值。&lt;&lt;：插入运算符
+			scanf("%d",&a);//%d为格式控制符，在此处意为接受整型变量，类似cin；第二个参数为变量地址，所以&不要落掉！
+			printf("%d",a);//类似cout，效率更高
+			sscanf("%d",&a,str);//从str读取指定格式的字符并保存到a中
+			sprintf("%d",a,str);//从str中以指定格式处理字符串并输出到a中
+			freopen("help.in","r",stdin);//打开输入文件
+			freopen("help.out","w",stdout);//打开输出文件
+			//此处照常写代码，cin cout直接用
+			fclose(stdin);//关闭输入文件
+			fclose(stdout);//关闭输出文件
+			//system("pause");
+			/*
+			常见格式控制符：
+			%d = int
+				%02d:若输出不足两位，则前方补0
+			%lld = long long
+			%f = float
+				%.2f：输出2位小数
+			%ld = double
+			%c = char
+			*/
+			/*.转义字符(表示特定含义)
+			"\n":换行
+			"\t":制表符
+			"\b":退格
+			"\r":回车(不换行)
+			"\0":空字符
+			"\'"单引号
+			"\"":双引号
+			"\\":一个"\"字符
+			"\ddd":1～3个八进制数代表的ASCII码值
+			"\xdd":2个十六进制数代表的ASCII码值*/
+		}
+		void repeat(){
+			for(int a=0;a&lt;6;a++){
+				cout&lt;&lt;a&lt;&lt;endl;
+			}
+			int b=0,c=0;
+			while(b&lt;6){
+				cout&lt;&lt;b&lt;&lt;endl;
+				if(b==5)break;
+				b++;
+			}
+			do{
+				cout&lt;&lt;c&lt;&lt;endl;
+				if(c==5)continue;
+				c++;
+			}while(c&lt;6);
+		}
+		void choose(){
+			int a=1,b=2;
+			int z=a==b?1:2;
+			if(a==1&&b==2){
+				int c=a+b;
+				if(a+b==c){
+					cout&lt;&lt;"Oh!";
+				}
+			}
+			else if(a==2||b==2){
+				int d=a-b;
+			}
+			else if(!a==2){
+				int e=a;
+			}
+			else if(a^b){
+				cout&lt;&lt;"a=b";
+			}
+			else{
+				int f=b;
+			}
+		
+			int score=5;
+			switch (score){
+				case 10:
+					cout &lt;&lt; 10 &lt;&lt; endl;
+					break;
+				case 9:
+					cout &lt;&lt; 9 &lt;&lt; endl;
+					break;
+				case 8:
+					cout &lt;&lt; 8 &lt;&lt; endl;
+					break;
+				case 7:
+					cout &lt;&lt; 7 &lt;&lt; endl;
+					break;
+				case 6:
+				case 5:
+					cout &lt;&lt; 5 &lt;&lt; endl;
+					break;
+				default:
+					cout &lt;&lt; "Oh!" &lt;&lt; endl;
+					break;
+			}
+			//switch缺点：判断时候只能是整型或者字符型，不可以是一个区间！优点：结构清晰，执行效率高！
+		}
+		void array(){
+			int a[10]={1,2,3,4};
+			cout&lt;&lt;a[0];
+			int b[10][10]={{1,2,3},{3,4,5}};
+			int c[2][2][2]={1,2,3,4,5,6,7,8};
+			cout&lt;&lt;b[1][2];
+			cout&lt;&lt;c[1][0][1];
+			//一维数组的插入:插入一个元素，需要先找到插入的位置(假设下标为 x)，将这个元素及其之后的所有元素依次往后移一位(注意要从后往前进行操作)，再将给定的元素插入(覆盖)到位置 x。
+			//一维数组的删除:删除某一个元素，也需要先找到删除的位置(假设下标为 x)，将下标为 x+1 及其之后的所有元素依次向前移一位，覆盖原来位置上的元素。
+			//原码：10000001 反码：11111110（除符号位全部取反） 补码：11111111（+1）
+			//#include&lt;algorithm&gt;
+			fill(a,a+10,8);//fill(起始地址,终止地址,要赋的值)按元素赋值，可以赋任何值
+		}
+		void chararray(){
+			char a[15]="helloworld!";
+			char b[15]={'h','e','l','l','o','w','o','r','l','d','!'};//最后一个元素是'\0'
+			//字符串：由一个或多个字符组成的序列
+			/*用字符常量逐个初始化：char letter［5］={'a'，'e'，'i'，'o'，'u'}；
+			用赋值语句逐个元素赋值：letter［0］='a'；…
+			用 scanf 读入整个数组：scanf （"%s"，letter）；
+			用 scanf 逐个元素读入：scanf （"%c"，&letter［0］）；…
+			用 cin 输入整个数组：cin &gt;&gt; letter；
+			用 cin 逐个元素输入：cin &gt;&gt; letter［0］；…
+			用 gets 读入整个数组：gets（letter）；//c++11标准中删除了此函数，容易越界，用fgets代替
+			用 getchar 逐个读入：letter［0］=getchar（）；if(s==EOF)break;	//未知个数的字符被读完停止
+			*/
+			/*用 cout 输出整个数组：cout &lt;&lt; letter；
+			用 cout 逐个元素输出：cout &lt;&lt;letter［0］；…
+			用 printf 输出整个数组：printf （"%s"，letter）；
+			用 printf 逐个元素输出：printf （"%c"，letter［0］）；…
+			用 puts 输出整个数组：puts（letter）；
+			用 putchar 逐个元素输出：putchar（letter［0］）；…
+			*/
+			strcpy(a,b);//复制字符串 b 到字符串 a。
+			strncpy(a,b,5);//复制字符串 b 的前 5 个字符到字符串 a。
+			strcat(a,b);//连接字符串 b 到字符串 a 的末尾。
+			strcat(a,b,5);//连接字符串 b 的前 5 个字符到字符串 a 的末尾。
+			strlen(a);//返回字符串 a 的长度。
+			strcmp(a, b);//如果 a 和 b 是相同的，则返回 0；如果 a&lt;b 则返回值小于 0；如果 a&gt;b 则返回值大于 0。
+			strncmp(a, b, 5);//如果 a 和 b 的前 5 个字符是相同的，则返回 0；如果 a&lt;b 则返回值小于 0；如果 a&gt;b 则返回值大于 0。
+			strchr(a, ch);//返回一个指针，指向字符串 a 中字符 ch 的第一次出现的位置。
+			strstr(a, b);//返回一个指针，指向字符串 a 中字符串 b 的第一次出现的位置。
+			//#include&lt;cstring&gt;
+			string s="hello";
+			string str = "world!";
+			// 拼接字符串
+			string s += str;
+			s.append(str);
+			// 比较字典序
+			s&lt;str;
+			// 返回字符串长度
+			s.length();
+			s.size();
+			s.substr(pos,len);//从s的第pos个位置截取len个字符并返回
+			s.insert(pos,str);//在s的第pos个位置之前，插入str字符串并返回
+			s.find(pos,[len]);//在字符串s中从第pos个位置开始寻找str并返回str位置，找不到返回-1，pos可省略，默认为0
+			memset(a,0,sizeof(a));//memset(数组名,要赋的值，要给多少个数赋值),仅用于char；int只允许0/-1（因为按字节赋值）
+		}
+		int scan(){
+			//快速读入字符串函数 
+			int res = 0, flag = 0;
+			char ch;
+			if((ch = getchar()) == '-') flag = 1;
+			else if(ch &gt;= '0' && ch &lt;= '9') res = ch - '0';
+			while((ch = getchar()) &gt;= '0' && ch &lt;= '9')
+				res = res * 10 + (ch - '0');
+			return flag ? -res : res;
+		}
+		
+		struct student{
+			string name;
+			int math,chinese,english;
+		}StructA,StructB;
+		void xstruct(){
+			int n;
+			cin&gt;&gt;n;
+			int maxn=-1;
+			for(int i=1;i&lt;=n;i++){
+				cin&gt;StructA.name &gt;&gt;StructA.chinese &gt;&gt;StructA.math &gt;&gt;StructA.english ;
+				if(SturctA.chinese +StructA.math +StrcutA.english &gt;maxn){
+					maxn=StructA.chinese +StructA.math +StructA.english;
+					StructB=StructA;
+				}
+			}
+			cout&lt;&lt;StructB.name &lt;&lt;" "&lt;&lt;StructB.chinese &lt;&lt;" "&lt;&lt;StructB.math &lt;&lt;" "&lt;&lt;StructB.english ;
+		}
+		void notswap(int a,int b){
+			//无效代码
+			int temp=a;
+			a=b;
+			b=temp;
+		}
+		void swap(int &a,int &b){
+			int temp=a;
+			a=b;
+			b=temp;
+		}
+		void swapplus(int *a,int *b){
+			int temp=*a;
+			*a=*b;
+			*b=temp;
+		}
+		
+		void pointer(){
+			int a=10,b[10]={1,2,3,4,5,6,7,8,9};
+			int *p=&a,*pp=&b;
+			p=&a;
+			cout&lt;&lt;*(pp++);
+			cout&lt;&lt;*(pp--);
+			int **p2=&p;
+			int ***p3=&p2;
+			/*
+			p==&a;
+			*p==a;
+			p2==&p;
+			*p2==&a;
+			**p2==a
+			*/
+			cout&lt;&lt;a*(***p3);
+		}
+		
+		bool function(int num);
+		int main(){
+			//main函数：程序首先运行的函数
+			cout&lt;&lt;function(5);//5为实际参数
+			int c=1,d=2;
+			notswap(c,d);
+			cout&lt;&lt;c&lt;&lt;d;
+			c=1,d=2;
+			swap(c,d);
+			cout&lt;&lt;c&lt;&lt;d;
+			c=1,d=2;
+			swapplus(&c,&d);
+			cout&lt;&lt;c&lt;&lt;d;
+			itself();
+		}
+		bool function(int num){
+			//函数：完成特定功能的单元
+			//return语句：可以有多个，但只会执行最上方的一个；当return的数据类型与函数返回值类型不同时，会自动转为返回值类型。
+			//num为形式参数，定义时不知道值，需要传递参数。
+			if(num==2)return 1;
+			if(num%2==0)return 0;
+			for(int i=3;i*i&lt;=num;i+=2){
+				if(num%i==0){
+					return 0;
+				}
+			}
+			return 1;
+		}				
 	</code></pre>
+	</li>
+	</ul>
 </li>
 <li class="card">Lua
 	<ul>
@@ -1612,6 +1655,74 @@ print(c)
 		</code></pre>
 	</li>
 	</ul>
+</li>
+<li class="card">yaml_refcard.yaml
+	<pre><code language="yaml">
+	%YAML 1.1   # Reference card
+	---
+	Collection indicators:
+	  '? ' : Key indicator.
+	  ': ' : Value indicator.
+	  '- ' : Nested series entry indicator.
+	  ', ' : Separate in-line branch entries.
+	  '[]' : Surround in-line series branch.
+	  '{}' : Surround in-line keyed branch.
+	Scalar indicators:
+	  '''' : Surround in-line unescaped scalar ('' escaped ').
+	  '"'  : Surround in-line escaped scalar (see escape codes below).
+	  '|'  : Block scalar indicator.
+	  '&gt;'  : Folded scalar indicator.
+	  '-'  : Strip chomp modifier ('|-' or '&gt;-').
+	  '+'  : Keep chomp modifier ('|+' or '&gt;+').
+	  1-9  : Explicit indentation modifier ('|1' or '&gt;2').
+			 # Modifiers can be combined ('|2-', '&gt;+1').
+	Alias indicators:
+	  '&'  : Anchor property.
+	  '*'  : Alias indicator.
+	Tag property: # Usually unspecified.
+	  none	: Unspecified tag (automatically resolved by application).
+	  '!'	 : Non-specific tag (by default, "!!map"/"!!seq"/"!!str").
+	  '!foo'  : Primary (by convention, means a local "!foo" tag).
+	  '!!foo' : Secondary (by convention, means "tag:yaml.org,2002:foo").
+	  '!h!foo': Requires "%TAG !h! &lt;prefix&gt;" (and then means "&lt;prefix&gt;foo").
+	  '!&lt;foo&gt;': Verbatim tag (always means "foo").
+	Document indicators:
+	  '%'  : Directive indicator.
+	  '---': Document header.
+	  '...': Document terminator.
+	Misc indicators:
+	  ' #' : Throwaway comment indicator.
+	  '`@' : Both reserved for future use.
+	Special keys:
+	  '='  : Default "value" mapping key.
+	  '&lt;&lt;' : Merge keys from another mapping.
+	Core types: # Default automatic tags.
+	  '!!map' : { Hash table, dictionary, mapping }
+	  '!!seq' : { List, array, tuple, vector, sequence }
+	  '!!str' : Unicode string
+	More types:
+	  '!!set' : { cherries, plums, apples }
+	  '!!omap': [ one: 1, two: 2 ]
+	Language Independent Scalar types:
+	  { ~, null }			  : Null (no value).
+	  [ 1234, 0x4D2, 02333 ]   : [ Decimal int, Hexadecimal int, Octal int ]
+	  [ 1_230.15, 12.3015e+02 ]: [ Fixed float, Exponential float ]
+	  [ .inf, -.Inf, .NAN ]	: [ Infinity (float), Negative, Not a number ]
+	  { Y, true, Yes, ON  }	: Boolean true
+	  { n, FALSE, No, off }	: Boolean false
+	  ? !!binary &gt;
+		  R0lG...BADS=
+	  : &gt;-
+		  Base 64 binary value.
+	Escape codes:
+	 Numeric   : { "\x12": 8-bit, "\u1234": 16-bit, "\U00102030": 32-bit }
+	 Protective: { "\\": '\', "\"": '"', "\ ": ' ', "\&lt;TAB&gt;": TAB }
+	 C		 : { "\0": NUL, "\a": BEL, "\b": BS, "\f": FF, "\n": LF, "\r": CR,
+				 "\t": TAB, "\v": VTAB }
+	 Additional: { "\e": ESC, "\_": NBSP, "\N": NEL, "\L": LS, "\P": PS }
+	...
+	```
+</code></pre>
 </li>
 <li class="card">Python
 	<ul>
@@ -6241,7 +6352,7 @@ function $initHighlight(block, cls) {
 	</li>
 	</ul>
 </li>
-<li id="未完成/研究/2023.10.05">图灵完备<a href="#.未完成/研究">#未完成/研究</a>
+<li  class="card" id="未完成/研究/2023.10.05">图灵完备<a href="#.未完成/研究">#未完成/研究</a>
 	<ul>
 	<li><a href="https://zhuanlan.zhihu.com/p/408498000">证明 JS 和 TS 类型编程是图灵完备的 - 知乎</a></li>
 	<li><a href="https://zhuanlan.zhihu.com/p/590271873">递归论与可计算性 - 知乎</a></li>

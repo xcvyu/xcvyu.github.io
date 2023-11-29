@@ -332,9 +332,9 @@ marked.use({
 	<input type="file" name="file" id="filePicker" onchange="shorthand_show()"  /><br />
 	<textarea id="shorthand_code" rows="15" cols="100%"></textarea><br />
 	<textarea id="shorthand_name" rows="1" cols="100%"></textarea><br />
-	<button type="button" onclick="shorthand_download()">另存代码</button>
-	<button type="button" onclick="shorthand_runCode(this.offsetParent.getElementsByTagName('textarea')[0])">新页面打开</button>
-	<button type="button" onclick="shorthand_insert(this.offsetParent.getElementsByTagName('textarea')[0].value)">插入 test</button>
+	<button type="button" onclick="shorthand_download()">save</button>
+	<button type="button" onclick="shorthand_runCode(this.offsetParent.getElementsByTagName('textarea')[0])">open-outside</button>
+	<button type="button" onclick="shorthand_insert(this.offsetParent.getElementsByTagName('textarea')[0].value)">open-inside</button>
 	<div id="test"></div>
 </li>
 <li class="card">scheme
@@ -513,6 +513,8 @@ marked.use({
 			<ul>
 			<li><a href="#未完成/研究/2022.12.31">2022.12.31(五服制度)</a></li>
 			<li><a href="#未完成/研究/2023.10.05">2023.10.05(图灵完备)</a></li>
+			<li><a href="#未完成/研究/2023.11.26">2023.11.26(Emacs)</a></li>
+			<li><a href="#未完成/研究/2023.11.26-2">2023.11.26(数理逻辑)</a></li>
 			</ul>
 		</li>
 		</ul>
@@ -667,14 +669,14 @@ marked.use({
 	<li><a href="https://www.zhihu.com/question/493758111/answer/2237982239">在科幻小说里塞教科书般的详细设计会咋样？ - Zugzwang 的回答 - 知乎</a></li>
 	<li><a href="https://www.sqlsec.com/2021/07/opencore.html#%E8%A1%8C%E6%83%85%E5%88%86%E6%9E%90">国光 2021 年中的黑苹果组装方案以及驱动分享 | 国光</a></li>
 	<li><a href="https://www.zhihu.com/question/613932017">既然Windows On ARM可以运行x86程序了，那是不是可以模拟x86的系统了？ - 知乎</a></li>
-	<li><a href="https://www.runoob.com/w3cnote/yaml-intro.html">YAML 入门教程 | 菜鸟教程</a></li>
-	<li><a href="https://blog.csdn.net/CC031023/article/details/130163136">全网最简单详细且几乎不可能出错的vscode配置C++教程(json原理都很详细看了必会还有一些管理文件的技巧0基础也能轻松看懂)-CSDN博客</a></li>
 	<li><a href="https://zhuanlan.zhihu.com/p/587134313">量子力学的等价表述 - 知乎</a></li>
-	<li><a href="https://www.zhihu.com/tardis/zm/art/94592123">你也能懂的微积分</a></li>
-	<li><a href="https://www.zhihu.com/question/469444523">现在怎么不听大神们说华为方舟编译器了？ - 知乎</a></li>
-	<li><a href="https://3nc4homelab.ebteam.top:8850/#v1:0:=qemu%2F102:4:::::8::">3nc4home - Proxmox Virtual Environment</a></li>
-	<li><a href="https://www.cnblogs.com/gmpy/p/16719279.html">通过adb从设备持续导出数据流 - 广漠飘羽 - 博客园</a></li>
+	<li><a href="https://www.zhihu.com/tardis/zm/art/94592123?source_id=1005">你也能懂的微积分</a></li><li><a href="https://www.cnblogs.com/gmpy/p/16719279.html">通过adb从设备持续导出数据流 - 广漠飘羽 - 博客园</a></li>
+	<li><a href="https://fuhaoku.net/U+1D49C">𝒜 U+1D49C | 数学手写体大写A | Unicode统一码符号库 ✏️</a></li>
 	<li><a href="https://zhuanlan.zhihu.com/p/556301907">拉格朗日函数、正则动量与正则动量算符的相对论推广 - 知乎</a></li>
+	<li><a href="https://cn.bing.com/search?q=%E6%96%B9%E8%88%9F%E7%BC%96%E8%AF%91%E5%99%A8&PC=U316&FORM=CHROMN">方舟编译器 - 搜索</a></li>
+	<li><a href="https://www.zhihu.com/question/469444523">现在怎么不听大神们说华为方舟编译器了？ - 知乎</a></li>
+	<li><a href="https://zhuanlan.zhihu.com/p/54431252">在LaTeX中输入花体 (script) 小写拉丁字母 - 知乎</a></li>
+	<li><a href="https://3nc4homelab.ebteam.top:8850/#v1:0:=qemu%2F102:4:::::8::">3nc4home - Proxmox Virtual Environment</a></li>
 	<li><h3>我的少数派收藏</h3>
 		<ul>
 		<li><a href="https://sspai.com/post/79608">找一把完美适配 macOS 的第三方键盘，为什么那么难？</a></li>
@@ -3258,9 +3260,9 @@ print(c)
 	</li>
 	<li>元语言
 		<ul>
-		<li>一个语言及其模型$\mathscr{Z}$在一个元语言环境$\mathscr{X}$中被定义、被说明；与此语言及其模型$\mathscr{Z}$有关的定理在这个元语言环境$\mathscr{X}$中被证明，记作$meta:\mathscr{Z} \mapsto \mathscr{X}$。
+		<li>一个语言及其模型$\varphi$在一个元语言环境$\lambda$中被定义、被说明；与此语言及其模型$\varphi$有关的定理在这个元语言环境$\lambda$中被证明，记作$meta:\lambda \mapsto \varphi$。
 			<ul>
-			<li>可定义一个描述元语言的一阶语言$\mathscr{Mata}$，其中$\mathscr{Mata}_c=\{\Pi\}$，$\mathscr{Mata}_f=\{meta,meta^{-1}\}$。</li>
+			<li>可定义一个描述元语言的一阶语言$meta^{-}$，其中$meta^{-}_c=\{\Pi\}$,$meta^{-}_f=\{meta,meta^{-1},get\}$(定义$get:A \to a$,其中$a \in A$)。</li>
 			<li>那么，归纳地定义元语言图为$\begin{aligned} \lambda &::=\Pi\,|\,meta(\lambda)\,|\,meta^{-1}(\lambda)\,|\,meta\end{aligned}$</li>
 			<li>关于元语言环境的一些推论：
 				<ol>
@@ -6379,6 +6381,37 @@ function $initHighlight(block, cls) {
 	<li><a href="https://www.cnblogs.com/qianyexi/p/12154478.html">λ演算 (Lambda Calculus) 一 ： 定义与函数式编程 - IP=PSPACE - 博客园</a></li>
 	<li><a href="https://www.jianshu.com/p/ebae04e1e47c">λ演算(Lambda Calculus)入门基础（一）：定义与归约 - 简书</a></li>
 	<li><a href="https://zhuanlan.zhihu.com/p/565089428">λ演算-简单介绍lambda演算的基本定义以及操作 - 知乎</a></li>
+	</ul>
+</li>
+<li class="card" id="未完成/研究/2023.11.26">Emacs<a href="#.未完成/研究">#未完成/研究</a>
+	<ul>
+	<li><a href="https://zhuanlan.zhihu.com/p/61722510">Emacs 安装与配置 - 知乎</a></li>
+	<li><a href="https://www.zhihu.com/question/26901116/answer/34559832">如何总结和整理学术文献？ - 知乎</a></li>
+	<li><a href="https://zhuanlan.zhihu.com/p/403076883">专业 Emacs 入门（二）：基础操作 - 知乎</a></li>
+	<li><a href="https://www.cnblogs.com/wanglijun/p/8874577.html">一年成为Emacs高手(像神一样使用编辑器) - 王默默 - 博客园</a></li>
+	<li><a href="https://github.com/joaotavora/yasnippet/issues/256">change yas/prompt-functions order when I call yas/insert-snippet · Issue #256 · joaotavora/yasnippet · GitHub</a></li>
+	<li><a href="https://zhuanlan.zhihu.com/p/319394318">10 个让你进入 Emacs 世界的技巧 | Linux 中国 - 知乎</a></li>
+	</ul>
+</li>
+<li class="card" id="未完成/研究/2023.11.26-2">数理逻辑<a href="#.未完成/研究">#未完成/研究</a>
+	<ul>
+	<li><a href="https://www.zhihu.com/question/22949842">有人熟悉Isabelle定理证明器的么？ - 知乎</a></li>
+	<li><a href="https://www.cnblogs.com/chenshu/p/12634595.html">浅析逻辑代数、命题逻辑、一阶逻辑、高阶逻辑和数理逻辑 - 辰述 - 博客园</a></li>
+	<li><a href="https://www.zhihu.com/question/617759019">一阶逻辑、一阶语言、一阶理论的区别？ - 知乎</a></li>
+	<li><a href="https://www.zhihu.com/question/30830875">为什么几乎所有数理逻辑的书都只介绍一阶逻辑，二阶逻辑可以量化谓词，不是更加简明方便么，它有什么问题么？ - 知乎</a></li>
+	<li><a href="https://thzt.github.io/2015/11/23/introduction-to-mathematical-logic/">数理逻辑定义汇总 | 何幻</a></li>
+	<li><a href="https://zhuanlan.zhihu.com/p/28080127">深入浅出讲解语言模型 - 知乎</a></li>
+	<li><a href="https://zhuanlan.zhihu.com/p/541226732">什么是数学中的各种空间：线性空间、度量空间、赋范空间、内积空间、欧几里得空间、希尔伯特空间、巴拿赫空间？ - 知乎</a></li>
+	<li><a href="https://www.zhihu.com/question/26426470">数理逻辑和集合论哪个更基本 ？ - 知乎</a></li>
+	<li><a href="https://thzt.github.io/2018/01/27/semantics-3/">语言背后的代数学（三）：语义模型 | 何幻</a></li>
+	<li><a href="http://logic.fudan.edu.cn/doc/Course/2014/MathLogic/Lecture01.pdf">数理逻辑 I Mathematical Logic I</a></li>
+	<li><a href="https://www.bananaspace.org/wiki/%E4%B8%80%E9%98%B6%E8%AF%AD%E8%A8%80">一阶语言 - 香蕉空间</a></li>
+	<li><a href="https://www.zhihu.com/question/28776730">集合论和一阶逻辑的关系是什么？ - 知乎</a></li>
+	<li><a href="https://www.zhihu.com/question/22915503">一阶逻辑和高阶逻辑的区别，能不能具象一点说明？ - 知乎</a></li>
+	<li><a href="https://zhuanlan.zhihu.com/p/565089428">λ演算-简单介绍lambda演算的基本定义以及操作 - 知乎</a></li>
+	<li><a href="https://www.jianshu.com/p/ebae04e1e47c">λ演算(Lambda Calculus)入门基础（一）：定义与归约 - 简书</a></li>
+	<li><a href="https://zhuanlan.zhihu.com/p/447398364">Lambda 演算基础 - 知乎</a></li>
+	<li><a href="https://www.cnblogs.com/qianyexi/p/12154478.html">λ演算 (Lambda Calculus) 一 ： 定义与函数式编程 - IP=PSPACE - 博客园</a></li>
 	</ul>
 </li>
 </ul>

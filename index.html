@@ -1078,6 +1078,7 @@ marked.use({
 	<ul>
 	<li>help.cpp
 	<pre><code language="c++">
+		#define n 233//预处理宏，本质上是文本替换，将n换为233
 		#include&lt;bits/stdc++.h&gt;
 		//C标准库：#include&lt;cstdio&gt;
 		
@@ -1237,6 +1238,7 @@ marked.use({
 		void IOstream(){
 			// 流：数据之间的传输操作
 			int a;
+			//标准流
 			//#include&lt;iostream&gt;
 			cin&gt;&gt;a;//从标准输入流（stdin，即键盘）读入一个值，并赋值给a。&gt;&gt;：提取运算符
 			cout&lt;&lt;a;//从标准输出流（stdout，即显示屏）输出a的值。&lt;&lt;：插入运算符
@@ -1244,12 +1246,15 @@ marked.use({
 			printf("%d",a);//类似cout，效率更高
 			sscanf("%d",&a,str);//从str读取指定格式的字符并保存到a中
 			sprintf("%d",a,str);//从str中以指定格式处理字符串并输出到a中
+			ios::sync_with_stdio(0),cin.tie(0),cout.tie(0);//此操作会关闭cin/cout流和scanf/printf流通信，执行后不能混合scanf/printf和cin/cout，不能用endl换行，但可以提高效率
+			//文件流
 			freopen("help.in","r",stdin);//打开输入文件
 			freopen("help.out","w",stdout);//打开输出文件
 			//此处照常写代码，cin cout直接用
 			fclose(stdin);//关闭输入文件
 			fclose(stdout);//关闭输出文件
 			//system("pause");
+			//或用ifstream/ofstream
 			/*
 			常见格式控制符：
 			%d = int
@@ -1453,6 +1458,8 @@ marked.use({
 			**p2==a
 			*/
 			cout&lt;&lt;a*(***p3);
+			object *c;cout&lt;&lt;(*c).number;//结构体指针访问，二者皆可用
+			object *c;cout&lt;&lt;c-&gt;number;
 		}
 		
 		bool function(int num);
@@ -1483,19 +1490,197 @@ marked.use({
 			}
 			return 1;
 		}
-		void sort(){
+		bool primeNumber(int num){
+			if(num==2)return 1;
+			if(num%2==0)return 0;
+			for(int i=3;i*i&lt;=num;i+=2){
+				if(num%i==0){
+					return 0;
+				}
+			}
+			return 1;
+		}
+		/*- 手动狗头
+		- AC=Answer Coarse=粗劣的答案
+		- WA=Wonderful Answer=好答案
+		- TLE=Time Limit Enough=时间充裕
+		- MLE=Memory Limit Enough=内存充裕
+		- CE=Compile Easily=轻松通过编译
+		- RE=Run Excellently=完美运行
+	- 以下是正解
+		- AC-Accepted 答案正确/通过
+		- WA-Wrong Answer 答案错误
+		- RE-Runtime Error 运行时错误
+		- CE-Complie Error 编译错误
+		- TLE-Time Limit Exceed 超出时间限制/超时
+		- MLE-Memory Limit Exceed 超出内存限制
+		- PE-Presentation Error 格式错误
+		- OLE-Output Limit Exceed 输出超出限制/输出超限
+		- UKE_Unknown Error未知错误*/
+		void STL_algorithm(){
 		//need include&lt;algorithm&gt;
 			bool cmp(int a,int b){
 				return a>b;
 			}
-			sort(a,a+n,cmp)//a为起始，a+n为终止，左闭右开
+			sort(a,a+n,cmp);//a为起始，a+n为终止，左闭右开
 
-			next_permutation(start,end)//全排列遍历，左闭右开
+			next_permutation(start,end);//全排列遍历，左闭右开，时间复杂度为$O(n!)$
+
+			lower_bound(begin,end,val);//找到第一个$>=val$的数
+			upper_bound(begin,end,val);//找到第一个$>val$的数
+			//upper-lower=val_time
+			//栈：仅在某一端（栈顶）插入和删除的线性表；插入称为进栈，删除称为退栈，先进栈的元素后退栈，别名后进先出表（LIFO表）
+			//用定长数组和一个栈顶指针模拟栈
+			/*void push(int x){
+				p++;
+				a[p]=x;
+			}
+			void pop()
+				if(p&gt;=0){
+					a[p]=x;
+					p--;
+				}
+			}
+			int top(){
+				if(p&gt;=0)return a[p];
+			}
+			int a[1024],p=0;
+
+			#include&lt;stack&gt;
+
+			stack &lt;int&gt; s
+			s.push(x);//将x压进栈顶
+			s.pop();//弹出栈顶元素
+			s.top();//查询栈顶元素
+			s.size();//查询栈的元素个数
+			s.empty();//检查栈是否为空，为空返回True*/
+
+
+			#include&lt;queue&gt;
+
+			//队列：仅在某一端（队尾）插入，在另一端（队头）删除的线性表；插入称为入队，删除称为出队，先进栈的元素后退栈，别名先进先出表（FIFO表）
+			queue &lt;int&gt; s
+			s.push(x);//将x压进队尾
+			s.pop();//弹出对头元素
+			s.front();//查询队头元素
+			s.back();//查询队尾元素
+			s.size();//查询栈的元素个数
+			s.empty();//检查栈是否为空，为空返回True
+		}
+		int bubbleSort(int sum[], int size){
+			for(int i=0;i&lt;size;i++){
+				for(int temp,j=0;j&lt;size-1-i;j++){
+					if(sum[j]&gt;sum[j+1]){
+						temp=sum[j];
+						sum[j]=sum[j+1];
+						sum[j+1]=temp;
+					}
+				}
+			}
+			return sum[];
+		}
+		int chosoe_sort(int sum[],int size){
+			int temp;
+			for(int i=0;i&lt;size;i++){
+				int min=i;
+				for(int j=i;j&lt;size;j++){
+					if(sum[j]&lt;sum[min])min=j;
+				}
+				if(min!=i){
+					temp=sum[min];
+					sum[min]=sum[i];
+					sum[i]=temp;
+			}
+		}
+		void quicksort(int i,int j,int sum[]){
+			//i为起始指针，j为末尾指针
+			int mid=sum[(i+j)/2],l=i,r=j;
+			do{
+				while(sum[l]&lt;mid)l++;
+				while(sum[r]&gt;mid)r--;
+				if(l&lt;=r){
+					int temp=sum[l];
+					sum[l]=sum[r];
+					sum[r]=temp;
+					l++;
+					r--;
+				}
+			}while(l&lt;=r);
+			if(i&lt;r)quicksort(i,r,sum);
+			if(j&gt;l)quicksort(l,j,sum);
+		}
+		void insertion_sort(int sum[], int size){
+		 int  j,temp;
+		 for (int i = 1; i &lt; size; i++){
+			temp = sum[i];
+			for(j = i; j &gt; 0 && temp &lt; sum[j-1]; j--){
+				sum[j] = sum[j-1];
+			}
+			sum[j] = temp;
+			}
+		}
+		int binarysearch(int answer,int n,int sum[]){
+			int l=1,r=n,mid;
+			while(l&lt;=r){
+				mid=(l+r)/2;
+				if(sum[mid]==answer){
+					return mid;
+				}else if(sum[mid]&gt;answer){
+					r=mid;
+				}else{
+					l=mid;
+				}
+			}
+			return -1;
+		}
+		//深度优先搜索=递归枚举+回溯剪枝优化（dfs序（时间戳））
+		int a[10], visit[10];
+		void dfs(int step, int targetstep){
+			int i;
+			if (step == targetstep + 1){
+				for (i = 1; i <= targetstep; i++){
+					cout << a[i];
+				}
+				cout << endl;
+				return;
+			}
+			for (i = 1; i <= targetstep; i++){
+				if (visit[i] == 0){
+					a[step] = i;
+					visit[i] = 1;
+					dfs(step + 1, targetstep);
+					visit[i] = 0;
+				}
+			}
+			return;
 		}
 	</code></pre>
 	</li>
 	<li>时间复杂度：计算机操作速度为 10 MOPS——100 MOPS(1\*10^7OPS——1\*10^8OPS) （一条代码执行一次为1OPS）每秒，那么超出1s就会报TLE。</li>
 	<li>空间复杂度：变量/数组（数据类型*数组长度），占用超出题目所给空间（一般为125MB）就会报SLE。</li>
+	<li>一些算法
+		<li>贪心算法
+			<ul>
+			<li>在问题的任何一个状态，总选择当下最好的选择，“今朝有酒今朝醉”</li>
+			<li>不保证得到整体最优解</li>
+			<li>问题应具有无后效性</li>
+			</ul>
+		</li>
+		<li>二分
+			<ul>
+			<li>时间复杂度为$O(log n)$</li>
+			<li>二分过程</li>
+			<li>二分答案
+				<ul>
+				<li>最小的最大/最大的最小</li>
+				<li>找到某命题$P(x)$成立/不成立的临界值</li>
+				<li>在临界值一侧$P(x)$全为真，另一侧全为假</li>
+				</ul>
+			</li>
+			</ul>
+		</li>
+		</li>
+	</li>
 	</ul>
 </li>
 <li class="card">Lua
@@ -3388,6 +3573,51 @@ print(c)
 			</ul>
 		</li>
 		</ul>
+	</li>
+	<li>规律的世界
+		<ul>
+		<li><i>说明</i>：马克思主义的规范定义中，「规律是指事物发展过程中内在的本质的必然的联系」;但此处仅仅指一种概念，这种概念能够较好的描述世界，但这种概念的改变如何影响客观世界？那么，我们需要澄清此处「改变」的意思。只有改变「规律」所指涉的对象（用各种方法），这种改变才是有效的。也就是说，改变了「事物」，才改变了「规律」。而「事物」本身，便是更深层的规律罢了。</li>
+		<li><i>定义</i>：世界是一组规律的集合，记作$V$；</li>
+		<li><i>定义</i>：每个一阶语言及其模型都是在一个元语言环境中被定义并被说明的；与此一阶语言及其模型有关的定理是在这个元语言环境中被证明的；
+			<ul>
+			<li><i>定义</i>：称B是A的一个<strong>推论</strong>，当且仅当$A \vdash B \vee A \models B$；</li>
+			<li><i>定义</i>：称B是A在元语言环境C下的一个<strong>说明</strong>，当且仅当$B \subset C \wedge A \vdash B$；
+				<ul>
+				<li><i>说明</i>：有$A \vdash B$存在,当且仅当在某特定说明系统（如外延说明/类比说明/举例说明等，这些虽然暂时还没有精确的定义，但都可以包含在元语言环境中）</li>
+				<li><i>说明</i>：由于有时对的对象可以有“错”的说明，错的对象也可以有对的说明，因此不会是$A \models B$；</li>
+				</ul>
+			</li>
+			<li><i>定义</i>：称B是A的一个*<i>定义</i>*，当且仅当$A \models B \wedge B \models A$；</li>
+			</ul>
+		</li>
+		<li><i>定义</i>：称一个世界A是另一个世界B的<strong>子世界</strong>，当且仅当$\forall x \in A \Rightarrow x \in B$；</li>
+		<li><i>定义</i>：存在特定规律，这些规律描述规律A的<strong>可改变性</strong>，称其为$\Delta_A$；$\Delta_A$实际上是更深层的定律，$A$是$\Delta_A$的一种具体实现
+			<ul>
+			<li><i>定义</i>：深层规律$\Delta_A$的组合-抽象能力决定了$A$的可改变性</li>
+			</ul>
+		</li>
+		<li><i>定义</i>：定义难解度函数$D_A$，其描述规律A可改变性的大小；</li>
+		<li><i>定义</i>：对任意规律A，存在规律B，$B \models A$；</li>
+		</ul>
+	</li>
+	<li>Plugins	
+		<svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 673.6064300537109 278.3333282470703" width="673.6064300537109" height="278.3333282470703">
+			<!-- svg-source:excalidraw -->
+			
+			<defs>
+			<style class="style-fonts">
+				@font-face {
+				font-family: "Virgil";
+				src: url("https://excalidraw.com/Virgil.woff2");
+				}
+				@font-face {
+				font-family: "Cascadia";
+				src: url("https://excalidraw.com/Cascadia.woff2");
+				}
+			</style>
+			
+			</defs>
+			<rect x="0" y="0" width="673.6064300537109" height="278.3333282470703" fill="#ffffff"></rect><g stroke-linecap="round"><g transform="translate(138.66665649414062 260.00001525878906) rotate(0 -2.2340210287086677 -111.6899864946492)"><path d="M0.6 -1.11 C-0.03 -38.31, -3.33 -187.42, -3.85 -224.3 M-0.55 0.92 C-1.37 -36.07, -4.68 -185.74, -5.06 -223.27" stroke="#1971c2" stroke-width="1" fill="none"></path></g><g transform="translate(138.66665649414062 260.00001525878906) rotate(0 -2.2340210287086677 -111.6899864946492)"><path d="M3.82 -196.11 C1.18 -202.04, 1.2 -209.63, -6.62 -225.03 M6.5 -194.7 C2.45 -201.89, -0.62 -211.11, -4.26 -222.51" stroke="#1971c2" stroke-width="1" fill="none"></path></g><g transform="translate(138.66665649414062 260.00001525878906) rotate(0 -2.2340210287086677 -111.6899864946492)"><path d="M-16.7 -195.76 C-13.33 -201.89, -7.3 -209.59, -6.62 -225.03 M-14.02 -194.35 C-12.63 -201.54, -10.27 -210.86, -4.26 -222.51" stroke="#1971c2" stroke-width="1" fill="none"></path></g></g><mask></mask><g stroke-linecap="round"><g transform="translate(137.33334350585938 261.3333282470703) rotate(0 133.7500076714903 -0.097160395821561)"><path d="M-0.7 0.33 C44.02 0.4, 223.51 -0.6, 268.2 -0.69 M1.13 -0.55 C45.72 -0.22, 223.16 0.22, 267.36 0.49" stroke="#1971c2" stroke-width="1" fill="none"></path></g><g transform="translate(137.33334350585938 261.3333282470703) rotate(0 133.7500076714903 -0.097160395821561)"><path d="M239.67 10.97 C246.29 6.88, 255.36 4.79, 268 1.97 M238.58 10.01 C247.84 8.23, 254.69 5.83, 266.52 1.22" stroke="#1971c2" stroke-width="1" fill="none"></path></g><g transform="translate(137.33334350585938 261.3333282470703) rotate(0 133.7500076714903 -0.097160395821561)"><path d="M239.75 -9.55 C246.15 -7.68, 255.19 -3.8, 268 1.97 M238.66 -10.51 C248.03 -6.49, 254.86 -3.09, 266.52 1.22" stroke="#1971c2" stroke-width="1" fill="none"></path></g></g><mask></mask><g transform="translate(10 10) rotate(0 136.6698760986328 12.5)"><text x="0" y="0" font-family="Virgil, HanziPen SC, Cangnanshoujiti, KaiTi, Segoe UI Emoji" font-size="20px" fill="#1971c2" text-anchor="start" style="white-space: pre;" direction="ltr" dominant-baseline="text-before-edge">degree of free when codeing</text></g><g transform="translate(408.6666564941406 243.3333282470703) rotate(0 127.46988677978516 12.5)"><text x="0" y="0" font-family="Virgil, HanziPen SC, Cangnanshoujiti, KaiTi, Segoe UI Emoji" font-size="20px" fill="#1971c2" text-anchor="start" style="white-space: pre;" direction="ltr" dominant-baseline="text-before-edge">source code invade's need</text></g><g transform="translate(174.66665649414062 218.00001525878906) rotate(0 0.00004999999998744897 0.00004999999998744897)" stroke="none"><path fill="#1971c2" d="M 1.57,-1.57 Q 1.57,-1.57 1.77,-1.27 1.98,-0.98 2.09,-0.64 2.20,-0.29 2.19,0.05 2.18,0.41 2.05,0.75 1.93,1.09 1.70,1.37 1.48,1.65 1.18,1.84 0.87,2.04 0.52,2.12 0.18,2.21 -0.17,2.18 -0.53,2.15 -0.86,2.01 -1.19,1.87 -1.46,1.63 -1.73,1.39 -1.90,1.07 -2.08,0.76 -2.15,0.41 -2.21,0.05 -2.17,-0.29 -2.12,-0.65 -1.96,-0.97 -1.80,-1.29 -1.54,-1.54 -1.29,-1.80 -0.97,-1.96 -0.65,-2.12 -0.29,-2.17 0.06,-2.21 0.41,-2.15 0.76,-2.08 1.07,-1.90 1.39,-1.73 1.63,-1.46 1.87,-1.19 2.01,-0.86 2.15,-0.53 2.18,-0.17 2.21,0.18 2.12,0.52 2.03,0.87 1.84,1.18 1.65,1.48 1.37,1.70 1.09,1.93 0.75,2.05 0.41,2.18 0.05,2.19 -0.30,2.20 -0.64,2.09 -0.98,1.98 -1.27,1.77 -1.57,1.56 -1.57,1.57 -1.57,1.57 -1.73,1.35 -1.90,1.14 -2.01,0.90 -2.12,0.66 -2.16,0.39 -2.21,0.13 -2.20,-0.13 -2.18,-0.40 -2.10,-0.65 -2.02,-0.91 -1.88,-1.14 -1.74,-1.36 -1.55,-1.55 -1.36,-1.74 -1.14,-1.88 -0.91,-2.02 -0.65,-2.10 -0.40,-2.18 -0.13,-2.20 0.13,-2.21 0.39,-2.16 0.66,-2.12 0.90,-2.01 1.14,-1.90 1.35,-1.73 1.57,-1.57 1.57,-1.57 L 1.57,-1.57 Z"></path></g><g transform="translate(168.66665649414062 54.66667175292969) rotate(0 0.00004999999998744897 0.00005000000000165983)" stroke="none"><path fill="#1971c2" d="M 1.57,-1.57 Q 1.57,-1.57 1.77,-1.27 1.98,-0.98 2.09,-0.64 2.20,-0.29 2.19,0.05 2.18,0.41 2.05,0.75 1.93,1.09 1.70,1.37 1.48,1.65 1.18,1.84 0.87,2.04 0.52,2.12 0.18,2.21 -0.17,2.18 -0.53,2.15 -0.86,2.01 -1.19,1.87 -1.46,1.63 -1.73,1.39 -1.90,1.07 -2.08,0.76 -2.15,0.41 -2.21,0.05 -2.17,-0.29 -2.12,-0.65 -1.96,-0.97 -1.80,-1.29 -1.54,-1.54 -1.29,-1.80 -0.97,-1.96 -0.65,-2.12 -0.29,-2.17 0.06,-2.21 0.41,-2.15 0.76,-2.08 1.07,-1.90 1.39,-1.73 1.63,-1.46 1.87,-1.19 2.01,-0.86 2.15,-0.53 2.18,-0.17 2.21,0.18 2.12,0.52 2.03,0.87 1.84,1.18 1.65,1.48 1.37,1.70 1.09,1.93 0.75,2.05 0.41,2.18 0.05,2.19 -0.30,2.20 -0.64,2.09 -0.98,1.98 -1.27,1.77 -1.57,1.56 -1.57,1.57 -1.57,1.57 -1.73,1.35 -1.90,1.14 -2.01,0.90 -2.12,0.66 -2.16,0.39 -2.21,0.13 -2.20,-0.13 -2.18,-0.40 -2.10,-0.65 -2.02,-0.91 -1.88,-1.14 -1.74,-1.36 -1.55,-1.55 -1.36,-1.74 -1.14,-1.88 -0.91,-2.02 -0.65,-2.10 -0.40,-2.18 -0.13,-2.20 0.13,-2.21 0.39,-2.16 0.66,-2.12 0.90,-2.01 1.14,-1.90 1.35,-1.73 1.57,-1.57 1.57,-1.57 L 1.57,-1.57 Z"></path></g><g transform="translate(356.6666564941406 48) rotate(0 0.00004999999998744897 0.00005000000000165983)" stroke="none"><path fill="#1971c2" d="M 1.57,-1.57 Q 1.57,-1.57 1.77,-1.27 1.98,-0.98 2.09,-0.64 2.20,-0.29 2.19,0.05 2.18,0.41 2.05,0.75 1.93,1.09 1.70,1.37 1.48,1.65 1.18,1.84 0.87,2.04 0.52,2.12 0.18,2.21 -0.17,2.18 -0.53,2.15 -0.86,2.01 -1.19,1.87 -1.46,1.63 -1.73,1.39 -1.90,1.07 -2.08,0.76 -2.15,0.41 -2.21,0.05 -2.17,-0.29 -2.12,-0.65 -1.96,-0.97 -1.80,-1.29 -1.54,-1.54 -1.29,-1.80 -0.97,-1.96 -0.65,-2.12 -0.29,-2.17 0.06,-2.21 0.41,-2.15 0.76,-2.08 1.07,-1.90 1.39,-1.73 1.63,-1.46 1.87,-1.19 2.01,-0.86 2.15,-0.53 2.18,-0.17 2.21,0.18 2.12,0.52 2.03,0.87 1.84,1.18 1.65,1.48 1.37,1.70 1.09,1.93 0.75,2.05 0.41,2.18 0.05,2.19 -0.30,2.20 -0.64,2.09 -0.98,1.98 -1.27,1.77 -1.57,1.56 -1.57,1.57 -1.57,1.57 -1.73,1.35 -1.90,1.14 -2.01,0.90 -2.12,0.66 -2.16,0.39 -2.21,0.13 -2.20,-0.13 -2.18,-0.40 -2.10,-0.65 -2.02,-0.91 -1.88,-1.14 -1.74,-1.36 -1.55,-1.55 -1.36,-1.74 -1.14,-1.88 -0.91,-2.02 -0.65,-2.10 -0.40,-2.18 -0.13,-2.20 0.13,-2.21 0.39,-2.16 0.66,-2.12 0.90,-2.01 1.14,-1.90 1.35,-1.73 1.57,-1.57 1.57,-1.57 L 1.57,-1.57 Z"></path></g><g transform="translate(184.66665649414062 207.3333282470703) rotate(0 18.61998748779297 12.5)"><text x="0" y="0" font-family="Virgil, HanziPen SC, Cangnanshoujiti, KaiTi, Segoe UI Emoji" font-size="20px" fill="#1971c2" text-anchor="start" style="white-space: pre;" direction="ltr" dominant-baseline="text-before-edge">API</text></g><g transform="translate(176 53.33332824707031) rotate(0 61.04994201660156 12.5)"><text x="0" y="0" font-family="Virgil, HanziPen SC, Cangnanshoujiti, KaiTi, Segoe UI Emoji" font-size="20px" fill="#1971c2" text-anchor="start" style="white-space: pre;" direction="ltr" dominant-baseline="text-before-edge">message box</text></g><g transform="translate(378.0000305175781 46) rotate(0 20.889976501464844 12.5)"><text x="0" y="0" font-family="Virgil, HanziPen SC, Cangnanshoujiti, KaiTi, Segoe UI Emoji" font-size="20px" fill="#1971c2" text-anchor="start" style="white-space: pre;" direction="ltr" dominant-baseline="text-before-edge">hook</text></g></svg>
 	</li>
 	</ul>
 </li>

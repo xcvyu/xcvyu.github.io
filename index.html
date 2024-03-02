@@ -150,6 +150,15 @@
 	blockquote p {
 		display: inline;
 	}
+	#flashcard_button {
+		background-color: white; 
+		color: black; 
+		border: 2px solid #008CBA;
+	}
+		#flashcard_button:hover {
+		background-color: #008CBA;
+		color: white;
+	}
 	.container {
 		margin-left: auto;
 		margin-right: auto;
@@ -337,6 +346,16 @@ marked.use({
 	<button type="button" onclick="shorthand_insert(this.offsetParent.getElementsByTagName('textarea')[0].value)">open-inside</button>
 	<div id="test"></div>
 </li>
+<li class="card">
+	<script defer>
+	var i=-1;
+	function flashcard_next(){
+		i=i+1;
+		document.getElementById('flashcard_flow').innerHTML=document.getElementsByClassName('flashcard')[i].outerHTML;
+	}
+</script>
+<div id="flashcard_flow"></div>
+<button onclick="flashcard_next()" id="flashcard_button">flow</button></li>
 <li class="card">scheme
 	<ul>
 	<li><a href="mtplugin://">MT Manager 1</a></li>
@@ -6710,7 +6729,7 @@ function $initHighlight(block, cls) {
 	</li>
 	</ul>
 </li>
-<li  class="card" id="未完成/研究/2023.10.05">图灵完备<a href="#.未完成/研究">#未完成/研究</a>
+<li class="card" id="未完成/研究/2023.10.05">图灵完备<a href="#.未完成/研究">#未完成/研究</a>
 	<ul>
 	<li><a href="https://zhuanlan.zhihu.com/p/408498000">证明 JS 和 TS 类型编程是图灵完备的 - 知乎</a></li>
 	<li><a href="https://zhuanlan.zhihu.com/p/590271873">递归论与可计算性 - 知乎</a></li>
@@ -6757,6 +6776,62 @@ function $initHighlight(block, cls) {
 	<li><a href="https://www.jianshu.com/p/ebae04e1e47c">λ演算(Lambda Calculus)入门基础（一）：定义与归约 - 简书</a></li>
 	<li><a href="https://zhuanlan.zhihu.com/p/447398364">Lambda 演算基础 - 知乎</a></li>
 	<li><a href="https://www.cnblogs.com/qianyexi/p/12154478.html">λ演算 (Lambda Calculus) 一 ： 定义与函数式编程 - IP=PSPACE - 博客园</a></li>
+	</ul>
+</li>
+<li class="card">2024.02.26
+	<ul>
+	<li>开学第一天，寒假又荒废了~</li>
+	<li>班干部竞选无人参加，我挺身而出~</li>
+	<li>最终没有接着当组织委员，而是去当了纪律委员，嘶~</li>
+	</ul>
+</li>
+<li class="card">2024.02.27
+	<ul>
+	<li>今天维护纪律的效果还不错~</li>
+	<li>今日单词
+		<ul>
+		<li><details class="flashcard"><summary>sink</summary>下沉</details></li>
+		<li><details class="flashcard"><summary>compacted</summary>坚实的</details></li>
+		<li><details class="flashcard"><summary>residence</summary>住宅</details></li>
+		<li><details class="flashcard"><summary>resident</summary>居民</details></li>
+		<li><details class="flashcard"><summary>architecturally</summary>建筑</details></li>
+		<li><details class="flashcard"><summary>humid</summary>湿润的</details></li>
+		<li><details class="flashcard"><summary>inclined</summary>倾斜的</details></li>
+		</ul>
+	</li>
+	</ul>
+</li>
+<li class="card">2024.02.28
+	<ul>
+	<li>纪委不好当啊~要不要管全凭直觉</li>
+	<li>今日单词
+		<ul>
+		<li><details class="flashcard"><summary>principle</summary>原理，法则<details></li>
+		</ul>
+	</li>
+	</ul>
+</li>
+<li>2024.02.29
+	<ul>
+	<li>明天就4.5前瞻，期待枫原万叶~</li>
+	<li>今日单词
+		<ul>
+		<li><details class="flashcard"><summary>pull ... on</summary>穿上</details></li>
+		<li><details class="flashcard"><summary>thoughtless</summary>欠考虑的 </details></li>
+		<li><details class="flashcard"><summary>considerate</details>体贴</li>
+		<li><details class="flashcard"><summary>The Bucket List</summary>遗愿清单</details></li>
+		<li><details class="flashcard"><summary>gratitude</summary>感激之情</details></li>
+		<li><details class="flashcard"><summary>grateful</summary>感激的</details></li>
+		<li><details class="flashcard"><summary>sail</summary>乘船航行</details></li>
+		<li><details class="flashcard"><summary>take notice of</summary>留意/注意</details></li>
+		<li><details class="flashcard"><summary>drive taxes</summary>拉动税收</details></li>
+		<li><details class="flashcard"><summary>laid off</summary>解雇</details></li>
+		<li><details class="flashcard"><summary>uplift</summary>鼓励</details></li>
+		<li><details class="flashcard"><summary>hook up with</summary>与某人来往</details></li>
+		<li><details class="flashcard"><summary>lift-off</summary>升空</details></li>
+		</ul>
+	</li>
+	<li>近代中国西方化的过程,其实也是逐渐抛弃本土文化的过程,起初是技术,然后是制度,最后是文化.</li>
 	</ul>
 </li>
 </ul>

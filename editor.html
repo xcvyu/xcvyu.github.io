@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <title>xcvyu-editor</title>
 <meta charset="utf-8">
@@ -37,30 +38,24 @@
 		}
 	   function shorthand_insert(obj) {
 				document.getElementById("test").innerHTML = obj;  // 其实本来想用 documents.write 的，但是发现 documents.write 会覆盖整个 DOM 流（那就是说，把我所有的原有内容自动清空），所以不得已才用了这种朴素的方式。参考 https://www.runoob.com/jsref/met-doc-write.html
-				for(var i=0; i< document.getElementById("test").children.length;i++){
-					if(document.getElementById("test").children[i].tagName=='SCRIPT'){
-						// console.log(1);
-						var g = document.createElement("script");
-						g.text = document.getElementById("test").children[i].innerHTML;
-					 	// if(document.getElementById("test").children[i].src!=undefined){
-						// 	g.type = 'application/x-javascript';
-						// 	g.setAttribute("src", "document.getElementById('test').children[i].src");
-						// }
-						document.getElementById("test").children[i].before(g);
-						document.getElementById("test").children[i].parentNode.removeChild(document.getElementById("test").children[i]);
-					}
-				}
-				/*for(let i of document.getElementById("test").children){
-					if(i.tagName=='SCRIPT'){
-						console.log(i);
-						var g = document.createElement("script");
-						g.text = i.innerHTML;
-						if(i.src!=undefined)g.src=i.src;
-						i.before(g);
-						i.parentNode.removeChild(i);
-					}
-				}*/
-			}
+                shorthand_scriptfinder(document.getElementById("test"));
+        }
+        function shorthand_scriptfinder(obj){
+            for(var i=0; i< obj.children.length;i++){
+                if(obj.children[i].tagName=='SCRIPT'){
+                    // console.log(1);
+                    var g = document.createElement("script");
+                    g.text = obj.children[i].innerHTML;
+                    // if(document.getElementById("test").children[i].src!=undefined){
+                    // 	g.type = 'application/x-javascript';
+                    // 	g.setAttribute("src", "document.getElementById('test').children[i].src");
+                    // }
+                    obj.children[i].before(g);
+                    obj.children[i].parentNode.removeChild(obj.children[i]);
+                }
+                shorthand_scriptfinder(obj.children[i]);
+            }
+        }
 </script>
 <input type="file" name="file" id="filePicker" onchange="shorthand_show()"  /><br />
 <textarea id="shorthand_code" rows="15" cols="100%"></textarea><br />

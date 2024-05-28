@@ -1,6 +1,4 @@
-
 <!DOCTYPE html>
-<title>xcvyu-editor</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
 	<script>
@@ -36,29 +34,30 @@
 			shorthand_newwin.document.write(shorthand_code);  //向这个打开的窗口中写入代码code，这样就实现了运行代码功能。
 			shorthand_newwin.document.close();
 		}
-	   function shorthand_insert(obj) {
+		function shorthand_insert(obj) {
 				document.getElementById("test").innerHTML = obj;  // 其实本来想用 documents.write 的，但是发现 documents.write 会覆盖整个 DOM 流（那就是说，把我所有的原有内容自动清空），所以不得已才用了这种朴素的方式。参考 https://www.runoob.com/jsref/met-doc-write.html
-                shorthand_scriptfinder(document.getElementById("test"));
-        }
-        function shorthand_scriptfinder(obj){
-            for(var i=0; i< obj.children.length;i++){
-                if(obj.children[i].tagName=='SCRIPT'){
-                    // console.log(1);
-                    var g = document.createElement("script");
-                    g.text = obj.children[i].innerHTML;
-                    // if(document.getElementById("test").children[i].src!=undefined){
-                    // 	g.type = 'application/x-javascript';
-                    // 	g.setAttribute("src", "document.getElementById('test').children[i].src");
-                    // }
-                    obj.children[i].before(g);
-                    obj.children[i].parentNode.removeChild(obj.children[i]);
-                }
-                shorthand_scriptfinder(obj.children[i]);
-            }
-        }
+				shorthand_scriptfinder(document.getElementById("test"));
+		}
+		function shorthand_scriptfinder(obj){
+			for(var i=0; i< obj.children.length;i++){
+				if(obj.children[i].tagName=='SCRIPT'){
+					//console.log(1);
+					var g = document.createElement("script");
+					g.text = obj.children[i].innerHTML;
+					g.async=obj.children[i].async;
+					g.defer=obj.children[i].defer;
+					if(obj.children[i].src!='')g.src=obj.children[i].src;
+					obj.children[i].before(g);
+					obj.children[i].parentNode.removeChild(obj.children[i]);
+				}
+				shorthand_scriptfinder(obj.children[i]);
+			}
+		}
 </script>
 <input type="file" name="file" id="filePicker" onchange="shorthand_show()"  /><br />
-<textarea id="shorthand_code" rows="15" cols="100%"></textarea><br />
+<textarea id="shorthand_code" rows="15" cols="100%"></textarea>
+<!--<script id="tst">alert(2);</script>-->
+<br />
 <textarea id="shorthand_name" rows="1" cols="100%"></textarea><br />
 <button type="button" onclick="shorthand_download()">另存代码</button>
 <button type="button" onclick="shorthand_runCode(this.offsetParent.getElementsByTagName('textarea')[0])">新页面打开</button>

@@ -117,16 +117,6 @@
 	- _(可莉-好耶)出来咯，可以炸鱼咯。
 	_(林尼-敬礼)可莉你好，这是我的搭档，琳妮特，_(琳妮特-捧场)。
 	我们来给你变个魔术_(琳妮特-请看。)_(琴-生气)_(林尼-请看！)_(可莉-委屈)可莉讨厌你们
-	<script>
-	setTimeout(() => {
-		const inboxNode = document.createElement("li");
-		inboxNode.className="card";
-		inboxNode.id="inbox";
-		inboxNode.innerHTML=marked.parse(document.getElementById("inboxer").innerHTML);
-		document.getElementById("rooter").appendChild(inboxNode);
-		document.getElementById("inboxer").remove();
-	}, 1024);
-	</script>
 </div>
 <title>xcvyu-log</title>
 <meta charset="utf-8">
@@ -422,10 +412,8 @@
 <!--<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/themes/vue.css"/>
 <link href="https://cubox.pro/article/css/reader.css" rel="stylesheet" />-->
 <!--网页ico-->
-<link rel="icon"
-	href="data:image/x-icon;base64,AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAcAAAAigAAAOEAAAD8AAAA+gAAAO0AAADDAAAAdQAAACEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAfAAAAuAAAAP0AAADAAAAAagAAAFgAAABxAAAApwAAAN8AAADUAAAAZAAAAAkAAAAAAAAAAAAAAAAAAAAGAAAAnQAAAP8AAADFAAAAGwAAAAAAAAAAAAAAAAAAAAMAAAAmAAAAiwAAAOkAAACZAAAAFAAAAAAAAAAAAAAAPQAAAO8AAAD/AAAAcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMAAABTAAAA5QAAAJEAAAABAAAAAAAAAIAAAAD/AAAA+gAAAE0AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEoAAABTAAAAAAAAAAIAAACoAAAA/wAAAPwAAABSAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFAAAAswAAAP8AAAD/AAAAbQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAKcAAAD/AAAA/wAAAJQAAAAEAAAABAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACEAAAA/wAAAP8AAADmAAAAuAAAALUAAACtAAAAnAAAAH4AAABRAAAAHgAAAAIAAAAAAAAAAAAAAAAAAAAAAAAATAAAAPcAAAD/AAAA+QAAAKsAAACVAAAAnwAAALEAAADMAAAA5wAAAN0AAACDAAAAFgAAAAAAAAAAAAAAAAAAABMAAADGAAAA/wAAAPwAAABcAAAAAAAAAAAAAAADAAAADwAAADEAAACTAAAA9QAAAKYAAAAOAAAAAAAAAAAAAAAAAAAAXAAAAPYAAAD/AAAAuQAAAA8AAAAAAAAAAAAAAAAAAAAAAAAABQAAAI0AAAD5AAAAUQAAAAAAAAAAAAAAAAAAAAgAAACQAAAA/QAAAPsAAAB0AAAAAQAAAAAAAAAAAAAAAAAAAAAAAAA/AAAA+AAAAIEAAAAAAAAAAAAAAAAAAAAAAAAADgAAAIsAAAD2AAAA7gAAAGkAAAAKAAAAAAAAAAAAAAAAAAAAXQAAAP0AAAB4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHAAAAVwAAAMoAAAD0AAAAuAAAAHAAAABYAAAAegAAAN8AAADdAAAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAZAAAAbgAAAMgAAAD0AAAA/QAAAPUAAAC7AAAAQQAAAAAAAAAA4AcAAMADAACDgQAAh+AAAIf4AAAH+QAAB/8AAAB/AACABwAAgAMAAIIBAADB4QAAwPEAAOBxAADwAQAA/AEAAA==" />
-<link rel="shortcut icon"
-	href="data:image/x-icon;base64,AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAcAAAAigAAAOEAAAD8AAAA+gAAAO0AAADDAAAAdQAAACEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAfAAAAuAAAAP0AAADAAAAAagAAAFgAAABxAAAApwAAAN8AAADUAAAAZAAAAAkAAAAAAAAAAAAAAAAAAAAGAAAAnQAAAP8AAADFAAAAGwAAAAAAAAAAAAAAAAAAAAMAAAAmAAAAiwAAAOkAAACZAAAAFAAAAAAAAAAAAAAAPQAAAO8AAAD/AAAAcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMAAABTAAAA5QAAAJEAAAABAAAAAAAAAIAAAAD/AAAA+gAAAE0AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEoAAABTAAAAAAAAAAIAAACoAAAA/wAAAPwAAABSAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFAAAAswAAAP8AAAD/AAAAbQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAKcAAAD/AAAA/wAAAJQAAAAEAAAABAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACEAAAA/wAAAP8AAADmAAAAuAAAALUAAACtAAAAnAAAAH4AAABRAAAAHgAAAAIAAAAAAAAAAAAAAAAAAAAAAAAATAAAAPcAAAD/AAAA+QAAAKsAAACVAAAAnwAAALEAAADMAAAA5wAAAN0AAACDAAAAFgAAAAAAAAAAAAAAAAAAABMAAADGAAAA/wAAAPwAAABcAAAAAAAAAAAAAAADAAAADwAAADEAAACTAAAA9QAAAKYAAAAOAAAAAAAAAAAAAAAAAAAAXAAAAPYAAAD/AAAAuQAAAA8AAAAAAAAAAAAAAAAAAAAAAAAABQAAAI0AAAD5AAAAUQAAAAAAAAAAAAAAAAAAAAgAAACQAAAA/QAAAPsAAAB0AAAAAQAAAAAAAAAAAAAAAAAAAAAAAAA/AAAA+AAAAIEAAAAAAAAAAAAAAAAAAAAAAAAADgAAAIsAAAD2AAAA7gAAAGkAAAAKAAAAAAAAAAAAAAAAAAAAXQAAAP0AAAB4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHAAAAVwAAAMoAAAD0AAAAuAAAAHAAAABYAAAAegAAAN8AAADdAAAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAZAAAAbgAAAMgAAAD0AAAA/QAAAPUAAAC7AAAAQQAAAAAAAAAA4AcAAMADAACDgQAAh+AAAIf4AAAH+QAAB/8AAAB/AACABwAAgAMAAIIBAADB4QAAwPEAAOBxAADwAQAA/AEAAA==" />
+<link rel="icon" href="data:image/x-icon;base64,AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAcAAAAigAAAOEAAAD8AAAA+gAAAO0AAADDAAAAdQAAACEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAfAAAAuAAAAP0AAADAAAAAagAAAFgAAABxAAAApwAAAN8AAADUAAAAZAAAAAkAAAAAAAAAAAAAAAAAAAAGAAAAnQAAAP8AAADFAAAAGwAAAAAAAAAAAAAAAAAAAAMAAAAmAAAAiwAAAOkAAACZAAAAFAAAAAAAAAAAAAAAPQAAAO8AAAD/AAAAcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMAAABTAAAA5QAAAJEAAAABAAAAAAAAAIAAAAD/AAAA+gAAAE0AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEoAAABTAAAAAAAAAAIAAACoAAAA/wAAAPwAAABSAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFAAAAswAAAP8AAAD/AAAAbQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAKcAAAD/AAAA/wAAAJQAAAAEAAAABAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACEAAAA/wAAAP8AAADmAAAAuAAAALUAAACtAAAAnAAAAH4AAABRAAAAHgAAAAIAAAAAAAAAAAAAAAAAAAAAAAAATAAAAPcAAAD/AAAA+QAAAKsAAACVAAAAnwAAALEAAADMAAAA5wAAAN0AAACDAAAAFgAAAAAAAAAAAAAAAAAAABMAAADGAAAA/wAAAPwAAABcAAAAAAAAAAAAAAADAAAADwAAADEAAACTAAAA9QAAAKYAAAAOAAAAAAAAAAAAAAAAAAAAXAAAAPYAAAD/AAAAuQAAAA8AAAAAAAAAAAAAAAAAAAAAAAAABQAAAI0AAAD5AAAAUQAAAAAAAAAAAAAAAAAAAAgAAACQAAAA/QAAAPsAAAB0AAAAAQAAAAAAAAAAAAAAAAAAAAAAAAA/AAAA+AAAAIEAAAAAAAAAAAAAAAAAAAAAAAAADgAAAIsAAAD2AAAA7gAAAGkAAAAKAAAAAAAAAAAAAAAAAAAAXQAAAP0AAAB4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHAAAAVwAAAMoAAAD0AAAAuAAAAHAAAABYAAAAegAAAN8AAADdAAAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAZAAAAbgAAAMgAAAD0AAAA/QAAAPUAAAC7AAAAQQAAAAAAAAAA4AcAAMADAACDgQAAh+AAAIf4AAAH+QAAB/8AAAB/AACABwAAgAMAAIIBAADB4QAAwPEAAOBxAADwAQAA/AEAAA==" />
+<link rel="shortcut icon" href="data:image/x-icon;base64,AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAcAAAAigAAAOEAAAD8AAAA+gAAAO0AAADDAAAAdQAAACEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAfAAAAuAAAAP0AAADAAAAAagAAAFgAAABxAAAApwAAAN8AAADUAAAAZAAAAAkAAAAAAAAAAAAAAAAAAAAGAAAAnQAAAP8AAADFAAAAGwAAAAAAAAAAAAAAAAAAAAMAAAAmAAAAiwAAAOkAAACZAAAAFAAAAAAAAAAAAAAAPQAAAO8AAAD/AAAAcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMAAABTAAAA5QAAAJEAAAABAAAAAAAAAIAAAAD/AAAA+gAAAE0AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEoAAABTAAAAAAAAAAIAAACoAAAA/wAAAPwAAABSAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFAAAAswAAAP8AAAD/AAAAbQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAKcAAAD/AAAA/wAAAJQAAAAEAAAABAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACEAAAA/wAAAP8AAADmAAAAuAAAALUAAACtAAAAnAAAAH4AAABRAAAAHgAAAAIAAAAAAAAAAAAAAAAAAAAAAAAATAAAAPcAAAD/AAAA+QAAAKsAAACVAAAAnwAAALEAAADMAAAA5wAAAN0AAACDAAAAFgAAAAAAAAAAAAAAAAAAABMAAADGAAAA/wAAAPwAAABcAAAAAAAAAAAAAAADAAAADwAAADEAAACTAAAA9QAAAKYAAAAOAAAAAAAAAAAAAAAAAAAAXAAAAPYAAAD/AAAAuQAAAA8AAAAAAAAAAAAAAAAAAAAAAAAABQAAAI0AAAD5AAAAUQAAAAAAAAAAAAAAAAAAAAgAAACQAAAA/QAAAPsAAAB0AAAAAQAAAAAAAAAAAAAAAAAAAAAAAAA/AAAA+AAAAIEAAAAAAAAAAAAAAAAAAAAAAAAADgAAAIsAAAD2AAAA7gAAAGkAAAAKAAAAAAAAAAAAAAAAAAAAXQAAAP0AAAB4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHAAAAVwAAAMoAAAD0AAAAuAAAAHAAAABYAAAAegAAAN8AAADdAAAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAZAAAAbgAAAMgAAAD0AAAA/QAAAPUAAAC7AAAAQQAAAAAAAAAA4AcAAMADAACDgQAAh+AAAIf4AAAH+QAAB/8AAAB/AACABwAAgAMAAIIBAADB4QAAwPEAAOBxAADwAQAA/AEAAA==" />
 <!--JQuery-->
 <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
 <!--highlight.js-->
@@ -433,29 +421,23 @@
 <!--https://highlightjs.org/static/demo/styles/github-dark-dimmed.css-->
 <script>
 	let highlightjs_i = 0;
-	let highlightjs_color = {
-		Github: 'https://cdn.bootcdn.net/ajax/libs/highlight.js/11.8.0/styles/github-dark-dimmed.min.css',
-		monokai: 'http://cdn.bootcss.com/highlight.js/8.0/styles/monokai_sublime.min.css'
-	};
-	let highlightjs_number = [
-		highlightjs_color['Github'],
-		highlightjs_color['monokai']
+	let highlightjs_color = [
+		'https://cdn.bootcdn.net/ajax/libs/highlight.js/11.8.0/styles/github-dark-dimmed.min.css#Github',
+		'http://cdn.bootcss.com/highlight.js/8.0/styles/monokai_sublime.min.css#monokai',
 	];
-	function highlightjs_runcode() {
-		highlightjs_i = highlightjs_i + 1;
-		highlightjs_next = highlightjs_number[highlightjs_i];
+	function highlightjs_nextone() {
+		highlightjs_next = highlightjs_color[highlightjs_i];
 		document.getElementById("highlightjs-change").href = highlightjs_next;
+		highlightjs_i = highlightjs_i + 1;
 	}
-	highlightjs_next = highlightjs_number[highlightjs_i];
-	document.getElementById("highlightjs-change").href = highlightjs_next;
+	highlightjs_nextone();
 </script>
 <script src="http://cdn.bootcss.com/highlight.js/8.0/highlight.min.js"></script>
 <script>
 	hljs.initHighlightingOnLoad();
 </script>
 <!-- LaTeX嵌入网页(MathJax)原网址：https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js -->
-<script type="text/javascript" id="MathJax-script" async
-	src="https://cdn.bootcdn.net/ajax/libs/mathjax/4.0.0-alpha.1/es5/tex-svg.js"></script>
+<script type="text/javascript" id="MathJax-script" async src="https://cdn.bootcdn.net/ajax/libs/mathjax/4.0.0-alpha.1/es5/tex-svg.js"></script>
 <script>
 	MathJax = {
 		tex: {
@@ -470,6 +452,7 @@
 <!-- vditor -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vditor/dist/index.css" />
 <script src="https://cdn.jsdelivr.net/npm/vditor/dist/index.min.js" defer></script>
+<!--window.onload-->
 <script>
 	window.onload = function () {
 		new Vditor('vditor', {
@@ -479,6 +462,29 @@
 			height: 360,
 			"placeholder": "写点什么吧..."
 		})
+
+		const inboxNode = document.createElement("li");
+		inboxNode.className="card";
+		inboxNode.id="inbox";
+		inboxNode.innerHTML=marked.parse(document.getElementById("inboxer").innerHTML);
+		document.getElementById("rooter").appendChild(inboxNode);
+		document.getElementById("inboxer").remove();
+		
+		const websiteSourceNode = document.createElement("li");
+		websiteSourceNode.className="card";
+		websiteSourceNode.innerHTML=document.getElementById("sourcebrowsefir").innerHTML;
+		document.getElementById("rooter").appendChild(websiteSourceNode);
+		document.getElementById("sourcebrowsefir").remove();
+
+		for(var i=1;i<5;i++){
+			document.getElementsByTagName('html')[0].innerHTML = document.getElementsByTagName('html')[0].innerHTML.replaceAll("p(浏览器)"+i,"\<a href\=\"#未完成/研究/persistent\" id\=\"pbrowser/"+i+"\"\>persistent\(浏览器\)\<\/a\>");
+			var pfbrowser=document.createElement('li');
+			var pfbrowsertest=document.createElement('a');
+			pfbrowsertest.href="#pbrowser/"+i;
+			pfbrowsertest.innerHTML="#pbrowser"+i;
+			document.getElementById('p.browser').appendChild(pfbrowser);
+			pfbrowser.appendChild(pfbrowsertest);
+		}
 	}
 </script>
 <!-- vue-markdown -->
@@ -504,59 +510,58 @@
 
 <ul id="rooter">
 	<li class="card">
-		<script>
-			function shorthand_show()
+	<script>
+		function shorthand_show()
+		{
+			let shorthand_reader = new FileReader();
+			shorthand_reader.onload = function() 
 			{
-				let shorthand_reader = new FileReader();
-				shorthand_reader.onload = function() 
-				{
-					//alert(this.result)
-					shorthand_code.value=this.result		
+				//alert(this.result)
+				shorthand_code.value=this.result		
+			}
+			let shorthand_f = document.getElementById("filePicker").files[0];
+			//alert(shorthand_f.name)
+			shorthand_reader.readAsText(shorthand_f);
+		}
+		function shorthand_download(){ 
+			let shorthand_text = document.getElementById("shorthand_code").value; 
+			let shorthand_blob = new Blob([shorthand_text]);
+			let shorthand_anchor = document.createElement("a"); 
+			shorthand_anchor.href = window.URL.createObjectURL(shorthand_blob);
+			//shorthand_anchor.download = "my-filename.txt"; 
+			shorthand_anchor.download = document.getElementById("shorthand_name").value;
+			shorthand_anchor.target ="_blank"; 
+			shorthand_anchor.style.display = "none"; // just to be safe! 
+			document.body.appendChild(shorthand_anchor); 
+			shorthand_anchor.click(); 
+			document.body.removeChild(shorthand_anchor); 
+		}
+		function shorthand_runCode(obj)  {
+			let shorthand_code=obj.value;//即要运行的代码。
+			let shorthand_newwin=window.open();  //打开一个窗口并赋给变量newwin。
+			shorthand_newwin.opener = null // 防止代码修改页面
+			shorthand_newwin.document.write(shorthand_code);  //向这个打开的窗口中写入代码code，这样就实现了运行代码功能。
+			shorthand_newwin.document.close();
+		}
+		function shorthand_insert(obj) {
+				document.getElementById("test").innerHTML = obj;  // 其实本来想用 documents.write 的，但是发现 documents.write 会覆盖整个 DOM 流（那就是说，把我所有的原有内容自动清空），所以不得已才用了这种朴素的方式。参考 https://www.runoob.com/jsref/met-doc-write.html
+				shorthand_scriptfinder(document.getElementById("test"));
+		}
+		function shorthand_scriptfinder(obj){
+			for(var i=0; i< obj.children.length;i++){
+				if(obj.children[i].tagName=='SCRIPT'){
+					//console.log(1);
+					var g = document.createElement("script");
+					g.text = obj.children[i].innerHTML;
+					g.async=obj.children[i].async;
+					g.defer=obj.children[i].defer;
+					if(obj.children[i].src!='')g.src=obj.children[i].src;
+					obj.children[i].before(g);
+					obj.children[i].parentNode.removeChild(obj.children[i]);
 				}
-				let shorthand_f = document.getElementById("filePicker").files[0];
-				//alert(shorthand_f.name)
-				shorthand_reader.readAsText(shorthand_f);
+				shorthand_scriptfinder(obj.children[i]);
 			}
-			function shorthand_download(){ 
-				let shorthand_text = document.getElementById("shorthand_code").value; 
-				let shorthand_blob = new Blob([shorthand_text]);
-				let shorthand_anchor = document.createElement("a"); 
-				shorthand_anchor.href = window.URL.createObjectURL(shorthand_blob);
-				//shorthand_anchor.download = "my-filename.txt"; 
-				shorthand_anchor.download = document.getElementById("shorthand_name").value;
-				shorthand_anchor.target ="_blank"; 
-				shorthand_anchor.style.display = "none"; // just to be safe! 
-				document.body.appendChild(shorthand_anchor); 
-				shorthand_anchor.click(); 
-				document.body.removeChild(shorthand_anchor); 
-			}
-			function shorthand_runCode(obj)  {
-				let shorthand_code=obj.value;//即要运行的代码。
-				let shorthand_newwin=window.open();  //打开一个窗口并赋给变量newwin。
-				shorthand_newwin.opener = null // 防止代码修改页面
-				shorthand_newwin.document.write(shorthand_code);  //向这个打开的窗口中写入代码code，这样就实现了运行代码功能。
-				shorthand_newwin.document.close();
-			}
-		   function shorthand_insert(obj) {
-					document.getElementById("test").innerHTML = obj;  // 其实本来想用 documents.write 的，但是发现 documents.write 会覆盖整个 DOM 流（那就是说，把我所有的原有内容自动清空），所以不得已才用了这种朴素的方式。参考 https://www.runoob.com/jsref/met-doc-write.html
-					shorthand_scriptfinder(document.getElementById("test"));
-			}
-			function shorthand_scriptfinder(obj){
-				for(var i=0; i< obj.children.length;i++){
-					if(obj.children[i].tagName=='SCRIPT'){
-						// console.log(1);
-						var g = document.createElement("script");
-						g.text = obj.children[i].innerHTML;
-						// if(document.getElementById("test").children[i].src!=undefined){
-						// 	g.type = 'application/x-javascript';
-						// 	g.setAttribute("src", "document.getElementById('test').children[i].src");
-						// }
-						obj.children[i].before(g);
-						obj.children[i].parentNode.removeChild(obj.children[i]);
-					}
-					shorthand_scriptfinder(obj.children[i]);
-				}
-			}
+		}
 		</script>
 		<input type="file" name="file" id="filePicker" onchange="shorthand_show()"  /><br />
 		<textarea id="shorthand_code" rows="15" cols="100%"></textarea><br />
@@ -859,17 +864,6 @@
 					</ul>
 				</li>
 				</ul>
-				<script>
-				setTimeout(() => {for(var i=1;i<5;i++){
-					document.getElementsByTagName('html')[0].innerHTML = document.getElementsByTagName('html')[0].innerHTML.replaceAll("p(浏览器)"+i,"\<a href\=\"#未完成/研究/persistent\" id\=\"pbrowser/"+i+"\"\>persistent\(浏览器\)\<\/a\>");
-					var pfbrowser=document.createElement('li');
-					var pfbrowsertest=document.createElement('a');
-					pfbrowsertest.href="#pbrowser/"+i;
-					pfbrowsertest.innerHTML="#pbrowser"+i;
-					document.getElementById('p.browser').appendChild(pfbrowser);
-					pfbrowser.appendChild(pfbrowsertest);
-				} }, 2048);
-				</script>
 			</li>
 			<li><h3>数理化生</h3>
 				<ul>
@@ -6664,15 +6658,6 @@ print(c)
 			</details>
 		</li>
 	</ul>
-	<script>
-		setTimeout(() => {
-			const websiteSourceNode = document.createElement("li");
-			websiteSourceNode.className="card";
-			websiteSourceNode.innerHTML=document.getElementById("sourcebrowsefir").innerHTML;
-			document.getElementById("rooter").appendChild(websiteSourceNode);
-			document.getElementById("sourcebrowsefir").remove();
-		}, 2048);
-	</script>
 </li>
 <li class="card">2023.01.23
 	<ul>
@@ -6931,7 +6916,7 @@ playMusic(musicList.reverse(),"musicplay");
 				</li>
 				<li>一个设想：像“自制播放器”项目那样，设立一个默认主题，点击按钮就打开一个新页面并通过查找替换更改CDN主题，实现代码块主题切换。
 					<ul>
-						<li>P.S.2023.02.05 成功了！点击这里<button onclick="highlightjs_runcode()">更换代码块主题</button></li>
+						<li>P.S.2023.02.05 成功了！点击这里<button onclick="highlightjs_nextone()">更换代码块主题</button></li>
 					</ul>
 				</li>
 			</ul>
@@ -8696,9 +8681,7 @@ playMusic(musicList.reverse(),"musicplay");
 </li>
 <li class="card"><a href="#.时延服务管理" id="时延服务管理">时延服务管理</a>
 	<ul>
-	<li>1024ms:line 121,markdown inbox</li>
 	<li>2048ms:line 849,pbrowser</li>
-	<li>2048ms:line 6548,website source browse</li>
 	</ul>
 </li>
 <li class="card">2024.05.25

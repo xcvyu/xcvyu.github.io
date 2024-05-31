@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<div id="inboxer">
+<title>xcvyu-log</title>
+<!--<div id="inboxer">
 - 三行情书
 	- 总是以为我们会长久，可能因为我们会长久，然后这样我们就长久。
 - 人生亦有命，安能行以复坐愁？
@@ -117,11 +118,9 @@
 	- _(可莉-好耶)出来咯，可以炸鱼咯。
 	_(林尼-敬礼)可莉你好，这是我的搭档，琳妮特，_(琳妮特-捧场)。
 	我们来给你变个魔术_(琳妮特-请看。)_(琴-生气)_(林尼-请看！)_(可莉-委屈)可莉讨厌你们
-</div>
-<title>xcvyu-log</title>
+</div>-->
 <meta charset="utf-8">
-<meta name="viewport"
-	content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
 <meta name="color-scheme" content="light dark">
 <!--My Style-->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+SC:100,300,400,500,700,900">
@@ -416,77 +415,6 @@
 <link rel="shortcut icon" href="data:image/x-icon;base64,AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAcAAAAigAAAOEAAAD8AAAA+gAAAO0AAADDAAAAdQAAACEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAfAAAAuAAAAP0AAADAAAAAagAAAFgAAABxAAAApwAAAN8AAADUAAAAZAAAAAkAAAAAAAAAAAAAAAAAAAAGAAAAnQAAAP8AAADFAAAAGwAAAAAAAAAAAAAAAAAAAAMAAAAmAAAAiwAAAOkAAACZAAAAFAAAAAAAAAAAAAAAPQAAAO8AAAD/AAAAcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMAAABTAAAA5QAAAJEAAAABAAAAAAAAAIAAAAD/AAAA+gAAAE0AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEoAAABTAAAAAAAAAAIAAACoAAAA/wAAAPwAAABSAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFAAAAswAAAP8AAAD/AAAAbQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAKcAAAD/AAAA/wAAAJQAAAAEAAAABAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACEAAAA/wAAAP8AAADmAAAAuAAAALUAAACtAAAAnAAAAH4AAABRAAAAHgAAAAIAAAAAAAAAAAAAAAAAAAAAAAAATAAAAPcAAAD/AAAA+QAAAKsAAACVAAAAnwAAALEAAADMAAAA5wAAAN0AAACDAAAAFgAAAAAAAAAAAAAAAAAAABMAAADGAAAA/wAAAPwAAABcAAAAAAAAAAAAAAADAAAADwAAADEAAACTAAAA9QAAAKYAAAAOAAAAAAAAAAAAAAAAAAAAXAAAAPYAAAD/AAAAuQAAAA8AAAAAAAAAAAAAAAAAAAAAAAAABQAAAI0AAAD5AAAAUQAAAAAAAAAAAAAAAAAAAAgAAACQAAAA/QAAAPsAAAB0AAAAAQAAAAAAAAAAAAAAAAAAAAAAAAA/AAAA+AAAAIEAAAAAAAAAAAAAAAAAAAAAAAAADgAAAIsAAAD2AAAA7gAAAGkAAAAKAAAAAAAAAAAAAAAAAAAAXQAAAP0AAAB4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHAAAAVwAAAMoAAAD0AAAAuAAAAHAAAABYAAAAegAAAN8AAADdAAAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAZAAAAbgAAAMgAAAD0AAAA/QAAAPUAAAC7AAAAQQAAAAAAAAAA4AcAAMADAACDgQAAh+AAAIf4AAAH+QAAB/8AAAB/AACABwAAgAMAAIIBAADB4QAAwPEAAOBxAADwAQAA/AEAAA==" />
 <!--JQuery-->
 <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
-<!--highlight.js-->
-<link href="" rel="stylesheet" id="highlightjs-change">
-<!--https://highlightjs.org/static/demo/styles/github-dark-dimmed.css-->
-<script>
-	let highlightjs_i = 0;
-	let highlightjs_color = [
-		'https://cdn.bootcdn.net/ajax/libs/highlight.js/11.8.0/styles/github-dark-dimmed.min.css#Github',
-		'http://cdn.bootcss.com/highlight.js/8.0/styles/monokai_sublime.min.css#monokai',
-	];
-	function highlightjs_nextone() {
-		highlightjs_next = highlightjs_color[highlightjs_i];
-		document.getElementById("highlightjs-change").href = highlightjs_next;
-		highlightjs_i = highlightjs_i + 1;
-	}
-	highlightjs_nextone();
-</script>
-<script src="http://cdn.bootcss.com/highlight.js/8.0/highlight.min.js"></script>
-<script>
-	hljs.initHighlightingOnLoad();
-</script>
-<!-- LaTeX嵌入网页(MathJax)原网址：https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js -->
-<script type="text/javascript" id="MathJax-script" async src="https://cdn.bootcdn.net/ajax/libs/mathjax/4.0.0-alpha.1/es5/tex-svg.js"></script>
-<script>
-	MathJax = {
-		tex: {
-			//inlineMath: [['$', '$'], ['\\(', '\\)']]
-			inlineMath: [['$', '$'], ['\\$$', '\\$$']]
-		},
-		svg: {
-			fontCache: 'global'
-		}
-	};
-</script>
-<!-- vditor -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vditor/dist/index.css" />
-<script src="https://cdn.jsdelivr.net/npm/vditor/dist/index.min.js" defer></script>
-<!--window.onload-->
-<script>
-	window.onload = function () {
-		new Vditor('vditor', {
-			cache: {
-				enable: false,
-			},
-			height: 360,
-			"placeholder": "写点什么吧..."
-		})
-
-		const inboxNode = document.createElement("li");
-		inboxNode.className="card";
-		inboxNode.id="inbox";
-		inboxNode.innerHTML=marked.parse(document.getElementById("inboxer").innerHTML);
-		document.getElementById("rooter").appendChild(inboxNode);
-		document.getElementById("inboxer").remove();
-		
-		const websiteSourceNode = document.createElement("li");
-		websiteSourceNode.className="card";
-		websiteSourceNode.innerHTML=document.getElementById("sourcebrowsefir").innerHTML;
-		document.getElementById("rooter").appendChild(websiteSourceNode);
-		document.getElementById("sourcebrowsefir").remove();
-
-		for(var i=1;i<5;i++){
-			document.getElementsByTagName('html')[0].innerHTML = document.getElementsByTagName('html')[0].innerHTML.replaceAll("p(浏览器)"+i,"\<a href\=\"#未完成/研究/persistent\" id\=\"pbrowser/"+i+"\"\>persistent\(浏览器\)\<\/a\>");
-			var pfbrowser=document.createElement('li');
-			var pfbrowsertest=document.createElement('a');
-			pfbrowsertest.href="#pbrowser/"+i;
-			pfbrowsertest.innerHTML="#pbrowser"+i;
-			document.getElementById('p.browser').appendChild(pfbrowser);
-			pfbrowser.appendChild(pfbrowsertest);
-		}
-	}
-</script>
 <!-- vue-markdown -->
 <script src="https://unpkg.com/vue@2.6.10/dist/vue.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue-markdown/dist/vue-markdown.js"></script>
@@ -507,7 +435,96 @@
 <!--[if lt IE 9]>
   <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 <![endif]-->
+<!-- LaTeX嵌入网页(MathJax)原网址：https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js -->
+<script type="text/javascript" id="MathJax-script" async src="https://cdn.bootcdn.net/ajax/libs/mathjax/4.0.0-alpha.1/es5/tex-svg.js"></script>
+<script>
+	MathJax = {
+		tex: {
+			//inlineMath: [['$', '$'], ['\\(', '\\)']]
+			inlineMath: [['$', '$'], ['\\$$', '\\$$']]
+		},
+		svg: {
+			fontCache: 'global'
+		}
+	};
+</script>
+<!--highlight.js-->
+<link href="" rel="stylesheet" id="highlightjs-change">
+<!--https://highlightjs.org/static/demo/styles/github-dark-dimmed.css-->
+<script>
+	let highlightjs_i = 0;
+	let highlightjs_color = [
+		'https://cdn.bootcdn.net/ajax/libs/highlight.js/11.8.0/styles/github-dark-dimmed.min.css#Github',
+		'http://cdn.bootcss.com/highlight.js/8.0/styles/monokai_sublime.min.css#monokai',
+	];
+	function highlightjs_nextone() {
+		highlightjs_next = highlightjs_color[highlightjs_i];
+		document.getElementById("highlightjs-change").href = highlightjs_next;
+		highlightjs_i = highlightjs_i + 1;
+	}
+	highlightjs_nextone();
+</script>
+<script src="http://cdn.bootcss.com/highlight.js/8.0/highlight.min.js"></script>
+<!-- vditor -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vditor/dist/index.css" />
+<script src="https://cdn.jsdelivr.net/npm/vditor/dist/index.min.js" defer></script>
+<!--window.onload-->
+<script>
+	var onloader=false;
+	function inboxchange(){
+		const inboxsaver=document.documentElement.innerHTML;
+		document.documentElement.innerHTML=document.documentElement.innerHTML.replace('\<!--','');
+		document.documentElement.innerHTML=document.documentElement.innerHTML.replace('--\>','');
+		const inboxNode = document.createElement("li");
+		inboxNode.className="card";
+		inboxNode.id="inbox";
+		inboxNode.innerHTML=marked.parse(document.getElementById("inboxer").innerHTML);
+		document.documentElement.innerHTML=inboxsaver;
+		document.getElementById("rooter").appendChild(inboxNode);
+		//document.getElementById("inboxer").remove();
+	}
+	function vditorinit(){
+		new Vditor('vditor', {
+			cache: {
+				enable: false,
+			},
+			height: 360,
+			"placeholder": "写点什么吧..."
+		})
+	}
+	function sourcechange(){
+		const websiteSourceNode = document.createElement("li");
+		websiteSourceNode.className="card";
+		websiteSourceNode.innerHTML=document.getElementById("sourcebrowsefir").innerHTML;
+		document.getElementById("rooter").appendChild(websiteSourceNode);
+		document.getElementById("sourcebrowsefir").remove();
+	}
+	function pbrowser(){
+		for(var i=1;i<5;i++){
+			document.getElementsByTagName('html')[0].innerHTML = document.getElementsByTagName('html')[0].innerHTML.replaceAll("p(浏览器)"+i,"\<a href\=\"#未完成/研究/persistent\" id\=\"pbrowser/"+i+"\"\>persistent\(浏览器\)\<\/a\>");
+			var pfbrowser=document.createElement('li');
+			var pfbrowsertest=document.createElement('a');
+			pfbrowsertest.href="#pbrowser/"+i;
+			pfbrowsertest.innerHTML="#pbrowser"+i;
+			document.getElementById('p.browser').appendChild(pfbrowser);
+			pfbrowser.appendChild(pfbrowsertest);
+		}
+	}
+	function onloaders(){
+		if(onloader)return;
+		onloader=true;
+		vditorinit();
+		inboxchange();
+		sourcechange();
+		pbrowser();
+		hljs.initHighlightingOnLoad();
+	}
+	window.onload = function () {onloaders();}
+	setTimeout(()=>{onloaders()}, 4096);
+</script>
+</head>
 
+<body>
 <ul id="rooter">
 	<li class="card">
 	<script>
@@ -595,12 +612,7 @@
 					<li><a href="#一起看世界杯/2022.12.15">2022.12.15</a></li>
 				</ul>
 			</li>
-			<li><div class="tag">index.html 运维管理</div>
-				<ul>
-					<li id=".外部资源引用管理"><a href="#外部资源引用管理">外部资源引用管理</a></li>
-					<li id=".时延服务管理"><a href="#时延服务管理">时延服务管理</a></li>
-				</ul>
-			</li>
+			<li id=".外部资源引用管理"><a href="#外部资源引用管理">外部资源引用管理</a></li>
 			<li id=".未完成">
 				<div class="tag">#未完成</div>
 				<ul>
@@ -8679,11 +8691,6 @@ playMusic(musicList.reverse(),"musicplay");
 	<li><a href="https://www.zhihu.com/question/44486071">图灵度有什么直观的解释？ - 知乎</a></li>
 	</ul>
 </li>
-<li class="card"><a href="#.时延服务管理" id="时延服务管理">时延服务管理</a>
-	<ul>
-	<li>2048ms:line 849,pbrowser</li>
-	</ul>
-</li>
 <li class="card">2024.05.25
 	<ul>
 	<li id="未完成/研究/2024.5.25">可逆计算<a href="#.未完成/研究">#未完成/研究</a>
@@ -8712,3 +8719,4 @@ playMusic(musicList.reverse(),"musicplay");
 	</ul>
 </li>
 </ul>
+</body>

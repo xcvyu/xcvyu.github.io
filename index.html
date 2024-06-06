@@ -7,8 +7,8 @@
 - 日暮苍山远，天寒白屋贫。
 - https://twocups.cn/index.php/2020/01/09/10/
 - 在人身上施加几千伏特的电压，早已超过36V的安全电压，人却仅有轻微感觉
-- 一般人体的电阻约为 10000 欧姆左右
-- 在出汗或手脚湿水时，人体电阻可能降到 400 欧姆左右。
+	- 一般人体的电阻约为 10000 欧姆左右
+	- 在出汗或手脚湿水时，人体电阻可能降到 400 欧姆左右。
 - [*Minimal* 的官方文档](https://minimal.guide/Home)
 - **Minimal CSS helper classes** 可以实现多种卡片效果（如卡片封面、不同比例的图片卡片、图文卡片等），及多种表格和数据可视化效果。
 - [ChatGPT](https://chat.openai.com/chat)
@@ -123,7 +123,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
 <meta name="color-scheme" content="light dark">
 <!--My Style-->
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+SC:100,300,400,500,700,900">
+<!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+SC:100,300,400,500,700,900"> -->
 <style type="text/css">
 	/*引入字体*/
 	@font-face {
@@ -150,6 +150,10 @@
 
 	body {
 		background: var(--bg);
+		/* background: url("./fufuer.jpg") no-repeat center center fixed;
+		-webkit-background-size: cover;
+		-o-background-size: cover;
+		background-size: cover; */
 		font-family: PingFangSC-Light
 			/*,SourceHanSansCN-ExtraLight*/
 		;
@@ -393,6 +397,10 @@
 	}
 	*/
 
+	/* #inputer {
+		display: none;
+	} */
+
 	.musicontorl{
 		border-radius: 5px;
 	}
@@ -413,15 +421,15 @@
 <!--网页ico-->
 <link rel="icon" href="data:image/x-icon;base64,AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAcAAAAigAAAOEAAAD8AAAA+gAAAO0AAADDAAAAdQAAACEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAfAAAAuAAAAP0AAADAAAAAagAAAFgAAABxAAAApwAAAN8AAADUAAAAZAAAAAkAAAAAAAAAAAAAAAAAAAAGAAAAnQAAAP8AAADFAAAAGwAAAAAAAAAAAAAAAAAAAAMAAAAmAAAAiwAAAOkAAACZAAAAFAAAAAAAAAAAAAAAPQAAAO8AAAD/AAAAcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMAAABTAAAA5QAAAJEAAAABAAAAAAAAAIAAAAD/AAAA+gAAAE0AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEoAAABTAAAAAAAAAAIAAACoAAAA/wAAAPwAAABSAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFAAAAswAAAP8AAAD/AAAAbQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAKcAAAD/AAAA/wAAAJQAAAAEAAAABAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACEAAAA/wAAAP8AAADmAAAAuAAAALUAAACtAAAAnAAAAH4AAABRAAAAHgAAAAIAAAAAAAAAAAAAAAAAAAAAAAAATAAAAPcAAAD/AAAA+QAAAKsAAACVAAAAnwAAALEAAADMAAAA5wAAAN0AAACDAAAAFgAAAAAAAAAAAAAAAAAAABMAAADGAAAA/wAAAPwAAABcAAAAAAAAAAAAAAADAAAADwAAADEAAACTAAAA9QAAAKYAAAAOAAAAAAAAAAAAAAAAAAAAXAAAAPYAAAD/AAAAuQAAAA8AAAAAAAAAAAAAAAAAAAAAAAAABQAAAI0AAAD5AAAAUQAAAAAAAAAAAAAAAAAAAAgAAACQAAAA/QAAAPsAAAB0AAAAAQAAAAAAAAAAAAAAAAAAAAAAAAA/AAAA+AAAAIEAAAAAAAAAAAAAAAAAAAAAAAAADgAAAIsAAAD2AAAA7gAAAGkAAAAKAAAAAAAAAAAAAAAAAAAAXQAAAP0AAAB4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHAAAAVwAAAMoAAAD0AAAAuAAAAHAAAABYAAAAegAAAN8AAADdAAAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAZAAAAbgAAAMgAAAD0AAAA/QAAAPUAAAC7AAAAQQAAAAAAAAAA4AcAAMADAACDgQAAh+AAAIf4AAAH+QAAB/8AAAB/AACABwAAgAMAAIIBAADB4QAAwPEAAOBxAADwAQAA/AEAAA==" />
 <link rel="shortcut icon" href="data:image/x-icon;base64,AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAcAAAAigAAAOEAAAD8AAAA+gAAAO0AAADDAAAAdQAAACEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAfAAAAuAAAAP0AAADAAAAAagAAAFgAAABxAAAApwAAAN8AAADUAAAAZAAAAAkAAAAAAAAAAAAAAAAAAAAGAAAAnQAAAP8AAADFAAAAGwAAAAAAAAAAAAAAAAAAAAMAAAAmAAAAiwAAAOkAAACZAAAAFAAAAAAAAAAAAAAAPQAAAO8AAAD/AAAAcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMAAABTAAAA5QAAAJEAAAABAAAAAAAAAIAAAAD/AAAA+gAAAE0AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEoAAABTAAAAAAAAAAIAAACoAAAA/wAAAPwAAABSAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFAAAAswAAAP8AAAD/AAAAbQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAKcAAAD/AAAA/wAAAJQAAAAEAAAABAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACEAAAA/wAAAP8AAADmAAAAuAAAALUAAACtAAAAnAAAAH4AAABRAAAAHgAAAAIAAAAAAAAAAAAAAAAAAAAAAAAATAAAAPcAAAD/AAAA+QAAAKsAAACVAAAAnwAAALEAAADMAAAA5wAAAN0AAACDAAAAFgAAAAAAAAAAAAAAAAAAABMAAADGAAAA/wAAAPwAAABcAAAAAAAAAAAAAAADAAAADwAAADEAAACTAAAA9QAAAKYAAAAOAAAAAAAAAAAAAAAAAAAAXAAAAPYAAAD/AAAAuQAAAA8AAAAAAAAAAAAAAAAAAAAAAAAABQAAAI0AAAD5AAAAUQAAAAAAAAAAAAAAAAAAAAgAAACQAAAA/QAAAPsAAAB0AAAAAQAAAAAAAAAAAAAAAAAAAAAAAAA/AAAA+AAAAIEAAAAAAAAAAAAAAAAAAAAAAAAADgAAAIsAAAD2AAAA7gAAAGkAAAAKAAAAAAAAAAAAAAAAAAAAXQAAAP0AAAB4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHAAAAVwAAAMoAAAD0AAAAuAAAAHAAAABYAAAAegAAAN8AAADdAAAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAZAAAAbgAAAMgAAAD0AAAA/QAAAPUAAAC7AAAAQQAAAAAAAAAA4AcAAMADAACDgQAAh+AAAIf4AAAH+QAAB/8AAAB/AACABwAAgAMAAIIBAADB4QAAwPEAAOBxAADwAQAA/AEAAA==" />
-<!--JQuery-->
+<!-- JQuery -->
 <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
 <!-- vue-markdown -->
 <script src="https://unpkg.com/vue@2.6.10/dist/vue.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue-markdown/dist/vue-markdown.js"></script>
 <!-- marked -->
-<!-- <script type="module">
-	import { marked } from "https://cdn.bootcdn.net/ajax/libs/marked/9.0.0/marked.esm.js"
-
+<script type="module">
+// import { marked } from "https://cdn.bootcdn.net/ajax/libs/marked/9.0.0/marked.esm.js"
+function markeduser(){
 	marked.use({
 		async: true,
 		pedantic: false,
@@ -429,8 +437,8 @@
 		mangle: false,
 		headerIds: false
 	})
-	document.getElementById("inbox").innerHTML = marked.parse(document.getElementById("inbox").innerHTML);
-</script> -->
+}
+</script>
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 <!--[if lt IE 9]>
   <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -438,6 +446,7 @@
 <!-- LaTeX嵌入网页(MathJax)原网址：https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js -->
 <script type="text/javascript" id="MathJax-script" async src="https://cdn.bootcdn.net/ajax/libs/mathjax/4.0.0-alpha.1/es5/tex-svg.js"></script>
 <script>
+function MathSaver(){
 	MathJax = {
 		tex: {
 			//inlineMath: [['$', '$'], ['\\(', '\\)']]
@@ -447,15 +456,19 @@
 			fontCache: 'global'
 		}
 	};
+}
+MathSaver();
 </script>
 <!--highlight.js-->
+<!--'https://cdn.bootcdn.net/ajax/libs/highlight.js/11.8.0/styles/github-dark-dimmed.min.css#Github','https://highlightjs.org/static/demo/styles/github-dark-dimmed.css','http://cdn.bootcss.com/highlight.js/8.0/styles/monokai_sublime.min.css#monokai',https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/default.min.css,-->
 <link href="" rel="stylesheet" id="highlightjs-change">
-<!--https://highlightjs.org/static/demo/styles/github-dark-dimmed.css-->
 <script>
+function highlightjser(){
 	let highlightjs_i = 0;
 	let highlightjs_color = [
-		'https://cdn.bootcdn.net/ajax/libs/highlight.js/11.8.0/styles/github-dark-dimmed.min.css#Github',
-		'http://cdn.bootcss.com/highlight.js/8.0/styles/monokai_sublime.min.css#monokai',
+		'https://cdn.bootcdn.net/ajax/libs/highlight.js/11.9.0/styles/github-dark-dimmed.css#Github',
+		'https://cdn.bootcdn.net/ajax/libs/highlight.js/11.9.0/styles/github-dark-dimmed.min.css#Github',
+		'https://cdn.bootcdn.net/ajax/libs/highlight.js/11.9.0/styles/base16/monokai.css'
 	];
 	function highlightjs_nextone() {
 		highlightjs_next = highlightjs_color[highlightjs_i];
@@ -463,34 +476,46 @@
 		highlightjs_i = highlightjs_i + 1;
 	}
 	highlightjs_nextone();
+	// hljs.initHighlightingOnLoad();
+	hljs.highlightAll();
+}
 </script>
-<script src="http://cdn.bootcss.com/highlight.js/8.0/highlight.min.js"></script>
+<!-- <script src="https://cdn.bootcdn.net/ajax/libs/highlight.js/8.0/highlight./min.js"></script> -->
+<!-- <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@8.0/build/highlight.min.js"></script> -->
+<!-- <script src="https://cdn.bootcdn.net/ajax/libs/highlight.js/11.9.0/es/highlight.min.js"></script> -->
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
 <!-- vditor -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vditor/dist/index.css" />
 <script src="https://cdn.jsdelivr.net/npm/vditor/dist/index.min.js" defer></script>
+<script>
+function vditorinit(){
+	new Vditor('vditor', {
+		cache: {
+			enable: false,
+		},
+		height: 360,
+		"placeholder": "写点什么吧..."
+	})
+}
+</script>
+<!--debugger-->
+<script src="https://cdn.bootcdn.net/ajax/libs/vConsole/3.15.1/vconsole.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/eruda"></script>
 <!--window.onload-->
 <script>
-	var onloader=false;
+	let onloader=false;
 	function inboxchange(){
 		const inboxsaver=document.documentElement.innerHTML;
 		document.documentElement.innerHTML=document.documentElement.innerHTML.replace('\<!--','');
 		document.documentElement.innerHTML=document.documentElement.innerHTML.replace('--\>','');
-		const inboxNode = document.createElement("li");
+		let inboxNode = document.createElement("li");
 		inboxNode.className="card";
 		inboxNode.id="inbox";
 		inboxNode.innerHTML=marked.parse(document.getElementById("inboxer").innerHTML);
+		// document.write(inboxsaver);
 		document.documentElement.innerHTML=inboxsaver;
 		document.getElementById("rooter").appendChild(inboxNode);
-		//document.getElementById("inboxer").remove();
-	}
-	function vditorinit(){
-		new Vditor('vditor', {
-			cache: {
-				enable: false,
-			},
-			height: 360,
-			"placeholder": "写点什么吧..."
-		})
+		// document.getElementById("inboxer").remove();
 	}
 	function sourcechange(){
 		const websiteSourceNode = document.createElement("li");
@@ -500,97 +525,145 @@
 		document.getElementById("sourcebrowsefir").remove();
 	}
 	function pbrowser(){
-		for(var i=1;i<5;i++){
+		for(let i=1;i<5;i++){
 			document.getElementsByTagName('html')[0].innerHTML = document.getElementsByTagName('html')[0].innerHTML.replaceAll("p(浏览器)"+i,"\<a href\=\"#未完成/研究/persistent\" id\=\"pbrowser/"+i+"\"\>persistent\(浏览器\)\<\/a\>");
-			var pfbrowser=document.createElement('li');
-			var pfbrowsertest=document.createElement('a');
+			let pfbrowser=document.createElement('li');
+			let pfbrowsertest=document.createElement('a');
 			pfbrowsertest.href="#pbrowser/"+i;
 			pfbrowsertest.innerHTML="#pbrowser"+i;
 			document.getElementById('p.browser').appendChild(pfbrowser);
 			pfbrowser.appendChild(pfbrowsertest);
 		}
 	}
+	function baser(src){
+		base=document.createElement("base");
+		base.href=src;
+		document.getElementsByTagName("style")[0].before(base);
+	}
 	function onloaders(){
 		if(onloader)return;
 		onloader=true;
-		vditorinit();
-		inboxchange();
+		// inboxchange();
 		sourcechange();
 		pbrowser();
-		hljs.initHighlightingOnLoad();
+		// vditorinit();
+		highlightjser();
+		// new VConsole();
+		eruda.init();
+		// baser(document.location.href);
 	}
-	window.onload = function () {onloaders();}
-	setTimeout(()=>{onloaders()}, 4096);
+	window.onload = function(){onloaders();}
+	setTimeout(()=>{onloaders()}, 2048);
 </script>
 </head>
 
 <body>
 <ul id="rooter">
-	<li class="card">
-	<script>
-		function shorthand_show()
-		{
-			let shorthand_reader = new FileReader();
-			shorthand_reader.onload = function() 
-			{
-				//alert(this.result)
-				shorthand_code.value=this.result		
-			}
-			let shorthand_f = document.getElementById("filePicker").files[0];
-			//alert(shorthand_f.name)
-			shorthand_reader.readAsText(shorthand_f);
-		}
-		function shorthand_download(){ 
-			let shorthand_text = document.getElementById("shorthand_code").value; 
-			let shorthand_blob = new Blob([shorthand_text]);
-			let shorthand_anchor = document.createElement("a"); 
-			shorthand_anchor.href = window.URL.createObjectURL(shorthand_blob);
-			//shorthand_anchor.download = "my-filename.txt"; 
-			shorthand_anchor.download = document.getElementById("shorthand_name").value;
-			shorthand_anchor.target ="_blank"; 
-			shorthand_anchor.style.display = "none"; // just to be safe! 
-			document.body.appendChild(shorthand_anchor); 
-			shorthand_anchor.click(); 
-			document.body.removeChild(shorthand_anchor); 
-		}
-		function shorthand_runCode(obj)  {
-			let shorthand_code=obj.value;//即要运行的代码。
-			let shorthand_newwin=window.open();  //打开一个窗口并赋给变量newwin。
-			shorthand_newwin.opener = null // 防止代码修改页面
-			shorthand_newwin.document.write(shorthand_code);  //向这个打开的窗口中写入代码code，这样就实现了运行代码功能。
-			shorthand_newwin.document.close();
-		}
-		function shorthand_insert(obj) {
-				document.getElementById("test").innerHTML = obj;  // 其实本来想用 documents.write 的，但是发现 documents.write 会覆盖整个 DOM 流（那就是说，把我所有的原有内容自动清空），所以不得已才用了这种朴素的方式。参考 https://www.runoob.com/jsref/met-doc-write.html
-				shorthand_scriptfinder(document.getElementById("test"));
-		}
-		function shorthand_scriptfinder(obj){
-			for(var i=0; i< obj.children.length;i++){
-				if(obj.children[i].tagName=='SCRIPT'){
-					//console.log(1);
-					var g = document.createElement("script");
-					g.text = obj.children[i].innerHTML;
-					g.async=obj.children[i].async;
-					g.defer=obj.children[i].defer;
-					if(obj.children[i].src!='')g.src=obj.children[i].src;
-					obj.children[i].before(g);
-					obj.children[i].parentNode.removeChild(obj.children[i]);
+	<li class="card" id="inputer">
+		<script>
+			function shorthand_show(){
+				let shorthand_reader = new FileReader();
+				shorthand_reader.onload = function(){
+					shorthand_code.value=this.result;
 				}
-				shorthand_scriptfinder(obj.children[i]);
+				let shorthand_f = document.getElementById("filePicker").files[0];
+				shorthand_reader.readAsText(shorthand_f);
 			}
-		}
+			function shorthand_download(){
+				let shorthand_text = document.getElementById("shorthand_code").value; 
+				let shorthand_blob = new Blob([shorthand_text]);
+				let shorthand_anchor = document.createElement("a"); 
+				shorthand_anchor.href = window.URL.createObjectURL(shorthand_blob);
+				shorthand_anchor.download = document.getElementById("shorthand_name").value;
+				shorthand_anchor.target ="_blank";
+				shorthand_anchor.style.display = "none"; // just to be safe! 
+				document.body.appendChild(shorthand_anchor); 
+				shorthand_anchor.click(); 
+				document.body.removeChild(shorthand_anchor); 
+			}
+			function shorthand_runCode(obj){
+				let shorthand_code=obj;
+				let shorthand_newwin=window.open();
+				shorthand_newwin.opener = null;
+				shorthand_newwin.document.write(shorthand_code);
+				shorthand_newwin.document.close();
+			}
+			function shorthand_insert(obj,identify){
+					let tester=document.createElement("div");
+					tester.id=identify;
+					tester.innerHTML = obj;
+					document.getElementById('inputer').appendChild(tester);
+					shorthand_scriptfinder(document.getElementById(identify));
+			}
+			function shorthand_scriptfinder(obj){
+				for(let i=0; i< obj.children.length;i++){
+					if(obj.children[i].tagName=='SCRIPT'){
+						//console.log(1);
+						let g = document.createElement("script");
+						g.text = obj.children[i].innerHTML;
+						g.async=obj.children[i].async;
+						g.defer=obj.children[i].defer;
+						if(obj.children[i].src!='')g.src=obj.children[i].src;
+						obj.children[i].before(g);
+						obj.children[i].parentNode.removeChild(obj.children[i]);
+					}
+					shorthand_scriptfinder(obj.children[i]);
+				}
+			}
+			let shorthand_visibler=0;
+			function shorthand_visible(){
+				if(shorthand_visibler)document.querySelector('#inputer').style.display = 'block';
+				if(!shorthand_visibler)document.querySelector('#inputer').style.display = 'none';
+				shorthand_visibler=!shorthand_visibler;
+			}
 		</script>
 		<input type="file" name="file" id="filePicker" onchange="shorthand_show()"  /><br />
-		<textarea id="shorthand_code" rows="15" cols="100%"></textarea><br />
-		<textarea id="shorthand_name" rows="1" cols="100%"></textarea><br />
-		<button type="button" onclick="shorthand_download()">另存代码</button>
-		<button type="button" onclick="shorthand_runCode(this.offsetParent.getElementsByTagName('textarea')[0])">新页面打开</button>
-		<button type="button" onclick="shorthand_insert(this.offsetParent.getElementsByTagName('textarea')[0].value)">插入 test</button>
-		<div id="test"></div>
+		<textarea id="shorthand_code" cols="40%" rows="15"></textarea><br />
+		<textarea id="shorthand_name" cols="40%" rows="1">index.html</textarea><br />
+		<button type="button" onclick="shorthand_download()">download</button>
+		<button type="button" onclick="shorthand_runCode(this.offsetParent.getElementsByTagName('textarea')[0].value)">new window open</button>
+		<button type="button" onclick="shorthand_insert(document.getElementById('shorthand_code').value,document.getElementById('shorthand_name').value)">insert!</button>
+		<button type="button" onclick="document.querySelector('#inputer :last-child').remove();">delete</button>
 	</li>
 	<li class="card">
+		<script>
+		let fufu_visibler=0;
+		let all_visibler=1;
+		fufuphoto=["./fufuer.jpg","./fly.jpg","./fufu.png","./fuf.jpg"];
+		let fufuer=document.createElement('img');
+		fufuer.id="backgrounder";
+		fufuer.src = fufuphoto[fufu_visibler];
+		fufuer.style="z-index:-1; position: fixed; top: 0; left:0; height: 100vh; width: 100vw; margin: 0;";
+		fufuer.setAttribute("onclick","all_visible()");
+		function fufu_visible(obj){
+			switch (fufu_visibler) {
+				case 0:
+					fufuer.src=fufuphoto[fufu_visibler];
+					obj.before(fufuer);
+					break;
+				case -1:
+					document.getElementById('backgrounder').remove();
+					break;
+				default:
+					fufuer.src=fufuphoto[fufu_visibler];
+			}
+			fufu_visibler+=1;
+			if(fufu_visibler>=fufuphoto.length)fufu_visibler=-1;
+		}
+		function all_visible(){
+			if(all_visibler)document.body.style.visibility= "visible";
+			if(!all_visibler){
+				document.body.style.visibility= "hidden";
+				document.getElementById('backgrounder').style.visibility= "visible";
+			}
+			all_visibler=!all_visibler;
+		}
+		</script>
+		<button type="button" onclick="fufu_visible(this.offsetParent);">fufu!</button>
+		<button onclick="all_visible()">hide all!</button>
+		<button onclick="shorthand_visible()">visible!</button>
 		<script defer>
-			var i = -1;
+			let i = -1;
 			function flashcard_next() {
 				i = i + 1;
 				document.getElementById('flashcard_flow').innerHTML = document.getElementsByClassName('flashcard')[i].outerHTML;
@@ -601,6 +674,7 @@
 	</li>
 	<li class="card">标签面板
 		<ul>
+			<li><a href="#青科赛">青科赛</a></li>
 			<li><a href="#三体分享会">三体分享会</a></li>
 			<li id=".一起看世界杯"><div class="tag">#一起看世界杯</div>
 				<ul>
@@ -853,7 +927,7 @@
 			<li><a href="https://github.com/hugeproblem/nged">A Node Graph EDitor</a></li>
 			<li><a href="https://dowww.spencerwoo.com/">在 Windows 上用 WSL 优雅开发</a></li>
 			<li><a href="https://search.bilibili.com/all?keyword=%E4%BA%8C%E6%AC%A1%E5%85%83%E7%9A%84%E4%B8%AD%E7%A7%91%E9%99%A2%E7%89%A9%E7%90%86%E6%89%80">二次元的中科院物理所-哔哩哔哩_bilibili</a></li>
-			<li><a href="javascript:for (var i = 0; i < document.getElementsByTagName('a').length; i++) {window.open(document.getElementsByTagName('a')[i].href);}">restart bookmarks</a></li>
+			<li><a href="javascript:for (let i of document.getElementsByTagName('a')) {window.open(i.href);}">restart bookmarks</a></li>
 			<li><a href="http://ic.arc.nasa.gov/projects/remote-agent/">ic.arc.nasa.gov</a></li>
 			<li><a href="https://www.stsci.edu/">Home | STScI</a></li>
 			<li><a href="https://github.com/alexiaChen/YinWangBak/blob/master/让科学和理性回到计算机科学.md">YinWangBak/让科学和理性回到计算机科学.md at master · AlexiaChen/YinWangBak · GitHub</a></li>
@@ -3535,7 +3609,7 @@ print(c)
 			<li>标签作为数据库的元数据</li>
 		</ul>
 	</li>
-	<li class="card">睡觉时间
+	<li class="card">睡前小记
 		<table>
 			<tr>
 				<th>日期</th>
@@ -3816,8 +3890,6 @@ print(c)
 			<tr>
 				<td>2023.02.09</td>
 				<td>23:55</td>
-				<td></td>
-				</td>
 				<td>被酒莫惊春睡重，赌书消得泼茶香，当时只道是寻常。</td>
 			</tr>
 			<tr>
@@ -3962,8 +4034,7 @@ print(c)
 			</tr>
 			<tr>
 				<td>2023.03.20</td>
-				<td>次日00:09/
-				<td>
+				<td>次日00:09/</td>
 				<td>汴水流，泗水流，流到瓜州古渡头。吴山点点愁。</td>
 			</tr>
 			<tr>
@@ -3978,8 +4049,7 @@ print(c)
 			</tr>
 			<tr>
 				<td>2023.03.24</td>
-				<td>次日00:00/-00:06
-				<td>
+				<td>次日00:00/-00:06</td>
 				<td>南风知我意，吹梦到西洲。</td>
 			</tr>
 			<tr>
@@ -5103,21 +5173,21 @@ print(c)
 		<ul>
 			<li>Many years ago, my hometown was a small village. in the village, many people were farmers and
 				fisherman,they
-				went fishing and the grew rice.<br /> 　　
-				　Later, Many people come here from other place, and it became a town, there were many shops in the
+				went fishing and the grew rice.<br /> 		
+					Later, Many people come here from other place, and it became a town, there were many shops in the
 				street,
 				and the people could buy things there, they were more and more businessmen. there were many buses, cars,
 				but
 				no subways.<br />
-				　　Today,my hometown is a big city. there are lots of tall buildings and traffic. people could go to work
+						Today,my hometown is a big city. there are lots of tall buildings and traffic. people could go to work
 				by
 				car, by bus or by subway. it's very convenient. people seldom go to the shop to buy things because they
 				can
 				go shopping online. there are lot of tourists coming to my hometown because the city is becoming more
-				beautiful.</li> 　　
-			　　<li>翻译：很多年前，我的家乡还是一个小村庄。在村子里，许多人是农民和渔民，他们去钓鱼，种水稻。<br /> 　　
-				　　后来，很多人从别的地方来到这里，这里变成了一个小镇，街上有很多商店，人们可以在那里买东西，他们成了越来越多的商人。有许多公共汽车，汽车，但没有地铁。<br /> 　　
-				　　今天，我的家乡是一个大城市。那里有很多高楼和交通。人们可以坐汽车、公共汽车或地铁去上班。很方便。人们很少去商店买东西，因为他们可以去网购。有很多游客来我的家乡，因为这个城市变得越来越美丽了。</li>
+				beautiful.</li> 		
+					<li>翻译：很多年前，我的家乡还是一个小村庄。在村子里，许多人是农民和渔民，他们去钓鱼，种水稻。<br /> 		
+						后来，很多人从别的地方来到这里，这里变成了一个小镇，街上有很多商店，人们可以在那里买东西，他们成了越来越多的商人。有许多公共汽车，汽车，但没有地铁。<br /> 		
+						今天，我的家乡是一个大城市。那里有很多高楼和交通。人们可以坐汽车、公共汽车或地铁去上班。很方便。人们很少去商店买东西，因为他们可以去网购。有很多游客来我的家乡，因为这个城市变得越来越美丽了。</li>
 		</ul>
 	</li>
 	<li>小北极熊充电线挂件</li>
@@ -6599,17 +6669,17 @@ print(c)
 		<li>possible way
 			<ul>
 				<li>
-					<pre><code language="javascript">
+					<pre><code class="language-javascript">
 		//如果想拿到最真实的html源码，可以发起一个异步请求，url就是当前的location.href，在xhr.responseText里拿到最纯正的源码（需要服务器）
 		$.get(window.location.href,function(res){
 			console.log(res);
 		});
 		//升级版
-		var http = require('http');
-			var url = "http://www.baidu.com/";
+		let http = require('http');
+			let url = "http://www.baidu.com/";
 			// 参数url 和 回调函数
 			http.get(url, function (res) {
-				var html = '';
+				let html = '';
 				// 绑定data事件 回调函数 累加html片段
 				res.on('data', function (data) {
 					html += data;
@@ -6624,7 +6694,7 @@ print(c)
 		</code></pre>
 				</li>
 				<li>
-					<pre><code language="html">
+					<pre><code class="language-html">
 			//by jQuery
 			&lt;script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"&gt;&lt;/script&gt;
 			$("html").html();
@@ -6634,8 +6704,8 @@ print(c)
 		</li>
 		<li>
 			<details>
-				<summary>No.1 method</summary>
-				<pre><code id="SourceCode" language="html"></code></pre>
+				<summary>first method</summary>
+				<pre><code id="SourceCode" class="language-html"></code></pre>
 				<script type="text/javascript">
 					let source = document.documentElement.outerHTML;
 					source = source.replace(/&amp;/g, "&amp;amp;");
@@ -6653,7 +6723,7 @@ print(c)
 		</li>
 		<li>
 			<details>
-				<summary>No.2 method(depend on server environment)</summary>
+				<summary>second method(depend on server environment)</summary>
 				<script>
 					$(document).ready(function () {
 						$.get(window.location.href, function (source) {
@@ -6727,9 +6797,185 @@ print(c)
 		&lt;audio controls src="JavaScript://music"&gt;&lt;/audio&gt;
 	&lt;/div&gt;
 	</code></pre></li>
-	<li id="musicplayer">P.S.2024.5.24 经过两个多月的努力，终于，它成功了！<a href="##musicplayer">标签面板</a>
+	<li>P.S.2024.5.24 经过两个多月的努力，终于，它成功了！
+		<pre><code class="language-html">
+&lt;div id="musicplayer"&gt;
+&lt;script&gt;
+	var israndom = false;
+	function randomNum(minNum, maxNum) {
+		switch (arguments.length) {
+			case 1:
+				return parseInt(Math.random() * minNum + 1, 10);
+				break;
+			case 2:
+				return parseInt(Math.random() * (maxNum - minNum + 1) + minNum, 10);
+				break;
+			default:
+				return 0;
+				break;
+		}
+	}
+	function playMusic(musicList,wid) {
+		var player = new Audio();
+		// var playbox=document.createElement('div');
+		// playbox.className="musicDiv";
+		var src = israndom? musicList [randomNum(1,musicList.length)]:musicList.pop();
+		player.preload = true;
+		player.id=wid;
+		player.controls = true;
+		player.loop = false;
+		player.src = src;
+		player.autoplay = true;
+		// musiclooping=document.createElement('a');
+		// musiclooping.href="javascript:looping\(\""+wid+"\"\)";
+		// musiclooping.innerHTML=wid+".playLoop!";
+		// musiclooping.className="musicontorl";
+		// musicInforUrl=document.createElement("li");
+		// musicInforUrl.innerText="url:"+src;
+		// musicInforLoop=document.createElement("li");
+		// musicInforLoop.id=wid+".looped";
+		// musicInforLoop.innerText="isloop:"+player.loop;
+		// musicInfor=document.createElement('ul');
+		// musicInfor.id=wid+".Infor";
+		// musicInfor.appendChild(musicInforUrl);
+		// musicInfor.appendChild(musicInforLoop);
+		if(!israndom)musicList.unshift(src);
+		player.addEventListener("ended", playEndedHandler, false);
+		player.play();
+		// playbox.appendChild(document.createElement('br'));
+		// playbox.appendChild(player);
+		// playbox.appendChild(musiclooping);
+		// playbox.appendChild(document.createElement('br'));
+		// playbox.appendChild(musicInfor);
+		// document.getElementById("musicplayer").appendChild(playbox);
+		document.getElementById("musicplayer").appendChild(player);
+		function playEndedHandler() {
+			src = israndom?musicList [randomNum(1,musicList.length)]:musicList.pop();
+			// player.load();
+			player.src = src;
+			// musicInforUrl.innerText="url:"+src;
+			if(!israndom)musicList.unshift(src);
+			player.play();
+		}
+	}
+	function looping(getid){
+		document.getElementById(getid).loop=!document.getElementById(getid).loop;
+		document.getElementById(getid+".looped").innerText="isloop:"+document.getElementById(getid).loop;
+	}
+	function begin_music() {eval(document.getElementById("song_sheet").value);}
+&lt;/script&gt;
+&lt;mark&gt;仅限配置 server 后可用&lt;/mark&gt;&lt;br /&gt;
+&lt;textarea id="song_sheet" rows="15" cols="40%"&gt;
+var musicList = [
+"http://music.163.com/song/media/outer/url?id=1960415980#此时此刻",
+"http://music.163.com/song/media/outer/url?id=2112196350.mp3#浮光",
+"http://music.163.com/song/media/outer/url?id=1959528822.mp3#紫荆花盛开",
+"/download/ryukyuvania.m4a",
+"/music/download/终焉×end of all[原神 2024 新春会].mp3",
+"http://music.163.com/song/media/outer/url?id=2100372359.mp3#轻涟 Chinese",
+"http://music.163.com/song/media/outer/url?id=2100334024.mp3#轻涟 France",
+"http://music.163.com/song/media/outer/url?id=2026286081.mp3#舍离去",
+"http://music.163.com/song/media/outer/url?id=31234244.mp3#blessing(world))",
+"http://music.163.com/song/media/outer/url?id=2026565329.mp3#da capo",
+"http://music.163.com/song/media/outer/url?id=1859652717.mp3#moon halo",
+"/music/download/G大调弦乐小乐曲.mp3",
+"/music/download/春.mp3",
+"/music/download/Interstellar Main Theme.mp3",
+"/music/download/诀别书.mp3",
+"/music/download/rise(heroes).mp3",
+"/music/download/野火.mp3",
+"/music/download/双笙（陈元汐） - 女孩你为何踮脚尖.mp3",
+"/music/Alone.mp3",
+"/music/At The Edge.mp3",
+"/music/Crying In The Sun.mp3",
+"/music/Energy Drink.mp3",
+"/music/HOYO-MiX - Hustle and Bustle of Ormos 喧繁之港 [qmms2].flac",
+"/music/KemimikE - Mountains (Original Mix).mp3",
+"/music/Masked Heroes.mp3",
+"/music/Middle Of The Night-Original Mix.mp3",
+"/music/Monsters-Katie Sky.flac",
+"/music/Moonlight Sonata.mp3",
+"/music/Nevada.mp3",
+"/music/Rise - Epic Music.mp3",
+"/music/Sold Out-Hawk Nelson.flac",
+"/music/Sorry-Alan Walker.mp3",
+"/music/Sunburst.mp3",
+"/music/Tabata W.O.D.mp3",
+"/music/Unstoppable-Sia.flac",
+"/music/Unstoppable-The Score.mp3",
+"/music/X-Ray Dog - Playing Through [qmms2].mp3",
+"/music/You Are My Everything.mp3",
+"/music/drown.mp3",
+"/music/experience.mp3",
+"/music/faded.mp3",
+"/music/obj_wo3DlMOGwrbDjj7DisKw_29253109197_3954_2add_4962_b0882f751376ef4722bb96fc1e1a0a63.mp3",
+"/music/一路生花.mp3",
+"/music/万里归途.mp3",
+"/music/下山.mp3",
+"/music/不屈的信仰-张艺兴.mp3",
+"/music/你从未离去.wav",
+"/music/你的酒馆对我打了烊-陈雪凝.flac",
+"/music/侧脸.mp3",
+"/music/出山.mp3",
+"/music/加油 ! 向未来.mp3",
+"/music/发光时代.mp3",
+"/music/和平精英-717电音节主题bgm.mp3",
+"/music/回到那一天.flac",
+"/music/外婆的澎湖湾.mp3",
+"/music/夜空中最亮的星.mp3",
+"/music/夜航星.mp3",
+"/music/夜航星伴奏.flac",
+"/music/她的微笑（ Original Mix ).mp3",
+"/music/如愿.mp3",
+"/music/姚六一-雾里.mp3",
+"/music/孤勇者.mp3",
+"/music/小梦想.mp3",
+"/music/少年.mp3",
+"/music/平凡之路(中秋晚会).mp3",
+"/music/平凡之路.mp3",
+"/music/平凡的一天.mp3",
+"/music/悲伤的旋律.mp3",
+"/music/所念皆星河.mp3",
+"/music/无名之辈.mp3",
+"/music/时光洪流.flac",
+"/music/旺仔小乔-雾里.mp3",
+"/music/明天会更好.mp3",
+"/music/星辰大海.mp3",
+"/music/是你.flac",
+"/music/最美的光.mp3",
+"/music/有我.mp3",
+"/music/本草纲目.mp3",
+"/music/李峪钊-翻山越岭.mp3",
+"/music/溜冰圆舞曲.mp3",
+"/music/玫瑰少年.mp3",
+"/music/生僻字.mp3",
+"/music/破茧.mp3",
+"/music/离别开出花.mp3",
+"/music/第九交响曲.mp3",
+"/music/翻山越岭.mp3",
+"/music/耍把戏-张东尼.mp3",
+"/music/耍把戏-阿禹ayy.mp3",
+"/music/芒种.mp3",
+"/music/葬花.mp3",
+"/music/蓝莲花.mp3",
+"/music/蜜雪冰城主题曲.mp3",
+"/music/调查中.mp3",
+"/music/起风了.mp3",
+"/music/量子力学之歌.mp3",
+"/music/错位时空-五四特别版.mp3",
+"/music/错位时空.mp3",
+"/music/青春跃起来 (Live) .mp3"
+];
+playMusic(musicList.reverse(),"musicplay");
+&lt;/textarea&gt;&lt;br /&gt;
+&lt;button type="button" onclick="begin_music()"&gt;enjoy!&lt;/button&gt;
+&lt;a href="javascript:israndom=!israndom" class="musicontorl"&gt;random!&lt;/a&gt;
+&lt;br /&gt;
+&lt;/div&gt;
+		</code></pre>
+	</li>
+	<li id="musicplayer">P.S.2024.6.4 进行了重构，将主体函数化、模板化，体现高内聚、低耦合特点，并增加播放控件<a href="##musicplayer">标签面板</a>
 		<script>
-			var israndom = false;
 			function randomNum(minNum, maxNum) {
 				switch (arguments.length) {
 					case 1:
@@ -6743,160 +6989,184 @@ print(c)
 						break;
 				}
 			}
-			function playMusic(musicList,wid) {
-				var player = new Audio();
-				var playbox=document.createElement('div');
-				playbox.className="musicDiv";
-				var src = israndom? musicList [randomNum(1,musicList.length)]:musicList.pop();
-				player.preload = true;
-				player.id=wid;
-				player.controls = true;
-				player.loop = false;
-				player.src = src;
-				player.autoplay = true;
-				musiclooping=document.createElement('a');
-				musiclooping.href="javascript:looping\(\""+wid+"\"\)";
-				musiclooping.innerHTML=wid+".playLoop!";
-				musiclooping.className="musicontorl";
-				musicInforUrl=document.createElement("li");
-				musicInforUrl.innerText="url:"+src;
-				musicInforLoop=document.createElement("li");
-				musicInforLoop.id=wid+".looped";
-				musicInforLoop.innerText="isloop:"+player.loop;
-				musicInfor=document.createElement('ul');
-				musicInfor.id=wid+".Infor";
-				musicInfor.appendChild(musicInforUrl);
-				musicInfor.appendChild(musicInforLoop);
-				if(!israndom)musicList.unshift(src);
-				player.addEventListener("ended", playEndedHandler, false);
-				player.play();
-				playbox.appendChild(document.createElement('br'));
-				playbox.appendChild(player);
-				playbox.appendChild(musiclooping);
-				playbox.appendChild(document.createElement('br'));
-				playbox.appendChild(musicInfor);
-				document.getElementById("musicplayer").appendChild(playbox);
-				function playEndedHandler() {
-					src = israndom?musicList [randomNum(1,musicList.length)]:musicList.pop();
+		</script>
+		<script>
+			function playMusic(musicList, wid) {
+				let israndom = false;
+				function objecter(obj) {
+					let object = (obj.tag != undefined) ? document.createElement(obj.tag) : obj.method;
+					if(obj.parent!=undefined)obj.parent.appendChild(object);
+					if (obj.identity != undefined) {
+						object.id = wid + '.' + obj.identity;
+						eval(obj.identity + '\= object');
+					}
+					if(obj.features!=undefined)for (let i of Object.keys(obj.features)) object[i]=obj.features[i];
+					if (obj.eventer != undefined) document.getElementById(object.id).addEventListener("click", obj.eventer);
+				}
+				function checkInfor(obj) {
+					return obj.identity == "Infor";
+				}
+				function playwer(src) {
 					player.load();
 					player.src = src;
-					musicInforUrl.innerText="url:"+src;
-					if(!israndom)musicList.unshift(src);
-					player.play();
+					document.getElementById(wid + '.InforUrl').innerHTML = "url:" + src;
+					setTimeout(() => {
+						player.play();
+					}, 512);
 				}
+				function music_next() {
+					let src = musicList.pop();
+					musicList.unshift(src);
+					return playwer(src);
+				}
+				function music_last() {
+					let src = musicList.shift();
+					musicList.push(src);
+					return playwer(src);
+				}
+				function music_random() {
+					return playwer(musicList[randomNum(1, musicList.length)]);
+				}
+				function music_src() {
+					return (israndom) ? music_random() : music_next();
+				}
+				function music_looping(getid) {
+					document.getElementById(getid + ".player").loop = !document.getElementById(getid + ".player").loop;
+					document.getElementById(getid + ".InforLoop").innerText = "isloop:" + document.getElementById(getid + ".player").loop;
+				}
+				function music_randoming(getid) {
+					israndom = !israndom;
+					document.getElementById(getid + ".InforRandom").innerText = "israndom:" + israndom;
+				}
+				objecter({ identity: "playbox", tag: "div", features: { className: "musicDiv" }, parent: document.getElementById("musicplayer") });
+				objecter({ identity: "player", method: new Audio(), features: { preload: true, controls: true, loop: false, autoplay: true }, parent: playbox });
+				let music_object = [
+					{ tag: "br", parent: playbox },
+					{ identity: "randomer", tag: "a", features: { innerHTML: wid + ".randomer", className: "musicontorl" }, parent: playbox, eventer: function () { music_randoming(wid); } },
+					{ tag: "br", parent: playbox },
+					{ identity: "looping", tag: "a", features: { innerHTML: wid + ".playLoop!", className: "musicontorl" }, parent: playbox, eventer: function () { music_looping(wid); } },
+					{ identity: "Infor", tag: "ul", parent: playbox },
+					{ identity: "controlup", tag: "button", features: { innerHTML: wid + ".up" }, parent: playbox, eventer: music_next },
+					{ identity: "controldown", tag: "button", features: { innerHTML: wid + ".down" }, parent: playbox, eventer: music_last }
+				];
+				for (let i of music_object) objecter(i);
+				music_object.filter(checkInfor)[0].children = [
+					{ identity: "InforLoop", tag: "li", features: { innerHTML: "isloop:" + player.loop }, parent: Infor },
+					{ identity: "InforRandom", tag: "li", features: { innerHTML: "israndom:" + israndom }, parent: Infor },
+					{ identity: "InforUrl", tag: "li", parent: Infor }
+				];
+				for (let i of music_object.filter(checkInfor)[0].children) objecter(i);
+				let musicer =music_src();
+				player.addEventListener("ended", music_src, false);
 			}
-			function looping(getid){
-				document.getElementById(getid).loop=!document.getElementById(getid).loop;
-				document.getElementById(getid+".looped").innerText="isloop:"+document.getElementById(getid).loop;
-			}
-			function begin_music() {eval(document.getElementById("song_sheet").value);}
 		</script>
-		<mark>仅限配置 server 后可用</mark><br />
-		<textarea id="song_sheet" rows="15" cols="35%">
-var musicList = [
-	"http://music.163.com/song/media/outer/url?id=1960415980#此时此刻",
-	"http://music.163.com/song/media/outer/url?id=2112196350.mp3#浮光",
-	"http://music.163.com/song/media/outer/url?id=1959528822.mp3#紫荆花盛开",
-	"/download/ryukyuvania.m4a",
-	"/music/download/终焉×end of all[原神 2024 新春会].mp3",
-	"http://music.163.com/song/media/outer/url?id=2100372359.mp3#轻涟 Chinese",
-	"http://music.163.com/song/media/outer/url?id=2100334024.mp3#轻涟 France",
-	"http://music.163.com/song/media/outer/url?id=2026286081.mp3#舍离去",
-	"http://music.163.com/song/media/outer/url?id=31234244.mp3#blessing(world))",
-	"http://music.163.com/song/media/outer/url?id=2026565329.mp3#da capo",
-	"http://music.163.com/song/media/outer/url?id=1859652717.mp3#moon halo",
-	"/music/download/G大调弦乐小乐曲.mp3",
-	"/music/download/春.mp3",
-	"/music/download/Interstellar Main Theme.mp3",
-	"/music/download/诀别书.mp3",
-	"/music/download/rise(heroes).mp3",
-	"/music/download/野火.mp3",
-	"/music/download/双笙（陈元汐） - 女孩你为何踮脚尖.mp3",
-	"/music/Alone.mp3",
-	"/music/At The Edge.mp3",
-	"/music/Crying In The Sun.mp3",
-	"/music/Energy Drink.mp3",
-	"/music/HOYO-MiX - Hustle and Bustle of Ormos 喧繁之港 [qmms2].flac",
-	"/music/KemimikE - Mountains (Original Mix).mp3",
-	"/music/Masked Heroes.mp3",
-	"/music/Middle Of The Night-Original Mix.mp3",
-	"/music/Monsters-Katie Sky.flac",
-	"/music/Moonlight Sonata.mp3",
-	"/music/Nevada.mp3",
-	"/music/Rise - Epic Music.mp3",
-	"/music/Sold Out-Hawk Nelson.flac",
-	"/music/Sorry-Alan Walker.mp3",
-	"/music/Sunburst.mp3",
-	"/music/Tabata W.O.D.mp3",
-	"/music/Unstoppable-Sia.flac",
-	"/music/Unstoppable-The Score.mp3",
-	"/music/X-Ray Dog - Playing Through [qmms2].mp3",
-	"/music/You Are My Everything.mp3",
-	"/music/drown.mp3",
-	"/music/experience.mp3",
-	"/music/faded.mp3",
-	"/music/obj_wo3DlMOGwrbDjj7DisKw_29253109197_3954_2add_4962_b0882f751376ef4722bb96fc1e1a0a63.mp3",
-	"/music/一路生花.mp3",
-	"/music/万里归途.mp3",
-	"/music/下山.mp3",
-	"/music/不屈的信仰-张艺兴.mp3",
-	"/music/你从未离去.wav",
-	"/music/你的酒馆对我打了烊-陈雪凝.flac",
-	"/music/侧脸.mp3",
-	"/music/出山.mp3",
-	"/music/加油 ! 向未来.mp3",
-	"/music/发光时代.mp3",
-	"/music/和平精英-717电音节主题bgm.mp3",
-	"/music/回到那一天.flac",
-	"/music/外婆的澎湖湾.mp3",
-	"/music/夜空中最亮的星.mp3",
-	"/music/夜航星.mp3",
-	"/music/夜航星伴奏.flac",
-	"/music/她的微笑（ Original Mix ).mp3",
-	"/music/如愿.mp3",
-	"/music/姚六一-雾里.mp3",
-	"/music/孤勇者.mp3",
-	"/music/小梦想.mp3",
-	"/music/少年.mp3",
-	"/music/平凡之路(中秋晚会).mp3",
-	"/music/平凡之路.mp3",
-	"/music/平凡的一天.mp3",
-	"/music/悲伤的旋律.mp3",
-	"/music/所念皆星河.mp3",
-	"/music/无名之辈.mp3",
-	"/music/时光洪流.flac",
-	"/music/旺仔小乔-雾里.mp3",
-	"/music/明天会更好.mp3",
-	"/music/星辰大海.mp3",
-	"/music/是你.flac",
-	"/music/最美的光.mp3",
-	"/music/有我.mp3",
-	"/music/本草纲目.mp3",
-	"/music/李峪钊-翻山越岭.mp3",
-	"/music/溜冰圆舞曲.mp3",
-	"/music/玫瑰少年.mp3",
-	"/music/生僻字.mp3",
-	"/music/破茧.mp3",
-	"/music/离别开出花.mp3",
-	"/music/第九交响曲.mp3",
-	"/music/翻山越岭.mp3",
-	"/music/耍把戏-张东尼.mp3",
-	"/music/耍把戏-阿禹ayy.mp3",
-	"/music/芒种.mp3",
-	"/music/葬花.mp3",
-	"/music/蓝莲花.mp3",
-	"/music/蜜雪冰城主题曲.mp3",
-	"/music/调查中.mp3",
-	"/music/起风了.mp3",
-	"/music/量子力学之歌.mp3",
-	"/music/错位时空-五四特别版.mp3",
-	"/music/错位时空.mp3",
-	"/music/青春跃起来 (Live) .mp3"
+		<mark>仅限配置 server 后可加载本地音乐</mark><br />
+		<textarea id="song_sheet" rows="15" cols="40%">
+let musicList = [
+"http://music.163.com/song/media/outer/url?id=2155423468#希望有羽毛和翅膀",
+"http://music.163.com/song/media/outer/url?id=2155422573#使一颗心免于哀伤",
+"http://music.163.com/song/media/outer/url?id=2155423467#在银河中孤独摇摆",
+"http://music.163.com/song/media/outer/url?id=2112196350.mp3#浮光",
+"http://music.163.com/song/media/outer/url?id=1959528822.mp3#紫荆花盛开",
+"/download/ryukyuvania.m4a",
+"/music/download/终焉×end of all[原神 2024 新春会].mp3",
+"http://music.163.com/song/media/outer/url?id=2100372359.mp3#轻涟 Chinese",
+"http://music.163.com/song/media/outer/url?id=2100334024.mp3#轻涟 France",
+"http://music.163.com/song/media/outer/url?id=2026286081.mp3#舍离去",
+"http://music.163.com/song/media/outer/url?id=31234244.mp3#blessing(world))",
+"http://music.163.com/song/media/outer/url?id=2026565329.mp3#da capo",
+"http://music.163.com/song/media/outer/url?id=1859652717.mp3#moon halo",
+"/music/download/G大调弦乐小乐曲.mp3",
+"/music/download/春.mp3",
+"/music/download/Interstellar Main Theme.mp3",
+"/music/download/诀别书.mp3",
+"/music/download/rise(heroes).mp3",
+"/music/download/野火.mp3",
+"/music/download/双笙（陈元汐） - 女孩你为何踮脚尖.mp3",
+"/music/Alone.mp3",
+"/music/At The Edge.mp3",
+"/music/Crying In The Sun.mp3",
+"/music/Energy Drink.mp3",
+"/music/HOYO-MiX - Hustle and Bustle of Ormos 喧繁之港 [qmms2].flac",
+"/music/KemimikE - Mountains (Original Mix).mp3",
+"/music/Masked Heroes.mp3",
+"/music/Middle Of The Night-Original Mix.mp3",
+"/music/Monsters-Katie Sky.flac",
+"/music/Moonlight Sonata.mp3",
+"/music/Nevada.mp3",
+"/music/Rise - Epic Music.mp3",
+"/music/Sold Out-Hawk Nelson.flac",
+"/music/Sorry-Alan Walker.mp3",
+"/music/Sunburst.mp3",
+"/music/Tabata W.O.D.mp3",
+"/music/Unstoppable-Sia.flac",
+"/music/Unstoppable-The Score.mp3",
+"/music/X-Ray Dog - Playing Through [qmms2].mp3",
+"/music/You Are My Everything.mp3",
+"/music/drown.mp3",
+"/music/experience.mp3",
+"/music/faded.mp3",
+"/music/obj_wo3DlMOGwrbDjj7DisKw_29253109197_3954_2add_4962_b0882f751376ef4722bb96fc1e1a0a63.mp3",
+"/music/一路生花.mp3",
+"/music/万里归途.mp3",
+"/music/下山.mp3",
+"/music/不屈的信仰-张艺兴.mp3",
+"/music/你从未离去.wav",
+"/music/你的酒馆对我打了烊-陈雪凝.flac",
+"/music/侧脸.mp3",
+"/music/出山.mp3",
+"/music/加油 ! 向未来.mp3",
+"/music/发光时代.mp3",
+"/music/和平精英-717电音节主题bgm.mp3",
+"/music/回到那一天.flac",
+"/music/外婆的澎湖湾.mp3",
+"/music/夜空中最亮的星.mp3",
+"/music/夜航星.mp3",
+"/music/夜航星伴奏.flac",
+"/music/她的微笑（ Original Mix ).mp3",
+"/music/如愿.mp3",
+"/music/姚六一-雾里.mp3",
+"/music/孤勇者.mp3",
+"/music/小梦想.mp3",
+"/music/少年.mp3",
+"/music/平凡之路(中秋晚会).mp3",
+"/music/平凡之路.mp3",
+"/music/平凡的一天.mp3",
+"/music/悲伤的旋律.mp3",
+"/music/所念皆星河.mp3",
+"/music/无名之辈.mp3",
+"/music/时光洪流.flac",
+"/music/旺仔小乔-雾里.mp3",
+"/music/明天会更好.mp3",
+"/music/星辰大海.mp3",
+"/music/是你.flac",
+"/music/最美的光.mp3",
+"/music/有我.mp3",
+"/music/本草纲目.mp3",
+"/music/李峪钊-翻山越岭.mp3",
+"/music/溜冰圆舞曲.mp3",
+"/music/玫瑰少年.mp3",
+"/music/生僻字.mp3",
+"/music/破茧.mp3",
+"/music/离别开出花.mp3",
+"/music/第九交响曲.mp3",
+"/music/翻山越岭.mp3",
+"/music/耍把戏-张东尼.mp3",
+"/music/耍把戏-阿禹ayy.mp3",
+"/music/芒种.mp3",
+"/music/葬花.mp3",
+"/music/蓝莲花.mp3",
+"/music/蜜雪冰城主题曲.mp3",
+"/music/调查中.mp3",
+"/music/起风了.mp3",
+"/music/量子力学之歌.mp3",
+"/music/错位时空-五四特别版.mp3",
+"/music/错位时空.mp3",
+"/music/青春跃起来 (Live) .mp3"
 ];
 playMusic(musicList.reverse(),"musicplay");
 		</textarea><br />
-		<button type="button" onclick="begin_music()">enjoy!</button>
-		<a href="javascript:israndom=!israndom" class="musicontorl">random!</a>
+		<button type="button" onclick="eval(document.getElementById('song_sheet').value);">enjoy!</button>
 		<br />
 	</li>
 	</ul>
@@ -7422,8 +7692,8 @@ playMusic(musicList.reverse(),"musicplay");
 							- [Vue3 组件 | 菜鸟教程](https://www.runoob.com/vue3/vue3-components.html)
 						</vue-markdown>
 			</div>
-			<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/prism.min.js"></script>
-			<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/themes/prism.min.css">
+			<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/prism.min.js"></script> -->
+			<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/themes/prism.min.css"> -->
 			<script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
 			<link rel="stylesheet" href="https://unpkg.com/katex@0.6.0/dist/katex.min.css">
 			<script>
@@ -8716,6 +8986,76 @@ playMusic(musicList.reverse(),"musicplay");
 			<li><a href="https://www.zhihu.com/question/35564947">能通俗地解释量化宽松政策吗？ - 知乎</a></li>
 		</ul>
 	</li>
+	</ul>
+</li>
+<li class="card">2024.06.01
+	<ul>
+	<li>青科赛注意事项
+		<div id="青科赛"><vue-markdown>
+- 赛前抽签：抽两个颜色卡片以及对应颜色的方块，到时候会这么摆放
+- 准备阶段：
+	0.检查电量；
+	1.赛前一到场地就进行小车学习，学习好之后检查一下车头前方的四路巡线传感器灯亮的是否正常（判断方法——正放：中间2，略左：左2，中左：左1，大左：0，右同理），检查后无需再次学习！不要一直反复学习；
+	2.把小车放在地上看一下按1A1B能不能跑直线，基本直线即可；
+	3.容易出问题的是转方块的那个任务，小车的角度可能需要你们到时候自行调整；
+	4.检查小车的红外传感器、rfid 传感器、遥控器接收器、以及灯环是否链接好，有没有线松了。
+	5.把摄像头准备在旁边，不要连接。
+
+- 比赛中：
+- 第一阶段
+	1.自动巡线
+	- 自动巡线时候，看到小车有问题了，立马申请重启拿回A基地重新出发，不要等
+	2.手动摇控推两个方块进入b基地，车也回到b基地！！
+---
+【第一阶段结束进入2分钟切换阶段】
+
+- 切换阶段：安装摄像头，（去掉遥控器接收器），去掉车头前方的两个叉叉方便车走
+- 第二阶段：用蓝色小球引导小车识别5-1和5-2区域的两张卡片之后返回finishi 区域完成比赛![](image-14.png)</vue-markdown>
+		<script>
+			Vue.use(VueMarkdown);
+			new Vue({
+				el: '#青科赛',
+			});
+		</script></div>
+	</li>
+	<li>我成为《新星报》编辑具有的优势：
+		<div id="《新星报》"><vue-markdown>
+- 在科技/哲学/自然环境/人文、社会科学/心理学/历史等领域有广泛涉猎，对各类文章所谈论的内容可以有一定了解，且容易形成选题；
+- 关注社会热点和学校动态，对同学们的精神生活需求有一定把握；
+- 信息意识强，善于获取、过滤、分析和使用各类信息、把握作者大意；
+- 语文学科成绩较好，语言文字运用能力强；
+- 富有创新意识
+- 平时积极拓宽交流圈，有一定的作者资源；
+- 擅长信息技术，善于将工作自动化，提升效率，熟练掌握office三件套、PS等技术；
+
+---
+
+- 在科技/哲学/自然环境/人文、社会科学/心理学/历史等领域有广泛涉猎，对各类文章所谈论的内容可以有一定了解，且容易形成选题；
+- 关注社会热点和学校动态，对同学们的精神生活需求有一定把握；
+- 信息意识强，善于获取、过滤、分析和使用各类信息、把握作者大意；
+- 语言文字运用能力强；
+- 富有创新意识，擅长信息技术，善于将工作自动化，提升效率，熟练掌握office三件套、PS等技术；
+综合上述优势，我比较擅长报纸版面设计/信息整理/稿件核对工作
+		</vue-markdown>
+		<script>
+			Vue.use(VueMarkdown);
+			new Vue({
+				el: '#《新星报》',
+			});
+		</script></div>
+	</li>
+	</ul>
+</li>
+<li>2024.06.06
+	<ul>
+	<li>雨中漫步有感
+		<ul>
+		<li>一块青石板，踩开的是命运————打湿了鞋袜，却打不湿心情。</li>
+		<li>在广阔的~~场函数~~复平面上，无数的雨滴降落，然后晕染，画出一道道同心圆，造出一个个隐函数</li>
+		<li>浅观天晴青，无数雨滴绽放散，且聆雨蒙蒙</li>
+		</ul>
+	</li>
+	<li>今天是农历儿童节...应该是吧。</li>
 	</ul>
 </li>
 </ul>

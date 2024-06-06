@@ -1,48 +1,47 @@
 <!DOCTYPE html>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+<div id="inputer">
 	<script>
-		function shorthand_show()
-		{
+		function shorthand_show(){
 			let shorthand_reader = new FileReader();
-			shorthand_reader.onload = function() 
-			{
-				//alert(this.result)
-				shorthand_code.value=this.result		
+			shorthand_reader.onload = function(){
+				shorthand_code.value=this.result;
 			}
 			let shorthand_f = document.getElementById("filePicker").files[0];
-			//alert(shorthand_f.name)
 			shorthand_reader.readAsText(shorthand_f);
 		}
-		function shorthand_download(){ 
+		function shorthand_download(){
 			let shorthand_text = document.getElementById("shorthand_code").value; 
 			let shorthand_blob = new Blob([shorthand_text]);
 			let shorthand_anchor = document.createElement("a"); 
 			shorthand_anchor.href = window.URL.createObjectURL(shorthand_blob);
-			//shorthand_anchor.download = "my-filename.txt"; 
 			shorthand_anchor.download = document.getElementById("shorthand_name").value;
-			shorthand_anchor.target ="_blank"; 
+			shorthand_anchor.target ="_blank";
 			shorthand_anchor.style.display = "none"; // just to be safe! 
 			document.body.appendChild(shorthand_anchor); 
 			shorthand_anchor.click(); 
 			document.body.removeChild(shorthand_anchor); 
 		}
-		function shorthand_runCode(obj)  {
-			let shorthand_code=obj.value;//即要运行的代码。
-			let shorthand_newwin=window.open();  //打开一个窗口并赋给变量newwin。
-			shorthand_newwin.opener = null // 防止代码修改页面
-			shorthand_newwin.document.write(shorthand_code);  //向这个打开的窗口中写入代码code，这样就实现了运行代码功能。
+		function shorthand_runCode(obj){
+			let shorthand_code=obj;
+			let shorthand_newwin=window.open();
+			shorthand_newwin.opener = null;
+			shorthand_newwin.document.write(shorthand_code);
 			shorthand_newwin.document.close();
 		}
-		function shorthand_insert(obj) {
-				document.getElementById("test").innerHTML = obj;  // 其实本来想用 documents.write 的，但是发现 documents.write 会覆盖整个 DOM 流（那就是说，把我所有的原有内容自动清空），所以不得已才用了这种朴素的方式。参考 https://www.runoob.com/jsref/met-doc-write.html
-				shorthand_scriptfinder(document.getElementById("test"));
+		function shorthand_insert(obj,identify){
+				let tester=document.createElement("div");
+				tester.id=identify;
+				tester.innerHTML = obj;
+				document.getElementById('inputer').appendChild(tester);
+				shorthand_scriptfinder(document.getElementById(identify));
 		}
 		function shorthand_scriptfinder(obj){
-			for(var i=0; i< obj.children.length;i++){
+			for(let i=0; i< obj.children.length;i++){
 				if(obj.children[i].tagName=='SCRIPT'){
 					//console.log(1);
-					var g = document.createElement("script");
+					let g = document.createElement("script");
 					g.text = obj.children[i].innerHTML;
 					g.async=obj.children[i].async;
 					g.defer=obj.children[i].defer;
@@ -53,13 +52,18 @@
 				shorthand_scriptfinder(obj.children[i]);
 			}
 		}
-</script>
-<input type="file" name="file" id="filePicker" onchange="shorthand_show()"  /><br />
-<textarea id="shorthand_code" rows="15" cols="100%"></textarea>
-<!--<script id="tst">alert(2);</script>-->
-<br />
-<textarea id="shorthand_name" rows="1" cols="100%"></textarea><br />
-<button type="button" onclick="shorthand_download()">另存代码</button>
-<button type="button" onclick="shorthand_runCode(this.offsetParent.getElementsByTagName('textarea')[0])">新页面打开</button>
-<button type="button" onclick="shorthand_insert(this.offsetParent.getElementsByTagName('textarea')[0].value)">插入 test</button>
-<div id="test"></div>
+		let shorthand_visibler=0;
+		function shorthand_visible(){
+			if(shorthand_visibler)document.querySelector('#inputer').style.display = 'block';
+			if(!shorthand_visibler)document.querySelector('#inputer').style.display = 'none';
+			shorthand_visibler=!shorthand_visibler;
+		}
+	</script>
+	<input type="file" name="file" id="filePicker" onchange="shorthand_show()"  /><br />
+	<textarea id="shorthand_code" cols="40%" rows="15"></textarea><br />
+	<textarea id="shorthand_name" cols="40%" rows="1">index.html</textarea><br />
+	<button type="button" onclick="shorthand_download()">download</button>
+	<button type="button" onclick="shorthand_runCode(this.offsetParent.getElementsByTagName('textarea')[0].value)">new window open</button>
+	<button type="button" onclick="shorthand_insert(document.getElementById('shorthand_code').value,document.getElementById('shorthand_name').value)">insert!</button>
+	<button type="button" onclick="document.querySelector('#inputer :last-child').remove();">delete</button>
+</li>

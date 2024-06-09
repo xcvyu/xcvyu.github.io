@@ -122,6 +122,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
 <meta name="color-scheme" content="light dark">
+<meta http-equiv="Access-Control-Allow-Origin" content="*">
 <!--My Style-->
 <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+SC:100,300,400,500,700,900"> -->
 <style type="text/css">
@@ -415,6 +416,15 @@
 	#musicplayer {
 		overflow: auto;
 	}
+	.feeder-style {
+		border-radius: 10px;
+		box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.1);
+		background-color: #FDFFFA;
+		padding: 60px;
+		width: auto;
+		display: flex;
+		flex-direction: column;
+	}
 </style>
 <!--<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/themes/vue.css"/>
 <link href="https://cubox.pro/article/css/reader.css" rel="stylesheet" />-->
@@ -444,7 +454,7 @@ function markeduser(){
   <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 <![endif]-->
 <!-- LaTeX嵌入网页(MathJax)原网址：https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js -->
-<script type="text/javascript" id="MathJax-script" async src="https://cdn.bootcdn.net/ajax/libs/mathjax/4.0.0-alpha.1/es5/tex-svg.js"></script>
+<script id="MathJax-script" async src="https://cdn.bootcdn.net/ajax/libs/mathjax/4.0.0-alpha.1/es5/tex-svg.js"></script>
 <script>
 function MathSaver(){
 	MathJax = {
@@ -561,44 +571,40 @@ function vditorinit(){
 <ul id="rooter">
 	<li class="card" id="inputer">
 		<script>
-			function shorthand_show(){
-				let shorthand_reader = new FileReader();
-				shorthand_reader.onload = function(){
-					shorthand_code.value=this.result;
+			function inputer_show(){
+				let inputer_reader = new FileReader();
+				inputer_reader.onload = function(){
+					document.getElementById("inputer_content").value=this.result;
 				}
-				let shorthand_f = document.getElementById("filePicker").files[0];
-				shorthand_reader.readAsText(shorthand_f);
+				inputer_reader.readAsText(document.getElementById("filePicker_inputer").files[0]);
 			}
-			function shorthand_download(){
-				let shorthand_text = document.getElementById("shorthand_code").value; 
-				let shorthand_blob = new Blob([shorthand_text]);
-				let shorthand_anchor = document.createElement("a"); 
-				shorthand_anchor.href = window.URL.createObjectURL(shorthand_blob);
-				shorthand_anchor.download = document.getElementById("shorthand_name").value;
-				shorthand_anchor.target ="_blank";
-				shorthand_anchor.style.display = "none"; // just to be safe! 
-				document.body.appendChild(shorthand_anchor); 
-				shorthand_anchor.click(); 
-				document.body.removeChild(shorthand_anchor); 
+			function inputer_download(){ 
+				let inputer_blob = new Blob([document.getElementById("inputer_content").value]);
+				let inputer_anchor = document.createElement("a"); 
+				inputer_anchor.href = window.URL.createObjectURL(inputer_blob);
+				inputer_anchor.download = document.getElementById("inputer_name").value;
+				inputer_anchor.target ="_blank";
+				inputer_anchor.style.display = "none"; // just to be safe! 
+				document.body.appendChild(inputer_anchor); 
+				inputer_anchor.click(); 
+				document.body.removeChild(inputer_anchor); 
 			}
-			function shorthand_runCode(obj){
-				let shorthand_code=obj;
-				let shorthand_newwin=window.open();
-				shorthand_newwin.opener = null;
-				shorthand_newwin.document.write(shorthand_code);
-				shorthand_newwin.document.close();
+			function inputer_runCode(obj){
+				let inputer_window=window.open();
+				inputer_window.opener = null;
+				inputer_window.document.write(obj);
+				inputer_window.document.close();
 			}
-			function shorthand_insert(obj,identify){
-					let tester=document.createElement("div");
-					tester.id=identify;
-					tester.innerHTML = obj;
-					document.getElementById('inputer').appendChild(tester);
-					shorthand_scriptfinder(document.getElementById(identify));
+			function inputer_insert(obj,identify){
+				let inputer_inserter=document.createElement("div");
+				inputer_inserter.id=identify;
+				inputer_inserter.innerHTML = obj;
+				document.getElementById('inputer').appendChild(inputer_inserter);
+				inputer_scriptfinder(document.getElementById(identify));
 			}
-			function shorthand_scriptfinder(obj){
+			function inputer_scriptfinder(obj){
 				for(let i=0; i< obj.children.length;i++){
 					if(obj.children[i].tagName=='SCRIPT'){
-						//console.log(1);
 						let g = document.createElement("script");
 						g.text = obj.children[i].innerHTML;
 						g.async=obj.children[i].async;
@@ -607,22 +613,22 @@ function vditorinit(){
 						obj.children[i].before(g);
 						obj.children[i].parentNode.removeChild(obj.children[i]);
 					}
-					shorthand_scriptfinder(obj.children[i]);
+					inputer_scriptfinder(obj.children[i]);
 				}
 			}
-			let shorthand_visibler=0;
-			function shorthand_visible(){
-				if(shorthand_visibler)document.querySelector('#inputer').style.display = 'block';
-				if(!shorthand_visibler)document.querySelector('#inputer').style.display = 'none';
-				shorthand_visibler=!shorthand_visibler;
+			let inputer_visibler=0;
+			function inputer_visible(){
+				if(inputer_visibler)document.querySelector('#inputer').style.display = 'block';
+				if(!inputer_visibler)document.querySelector('#inputer').style.display = 'none';
+				inputer_visibler=!inputer_visibler;
 			}
 		</script>
-		<input type="file" name="file" id="filePicker" onchange="shorthand_show()"  /><br />
-		<textarea id="shorthand_code" cols="40%" rows="15"></textarea><br />
-		<textarea id="shorthand_name" cols="40%" rows="1">index.html</textarea><br />
-		<button type="button" onclick="shorthand_download()">download</button>
-		<button type="button" onclick="shorthand_runCode(this.offsetParent.getElementsByTagName('textarea')[0].value)">new window open</button>
-		<button type="button" onclick="shorthand_insert(document.getElementById('shorthand_code').value,document.getElementById('shorthand_name').value)">insert!</button>
+		<input type="file" name="file" id="filePicker_inputer" onchange="inputer_show()"  /><br />
+		<textarea id="inputer_content" cols="40%" rows="15"></textarea><br />
+		<textarea id="inputer_name" cols="40%" rows="1">index.html</textarea><br />
+		<button type="button" onclick="inputer_download()">download</button>
+		<button type="button" onclick="inputer_runCode(this.offsetParent.getElementsByTagName('textarea')[0].value)">new window open</button>
+		<button type="button" onclick="inputer_insert(document.getElementById('inputer_content').value,document.getElementById('inputer_name').value)">insert!</button>
 		<button type="button" onclick="document.querySelector('#inputer :last-child').remove();">delete</button>
 	</li>
 	<li class="card">
@@ -661,7 +667,7 @@ function vditorinit(){
 		</script>
 		<button type="button" onclick="fufu_visible(this.offsetParent);">fufu!</button>
 		<button onclick="all_visible()">hide all!</button>
-		<button onclick="shorthand_visible()">visible!</button>
+		<button onclick="inputer_visible()">visible!</button>
 		<script defer>
 			let i = -1;
 			function flashcard_next() {
@@ -674,6 +680,9 @@ function vditorinit(){
 	</li>
 	<li class="card">标签面板
 		<ul>
+			<li id="#website source browse"><a href="#website source browse">website source browse</a></li>
+			<li id="#musicplayer"><a href="#musicplayer">musicplayer</a></li>
+			<li id="#read board"><a href="#read board">read board</a></li>
 			<li><a href="#青科赛">青科赛</a></li>
 			<li><a href="#三体分享会">三体分享会</a></li>
 			<li id=".一起看世界杯"><div class="tag">#一起看世界杯</div>
@@ -706,8 +715,6 @@ function vditorinit(){
 					</li>
 				</ul>
 			</li>
-			<li id="#musicplayer"><a href="#musicplayer">musicplayer</a></li>
-			<li id="#website board"><a href="#website board">website board</a></li>
 		</ul>
 	</li>
 	<li class="card">My Information
@@ -789,7 +796,7 @@ function vditorinit(){
 			</li>
 		</ul>
 	</li>
-	<li class="card">website board
+	<li class="card">read board
 		<ul>
 		<li><a href="https://pwa.sspai.com">少数派</a></li>
 		<li>待读
@@ -836,7 +843,7 @@ function vditorinit(){
 				<li><a href="https://mp.weixin.qq.com/s/NpJ_TtkBxeyxy4wOkfghSw">Doctor Curious 52：好学的灰太郎之质量是什么</a></li>
 			</ul>
 		</li>
-		<li id="website board"><a href="##website board">标签面板</a></li>
+		<li id="read board"><a href="##read board">标签面板</a></li>
 		</ul>
 	</li>
 	<li class="card">Bookmarks
@@ -6636,13 +6643,89 @@ print(c)
 </li>
 <li class="card">2023.01.15
 	<ul>
-		<li>HTML转义参考
+		<li>HTML转义参考(原)
 			<ul>
 				<li>&amp;lt; - &lt;</li>
 				<li>&amp;gt; - &gt;</li>
 				<li>&amp;amp;lt; - &amp;lt;</li>
 				<li>&amp;amp;gt; - &amp;gt;</li>
+			    <li><button onclick="show_HtmlUtil(this)">P.S.2024.06.09 获取更加准确的转义信息</button></li>
 			</ul>
+			<script>
+			    function show_HtmlUtil(where){
+			        let hi=document.createElement("code");
+			        hi.innerText=document.getElementById('htmlEscape').innerHTML;
+			        hi.class="language-javascript";
+			        let hihi=document.createElement("pre");
+			        hihi.appendChild(hi);
+			        where.parentNode.appendChild(hihi);
+			        where.remove();
+			    }</script>
+			<script id="htmlEscape">
+				HtmlUtil = {
+                    /*1.用浏览器内部转换器实现html编码（转义）*/
+                    htmlEncode:function (html){
+                        //1.首先动态创建一个容器标签元素，如DIV
+                        var temp = document.createElement ("div");
+                        //2.然后将要转换的字符串设置为这个元素的innerText或者textContent
+                        (temp.textContent != undefined ) ? (temp.textContent = html) : (temp.innerText = html);
+                        //3.最后返回这个元素的innerHTML，即得到经过HTML编码转换的字符串了
+                        var output = temp.innerHTML;
+                        temp = null;
+                        return output;
+                    },
+                    /*2.用浏览器内部转换器实现html解码（反转义）*/
+                    htmlDecode:function (text){
+                        //1.首先动态创建一个容器标签元素，如DIV
+                        var temp = document.createElement("div");
+                        //2.然后将要转换的字符串设置为这个元素的innerHTML(ie，火狐，google都支持)
+                        temp.innerHTML = text;
+                        //3.最后返回这个元素的innerText或者textContent，即得到经过HTML解码的字符串了。
+                        var output = temp.innerText || temp.textContent;
+                        temp = null;
+                        return output;
+                    },
+                    /*3.用正则表达式实现html编码（转义）*/
+                    htmlEncodeByRegExp:function (str){  
+                            var temp = "";
+                            if(str.length == 0) return "";
+                            temp = str.replace(/&/g,"&amp;");
+                            temp = temp.replace(/</g,"&lt;");
+                            temp = temp.replace(/>/g,"&gt;");
+                            temp = temp.replace(/\s/g,"&nbsp;");
+                            temp = temp.replace(/\'/g,"&#39;");
+                            temp = temp.replace(/\"/g,"&quot;");
+                            return temp;
+                    },
+                    /*4.用正则表达式实现html解码（反转义）*/
+                    htmlDecodeByRegExp:function (str){  
+                            var temp = "";
+                            if(str.length == 0) return "";
+                            temp = str.replace(/&amp;/g,"&");
+                            temp = temp.replace(/&lt;/g,"<");
+                            temp = temp.replace(/&gt;/g,">");
+                            temp = temp.replace(/&nbsp;/g," ");
+                            temp = temp.replace(/&#39;/g,"\'");
+                            temp = temp.replace(/&quot;/g,"\"");
+                            return temp;  
+                    },
+                    /*5.用正则表达式实现html编码（转义）（写法2）*/
+                    html2Escape:function(sHtml) {
+                            return sHtml.replace(/[<>&"]/g,function(c){return {'<':'&lt;','>':'&gt;','&':'&amp;','"':'&quot;'}[c];});
+                    },
+                    /*6.用正则表达式实现html解码（反转义）（写法2）*/
+                    escape2Html:function (str) {
+                            var arrEntities={'lt':'<','gt':'>','nbsp':' ','amp':'&','quot':'"'};
+                            return str.replace(/&(lt|gt|nbsp|amp|quot);/ig,function(all,t){return arrEntities[t];});
+                    },
+                    /*5.用正则表达式实现html编码（转义）（写法3）*/
+                    HtmlEscape:function (str){
+                        let EscapeCharacter={"&amp;" : "&amp;amp;" , "&lt;" : "&amp;lt;" , "&gt;" : "&amp;gt;" ,"<" : "&lt;" , ">" : "&gt;"};
+                        for (let i of Object.keys(EscapeCharacter))str = str.replace(new RegExp(i,"g"),EscapeCharacter[i]);
+                        return str;
+                    }
+                };
+			</script>
 		</li>
 		<li>怕相思，已相思，轮到相思没处辞，眉间露一丝。 ——长相思·折花枝</li>
 	</ul>
@@ -6666,75 +6749,69 @@ print(c)
 <li class="card" id="sourcebrowsefir">website source browse
 	<ul>
 		<li>P.S.ended on 2023.01.19</li>
+		<li id="website source browse"><a href="##website source browse">标签面板</a></li>
 		<li>possible way
 			<ul>
 				<li>
 					<pre><code class="language-javascript">
-		//如果想拿到最真实的html源码，可以发起一个异步请求，url就是当前的location.href，在xhr.responseText里拿到最纯正的源码（需要服务器）
-		$.get(window.location.href,function(res){
-			console.log(res);
+//如果想拿到最真实的html源码，可以发起一个异步请求，url就是当前的location.href，在xhr.responseText里拿到最纯正的源码（需要服务器）
+$.get(window.location.href,function(res){
+	console.log(res);
+});
+//升级版
+let http = require('http');
+	let url = "http://www.baidu.com/";
+	// 参数url 和 回调函数
+	http.get(url, function (res) {
+		let html = '';
+		// 绑定data事件 回调函数 累加html片段
+		res.on('data', function (data) {
+			html += data;
 		});
-		//升级版
-		let http = require('http');
-			let url = "http://www.baidu.com/";
-			// 参数url 和 回调函数
-			http.get(url, function (res) {
-				let html = '';
-				// 绑定data事件 回调函数 累加html片段
-				res.on('data', function (data) {
-					html += data;
-				});
-		
-				res.on('end', function () {
-					console.log(html);
-				});
-			}).on('error', function () {
-				console.log('获取数据错误');
-			});
+
+		res.on('end', function () {
+			console.log(html);
+		});
+	}).on('error', function () {
+		console.log('获取数据错误');
+	});
 		</code></pre>
 				</li>
 				<li>
 					<pre><code class="language-html">
-			//by jQuery
-			&lt;script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"&gt;&lt;/script&gt;
-			$("html").html();
+//by jQuery
+&lt;script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"&gt;&lt;/script&gt;
+$("html").html();
 		</code></pre>
 				</li>
 			</ul>
 		</li>
 		<li>
 			<details>
-				<summary>first method</summary>
+				<summary>first method<button id="sourcer" onclick="document.getElementById('SourceCode').innerText = document.documentElement.outerHTML;">refresh!</button></summary>
 				<pre><code id="SourceCode" class="language-html"></code></pre>
-				<script type="text/javascript">
-					let source = document.documentElement.outerHTML;
-					source = source.replace(/&amp;/g, "&amp;amp;");
-					source = source.replace(/&lt;/g, "&amp;lt;");
-					source = source.replace(/&gt;/g, "&amp;gt;");
-					source = source.replace(/</g, "&lt;");
-					source = source.replace(/>/g, "&gt;");
-					document.getElementById("SourceCode").innerHTML = source;
-				</script>
-				<ul>
-					<li>注：这个代码块用的是<code>document.documentElement.outerHTML</code>（返回根节点的元素内容）但首先outerHTML有兼容性问题，其次outerHTML和innerHTML类似，得到的是被浏览器修整的代码，包括js运行时对html结构做的修改，都会体现到innerHTML上,而且DocType没有加进去。如果不够用就使用<a href="https://cn.bing.com/search?q=在线获取HTML源码网站">在线获取HTML源码网站</a>，或用浏览器<code>ctrl+U</code>获取了）
-					</li>
-				</ul>
 			</details>
 		</li>
 		<li>
 			<details>
 				<summary>second method(depend on server environment)</summary>
 				<script>
-					$(document).ready(function () {
-						$.get(window.location.href, function (source) {
-							source = source.replace(/&amp;/g, "&amp;amp;");
-							source = source.replace(/&lt;/g, "&amp;lt;");
-							source = source.replace(/&gt;/g, "&amp;gt;");
-							source = source.replace(/</g, "&lt;");
-							source = source.replace(/>/g, "&gt;");
-							document.getElementById("SourceCode2").innerHTML = source;
+				    document.getElementById('sourcer').click();
+					let r = new Promise((resolve) =>{
+					　　let timer = setInterval(() =>{
+						　　if(document.getElementById("SourceCode2").parentNode.parentNode.open==true){
+						　　　　clearInterval(timer);
+						　　　　resolve(true);
+						　　}
+					　　},100)
+					})    
+					r.then((res) =>{
+						$(document).ready(function () {
+							$.get(window.location.href, function (source) {
+								document.getElementById("SourceCode2").innerText= source;
+							});
 						});
-					});
+    				})
 				</script>
 				<pre><code id="SourceCode2" language="html"></code></pre>
 			</details>
@@ -6769,7 +6846,7 @@ print(c)
 	&lt;/div&gt;
 	&lt;div id="法2"&gt;
 		&lt;audio src="" id="work" controls loop&gt;&lt;/audio&gt;
-		&lt;script type="text/javascript"&gt;
+		&lt;script&gt;
 			let i=1;
 			function runCode(){
 				let source = document.documentElement.outerHTML;
@@ -6870,7 +6947,6 @@ var musicList = [
 "http://music.163.com/song/media/outer/url?id=1960415980#此时此刻",
 "http://music.163.com/song/media/outer/url?id=2112196350.mp3#浮光",
 "http://music.163.com/song/media/outer/url?id=1959528822.mp3#紫荆花盛开",
-"/download/ryukyuvania.m4a",
 "/music/download/终焉×end of all[原神 2024 新春会].mp3",
 "http://music.163.com/song/media/outer/url?id=2100372359.mp3#轻涟 Chinese",
 "http://music.163.com/song/media/outer/url?id=2100334024.mp3#轻涟 France",
@@ -6881,6 +6957,7 @@ var musicList = [
 "/music/download/G大调弦乐小乐曲.mp3",
 "/music/download/春.mp3",
 "/music/download/Interstellar Main Theme.mp3",
+"/music/download/ryukyuvania.m4a",
 "/music/download/诀别书.mp3",
 "/music/download/rise(heroes).mp3",
 "/music/download/野火.mp3",
@@ -7068,7 +7145,6 @@ let musicList = [
 "http://music.163.com/song/media/outer/url?id=2155423467#在银河中孤独摇摆",
 "http://music.163.com/song/media/outer/url?id=2112196350.mp3#浮光",
 "http://music.163.com/song/media/outer/url?id=1959528822.mp3#紫荆花盛开",
-"/download/ryukyuvania.m4a",
 "/music/download/终焉×end of all[原神 2024 新春会].mp3",
 "http://music.163.com/song/media/outer/url?id=2100372359.mp3#轻涟 Chinese",
 "http://music.163.com/song/media/outer/url?id=2100334024.mp3#轻涟 France",
@@ -7079,6 +7155,7 @@ let musicList = [
 "/music/download/G大调弦乐小乐曲.mp3",
 "/music/download/春.mp3",
 "/music/download/Interstellar Main Theme.mp3",
+"/music/download/ryukyuvania.m4a",
 "/music/download/诀别书.mp3",
 "/music/download/rise(heroes).mp3",
 "/music/download/野火.mp3",
@@ -9046,7 +9123,7 @@ playMusic(musicList.reverse(),"musicplay");
 	</li>
 	</ul>
 </li>
-<li>2024.06.06
+<li class="card">2024.06.06
 	<ul>
 	<li>雨中漫步有感
 		<ul>
@@ -9057,6 +9134,229 @@ playMusic(musicList.reverse(),"musicplay");
 	</li>
 	<li>今天是农历儿童节...应该是吧。</li>
 	</ul>
+</li>
+<li class="card">feeder：时隔一年多的长期项目取得阶段性进展
+	<script>
+		function xml_upload() {
+			let xml_reader = new FileReader();
+			xml_reader.onload = function() {
+				//alert(this.result)
+				document.getElementById('rss').innerHTML = document.getElementById('rss').innerHTML + this.result;
+			}
+			xml_f = document.getElementById("filePicker_feed").files[0];
+			//alert(xml_f.name)
+			xml_reader.readAsText(xml_f);
+		}
+	
+		function xml_download() {
+			let xml_text = document.getElementById("rss").innerHTML;
+			let xml_blob = new Blob([xml_text]);
+			let xml_anchor = document.createElement("a");
+			xml_anchor.href = window.URL.createObjectURL(xml_blob);
+			//xml_anchor.download = "my-filename.txt";
+			xml_anchor.download = "RSS" + Date.now();
+			xml_anchor.target = "_blank";
+			xml_anchor.style.display = "none"; // just to be safe! 
+			document.body.appendChild(xml_anchor);
+			xml_anchor.click();
+			document.body.removeChild(xml_anchor);
+		}
+		/*在这里碎碎念一下：
+		2023.07.15上午我验证了近两小时，确定代码并无问题，而网站疯狂报"Problem retrieving XML data"错误是由于一个"跨域访问"的问题，打开 DevTools 会发现"Access to XMLHttpRequest at 'https://lychee.love/feed/' from origin 'http://127.0.0.1:5500' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource."报错和"xml.html:55 GET https://lychee.love/feed/ net::ERR_FAILED 200"报错，一个解决方法是在chrome安装目录下输入"chrome.exe --disable-web-security --user-data-dir=C:\MyChromeUserFata"并执行，以关闭其同源策略。
+			
+		2024.06.06：在使用 nginx 服务器后，我发现跨域问题消失了...一部分？
+		
+		2024.06.08：解决以上问题可采取以下手段：
+		1.使用 moesif-origincors-changer 插件以伪造服务器允许 CORS 的假象；
+		2.使用 CORS Proxy 服务，如[cors-anywhere](https://github.com/Rob--W/cors-anywhere)；
+		3.自建 CORS Proxy 服务器；
+			P.S.也可以让服务器直接下载 feed 文件；
+		4.使用以下 fetch 绕过CORS（亲测无效！），参考[Building an RSS reader in Javascript](https://dev.to/geekgalgroks/building-an-rss-reader-in-javascript-1ep0)
+		```javascript
+		function getRssFeed(feed) {
+			fetch(feed)
+			.then(response => response.text())
+			.then(str => new window.DOMParser().parseFromString(str, "text/xml"))
+			.then(data => {
+				console.log(data);
+				const items = data.querySelectorAll("item");
+				let html = ``;
+				items.forEach(el => {
+				html += `
+					<article>
+					<img src="${el.querySelector("link").innerHTML}/image/large.png" alt="">
+					<h2>
+						<a href="${el.querySelector("link").innerHTML}" target="_blank" rel="noopener">
+						${el.querySelector("title").innerHTML}
+						</a>
+					</h2>
+					</article>
+				`;
+				});
+				document.body.insertAdjacentHTML("beforeend", html);
+			});
+		}
+		```
+		P.S 为什么无效呢？这是因为 fetch API 同样遵守同源策略，而所谓的"mode：no-cors"不过是返回了一个type为opaque的，里面什么都没有的response！参考[fetch() 简介](https://web.developers.google.cn/articles/introduction-to-fetch?hl=zh-cn)
+		5.下载 feed 源文件再让用户上传以在本地解析，绕过同源策略，然而我不会下载！！！附上可供参考代码一份(别想了，能用早用了)：
+		```javascript
+		window.onload=function(){    
+			let eleForm = document.createElement("form");// 创建form元素
+			eleForm.method = "get";
+			eleForm.style.display = "none"; // 隐藏表单，因为它不需要显示在页面上
+			eleForm.action = "https://sspai.com/feed";// 设置表单的action属性
+			document.body.appendChild(eleForm);// 将form元素添加到文档体中
+			eleForm.submit();// 提交表单，实现下载
+		}
+		```
+		6.别看 RSS 了！[笑]*/
+		let CORSer="https://cors-anywhere.herokuapp.com/";
+		function loadXMLDoc(url,flag) {
+			xmlhttp = null;
+			if (window.XMLHttpRequest) xmlhttp = new XMLHttpRequest(); // code for IE7, Firefox, Mozilla, etc.
+			else if (window.ActiveXObject) xmlhttp = new ActiveXObject("Microsoft.XMLHTTP"); // code for IE5, IE6
+			if (xmlhttp != null) {
+				xmlhttp.open("get", url);
+				// xmlhttp.setRequestHeader("Access-Control-Expose-Headers","Access-Control-Allow-Origin");
+				// xmlhttp.setRequestHeader("Access-Control-Allow-Origin","*");
+				xmlhttp.onreadystatechange = function(){
+					onResponse(url,flag);
+				};
+				xmlhttp.send();
+			} else alert("Your browser does not support XMLHTTP.");
+		}
+		function onResponse(url,flag) {
+			if (xmlhttp.readyState != 4 || xmlhttp.status != 200) {
+				console.error("Problem retrieving XML data");
+				if(flag==0){
+					loadXMLDoc(CORSer+url,1);
+					return 0;
+				}
+				console.error("you browser cannot get the feed because of CORS. Please click under first button and upload files that you just got under second button.");
+				console.error("编不下去了...其实想过打开 feed 地址然后从 feed 地址访问 feed 以绕过同源策略，遗憾的是由于同源策略的限制，这件事只好你自己做。打开弹出窗口的DevTools，然后。。。(严肃)复制以下代码并运行以获取 feed 内容，然后复制并保存，最后访问这个新文件！");
+				console.error("当然，也可以将上述想法写成油猴脚本直接运行，但那样的话...为什么不用已经写好的 Allow CORS 插件呢？");
+				let shoulddo="var xhr = new XMLHttpRequest();\nxhr.open(\"GET\", window.location.href , true);\n// 如果已指明，responseType 必须是空字符串或 \"document\"\nxhr.responseType = \"document\";\n// overrideMimeType() 用来强制解析 response 为 XML\nxhr.overrideMimeType(\"text/xml\");\n\nxhr.onload = function () {\n  if (xhr.readyState === xhr.DONE) {\n    if (xhr.status === 200) {\n      console.log(xhr.response);\n      console.log(xhr.responseXML);\n    }\n  }\n};\nxhr.send(null);";
+				console.log(shoulddo);
+				// window.open(url);
+			}else{
+				Infor(xmlhttp.responseXML.documentElement.getElementsByTagName("title")[0].innerHTML,xmlhttp.responseXML.documentElement.getElementsByTagName("item"));
+			}
+		}
+		function objecter(obj) {
+			let object = (obj.tag != undefined) ? document.createElement(obj.tag) : obj.method;
+			if (obj.parent != undefined) obj.parent.appendChild(object);
+			if (obj.identity != undefined) {
+				object.id = document.getElementById("direction").value + '.' + obj.identity;
+				eval(obj.identity + '\= object');
+			}
+			if (obj.features != undefined)
+				for (let i of Object.keys(obj.features)) object[i] = obj.features[i];
+			if (obj.eventer != undefined) document.getElementById(object.id).addEventListener("click", obj.eventer);
+		}
+		function Infor(channeltitle,items){
+			let readals = document.createElement("div");
+			readals.id = document.getElementById("direction").value;
+			readals_channel_title = document.createElement("h1");
+			readals_channel_title.innerText = channeltitle;
+			readals.appendChild(readals_channel_title);
+			document.getElementById("rss").appendChild(readals);
+			for (let i of items) {
+				allitem = items;
+				objecter({
+					identity: "readal",
+					tag: "div",
+					features: {
+						className: "feeder-style"
+					},
+					parent: readals
+				});
+				let feeder_object = [{
+						identity: "link",
+						tag: "a",
+						features: {
+							href: i.getElementsByTagName("link")[0].innerHTML,
+							innerHTML: "\<h3\>" + i.getElementsByTagName("title")[0].innerHTML + "\<\/h3\>"
+						},
+						parent: readal
+					},
+					{
+						identity: "pubdate",
+						tag: "p",
+						features: {
+							innerHTML: i.getElementsByTagName("pubDate")[0].innerHTML
+						},
+						parent: readal
+					},
+					{ 
+						identity: "description",
+						tag: "p",
+						features: {
+							innerHTML:i.getElementsByTagName("description")[0].firstChild.nodeValue
+						},
+						parent: readal
+					},
+					// { 
+					// 	identity: "enclosure",
+					// 	tag: "a",
+					// 	features: {
+					// 		href:i.getElementsByTagName("enclosure")[0].getAttribute("url"),
+					// 		innerHTML:"open it!"
+					// 	},
+					// 	parent: readal
+					// },
+				];
+				for (let j of feeder_object) objecter(j);
+				readals.appendChild(readal);
+				readals.appendChild(document.createElement("br"));
+			}
+		}
+	</script>
+	<p>导入记录请从此开始：<input type="file" name="file" id="filePicker_feed" onchange="xml_upload()" /></p>
+	<button type="button" onclick="xml_download()"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 247 75" width="247" height="75">
+			<!-- svg-source:excalidraw -->
+			<defs>
+				<style class="style-fonts">
+					@font-face {
+						font-family: "Virgil";
+						src: url("https://excalidraw.com/Virgil.woff2");
+					}
+	
+					@font-face {
+						font-family: "YeZiGongChangCangNanShouJi-2";
+						src: url("https://handraw.top/YeZiGongChangCangNanShouJi-2.ttf");
+					}
+				</style>
+			</defs>
+			<rect x="0" y="0" width="247" height="75" fill="#ffffff"></rect>
+			<g stroke-linecap="round" transform="translate(10 10) rotate(0 113.5 27.5)">
+				<path d="M3.66 3.18 C3.66 3.18, 3.66 3.18, 3.66 3.18 M3.66 3.18 C3.66 3.18, 3.66 3.18, 3.66 3.18 M3.4 9.58 C4.77 8, 6.15 6.42, 9.3 2.79 M3.4 9.58 C5.66 6.98, 7.92 4.37, 9.3 2.79 M3.14 15.98 C7.43 11.04, 11.73 6.1, 15.6 1.64 M3.14 15.98 C7.33 11.16, 11.52 6.34, 15.6 1.64 M2.88 22.37 C7.8 16.71, 12.72 11.05, 20.59 2 M2.88 22.37 C7.98 16.51, 13.08 10.64, 20.59 2 M2.61 28.77 C8.05 22.52, 13.48 16.27, 26.23 1.6 M2.61 28.77 C10.34 19.88, 18.08 10.99, 26.23 1.6 M3.01 34.42 C14.16 21.59, 25.3 8.77, 31.22 1.96 M3.01 34.42 C12.1 23.96, 21.19 13.51, 31.22 1.96 M1.44 42.32 C15.1 26.6, 28.77 10.88, 36.86 1.57 M1.44 42.32 C13.79 28.11, 26.14 13.91, 36.86 1.57 M1.83 47.97 C16.05 31.61, 30.26 15.26, 41.85 1.93 M1.83 47.97 C10.59 37.89, 19.34 27.82, 41.85 1.93 M3.54 52.1 C13.17 41.02, 22.79 29.95, 47.49 1.53 M3.54 52.1 C17.11 36.48, 30.69 20.86, 47.49 1.53 M6.56 54.72 C23.87 34.8, 41.19 14.88, 52.48 1.89 M6.56 54.72 C19.76 39.54, 32.96 24.35, 52.48 1.89 M11.54 55.08 C27.17 37.11, 42.79 19.14, 58.12 1.5 M11.54 55.08 C27.54 36.68, 43.54 18.28, 58.12 1.5 M16.53 55.44 C27.15 43.22, 37.78 31, 63.11 1.86 M16.53 55.44 C31.17 38.6, 45.81 21.76, 63.11 1.86 M21.52 55.8 C32.81 42.82, 44.09 29.83, 68.75 1.47 M21.52 55.8 C36.36 38.73, 51.21 21.65, 68.75 1.47 M27.16 55.41 C42.25 38.05, 57.34 20.7, 73.74 1.83 M27.16 55.41 C39.37 41.36, 51.58 27.31, 73.74 1.83 M32.15 55.77 C43.12 43.15, 54.09 30.53, 79.38 1.43 M32.15 55.77 C46.78 38.93, 61.42 22.09, 79.38 1.43 M37.79 55.38 C48.45 43.11, 59.11 30.85, 84.37 1.79 M37.79 55.38 C55.03 35.54, 72.28 15.7, 84.37 1.79 M42.78 55.74 C57.71 38.56, 72.64 21.38, 90.01 1.4 M42.78 55.74 C59.09 36.97, 75.39 18.21, 90.01 1.4 M48.42 55.34 C64.99 36.28, 81.55 17.23, 95 1.76 M48.42 55.34 C60.27 41.71, 72.11 28.09, 95 1.76 M53.41 55.7 C67.11 39.94, 80.81 24.17, 100.64 1.36 M53.41 55.7 C65.79 41.46, 78.17 27.21, 100.64 1.36 M59.05 55.31 C71.41 41.09, 83.77 26.87, 105.63 1.72 M59.05 55.31 C68.69 44.22, 78.32 33.13, 105.63 1.72 M64.04 55.67 C75.77 42.17, 87.51 28.67, 110.62 2.08 M64.04 55.67 C74.68 43.42, 85.33 31.17, 110.62 2.08 M69.68 55.27 C86.79 35.58, 103.91 15.89, 116.26 1.69 M69.68 55.27 C83.51 39.36, 97.34 23.45, 116.26 1.69 M74.67 55.63 C88.54 39.67, 102.42 23.71, 121.25 2.05 M74.67 55.63 C85.82 42.8, 96.98 29.97, 121.25 2.05 M80.31 55.24 C90.56 43.45, 100.8 31.66, 126.89 1.65 M80.31 55.24 C92.88 40.77, 105.45 26.31, 126.89 1.65 M85.3 55.6 C95.67 43.66, 106.04 31.73, 131.88 2.01 M85.3 55.6 C95.36 44.02, 105.42 32.45, 131.88 2.01 M90.94 55.2 C101.62 42.91, 112.31 30.62, 137.52 1.62 M90.94 55.2 C102.49 41.92, 114.04 28.63, 137.52 1.62 M95.93 55.56 C106.15 43.8, 116.37 32.04, 142.51 1.98 M95.93 55.56 C110.19 39.16, 124.45 22.75, 142.51 1.98 M101.57 55.17 C117.9 36.39, 134.22 17.61, 148.15 1.58 M101.57 55.17 C112.27 42.86, 122.97 30.55, 148.15 1.58 M106.56 55.53 C124.25 35.18, 141.94 14.82, 153.14 1.94 M106.56 55.53 C124.46 34.93, 142.36 14.34, 153.14 1.94 M111.54 55.89 C129.81 34.88, 148.07 13.87, 158.78 1.55 M111.54 55.89 C129.99 34.67, 148.43 13.46, 158.78 1.55 M117.19 55.49 C135.53 34.4, 153.87 13.3, 163.77 1.91 M117.19 55.49 C133.56 36.66, 149.93 17.82, 163.77 1.91 M122.17 55.85 C135.85 40.12, 149.52 24.39, 169.41 1.51 M122.17 55.85 C140.21 35.1, 158.25 14.35, 169.41 1.51 M127.82 55.46 C139.45 42.08, 151.08 28.7, 174.4 1.87 M127.82 55.46 C138.77 42.85, 149.73 30.25, 174.4 1.87 M132.8 55.82 C145.05 41.73, 157.3 27.64, 180.04 1.48 M132.8 55.82 C143.78 43.19, 154.76 30.56, 180.04 1.48 M138.45 55.42 C154.03 37.5, 169.61 19.58, 185.03 1.84 M138.45 55.42 C151.94 39.9, 165.43 24.38, 185.03 1.84 M143.43 55.78 C154.99 42.5, 166.54 29.21, 190.67 1.45 M143.43 55.78 C155.1 42.37, 166.76 28.95, 190.67 1.45 M149.08 55.39 C164.62 37.52, 180.15 19.64, 195.66 1.81 M149.08 55.39 C162.84 39.55, 176.61 23.72, 195.66 1.81 M154.06 55.75 C165.36 42.76, 176.65 29.77, 200.64 2.17 M154.06 55.75 C168.36 39.31, 182.65 22.87, 200.64 2.17 M159.71 55.36 C175.11 37.64, 190.51 19.92, 206.29 1.77 M159.71 55.36 C171.82 41.42, 183.93 27.49, 206.29 1.77 M164.69 55.72 C183.25 34.37, 201.81 13.03, 211.27 2.13 M164.69 55.72 C181.94 35.88, 199.19 16.04, 211.27 2.13 M170.34 55.32 C184.88 38.59, 199.43 21.85, 217.57 0.98 M170.34 55.32 C185.31 38.1, 200.28 20.88, 217.57 0.98 M175.32 55.68 C189.39 39.5, 203.45 23.32, 221.25 2.85 M175.32 55.68 C192.4 36.04, 209.47 16.4, 221.25 2.85 M180.97 55.29 C191.79 42.84, 202.6 30.4, 224.92 4.72 M180.97 55.29 C190.93 43.82, 200.9 32.36, 224.92 4.72 M185.95 55.65 C198.7 40.98, 211.45 26.31, 227.29 8.1 M185.95 55.65 C199.28 40.31, 212.61 24.98, 227.29 8.1 M191.6 55.25 C199.69 45.95, 207.77 36.64, 227.68 13.74 M191.6 55.25 C201.57 43.78, 211.54 32.32, 227.68 13.74 M196.58 55.61 C208.79 41.57, 220.99 27.53, 227.42 20.14 M196.58 55.61 C203.06 48.16, 209.54 40.7, 227.42 20.14 M201.57 55.97 C209.75 46.56, 217.93 37.16, 227.16 26.54 M201.57 55.97 C211.27 44.81, 220.97 33.66, 227.16 26.54 M207.21 55.58 C213.47 48.38, 219.72 41.19, 227.55 32.18 M207.21 55.58 C213.3 48.58, 219.38 41.58, 227.55 32.18 M212.2 55.94 C216.86 50.58, 221.51 45.23, 227.29 38.58 M212.2 55.94 C217.86 49.42, 223.53 42.91, 227.29 38.58 M215.88 57.81 C218.46 54.84, 221.03 51.87, 227.03 44.98 M215.88 57.81 C218.44 54.86, 221.01 51.9, 227.03 44.98" stroke="#a5d8ff" stroke-width="0.5" fill="none"></path>
+				<path d="M13.75 0 M13.75 0 C86.61 0, 159.46 0, 213.25 0 M13.75 0 C79.85 0, 145.96 0, 213.25 0 M213.25 0 C222.42 0, 227 4.58, 227 13.75 M213.25 0 C222.42 0, 227 4.58, 227 13.75 M227 13.75 C227 21.57, 227 29.39, 227 41.25 M227 13.75 C227 20.85, 227 27.94, 227 41.25 M227 41.25 C227 50.42, 222.42 55, 213.25 55 M227 41.25 C227 50.42, 222.42 55, 213.25 55 M213.25 55 C157.26 55, 101.27 55, 13.75 55 M213.25 55 C158.92 55, 104.6 55, 13.75 55 M13.75 55 C4.58 55, 0 50.42, 0 41.25 M13.75 55 C4.58 55, 0 50.42, 0 41.25 M0 41.25 C0 32.81, 0 24.37, 0 13.75 M0 41.25 C0 31.52, 0 21.79, 0 13.75 M0 13.75 C0 4.58, 4.58 0, 13.75 0 M0 13.75 C0 4.58, 4.58 0, 13.75 0" stroke="#1971c2" stroke-width="1" fill="none"></path>
+			</g>
+			<g transform="translate(15.5 15) rotate(0 108 22.5)"><text x="108" y="0" font-family="YeZiGongChangCangNanShouJi-2,Virgil, HanziPen SC, Cangnanshoujiti, KaiTi, Segoe UI Emoji" font-size="36px" fill="#1971c2" text-anchor="middle" style="white-space: pre;" direction="ltr" dominant-baseline="text-before-edge">备份现有文章</text></g>
+		</svg></button><br /><br /><br /><br />
+	<input type="text" id="direction" placeholder="要访问的源从此开始！" />
+	<button onclick='loadXMLDoc(document.getElementById("direction").value,0)'><svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 164 75" width="164" height="75">
+				<!-- svg-source:excalidraw -->
+				<defs>
+					<style class="style-fonts">
+						@font-face {
+							font-family: "Virgil";
+							src: url("https://excalidraw.com/Virgil.woff2");
+						}
+	
+						@font-face {
+							font-family: "Cascadia";
+							src: url("https://excalidraw.com/Cascadia.woff2");
+						}
+					</style>
+				</defs>
+				<rect x="0" y="0" width="164" height="75" fill="#ffffff"></rect>
+				<g stroke-linecap="round" transform="translate(10 10) rotate(0 72 27.5)">
+					<path d="M1.79 5.53 C1.79 5.53, 1.79 5.53, 1.79 5.53 M1.79 5.53 C1.79 5.53, 1.79 5.53, 1.79 5.53 M1.53 11.93 C3.33 9.87, 5.12 7.8, 9.4 2.87 M1.53 11.93 C3.56 9.59, 5.6 7.25, 9.4 2.87 M1.93 17.57 C5.92 12.98, 9.91 8.39, 15.7 1.73 M1.93 17.57 C4.77 14.31, 7.61 11.04, 15.7 1.73 M1.66 23.97 C6.7 18.18, 11.74 12.38, 20.69 2.09 M1.66 23.97 C7.36 17.41, 13.07 10.86, 20.69 2.09 M1.4 30.37 C9.22 21.38, 17.03 12.39, 26.33 1.69 M1.4 30.37 C8.65 22.03, 15.9 13.7, 26.33 1.69 M1.8 36.01 C8.91 27.83, 16.03 19.64, 31.32 2.05 M1.8 36.01 C8.72 28.05, 15.64 20.08, 31.32 2.05 M1.54 42.41 C9.56 33.18, 17.58 23.95, 36.96 1.66 M1.54 42.41 C12.56 29.73, 23.58 17.05, 36.96 1.66 M3.24 46.54 C12.93 35.4, 22.61 24.26, 41.95 2.02 M3.24 46.54 C16.69 31.08, 30.13 15.61, 41.95 2.02 M3.64 52.19 C13.42 40.93, 23.21 29.68, 47.59 1.62 M3.64 52.19 C14.13 40.12, 24.63 28.04, 47.59 1.62 M7.31 54.06 C16.9 43.02, 26.5 31.99, 52.58 1.98 M7.31 54.06 C19.59 39.93, 31.87 25.81, 52.58 1.98 M10.33 56.68 C28.17 36.16, 46 15.65, 58.22 1.59 M10.33 56.68 C26.77 37.77, 43.21 18.86, 58.22 1.59 M15.97 56.29 C33.57 36.04, 51.17 15.8, 63.21 1.95 M15.97 56.29 C29.55 40.66, 43.13 25.04, 63.21 1.95 M20.96 56.65 C36.43 38.85, 51.9 21.06, 68.85 1.55 M20.96 56.65 C34.98 40.52, 49.01 24.38, 68.85 1.55 M25.95 57.01 C35.76 45.72, 45.58 34.42, 73.84 1.91 M25.95 57.01 C36.77 44.55, 47.6 32.1, 73.84 1.91 M31.59 56.61 C50.65 34.68, 69.72 12.75, 79.48 1.52 M31.59 56.61 C43.75 42.62, 55.91 28.63, 79.48 1.52 M36.58 56.97 C51.36 39.97, 66.13 22.97, 84.47 1.88 M36.58 56.97 C54.06 36.86, 71.55 16.74, 84.47 1.88 M42.22 56.58 C56.48 40.18, 70.74 23.78, 90.11 1.48 M42.22 56.58 C60.98 35, 79.74 13.42, 90.11 1.48 M47.21 56.94 C62.03 39.89, 76.84 22.84, 95.1 1.84 M47.21 56.94 C63.08 38.68, 78.96 20.42, 95.1 1.84 M52.85 56.54 C71.95 34.57, 91.05 12.6, 100.74 1.45 M52.85 56.54 C70.55 36.19, 88.24 15.83, 100.74 1.45 M57.84 56.9 C75.08 37.07, 92.32 17.23, 105.73 1.81 M57.84 56.9 C67.43 45.87, 77.02 34.84, 105.73 1.81 M63.48 56.51 C75.68 42.48, 87.87 28.45, 111.37 1.41 M63.48 56.51 C75.42 42.77, 87.36 29.04, 111.37 1.41 M68.47 56.87 C79.94 43.67, 91.41 30.47, 116.36 1.77 M68.47 56.87 C87.39 35.1, 106.32 13.33, 116.36 1.77 M74.11 56.47 C88.25 40.21, 102.39 23.95, 122 1.38 M74.11 56.47 C92.85 34.91, 111.6 13.35, 122 1.38 M79.1 56.83 C91.25 42.86, 103.4 28.88, 126.99 1.74 M79.1 56.83 C97.69 35.45, 116.28 14.06, 126.99 1.74 M84.74 56.44 C100.18 38.68, 115.62 20.91, 131.98 2.1 M84.74 56.44 C101.49 37.18, 118.23 17.92, 131.98 2.1 M89.73 56.8 C105.76 38.36, 121.78 19.93, 137.62 1.71 M89.73 56.8 C108.87 34.78, 128.02 12.75, 137.62 1.71 M95.37 56.41 C106.06 44.11, 116.75 31.81, 141.3 3.58 M95.37 56.41 C113.55 35.49, 131.73 14.58, 141.3 3.58 M100.36 56.77 C114.91 40.02, 129.47 23.28, 143 7.71 M100.36 56.77 C113.1 42.1, 125.85 27.44, 143 7.71 M106 56.37 C116.55 44.24, 127.09 32.11, 144.71 11.84 M106 56.37 C120.37 39.85, 134.73 23.32, 144.71 11.84 M110.99 56.73 C123.23 42.64, 135.48 28.56, 145.1 17.49 M110.99 56.73 C121.32 44.84, 131.65 32.96, 145.1 17.49 M116.63 56.34 C127.41 43.94, 138.19 31.54, 144.84 23.88 M116.63 56.34 C123.24 48.73, 129.85 41.13, 144.84 23.88 M121.62 56.7 C131.06 45.84, 140.49 34.98, 145.24 29.53 M121.62 56.7 C128.17 49.16, 134.73 41.62, 145.24 29.53 M127.26 56.3 C132.12 50.71, 136.98 45.12, 144.98 35.92 M127.26 56.3 C133.25 49.41, 139.24 42.52, 144.98 35.92 M132.25 56.66 C136.01 52.34, 139.77 48.01, 144.71 42.32 M132.25 56.66 C135.2 53.26, 138.16 49.86, 144.71 42.32" stroke="#a5d8ff" stroke-width="0.5" fill="none"></path>
+					<path d="M13.75 0 M13.75 0 C53.18 0, 92.61 0, 130.25 0 M13.75 0 C52.57 0, 91.39 0, 130.25 0 M130.25 0 C139.42 0, 144 4.58, 144 13.75 M130.25 0 C139.42 0, 144 4.58, 144 13.75 M144 13.75 C144 24.18, 144 34.6, 144 41.25 M144 13.75 C144 20.35, 144 26.96, 144 41.25 M144 41.25 C144 50.42, 139.42 55, 130.25 55 M144 41.25 C144 50.42, 139.42 55, 130.25 55 M130.25 55 C89.29 55, 48.34 55, 13.75 55 M130.25 55 C94.55 55, 58.86 55, 13.75 55 M13.75 55 C4.58 55, 0 50.42, 0 41.25 M13.75 55 C4.58 55, 0 50.42, 0 41.25 M0 41.25 C0 33.48, 0 25.72, 0 13.75 M0 41.25 C0 34.07, 0 26.89, 0 13.75 M0 13.75 C0 4.58, 4.58 0, 13.75 0 M0 13.75 C0 4.58, 4.58 0, 13.75 0" stroke="#1971c2" stroke-width="1" fill="none"></path>
+				</g>
+				<g transform="translate(20.404037475585938 15) rotate(0 61.59596252441406 22.5)"><text x="61.59596252441406" y="0" font-family="Virgil, HanziPen SC, Cangnanshoujiti, KaiTi, Segoe UI Emoji" font-size="36px" fill="#1971c2" text-anchor="middle" style="white-space: pre;" direction="ltr" dominant-baseline="text-before-edge">feeder!</text></g>
+			</svg></button><div id="rss"></div>
 </li>
 </ul>
 </body>

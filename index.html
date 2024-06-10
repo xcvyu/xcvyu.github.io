@@ -559,7 +559,7 @@ function vditorinit(){
 		// vditorinit();
 		highlightjser();
 		// new VConsole();
-		eruda.init();
+		// eruda.init();
 		// baser(document.location.href);
 	}
 	window.onload = function(){onloaders();}
@@ -6649,82 +6649,82 @@ print(c)
 				<li>&amp;gt; - &gt;</li>
 				<li>&amp;amp;lt; - &amp;lt;</li>
 				<li>&amp;amp;gt; - &amp;gt;</li>
-			    <li><button onclick="show_HtmlUtil(this)">P.S.2024.06.09 获取更加准确的转义信息</button></li>
+				<li><button onclick="show_HtmlUtil(this)">P.S.2024.06.09 获取更加准确的转义信息</button></li>
 			</ul>
 			<script>
-			    function show_HtmlUtil(where){
-			        let hi=document.createElement("code");
-			        hi.innerText=document.getElementById('htmlEscape').innerHTML;
-			        hi.class="language-javascript";
-			        let hihi=document.createElement("pre");
-			        hihi.appendChild(hi);
-			        where.parentNode.appendChild(hihi);
-			        where.remove();
-			    }</script>
+				function show_HtmlUtil(where){
+					let hi=document.createElement("code");
+					hi.innerText=document.getElementById('htmlEscape').innerHTML;
+					hi.class="language-javascript";
+					let hihi=document.createElement("pre");
+					hihi.appendChild(hi);
+					where.parentNode.appendChild(hihi);
+					where.remove();
+				}</script>
 			<script id="htmlEscape">
 				HtmlUtil = {
-                    /*1.用浏览器内部转换器实现html编码（转义）*/
-                    htmlEncode:function (html){
-                        //1.首先动态创建一个容器标签元素，如DIV
-                        var temp = document.createElement ("div");
-                        //2.然后将要转换的字符串设置为这个元素的innerText或者textContent
-                        (temp.textContent != undefined ) ? (temp.textContent = html) : (temp.innerText = html);
-                        //3.最后返回这个元素的innerHTML，即得到经过HTML编码转换的字符串了
-                        var output = temp.innerHTML;
-                        temp = null;
-                        return output;
-                    },
-                    /*2.用浏览器内部转换器实现html解码（反转义）*/
-                    htmlDecode:function (text){
-                        //1.首先动态创建一个容器标签元素，如DIV
-                        var temp = document.createElement("div");
-                        //2.然后将要转换的字符串设置为这个元素的innerHTML(ie，火狐，google都支持)
-                        temp.innerHTML = text;
-                        //3.最后返回这个元素的innerText或者textContent，即得到经过HTML解码的字符串了。
-                        var output = temp.innerText || temp.textContent;
-                        temp = null;
-                        return output;
-                    },
-                    /*3.用正则表达式实现html编码（转义）*/
-                    htmlEncodeByRegExp:function (str){  
-                            var temp = "";
-                            if(str.length == 0) return "";
-                            temp = str.replace(/&/g,"&amp;");
-                            temp = temp.replace(/</g,"&lt;");
-                            temp = temp.replace(/>/g,"&gt;");
-                            temp = temp.replace(/\s/g,"&nbsp;");
-                            temp = temp.replace(/\'/g,"&#39;");
-                            temp = temp.replace(/\"/g,"&quot;");
-                            return temp;
-                    },
-                    /*4.用正则表达式实现html解码（反转义）*/
-                    htmlDecodeByRegExp:function (str){  
-                            var temp = "";
-                            if(str.length == 0) return "";
-                            temp = str.replace(/&amp;/g,"&");
-                            temp = temp.replace(/&lt;/g,"<");
-                            temp = temp.replace(/&gt;/g,">");
-                            temp = temp.replace(/&nbsp;/g," ");
-                            temp = temp.replace(/&#39;/g,"\'");
-                            temp = temp.replace(/&quot;/g,"\"");
-                            return temp;  
-                    },
-                    /*5.用正则表达式实现html编码（转义）（写法2）*/
-                    html2Escape:function(sHtml) {
-                            return sHtml.replace(/[<>&"]/g,function(c){return {'<':'&lt;','>':'&gt;','&':'&amp;','"':'&quot;'}[c];});
-                    },
-                    /*6.用正则表达式实现html解码（反转义）（写法2）*/
-                    escape2Html:function (str) {
-                            var arrEntities={'lt':'<','gt':'>','nbsp':' ','amp':'&','quot':'"'};
-                            return str.replace(/&(lt|gt|nbsp|amp|quot);/ig,function(all,t){return arrEntities[t];});
-                    },
-                    /*5.用正则表达式实现html编码（转义）（写法3）*/
-                    HtmlEscape:function (str){
-                        let EscapeCharacter={"&amp;" : "&amp;amp;" , "&lt;" : "&amp;lt;" , "&gt;" : "&amp;gt;" ,"<" : "&lt;" , ">" : "&gt;"};
-                        for (let i of Object.keys(EscapeCharacter))str = str.replace(new RegExp(i,"g"),EscapeCharacter[i]);
-                        return str;
-                    }
-                };
+					/*1.用浏览器内部转换器实现html编码（转义）*/
+					htmlEncode:function (html){
+						//1.首先动态创建一个容器标签元素，如DIV
+						var temp = document.createElement ("div");
+						//2.然后将要转换的字符串设置为这个元素的innerText或者textContent
+						(temp.textContent != undefined ) ? (temp.textContent = html) : (temp.innerText = html);
+						//3.最后返回这个元素的innerHTML，即得到经过HTML编码转换的字符串了
+						var output = temp.innerHTML;
+						temp = null;
+						return output;
+					},
+					/*2.用浏览器内部转换器实现html解码（反转义）*/
+					htmlDecode:function (text){
+						//1.首先动态创建一个容器标签元素，如DIV
+						var temp = document.createElement("div");
+						//2.然后将要转换的字符串设置为这个元素的innerHTML(ie，火狐，google都支持)
+						temp.innerHTML = text;
+						//3.最后返回这个元素的innerText或者textContent，即得到经过HTML解码的字符串了。
+						var output = temp.innerText || temp.textContent;
+						temp = null;
+						return output;
+					},
+					/*3.用正则表达式实现html编码（转义）*/
+					htmlEncodeByRegExp:function (str){  
+							var temp = "";
+							if(str.length == 0) return "";
+							temp = str.replace(/&/g,"&amp;");
+							temp = temp.replace(/</g,"&lt;");
+							temp = temp.replace(/>/g,"&gt;");
+							temp = temp.replace(/\s/g,"&nbsp;");
+							temp = temp.replace(/\'/g,"&#39;");
+							temp = temp.replace(/\"/g,"&quot;");
+							return temp;
+					},
+					/*4.用正则表达式实现html解码（反转义）*/
+					htmlDecodeByRegExp:function (str){  
+							var temp = "";
+							if(str.length == 0) return "";
+							temp = str.replace(/&amp;/g,"&");
+							temp = temp.replace(/&lt;/g,"<");
+							temp = temp.replace(/&gt;/g,">");
+							temp = temp.replace(/&nbsp;/g," ");
+							temp = temp.replace(/&#39;/g,"\'");
+							temp = temp.replace(/&quot;/g,"\"");
+							return temp;  
+					},
+					/*5.用正则表达式实现html编码（转义）（写法2）*/
+					html2Escape:function(sHtml) {
+							return sHtml.replace(/[<>&"]/g,function(c){return {'<':'&lt;','>':'&gt;','&':'&amp;','"':'&quot;'}[c];});
+					},
+					/*6.用正则表达式实现html解码（反转义）（写法2）*/
+					escape2Html:function (str) {
+							var arrEntities={'lt':'<','gt':'>','nbsp':' ','amp':'&','quot':'"'};
+							return str.replace(/&(lt|gt|nbsp|amp|quot);/ig,function(all,t){return arrEntities[t];});
+					},
+					/*7.用正则表达式实现html编码（转义）（写法3）*/
+					HtmlEscape:function (str){
+						let EscapeCharacter={"&amp;" : "&amp;amp;" , "&lt;" : "&amp;lt;" , "&gt;" : "&amp;gt;" ,"<" : "&lt;" , ">" : "&gt;"};
+						for (let i of Object.keys(EscapeCharacter))str = str.replace(new RegExp(i,"g"),EscapeCharacter[i]);
+						return str;
+					}
+				};
 			</script>
 		</li>
 		<li>怕相思，已相思，轮到相思没处辞，眉间露一丝。 ——长相思·折花枝</li>
@@ -6796,7 +6796,7 @@ $("html").html();
 			<details>
 				<summary>second method(depend on server environment)</summary>
 				<script>
-				    document.getElementById('sourcer').click();
+					document.getElementById('sourcer').click();
 					let r = new Promise((resolve) =>{
 					　　let timer = setInterval(() =>{
 						　　if(document.getElementById("SourceCode2").parentNode.parentNode.open==true){
@@ -6804,14 +6804,14 @@ $("html").html();
 						　　　　resolve(true);
 						　　}
 					　　},100)
-					})    
+					})	
 					r.then((res) =>{
 						$(document).ready(function () {
 							$.get(window.location.href, function (source) {
 								document.getElementById("SourceCode2").innerText= source;
 							});
 						});
-    				})
+					})
 				</script>
 				<pre><code id="SourceCode2" language="html"></code></pre>
 			</details>
@@ -9136,6 +9136,14 @@ playMusic(musicList.reverse(),"musicplay");
 	</ul>
 </li>
 <li class="card">feeder：时隔一年多的长期项目取得阶段性进展
+	<template>
+	<div class="feeder-style">
+		<a href="{{link}}"><h3>{{title}}</h3></a>
+		<p>{{pubdate}}</p>
+		<p>{{description}}</p>
+		<!--<a href="{{enclosure}}">open enclosure</a>-->
+	</div>
+	</template>
 	<script>
 		function xml_upload() {
 			let xml_reader = new FileReader();
@@ -9200,7 +9208,7 @@ playMusic(musicList.reverse(),"musicplay");
 		P.S 为什么无效呢？这是因为 fetch API 同样遵守同源策略，而所谓的"mode：no-cors"不过是返回了一个type为opaque的，里面什么都没有的response！参考[fetch() 简介](https://web.developers.google.cn/articles/introduction-to-fetch?hl=zh-cn)
 		5.下载 feed 源文件再让用户上传以在本地解析，绕过同源策略，然而我不会下载！！！附上可供参考代码一份(别想了，能用早用了)：
 		```javascript
-		window.onload=function(){    
+		window.onload=function(){	
 			let eleForm = document.createElement("form");// 创建form元素
 			eleForm.method = "get";
 			eleForm.style.display = "none"; // 隐藏表单，因为它不需要显示在页面上
@@ -9210,8 +9218,39 @@ playMusic(musicList.reverse(),"musicplay");
 		}
 		```
 		6.别看 RSS 了！[笑]*/
-		let CORSer="https://cors-anywhere.herokuapp.com/";
-		function loadXMLDoc(url,flag) {
+		/*console.log = (function (logFunc, isLog = true, isLogStack = true) {
+		return function () {
+			if (!isLog) {
+				return
+			}
+			try {
+				let arr = []
+				arr.push(...arguments)
+				arr.forEach((item, index) => {
+					if (Object.prototype.toString.call(item) === '[object Object]' ||
+					Object.prototype.toString.call(item) === '[object Array]') {
+					arr[index] = JSON.parse(JSON.stringify(item))
+					}
+				})
+				logFunc.call(console, ...arr)
+				isLogStack ? console.trace() : null
+			} catch (e) {
+				console.log(`a log error: ${e}`)
+			}
+		}
+		})(console.log)
+		console.error=(function (oriLogFunc) {
+			return function () {
+				oriLogFunc(...arguments);
+				if(test!=undefined)test=[...arguments][0];
+			}
+		})(console.error);*/
+		function cors(url){
+			// const CORSer="http://crossorigin.me/";
+			const CORSer="https://cors-anywhere.herokuapp.com/";
+			loadXMLDoc(CORSer+url);
+		}
+		function loadXMLDoc(url) {
 			xmlhttp = null;
 			if (window.XMLHttpRequest) xmlhttp = new XMLHttpRequest(); // code for IE7, Firefox, Mozilla, etc.
 			else if (window.ActiveXObject) xmlhttp = new ActiveXObject("Microsoft.XMLHTTP"); // code for IE5, IE6
@@ -9220,39 +9259,37 @@ playMusic(musicList.reverse(),"musicplay");
 				// xmlhttp.setRequestHeader("Access-Control-Expose-Headers","Access-Control-Allow-Origin");
 				// xmlhttp.setRequestHeader("Access-Control-Allow-Origin","*");
 				xmlhttp.onreadystatechange = function(){
-					onResponse(url,flag);
+					onResponse(url);
 				};
 				xmlhttp.send();
 			} else alert("Your browser does not support XMLHTTP.");
 		}
-		function onResponse(url,flag) {
+		function onResponse(url) {
 			if (xmlhttp.readyState != 4 || xmlhttp.status != 200) {
 				console.error("Problem retrieving XML data");
-				if(flag==0){
-					loadXMLDoc(CORSer+url,1);
-					return 0;
-				}
-				console.error("you browser cannot get the feed because of CORS. Please click under first button and upload files that you just got under second button.");
-				console.error("编不下去了...其实想过打开 feed 地址然后从 feed 地址访问 feed 以绕过同源策略，遗憾的是由于同源策略的限制，这件事只好你自己做。打开弹出窗口的DevTools，然后。。。(严肃)复制以下代码并运行以获取 feed 内容，然后复制并保存，最后访问这个新文件！");
-				console.error("当然，也可以将上述想法写成油猴脚本直接运行，但那样的话...为什么不用已经写好的 Allow CORS 插件呢？");
-				let shoulddo="var xhr = new XMLHttpRequest();\nxhr.open(\"GET\", window.location.href , true);\n// 如果已指明，responseType 必须是空字符串或 \"document\"\nxhr.responseType = \"document\";\n// overrideMimeType() 用来强制解析 response 为 XML\nxhr.overrideMimeType(\"text/xml\");\n\nxhr.onload = function () {\n  if (xhr.readyState === xhr.DONE) {\n    if (xhr.status === 200) {\n      console.log(xhr.response);\n      console.log(xhr.responseXML);\n    }\n  }\n};\nxhr.send(null);";
-				console.log(shoulddo);
+				setTimeout(()=>{
+					console.groupCollapsed();
+					xmlhttp.onerror=(error) => { 
+						console.log(error);
+					}
+					xmlhttp.addEventListener('error',(error) => { 
+						console.log(error);
+					})
+					console.groupEnd();
+				},512);
+				console.warn("maybe because cors.if yes,start down details to get solution");
+				console.groupCollapsed();
+				console.warn("You browser cannot get the feed because of CORS. Try to run :'cors(document.getElementById(\"direction\").value' to retry.");
+				console.warn("If cannot again,please click under first button and upload files that you just got under second button.")
+				console.warn("编不下去了...其实想过打开 feed 地址然后从 feed 地址访问 feed 以绕过同源策略，遗憾的是由于同源策略的限制，这件事只好你自己做。打开弹出窗口的DevTools，然后。。。(严肃)复制以下代码并运行以获取 feed 内容，然后复制并保存，最后访问这个新文件！");
+				console.warn("当然，也可以将上述想法写成油猴脚本直接运行，但那样的话...为什么不用已经写好的 Allow CORS 插件呢？");
+				console.log("var xhr = new XMLHttpRequest();\nxhr.open(\"GET\", window.location.href , true);\n// 如果已指明，responseType 必须是空字符串或 \"document\"\nxhr.responseType = \"document\";\n// overrideMimeType() 用来强制解析 response 为 XML\nxhr.overrideMimeType(\"text/xml\");\n\nxhr.onload = function () {\n  if (xhr.readyState === xhr.DONE) {\n	if (xhr.status === 200) {\n	  console.log(xhr.response);\n	  console.log(xhr.responseXML);\n	}\n  }\n};\nxhr.send(null);");
+				console.groupEnd();
 				// window.open(url);
 			}else{
 				Infor(xmlhttp.responseXML.documentElement.getElementsByTagName("title")[0].innerHTML,xmlhttp.responseXML.documentElement.getElementsByTagName("item"));
 			}
-		}
-		function objecter(obj) {
-			let object = (obj.tag != undefined) ? document.createElement(obj.tag) : obj.method;
-			if (obj.parent != undefined) obj.parent.appendChild(object);
-			if (obj.identity != undefined) {
-				object.id = document.getElementById("direction").value + '.' + obj.identity;
-				eval(obj.identity + '\= object');
-			}
-			if (obj.features != undefined)
-				for (let i of Object.keys(obj.features)) object[i] = obj.features[i];
-			if (obj.eventer != undefined) document.getElementById(object.id).addEventListener("click", obj.eventer);
-		}
+		}/*
 		function Infor(channeltitle,items){
 			let readals = document.createElement("div");
 			readals.id = document.getElementById("direction").value;
@@ -9308,6 +9345,21 @@ playMusic(musicList.reverse(),"musicplay");
 				for (let j of feeder_object) objecter(j);
 				readals.appendChild(readal);
 				readals.appendChild(document.createElement("br"));
+			}*/
+		function Infor(channeltitle,items){
+			let readals = document.createElement("div");
+			readals.id = document.getElementById("direction").value;
+			readals_channel_title = document.createElement("h1");
+			readals_channel_title.innerText = channeltitle;
+			readals.appendChild(readals_channel_title);
+			document.getElementById("rss").appendChild(readals);
+			for (let i of items) {
+				item=document.getElementsByTagName("template")[0].content.querySelector("div");
+				readal=document.importNode(item, true);
+				let objecter={"{{link}}" : i.getElementsByTagName("link")[0].innerHTML , "{{title}}" : i.getElementsByTagName("title")[0].innerHTML , "{{pubdate}}" : i.getElementsByTagName("pubDate")[0].innerHTML ,"{{description}}" : i.getElementsByTagName("description")[0].firstChild.nodeValue/* , "{{enclosure}}" : i.getElementsByTagName("enclosure")[0].getAttribute("url")*/};
+				for (let j of Object.keys(objecter))readal.innerHTML=readal.innerHTML.replace(new RegExp(j,"g"), objecter[j]);
+				readals.appendChild(readal);
+				readals.appendChild(document.createElement("br"));
 			}
 		}
 	</script>
@@ -9335,7 +9387,7 @@ playMusic(musicList.reverse(),"musicplay");
 			<g transform="translate(15.5 15) rotate(0 108 22.5)"><text x="108" y="0" font-family="YeZiGongChangCangNanShouJi-2,Virgil, HanziPen SC, Cangnanshoujiti, KaiTi, Segoe UI Emoji" font-size="36px" fill="#1971c2" text-anchor="middle" style="white-space: pre;" direction="ltr" dominant-baseline="text-before-edge">备份现有文章</text></g>
 		</svg></button><br /><br /><br /><br />
 	<input type="text" id="direction" placeholder="要访问的源从此开始！" />
-	<button onclick='loadXMLDoc(document.getElementById("direction").value,0)'><svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 164 75" width="164" height="75">
+	<button onclick='loadXMLDoc(document.getElementById("direction").value)'><svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 164 75" width="164" height="75">
 				<!-- svg-source:excalidraw -->
 				<defs>
 					<style class="style-fonts">

@@ -354,6 +354,12 @@ MathSaver();
 <!--highlight.js-->
 <!--'https://cdn.bootcdn.net/ajax/libs/highlight.js/11.8.0/styles/github-dark-dimmed.min.css#Github','https://highlightjs.org/static/demo/styles/github-dark-dimmed.css','http://cdn.bootcss.com/highlight.js/8.0/styles/monokai_sublime.min.css#monokai',https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/default.min.css,-->
 <link href="" rel="stylesheet" id="highlightjs-change">
+<!-- <script src="https://cdn.bootcdn.net/ajax/libs/highlight.js/8.0/highlight./min.js"></script> -->
+<!-- <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@8.0/build/highlight.min.js"></script> -->
+<!-- <script src="https://cdn.bootcdn.net/ajax/libs/highlight.js/11.9.0/es/highlight.min.js"></script> -->
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
+<!-- <script src="//cdnjs.cloudflare.com/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script> -->
+<!-- <script src="//cdn.jsdelivr.net/npm/highlightjs-line-numbers.js@2.8.0/dist/highlightjs-line-numbers.min.js"></script> -->
 <script>
 function highlightjser(){
 	let highlightjs_i = 0;
@@ -370,12 +376,14 @@ function highlightjser(){
 	highlightjs_nextone();
 	// hljs.initHighlightingOnLoad();
 	hljs.highlightAll();
+	/*document.getElementById("sourcer").addEventListener("click",function(){
+		if(document.getElementById("SourceCode").data-highlighted!=undefined)document.getElementById("SourceCode").removeAttribute("data-highlighted");
+		hljs.highlightBlock(document.getElementById("SourceCode"));
+		hljs.highlightElement(document.getElementById("SourceCode"));
+	});*/
+	// hljs.initLineNumbersOnLoad();
 }
 </script>
-<!-- <script src="https://cdn.bootcdn.net/ajax/libs/highlight.js/8.0/highlight./min.js"></script> -->
-<!-- <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@8.0/build/highlight.min.js"></script> -->
-<!-- <script src="https://cdn.bootcdn.net/ajax/libs/highlight.js/11.9.0/es/highlight.min.js"></script> -->
-<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
 <!-- vditor -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vditor/dist/index.css" />
 <script src="https://cdn.jsdelivr.net/npm/vditor/dist/index.min.js" defer></script>
@@ -450,6 +458,7 @@ function vditorinit(){
 		// new VConsole();
 		eruda.init();
 		// baser(document.location.href);
+		MathJax.typeset();
 	}
 	window.onload = function(){onloaders();}
 	setTimeout(()=>{onloaders()}, 2048);
@@ -6675,15 +6684,15 @@ $("html").html();
 		</li>
 		<li>
 			<details>
-				<summary>first method<button id="sourcer" onclick="document.getElementById('SourceCode').innerText = document.documentElement.outerHTML;">refresh!</button></summary>
-				<pre><code id="SourceCode" class="language-html"></code></pre>
+				<summary>first method<button id="sourcer" onclick="document.getElementById('SourceCode').innerHTML =HtmlUtil.html2Escape(document.documentElement.outerHTML);hljs.highlightElement(document.getElementById('SourceCode'));">refresh!</button></summary>
+				<pre><code id="SourceCode" language="html" class="language-html"></code></pre>
 			</details>
 		</li>
 		<li>
 			<details>
 				<summary>second method(depend on server environment)</summary>
 				<script>
-					document.getElementById('sourcer').click();
+					// document.getElementById('sourcer').click();
 					let r = new Promise((resolve) =>{
 					　　let timer = setInterval(() =>{
 						　　if(document.getElementById("SourceCode2").parentNode.parentNode.open==true){
@@ -6834,21 +6843,21 @@ var musicList = [
 "http://music.163.com/song/media/outer/url?id=1960415980#此时此刻",
 "http://music.163.com/song/media/outer/url?id=2112196350.mp3#浮光",
 "http://music.163.com/song/media/outer/url?id=1959528822.mp3#紫荆花盛开",
-"/music/download/终焉×end of all[原神 2024 新春会].mp3",
+"/music/终焉×end of all[原神 2024 新春会].mp3",
 "http://music.163.com/song/media/outer/url?id=2100372359.mp3#轻涟 Chinese",
 "http://music.163.com/song/media/outer/url?id=2100334024.mp3#轻涟 France",
 "http://music.163.com/song/media/outer/url?id=2026286081.mp3#舍离去",
 "http://music.163.com/song/media/outer/url?id=31234244.mp3#blessing(world))",
 "http://music.163.com/song/media/outer/url?id=2026565329.mp3#da capo",
 "http://music.163.com/song/media/outer/url?id=1859652717.mp3#moon halo",
-"/music/download/G大调弦乐小乐曲.mp3",
-"/music/download/春.mp3",
-"/music/download/Interstellar Main Theme.mp3",
-"/music/download/ryukyuvania.m4a",
-"/music/download/诀别书.mp3",
-"/music/download/rise(heroes).mp3",
-"/music/download/野火.mp3",
-"/music/download/双笙（陈元汐） - 女孩你为何踮脚尖.mp3",
+"/music/G大调弦乐小乐曲.mp3",
+"/music/春.mp3",
+"/music/Interstellar Main Theme.mp3",
+"/music/ryukyuvania.m4a",
+"/music/诀别书.mp3",
+"/music/rise(heroes).mp3",
+"/music/野火.mp3",
+"/music/双笙（陈元汐） - 女孩你为何踮脚尖.mp3",
 "/music/Alone.mp3",
 "/music/At The Edge.mp3",
 "/music/Crying In The Sun.mp3",
@@ -7032,21 +7041,21 @@ let musicList = [
 "http://music.163.com/song/media/outer/url?id=2155423467#在银河中孤独摇摆",
 "http://music.163.com/song/media/outer/url?id=2112196350.mp3#浮光",
 "http://music.163.com/song/media/outer/url?id=1959528822.mp3#紫荆花盛开",
-"/music/download/终焉×end of all[原神 2024 新春会].mp3",
+"/music/终焉×end of all[原神 2024 新春会].mp3",
 "http://music.163.com/song/media/outer/url?id=2100372359.mp3#轻涟 Chinese",
 "http://music.163.com/song/media/outer/url?id=2100334024.mp3#轻涟 France",
 "http://music.163.com/song/media/outer/url?id=2026286081.mp3#舍离去",
 "http://music.163.com/song/media/outer/url?id=31234244.mp3#blessing(world))",
 "http://music.163.com/song/media/outer/url?id=2026565329.mp3#da capo",
 "http://music.163.com/song/media/outer/url?id=1859652717.mp3#moon halo",
-"/music/download/G大调弦乐小乐曲.mp3",
-"/music/download/春.mp3",
-"/music/download/Interstellar Main Theme.mp3",
-"/music/download/ryukyuvania.m4a",
-"/music/download/诀别书.mp3",
-"/music/download/rise(heroes).mp3",
-"/music/download/野火.mp3",
-"/music/download/双笙（陈元汐） - 女孩你为何踮脚尖.mp3",
+"/music/G大调弦乐小乐曲.mp3",
+"/music/春.mp3",
+"/music/Interstellar Main Theme.mp3",
+"/music/ryukyuvania.m4a",
+"/music/诀别书.mp3",
+"/music/rise(heroes).mp3",
+"/music/野火.mp3",
+"/music/双笙（陈元汐） - 女孩你为何踮脚尖.mp3",
 "/music/Alone.mp3",
 "/music/At The Edge.mp3",
 "/music/Crying In The Sun.mp3",

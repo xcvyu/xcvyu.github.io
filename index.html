@@ -376,11 +376,6 @@ function highlightjser(){
 	highlightjs_nextone();
 	// hljs.initHighlightingOnLoad();
 	hljs.highlightAll();
-	/*document.getElementById("sourcer").addEventListener("click",function(){
-		if(document.getElementById("SourceCode").data-highlighted!=undefined)document.getElementById("SourceCode").removeAttribute("data-highlighted");
-		hljs.highlightBlock(document.getElementById("SourceCode"));
-		hljs.highlightElement(document.getElementById("SourceCode"));
-	});*/
 	// hljs.initLineNumbersOnLoad();
 }
 </script>
@@ -426,6 +421,7 @@ function vditorinit(){
 	}
 	function sourcechange(){
 		const websiteSourceNode = document.createElement("li");
+		// const websiteSourceNode = document.getElementById("sourcebrowsefir").assign();
 		websiteSourceNode.className="card";
 		websiteSourceNode.innerHTML=document.getElementById("sourcebrowsefir").innerHTML;
 		document.getElementById("rooter").appendChild(websiteSourceNode);
@@ -6654,7 +6650,7 @@ print(c)
 $.get(window.location.href,function(res){
 	console.log(res);
 });
-//升级版
+//pro
 let http = require('http');
 	let url = "http://www.baidu.com/";
 	// 参数url 和 回调函数
@@ -6671,31 +6667,17 @@ let http = require('http');
 	}).on('error', function () {
 		console.log('获取数据错误');
 	});
-		</code></pre>
-				</li>
-				<li>
-					<pre><code class="language-html">
 //by jQuery
-&lt;script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"&gt;&lt;/script&gt;
 $("html").html();
 		</code></pre>
 				</li>
 			</ul>
 		</li>
-		<li>
-			<details>
-				<summary>first method<button id="sourcer" onclick="document.getElementById('SourceCode').innerHTML =HtmlUtil.html2Escape(document.documentElement.outerHTML);hljs.highlightElement(document.getElementById('SourceCode'));">refresh!</button></summary>
-				<pre><code id="SourceCode" language="html" class="language-html"></code></pre>
-			</details>
-		</li>
-		<li>
-			<details>
-				<summary>second method(depend on server environment)</summary>
+		<li><details><summary>finally result</summary>
 				<script>
-					// document.getElementById('sourcer').click();
 					let r = new Promise((resolve) =>{
 					　　let timer = setInterval(() =>{
-						　　if(document.getElementById("SourceCode2").parentNode.parentNode.open==true){
+						　　if(document.getElementById("SourceCode").parentNode.parentNode.open==true){
 						　　　　clearInterval(timer);
 						　　　　resolve(true);
 						　　}
@@ -6704,12 +6686,12 @@ $("html").html();
 					r.then((res) =>{
 						$(document).ready(function () {
 							$.get(window.location.href, function (source) {
-								document.getElementById("SourceCode2").innerText= source;
+								document.getElementById("SourceCode").innerText= source;
 							});
 						});
 					})
 				</script>
-				<pre><code id="SourceCode2" language="html"></code></pre>
+				<pre><code id="SourceCode" language="html"></code></pre>
 			</details>
 		</li>
 	</ul>
@@ -9311,6 +9293,21 @@ playMusic(musicList.reverse(),"musicplay");
 				</g>
 				<g transform="translate(20.404037475585938 15) rotate(0 61.59596252441406 22.5)"><text x="61.59596252441406" y="0" font-family="Virgil, HanziPen SC, Cangnanshoujiti, KaiTi, Segoe UI Emoji" font-size="36px" fill="#1971c2" text-anchor="middle" style="white-space: pre;" direction="ltr" dominant-baseline="text-before-edge">feeder!</text></g>
 			</svg></button><div id="rss"></div>
+</li>
+<li class="card">
+	<details>
+		<summary>document browse<button id="documenter" onclick="documentCode()">refresh!</button></summary>
+		<template id="documenter_template"><pre><code id="documentCode" language="html" class="language-html"></code></pre></template>
+		<script>
+			function documentCode(){
+				if(document.getElementById('documentCode')!=undefined)document.getElementById('documentCode').remove();
+				let documentary=document.importNode(document.getElementById('documenter_template').content.querySelector("pre"), true);
+				documentary.querySelector("code").innerHTML=HtmlUtil.html2Escape(document.documentElement.outerHTML);
+				document.getElementById('documenter_template').parentNode.appendChild(documentary);
+				hljs.highlightElement(document.getElementById('documentCode'));
+			}
+		</script>
+	</details>
 </li>
 </ul>
 <template id="inboxed">

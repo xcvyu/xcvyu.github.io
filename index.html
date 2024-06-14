@@ -307,6 +307,69 @@
 		display: flex;
 		flex-direction: column;
 	}
+	/* .hljs-ln {
+		position: relative;
+		padding-left: 3em !important;
+		color: #FDFFFA;
+	}
+
+	.hljs-ln .ln-bg {
+		position: absolute;
+		z-index: 1;
+		top: 0;
+		left: 0;
+		width: 2.2em;
+		height: 100%;
+		border-right: 1px solid #555;
+		background: rgba(255, 255, 255, 0.18);
+	}
+
+	.hljs-ln .ln-num {
+		position: relative;
+		display: inline-block;
+		height: 1em;
+		-webkit-touch-callout: none;
+		-webkit-user-select: none;
+		-khtml-user-select: none;
+		-moz-user-select: none;
+		-ms-user-select: none;
+		user-select: none;
+	}
+
+	.hljs-ln .ln-num::before {
+		position: absolute;
+		z-index: 2;
+		top: 0;
+		right: 0;
+		margin-right: 1em;
+		color: #777;
+		font-style: normal;
+		font-weight: normal;
+		content: attr(data-num);
+	} */
+	.hljs {
+	border: 0;
+	font-size: 12px;
+	display: block;
+	padding: 1px;
+	margin: 0;
+	width: 100%;
+	font-weight: 200;
+	color: #333;
+	white-space: pre-wrap
+}
+.hljs ol {
+	list-style: decimal;
+	margin: 0px 0px 0 40px !important;
+	padding: 0px;
+}
+.hljs ol li {
+	list-style: decimal-leading-zero;
+	border-left: 1px solid #ddd !important;
+	padding: 5px!important;
+	margin: 0 !important;
+	white-space: pre;
+}
 </style>
 <!--<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/themes/vue.css"/>
 <link href="https://cubox.pro/article/css/reader.css" rel="stylesheet" />-->
@@ -361,6 +424,49 @@ MathSaver();
 <!-- <script src="//cdnjs.cloudflare.com/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script> -->
 <!-- <script src="//cdn.jsdelivr.net/npm/highlightjs-line-numbers.js@2.8.0/dist/highlightjs-line-numbers.min.js"></script> -->
 <script>
+	/* (function (w, d) {
+		if (w.hljs) {
+			w.hljs.initLineNumbersOnLoad = initLineNumbersOnLoad;
+			w.hljs.addLineNumbersForCode = addLineNumbersForCode;
+		} else {
+			w.console.error('highlight.js not detected!');
+		}
+
+		function initLineNumbersOnLoad() {
+			if (d.readyState === 'interactive' || d.readyState === 'complete') {
+				documentReady();
+			} else {
+				w.addEventListener('DOMContentLoaded', function () {
+					documentReady();
+				});
+			}
+		}
+
+		function addLineNumbersForCode(html) {
+			var num = 1;
+			html = '<span  data-num="' + num + '"></span>' + html;
+			html = html.replace(/\r\n|\r|\n/g, function (a) {
+				num++;
+				return a + '<span  data-num="' + num + '"></span>';
+			});
+			html = '<span ></span>' + html;
+			return html;
+		}
+
+		function documentReady() {
+			var elements = d.querySelectorAll('.hljs');
+			for (var i = 0; i < elements.length; i++) {
+				if (elements[i].className.indexOf('hljs-ln') == -1) {
+					var html = elements[i].innerHTML;
+					html = addLineNumbersForCode(html);
+					elements[i].innerHTML = html;
+					elements[i].classList.add('hljs-ln');
+				}
+			}
+		}
+	}(window, document)); */
+</script>
+<script>
 function highlightjser(){
 	let highlightjs_i = 0;
 	let highlightjs_color = [
@@ -374,9 +480,13 @@ function highlightjser(){
 		highlightjs_i = highlightjs_i + 1;
 	}
 	highlightjs_nextone();
+	document.getElementById("hljs_eventer").onclick=highlightjs_nextone;
 	// hljs.initHighlightingOnLoad();
 	hljs.highlightAll();
 	// hljs.initLineNumbersOnLoad();
+	$("code").each(function(){
+		$(this).html("<ol><li>" + $(this).html().replace(/\n/g,"\n</li><li>") +"\n</li></ol>");
+	});
 }
 </script>
 <!-- vditor -->
@@ -7153,7 +7263,7 @@ playMusic(musicList.reverse(),"musicplay");
 				</li>
 				<li>一个设想：像“自制播放器”项目那样，设立一个默认主题，点击按钮就打开一个新页面并通过查找替换更改CDN主题，实现代码块主题切换。
 					<ul>
-						<li>P.S.2023.02.05 成功了！点击这里<button onclick="highlightjs_nextone()">更换代码块主题</button></li>
+						<li>P.S.2023.02.05 成功了！点击这里<button id="hljs_eventer">更换代码块主题</button></li>
 					</ul>
 				</li>
 			</ul>

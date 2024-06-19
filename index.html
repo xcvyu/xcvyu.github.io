@@ -31,6 +31,7 @@
 		--back: #FFF;
 		--box-shadow: #DDDDDD;
 		--bg: #FAFAFA;
+		--tr: #F2F2F2;
 	}
 
 	@media (prefers-color-scheme: dark) {
@@ -38,6 +39,7 @@
 			--back: #303030;
 			--box-shadow: #222222;
 			--bg: #000;
+			--tr: #0D0D0D;
 		}
 	}
 
@@ -180,11 +182,11 @@
 	}
 
 	tr:nth-child(even) {
-		background-color: #f2f2f2;
+		background-color: var(--tr);
 	}
 
 	tr:hover {
-		background-color: #ddd;
+		background-color: var(--box-shadow);
 	}
 
 	th {
@@ -9529,6 +9531,16 @@ playMusic(musicList.reverse(),"musicplay");
 				<td>学科研讨</td>
 				<td>通用技术</td>
 			</tr>
+			<tr>
+				<td colspan="5">无声自习</td>
+			</tr>
+			<tr>
+				<td>语文</td>
+				<td>数学</td>
+				<td>物理</td>
+				<td>英语</td>
+				<td>化学</td>
+			</tr>
 			</table>
 	</li>
 	</ul>
@@ -9802,7 +9814,7 @@ Q：在学习的道路上是什么一直支撑你坚持走下去(既有学文科
 - 看世界杯预选赛
 </div>
 <script>
-    document.getElementById("inbox").innerHTML=marked.parse(document.getElementById("inbox").innerHTML);
+	document.getElementById("inbox").innerHTML=marked.parse(document.getElementById("inbox").innerHTML);
 </script>
 ```
 这样，就实现了一份markdown文档的渲染，其实十分容易。

@@ -20,13 +20,17 @@
 <style type="text/css">
 	/*引入字体*/
 	@font-face {
-		font-family: PingFangSC-Light
-			/* ,SourceHanSansCN-ExtraLight */;
+		font-family: PingFangSC-Light/* ,SourceHanSansCN-ExtraLight */;
 		src:url("./fonts/PingFangSC-Light.ttf");
 		/*src: url("https://xcvyu.github.io/fonts/PingFangSC-Light.ttf");*/
 		font-weight: 100;
 	}
-
+	
+    @font-face {
+        font-family: OPPOSans;
+	    src:url("./fonts/OPPOSans.ttf");
+	    font-weight: 100;
+	}
 	:root {
 		--back: #FFF;
 		--box-shadow: #DDDDDD;
@@ -49,9 +53,7 @@
 		-webkit-background-size: cover;
 		-o-background-size: cover;
 		background-size: cover; */
-		font-family: PingFangSC-Light
-			/*,SourceHanSansCN-ExtraLight*/
-		;
+		font-family: PingFangSC-Light,OPPOSans/*,SourceHanSansCN-ExtraLight*/;
 	}
 
 	.card {
@@ -602,16 +604,16 @@ function vditorinit(){
 	function onloaders(){
 		if(onloader)return;
 		onloader=true;
-		inboxchange("inboxed",document.getElementById("rooter"));
-		sourcechange();
-		inboxchange("sspai",document.getElementById("rooter"));
+		// inboxchange("inboxed",document.getElementById("rooter"));
+		// sourcechange();
+		// inboxchange("sspai",document.getElementById("rooter"));
 		pbrowser();
 		// vditorinit();
 		highlightjser();
 		// new VConsole();
-		eruda.init();
+		// eruda.init();
 		// baser(document.location.href);
-		MathJax.typeset();
+		// MathJax.typeset();
 	}
 	window.onload = function(){onloaders();}
 	setTimeout(()=>{onloaders()}, 2048);

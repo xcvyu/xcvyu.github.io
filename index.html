@@ -623,6 +623,7 @@ function vditorinit(){
 <ul id="rooter">
 	<li class="card" id="inputer">
 		<script>
+			let inputer_count=0;
 			function inputer_show(){
 				let inputer_reader = new FileReader();
 				inputer_reader.onload = function(){
@@ -653,6 +654,8 @@ function vditorinit(){
 				inputer_inserter.innerHTML = obj;
 				document.getElementById('inputer').appendChild(inputer_inserter);
 				inputer_scriptfinder(document.getElementById(identify));
+				inputer_count+=1;
+				document.getElementById("inputer_deleter").innerHTML="delete:"+inputer_count;
 			}
 			function inputer_scriptfinder(obj){
 				for(let i=0; i< obj.children.length;i++){
@@ -674,6 +677,11 @@ function vditorinit(){
 				if(!inputer_visibler)document.querySelector('#inputer').style.display = 'none';
 				inputer_visibler=!inputer_visibler;
 			}
+			function inputer_delete(){
+				document.querySelector('#inputer :last-child').remove();
+				inputer_count-=1;
+				document.getElementById("inputer_deleter").innerHTML="delete:"+inputer_count;
+			}
 		</script>
 		<input type="file" name="file" id="filePicker_inputer" onchange="inputer_show()"  /><br />
 		<textarea id="inputer_content" cols="40%" rows="15"></textarea><br />
@@ -681,7 +689,7 @@ function vditorinit(){
 		<button type="button" onclick="inputer_download()">download</button>
 		<button type="button" onclick="inputer_runCode(this.offsetParent.getElementsByTagName('textarea')[0].value)">new window open</button>
 		<button type="button" onclick="inputer_insert(document.getElementById('inputer_content').value,document.getElementById('inputer_name').value)">insert!</button>
-		<button type="button" onclick="document.querySelector('#inputer :last-child').remove();">delete</button>
+		<button type="button" onclick="inputer_delete()" id="inputer_deleter">delete：0</button>
 	</li>
 	<li class="card">
 		<script>
@@ -7191,6 +7199,7 @@ playMusic(musicList.reverse(),"musicplay");
 		<mark>仅限配置 server 后可加载本地音乐</mark><br />
 		<textarea id="song_sheet" rows="15" cols="40%">
 let musicList = [
+"http://music.163.com/song/media/outer/url?id=1950343972#可能",
 "http://music.163.com/song/media/outer/url?id=2160850755#未行之路",
 "http://music.163.com/song/media/outer/url?id=2155423468#希望有羽毛和翅膀",
 "http://music.163.com/song/media/outer/url?id=2155422573#使一颗心免于哀伤",

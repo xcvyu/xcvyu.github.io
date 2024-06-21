@@ -9929,7 +9929,36 @@ h2 {
 
 可以看到标题的确变为了红色。
 
+参考文章：
+- [如何使用 CSS 改出一个令我满意的 Obsidian 外观？](https://sspai.com/post/75363)，通俗解释了 css 对文章样式的影响；
+- [如何自定义你的 typora 主题，以少数派为例](https://sspai.com/post/59450)，此文针对 Typora ，但其中对获取/修改 css 的介绍对本文也有用。
+
 ### 特殊需求：代码高亮/公式
 
-一般的 markdown 编辑器都会自带代码块高亮和
+一般的 markdown 编辑器都会自带代码块高亮和 LaTeX 公式插入，但 HTML 并没有自带支持。好在已经有热心的开发者为我们做好适配，我们只需要插入以下代码：
+
+```html
+<!-- LaTeX嵌入网页 -->
+<script id="MathJax-script" async src="https://cdn.bootcdn.net/ajax/libs/mathjax/4.0.0-alpha.1/es5/tex-svg.js"></script>
+<script>
+MathJax = {
+	tex: {
+		//inlineMath: [['$', '$'], ['\\(', '\\)']]
+		inlineMath: [['$', '$'], ['\\$$', '\\$$']]
+	},
+	svg: {
+		fontCache: 'global'
+	}
+};
+</script>
+<!--highlight.js，负责代码高亮-->
+<link href="https://cdn.bootcdn.net/ajax/libs/highlight.js/11.9.0/styles/github-dark-dimmed.min.css#Github" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
+<script>
+	window.onload=hljs.highlightAll;
+</script>
+```
+再看看效果？
+
+![alt text](image-19.png)
 </template>

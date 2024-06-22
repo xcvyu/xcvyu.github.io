@@ -18,20 +18,6 @@
 <!--My Style-->
 <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+SC:100,300,400,500,700,900"> -->
 <style type="text/css">
-	/*引入字体*/
-	/* @font-face {
-		font-family: PingFangSC-Light , SourceHanSansCN-ExtraLight;
-		src:url("./fonts/PingFangSC-Light.ttf");
-		src: url("https://xcvyu.github.io/fonts/PingFangSC-Light.ttf");
-		font-weight: 100;
-	}
-	
-    @font-face {
-        font-family: OPPOSans;
-	    src:url("./fonts/OPPOSans.ttf");
-	    font-weight: 100;
-	} */
-
 	:root {
 		--back: #FFF;
 		--box-shadow: #DDDDDD;
@@ -54,7 +40,6 @@
 		-webkit-background-size: cover;
 		-o-background-size: cover;
 		background-size: cover; */
-		/*font-family: PingFangSC-Light,OPPOSans,SourceHanSansCN-ExtraLight*/;
 	}
 
 	.card {
@@ -420,6 +405,35 @@
 	transition-property: box-shadow;
 	}
 </style>
+<!-- 字体问题 -->
+<style>
+	/* css 引入字体
+	@font-face {
+		font-family: PingFangSC-Light , SourceHanSansCN-ExtraLight;
+		src:url("./fonts/PingFangSC-Light.ttf");
+		src: url("https://xcvyu.github.io/fonts/PingFangSC-Light.ttf");
+		font-weight: 100;
+	}
+	
+    @font-face {
+        font-family: OPPOSans;
+	    src:url("./fonts/OPPOSans.ttf");
+	    font-weight: 100;
+	} 
+	body{
+		font-family: PingFangSC-Light,OPPOSans,SourceHanSansCN-ExtraLight;
+	}*/
+</style>
+<script>
+function fontment(){
+	let fonter=document.createElement("style");
+	fonter.innerHTML="\n#rooter \{\nfont-family\: OPPOSans,SourceHanSansCN-ExtraLight\;\n\}";
+	fonter.id="fonter";
+	document.head.appendChild(fonter);
+	let font = new FontFace("OPPOSans", "url('https://xcvyu.github.io/fonts/OPPOSans-Regular.ttf')", {	weight: "100",});
+	document.fonts.add(font);
+}
+</script>
 <!--<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/themes/vue.css"/>
 <link href="https://cubox.pro/article/css/reader.css" rel="stylesheet" />-->
 <!--网页ico-->

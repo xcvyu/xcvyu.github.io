@@ -676,11 +676,14 @@ function vditorinit(){
 					if(obj.children[i].tagName=='SCRIPT'){
 						let g = document.createElement("script");
 						g.text = obj.children[i].innerHTML;
-						g.async=obj.children[i].async;
-						g.defer=obj.children[i].defer;
-						if(obj.children[i].src!='')g.src=obj.children[i].src;
+						if(obj.children[i].src!=''){
+							g.src=obj.children[i].src;
+							g.charset = obj.children[i].charset;
+							g.async=obj.children[i].async;
+							g.defer=obj.children[i].defer;
+						}
 						obj.children[i].before(g);
-						obj.children[i].parentNode.removeChild(obj.children[i]);
+						g.remove();
 					}
 					inputer_scriptfinder(obj.children[i]);
 				}
@@ -7141,7 +7144,9 @@ playMusic(musicList.reverse(),"musicplay");
 			}
 		</script>
 		<script>
-			function playMusic(musicList, wid) {
+			function playMusic(musicobjection) {
+				let musicList=musicobjection.list.reverse();
+				let wid=musicobjection.name;
 				let israndom = false;
 				function objecter(obj) {
 					let object = (obj.tag != undefined) ? document.createElement(obj.tag) : obj.method;
@@ -7212,113 +7217,115 @@ playMusic(musicList.reverse(),"musicplay");
 		</script>
 		<mark>仅限配置 server 后可加载本地音乐</mark><br />
 		<textarea id="song_sheet" rows="15" cols="40%">
-let musicList = [
-"http://music.163.com/song/media/outer/url?id=1950343972#可能",
-"http://music.163.com/song/media/outer/url?id=2160850755#未行之路",
-"http://music.163.com/song/media/outer/url?id=2155423468#希望有羽毛和翅膀",
-"http://music.163.com/song/media/outer/url?id=2155422573#使一颗心免于哀伤",
-"http://music.163.com/song/media/outer/url?id=2155423467#在银河中孤独摇摆",
-"http://music.163.com/song/media/outer/url?id=2112196350.mp3#浮光",
-"http://music.163.com/song/media/outer/url?id=1959528822.mp3#紫荆花盛开",
-"/music/终焉×end of all[原神 2024 新春会].mp3",
-"http://music.163.com/song/media/outer/url?id=2100372359.mp3#轻涟 Chinese",
-"http://music.163.com/song/media/outer/url?id=2100334024.mp3#轻涟 France",
-"http://music.163.com/song/media/outer/url?id=2026286081.mp3#舍离去",
-"http://music.163.com/song/media/outer/url?id=31234244.mp3#blessing(world))",
-"http://music.163.com/song/media/outer/url?id=2026565329.mp3#da capo",
-"http://music.163.com/song/media/outer/url?id=1859652717.mp3#moon halo",
-"/music/G大调弦乐小乐曲.mp3",
-"/music/春.mp3",
-"/music/Interstellar Main Theme.mp3",
-"/music/ryukyuvania.m4a",
-"/music/诀别书.mp3",
-"/music/rise(heroes).mp3",
-"/music/野火.mp3",
-"/music/双笙（陈元汐） - 女孩你为何踮脚尖.mp3",
-"/music/Alone.mp3",
-"/music/At The Edge.mp3",
-"/music/Crying In The Sun.mp3",
-"/music/Energy Drink.mp3",
-"/music/HOYO-MiX - Hustle and Bustle of Ormos 喧繁之港 [qmms2].flac",
-"/music/KemimikE - Mountains (Original Mix).mp3",
-"/music/Masked Heroes.mp3",
-"/music/Middle Of The Night-Original Mix.mp3",
-"/music/Monsters-Katie Sky.flac",
-"/music/Moonlight Sonata.mp3",
-"/music/Nevada.mp3",
-"/music/Rise - Epic Music.mp3",
-"/music/Sold Out-Hawk Nelson.flac",
-"/music/Sorry-Alan Walker.mp3",
-"/music/Sunburst.mp3",
-"/music/Tabata W.O.D.mp3",
-"/music/Unstoppable-Sia.flac",
-"/music/Unstoppable-The Score.mp3",
-"/music/X-Ray Dog - Playing Through [qmms2].mp3",
-"/music/You Are My Everything.mp3",
-"/music/drown.mp3",
-"/music/experience.mp3",
-"/music/faded.mp3",
-"/music/obj_wo3DlMOGwrbDjj7DisKw_29253109197_3954_2add_4962_b0882f751376ef4722bb96fc1e1a0a63.mp3",
-"/music/一路生花.mp3",
-"/music/万里归途.mp3",
-"/music/下山.mp3",
-"/music/不屈的信仰-张艺兴.mp3",
-"/music/你从未离去.wav",
-"/music/你的酒馆对我打了烊-陈雪凝.flac",
-"/music/侧脸.mp3",
-"/music/出山.mp3",
-"/music/加油 ! 向未来.mp3",
-"/music/发光时代.mp3",
-"/music/和平精英-717电音节主题bgm.mp3",
-"/music/回到那一天.flac",
-"/music/外婆的澎湖湾.mp3",
-"/music/夜空中最亮的星.mp3",
-"/music/夜航星.mp3",
-"/music/夜航星伴奏.flac",
-"/music/她的微笑（ Original Mix ).mp3",
-"/music/如愿.mp3",
-"/music/姚六一-雾里.mp3",
-"/music/孤勇者.mp3",
-"/music/小梦想.mp3",
-"/music/少年.mp3",
-"/music/平凡之路(中秋晚会).mp3",
-"/music/平凡之路.mp3",
-"/music/平凡的一天.mp3",
-"/music/悲伤的旋律.mp3",
-"/music/所念皆星河.mp3",
-"/music/无名之辈.mp3",
-"/music/时光洪流.flac",
-"/music/旺仔小乔-雾里.mp3",
-"/music/明天会更好.mp3",
-"/music/星辰大海.mp3",
-"/music/是你.flac",
-"/music/最美的光.mp3",
-"/music/有我.mp3",
-"/music/本草纲目.mp3",
-"/music/李峪钊-翻山越岭.mp3",
-"/music/溜冰圆舞曲.mp3",
-"/music/玫瑰少年.mp3",
-"/music/生僻字.mp3",
-"/music/破茧.mp3",
-"/music/离别开出花.mp3",
-"/music/第九交响曲.mp3",
-"/music/翻山越岭.mp3",
-"/music/耍把戏-张东尼.mp3",
-"/music/耍把戏-阿禹ayy.mp3",
-"/music/芒种.mp3",
-"/music/葬花.mp3",
-"/music/蓝莲花.mp3",
-"/music/蜜雪冰城主题曲.mp3",
-"/music/调查中.mp3",
-"/music/起风了.mp3",
-"/music/量子力学之歌.mp3",
-"/music/错位时空-五四特别版.mp3",
-"/music/错位时空.mp3",
-"/music/青春跃起来 (Live) .mp3"
-];
-playMusic(musicList.reverse(),"musicplay");
+{
+	"list":[
+		"http://music.163.com/song/media/outer/url?id=1950343972#可能",
+		"http://music.163.com/song/media/outer/url?id=2160850755#未行之路",
+		"http://music.163.com/song/media/outer/url?id=2155423468#希望有羽毛和翅膀",
+		"http://music.163.com/song/media/outer/url?id=2155422573#使一颗心免于哀伤",
+		"http://music.163.com/song/media/outer/url?id=2155423467#在银河中孤独摇摆",
+		"http://music.163.com/song/media/outer/url?id=2112196350.mp3#浮光",
+		"http://music.163.com/song/media/outer/url?id=1959528822.mp3#紫荆花盛开",
+		"/music/终焉×end of all[原神 2024 新春会].mp3",
+		"http://music.163.com/song/media/outer/url?id=2100372359.mp3#轻涟 Chinese",
+		"http://music.163.com/song/media/outer/url?id=2100334024.mp3#轻涟 France",
+		"http://music.163.com/song/media/outer/url?id=2026286081.mp3#舍离去",
+		"http://music.163.com/song/media/outer/url?id=31234244.mp3#blessing(world))",
+		"http://music.163.com/song/media/outer/url?id=2026565329.mp3#da capo",
+		"http://music.163.com/song/media/outer/url?id=1859652717.mp3#moon halo",
+		"/music/G大调弦乐小乐曲.mp3",
+		"/music/春.mp3",
+		"/music/Interstellar Main Theme.mp3",
+		"/music/ryukyuvania.m4a",
+		"/music/诀别书.mp3",
+		"/music/rise(heroes).mp3",
+		"/music/野火.mp3",
+		"/music/双笙（陈元汐） - 女孩你为何踮脚尖.mp3",
+		"/music/Alone.mp3",
+		"/music/At The Edge.mp3",
+		"/music/Crying In The Sun.mp3",
+		"/music/Energy Drink.mp3",
+		"/music/HOYO-MiX - Hustle and Bustle of Ormos 喧繁之港 [qmms2].flac",
+		"/music/KemimikE - Mountains (Original Mix).mp3",
+		"/music/Masked Heroes.mp3",
+		"/music/Middle Of The Night-Original Mix.mp3",
+		"/music/Monsters-Katie Sky.flac",
+		"/music/Moonlight Sonata.mp3",
+		"/music/Nevada.mp3",
+		"/music/Rise - Epic Music.mp3",
+		"/music/Sold Out-Hawk Nelson.flac",
+		"/music/Sorry-Alan Walker.mp3",
+		"/music/Sunburst.mp3",
+		"/music/Tabata W.O.D.mp3",
+		"/music/Unstoppable-Sia.flac",
+		"/music/Unstoppable-The Score.mp3",
+		"/music/X-Ray Dog - Playing Through [qmms2].mp3",
+		"/music/You Are My Everything.mp3",
+		"/music/drown.mp3",
+		"/music/experience.mp3",
+		"/music/faded.mp3",
+		"/music/obj_wo3DlMOGwrbDjj7DisKw_29253109197_3954_2add_4962_b0882f751376ef4722bb96fc1e1a0a63.mp3",
+		"/music/一路生花.mp3",
+		"/music/万里归途.mp3",
+		"/music/下山.mp3",
+		"/music/不屈的信仰-张艺兴.mp3",
+		"/music/你从未离去.wav",
+		"/music/你的酒馆对我打了烊-陈雪凝.flac",
+		"/music/侧脸.mp3",
+		"/music/出山.mp3",
+		"/music/加油 ! 向未来.mp3",
+		"/music/发光时代.mp3",
+		"/music/和平精英-717电音节主题bgm.mp3",
+		"/music/回到那一天.flac",
+		"/music/外婆的澎湖湾.mp3",
+		"/music/夜空中最亮的星.mp3",
+		"/music/夜航星.mp3",
+		"/music/夜航星伴奏.flac",
+		"/music/她的微笑（ Original Mix ).mp3",
+		"/music/如愿.mp3",
+		"/music/姚六一-雾里.mp3",
+		"/music/孤勇者.mp3",
+		"/music/小梦想.mp3",
+		"/music/少年.mp3",
+		"/music/平凡之路(中秋晚会).mp3",
+		"/music/平凡之路.mp3",
+		"/music/平凡的一天.mp3",
+		"/music/悲伤的旋律.mp3",
+		"/music/所念皆星河.mp3",
+		"/music/无名之辈.mp3",
+		"/music/时光洪流.flac",
+		"/music/旺仔小乔-雾里.mp3",
+		"/music/明天会更好.mp3",
+		"/music/星辰大海.mp3",
+		"/music/是你.flac",
+		"/music/最美的光.mp3",
+		"/music/有我.mp3",
+		"/music/本草纲目.mp3",
+		"/music/李峪钊-翻山越岭.mp3",
+		"/music/溜冰圆舞曲.mp3",
+		"/music/玫瑰少年.mp3",
+		"/music/生僻字.mp3",
+		"/music/破茧.mp3",
+		"/music/离别开出花.mp3",
+		"/music/第九交响曲.mp3",
+		"/music/翻山越岭.mp3",
+		"/music/耍把戏-张东尼.mp3",
+		"/music/耍把戏-阿禹ayy.mp3",
+		"/music/芒种.mp3",
+		"/music/葬花.mp3",
+		"/music/蓝莲花.mp3",
+		"/music/蜜雪冰城主题曲.mp3",
+		"/music/调查中.mp3",
+		"/music/起风了.mp3",
+		"/music/量子力学之歌.mp3",
+		"/music/错位时空-五四特别版.mp3",
+		"/music/错位时空.mp3",
+		"/music/青春跃起来 (Live) .mp3"
+	],
+	"name":"musicplay"
+}
 		</textarea><br />
-		<button type="button" onclick="eval(document.getElementById('song_sheet').value);">enjoy!</button>
+		<button type="button" onclick="playMusic(JSON.parse(document.getElementById('song_sheet').value));">enjoy!</button>
 		<br />
 	</li>
 	</ul>
@@ -9814,174 +9821,263 @@ Q：在学习的道路上是什么一直支撑你坚持走下去(既有学文科
 现在想起来还是忍不住在心里叹：相遇，陪伴，何其有幸。
 </template>
 <template id="sspai">
-# 把主动权「完全」握在自己手里：HTML 个人电子工作台搭建指南
+	![](./image/image/banner.png)
 
-本文参加「自力更生」征文活动。
-
-* * *
-
-看到了首页许多关于自托管服务的文章，容易发现它们常有一个共同特点：均对服务器/NAS有刚需，且配置过程冗余。同时，这些服务虽然提供了相对较高的自由度，但仍然有一定的限制，很难完全满足每个人的需求。从某种程度上讲，这些服务的主动权并不完全在你手里：倘若这些服务的开发者对其进行大幅迭代，甚至改的面目全非，你可能就要背起数据「行囊」，走向另一个服务。
-
-在尝试N多种工具（见[我的 2022：HTML、数字生活和写作方法论](https://sspai.com/post/77319)）后，我选择彻底从头开始，迭代一个属于自己的数据记录系统，乃至——电子工作台。从 2022 年到如今，也逾一年半载，在此把我的心得体会记录在这里。
-
-这么高的自由度是如何实现的？上手门槛高吗？
----
-
-这主要归功于这个工作台的实现方式。
-
-受 [译文 | 过去 12 年里，我的生产力工具只是一个 .txt 文件](https://sspai.com/post/71705) 的启发，我将所有笔记写在了同一个 HTML 文件里，HTML 最大的优势就是能够与 css /JavaScript 密切配合，[CSS：层叠样式表](https://developer.mozilla.org/zh-CN/docs/Web/CSS)是一种[样式表](https://developer.mozilla.org/zh-CN/docs/Web/API/StyleSheet)语言，用来描述 [HTML](https://developer.mozilla.org/zh-CN/docs/Web/HTML) 或 [XML](https://developer.mozilla.org/zh-CN/docs/Web/XML/XML_introduction)（包括如 [SVG](https://developer.mozilla.org/zh-CN/docs/Web/SVG)、[MathML](https://developer.mozilla.org/zh-CN/docs/Web/MathML) 或 [XHTML](https://developer.mozilla.org/zh-CN/docs/Glossary/XHTML) 之类的 XML 分支语言）文档的呈现方式。它提供了强大的表现力从而允许我完全自定义我的文档的样式。而 [JavaScript](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript) 则是一种强大的编程语言，允许我定义网站的行为。这也是文档进化为「电子工作台」的基础。
-
-至于上手门槛...这取决于你的需求。如果你仅仅是想要获取能够安心记录的、颜值相对高的、可自定义性强的一个记录处，那么很好入手；如果你想像我一样将它打造成一个独属于自己的「个人电子工作台」，那么你可能需要颇费一番周折（我本人用了整整两年半），并学习一些 CSS 和 JavaScript 的相关知识才能把它配置的称心如意。不过，这一套组合拳其实并不难学，这主要取决于你自定义的愿望是否足够强烈；同时我也会提供一些功能模块供大家使用。
-
-如果你感兴趣，就接着往下看。
-
-第零步：挑一个顺手的编辑器
----
-工欲善其事，必先利其器。我们要撰写的 HTML 文档属于代码的一种，一个好用的编辑器能极大提高美观度与效率。这里推荐 Visual Studio Code ，它最大的特点是简单易上手，便于新手使用。在桌面上新建一个名为"index.html"的文件，开始我们的旅程吧！
-
-第一步：先从 markdown 开始
----
-
-在我派对 markdown 有诸多介绍，你可以参考[这篇文章](https://sspai.com/post/25137)快速入门。以下主要介绍 markdown 如何便捷的插入 HTML 文档块中。
-
-```html
-<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-<div id="inbox">
-## 这里是你的 markdown 内容。
-***hello,world!***
-- 写少数派投稿
-- 看世界杯预选赛
-</div>
-<script>
-	document.getElementById("inbox").innerHTML=marked.parse(document.getElementById("inbox").innerHTML);
-</script>
-```
-这样，就实现了一份markdown文档的渲染，其实十分容易。
-
-### 看看效果
-
-渲染 HTML 文档用的是浏览器，直接双击写好的文件，然后就可以看到效果。
-
-![alt text](image-16.png)
-
-不过确实页面有一点素，接下来轮到 css 登场！
-
-### 美化页面
-
-将以下内容粘贴到新建好的文档的最上方。
-
-```html
-<style type="text/css">
+	# 把主动权「完全」握在自己手里：HTML 个人电子工作台搭建指南
+	
+	本文参加「自力更生」征文活动。
+	
+	* * *
+	
+	看到了首页许多关于自托管服务的文章，容易发现它们常有一个共同特点：均对服务器/NAS有刚需，且配置过程冗余。同时，这些服务虽然提供了相对较高的自由度，但仍然有一定的限制，很难完全满足每个人的需求。从某种程度上讲，这些服务的主动权并不完全在你手里：倘若这些服务的开发者对其进行大幅迭代，甚至改的面目全非，你可能就要背起数据「行囊」，走向另一个服务。
+	
+	在尝试N多种工具（见[我的 2022：HTML、数字生活和写作方法论](https://sspai.com/post/77319)）后，我选择彻底从头开始，迭代一个属于自己的数据记录系统，乃至——电子工作台。从 2022 年到如今，也逾一年半载，在此把我的心得体会记录在这里。
+	
+	这么高的自由度是如何实现的？上手门槛高吗？
+	---
+	
+	这主要归功于这个工作台的实现方式。
+	
+	受 [译文 | 过去 12 年里，我的生产力工具只是一个 .txt 文件](https://sspai.com/post/71705) 的启发，我将所有笔记写在了同一个 HTML 文件里，HTML 最大的优势就是能够与 css /JavaScript 密切配合，[CSS：层叠样式表](https://developer.mozilla.org/zh-CN/docs/Web/CSS)是一种[样式表](https://developer.mozilla.org/zh-CN/docs/Web/API/StyleSheet)语言，用来描述 [HTML](https://developer.mozilla.org/zh-CN/docs/Web/HTML) 或 [XML](https://developer.mozilla.org/zh-CN/docs/Web/XML/XML_introduction)（包括如 [SVG](https://developer.mozilla.org/zh-CN/docs/Web/SVG)、[MathML](https://developer.mozilla.org/zh-CN/docs/Web/MathML) 或 [XHTML](https://developer.mozilla.org/zh-CN/docs/Glossary/XHTML) 之类的 XML 分支语言）文档的呈现方式。它提供了强大的表现力从而允许我完全自定义我的文档的样式。而 [JavaScript](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript) 则是一种强大的编程语言，允许我定义网站的行为。这也是文档进化为「电子工作台」的基础。
+	
+	至于上手门槛...这取决于你的需求。如果你仅仅是想要获取能够安心记录的、颜值相对高的、可自定义性强的一个记录处，那么它很好入手；如果你想像我一样将它打造成一个独属于自己的「个人电子工作台」，那么你可能需要颇费一番周折（我本人用了整整两年半），并学习一些 CSS 和 JavaScript 的相关知识才能把它配置的称心如意。不过，这一套组合拳其实并不难学，这主要取决于你自定义的愿望是否足够强烈；同时我也会提供一些功能模块供大家使用。
+	
+	如果你感兴趣，就接着往下看。
+	
+	第零步：挑一个顺手的编辑器
+	---
+	工欲善其事，必先利其器。我们要撰写的 HTML 文档属于代码的一种，一个好用的编辑器能极大提高美观度与效率。这里推荐 Visual Studio Code ，它最大的特点是简单易上手，便于新手使用。在桌面上新建一个名为"index.html"的文件，开始我们的旅程吧！
+	
+	第一步：先从 markdown 开始
+	---
+	
+	在我派对 markdown 有诸多介绍，你可以参考[这篇文章](https://sspai.com/post/25137)快速入门。以下主要介绍 markdown 如何便捷的插入 HTML 文档块中。
+	
+	```html
+	<!DOCTYPE html>
+	<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+	<div id="inbox">
+	## 这里是你的 markdown 内容。
+	***hello,world!***
+	- 写少数派投稿
+	- 看世界杯预选赛
+	</div>
+	<script>
+		document.getElementById("inbox").innerHTML=marked.parse(document.getElementById("inbox").innerHTML);
+	</script>
+	```
+	这样，就实现了一份markdown文档的渲染，其实十分容易。
+	
+	### 看看效果
+	
+	渲染 HTML 文档用的是浏览器，直接双击写好的文件，然后就可以看到效果。
+	
+	![alt text](./image/image-16.png)
+	
+	不过确实页面有一点素，接下来轮到 css 登场！
+	
+	### 美化页面
+	
+	将以下内容粘贴到新建好的文档的最上方。
+	
+	```html
+	<style type="text/css">
+		h2 {
+			border-bottom: 2px solid #b0b7bf;
+			width: 100%;
+			padding-bottom: 2px;
+			color: #2e80f2;
+		}
+	
+		h3 {
+			color: #2e80f2;
+		}
+	
+		h4 {
+			color: SlateBlue;
+		}
+	
+		b,
+		strong,
+		i,
+		em {
+			color: #ff82b2;
+		}
+	
+		a:link[href^="#"],
+		a:visited[href^="#"] {
+			padding: 1px 10px;
+			text-decoration: none;
+			color: #557ded;
+			border-radius: 4px;
+			background-color: #eef3fe;
+		}
+	
+		a:hover[href^="#"] {
+			padding: 1px 10px;
+			text-decoration: none;
+			color: #e1eafa;
+			border-radius: 4px;
+			background-color: #557ded;
+		}
+	
+		a {
+			color: #50aaef;
+			text-decoration: none;
+			background-color: #fff7c3;
+		}
+	
+		mark {
+			background-color: #fff7c3;
+			border-radius: 5px;
+		}
+	
+		ul {
+			list-style-type: disc;
+		}
+	
+		ul li::marker,
+		ol li::marker {
+			color: #b0b7bf;
+		}
+	</style>
+	```
+	
+	再观察以下效果：
+	
+	![这下好看多了！](./image/image-17.png)
+	
+	可以看到好看了许多。这其实就是 css 在调整页面的样式。那如果你想将二级标题改为红色呢？只需删掉h2及其后面{}内包裹的内容，并添加以下内容：
+	
+	```css
 	h2 {
-		border-bottom: 2px solid #b0b7bf;
-		width: 100%;
-		padding-bottom: 2px;
-		color: #2e80f2;
-	}
-
-	h3 {
-		color: #2e80f2;
-	}
-
-	h4 {
-		color: SlateBlue;
-	}
-
-	b,
-	strong,
-	i,
-	em {
-		color: #ff82b2;
-	}
-
-	a:link[href^="#"],
-	a:visited[href^="#"] {
-		padding: 1px 10px;
-		text-decoration: none;
-		color: #557ded;
-		border-radius: 4px;
-		background-color: #eef3fe;
-	}
-
-	a:hover[href^="#"] {
-		padding: 1px 10px;
-		text-decoration: none;
-		color: #e1eafa;
-		border-radius: 4px;
-		background-color: #557ded;
-	}
-
-	a {
-		color: #50aaef;
-		text-decoration: none;
-		background-color: #fff7c3;
-	}
-
-	mark {
-		background-color: #fff7c3;
-		border-radius: 5px;
-	}
-
-	ul {
-		list-style-type: disc;
-	}
-
-	ul li::marker,
-	ol li::marker {
-		color: #b0b7bf;
-	}
-</style>
-```
-
-再观察以下效果：
-
-![这下好看多了！](image-17.png)
-
-可以看到好看了许多。这其实就是 css 在调整页面的样式。那如果你想将二级标题改为红色呢？只需删掉h2及其后面{}内包裹的内容，并添加以下内容：
-
-```css
-h2 {
-		border-bottom: 2px solid #b0b7bf;
-		width: 100%;
-		padding-bottom: 2px;
-		color: red;
-	}
-```
-
-![alt text](image-18.png)
-
-可以看到标题的确变为了红色。
-
-参考文章：
-- [如何使用 CSS 改出一个令我满意的 Obsidian 外观？](https://sspai.com/post/75363)，通俗解释了 css 对文章样式的影响；
-- [如何自定义你的 typora 主题，以少数派为例](https://sspai.com/post/59450)，此文针对 Typora ，但其中对获取/修改 css 的介绍对本文也有用。
-
-### 特殊需求：代码高亮/公式
-
-一般的 markdown 编辑器都会自带代码块高亮和 LaTeX 公式插入，但 HTML 并没有自带支持。好在已经有热心的开发者为我们做好适配，我们只需要插入以下代码：
-
-```html
-<!-- LaTeX嵌入网页 -->
-<script id="MathJax-script" async src="https://cdn.bootcdn.net/ajax/libs/mathjax/4.0.0-alpha.1/es5/tex-svg.js"></script>
-<script>
-MathJax = {
-	tex: {
-		//inlineMath: [['$', '$'], ['\\(', '\\)']]
-		inlineMath: [['$', '$'], ['\\$$', '\\$$']]
-	},
-	svg: {
-		fontCache: 'global'
-	}
-};
-</script>
-<!--highlight.js，负责代码高亮-->
-<link href="https://cdn.bootcdn.net/ajax/libs/highlight.js/11.9.0/styles/github-dark-dimmed.min.css#Github" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
-<script>
-	window.onload=hljs.highlightAll;
-</script>
-```
-再看看效果？
-
-![alt text](image-19.png)
+			border-bottom: 2px solid #b0b7bf;
+			width: 100%;
+			padding-bottom: 2px;
+			color: red;
+		}
+	```
+	
+	![alt text](./image/image-18.png)
+	
+	可以看到标题的确变为了红色。
+	
+	本段的最后再给大家推荐几个样式主题，注意要使用的话记得先把上面我的自定义样式删除，以免导致渲染问题。
+	
+	```html
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify@4/themes/vue.css"/>
+	```
+	![alt text](./image/image-20.png)
+	
+	```html
+	<link href="https://cubox.pro/article/css/reader.css" rel="stylesheet" />
+	```
+	
+	![alt text](./image/image-21.png)
+	
+	参考文章：
+	- [如何使用 CSS 改出一个令我满意的 Obsidian 外观？](https://sspai.com/post/75363)，通俗解释了 css 对文章样式的影响；
+	- [如何自定义你的 typora 主题，以少数派为例](https://sspai.com/post/59450)，此文针对 Typora ，但其中对获取/修改 css 的介绍对本文也有用。
+	
+	### 特殊需求：代码高亮/公式
+	
+	一般的 markdown 编辑器都会自带代码块高亮和 LaTeX 公式插入，但 HTML 并没有自带支持。好在已经有热心的开发者为我们做好适配，我们只需要在`<div id="inbox">`前插入以下代码：
+	
+	```html
+	<!-- LaTeX嵌入网页 -->
+	<script id="MathJax-script" async src="https://cdn.bootcdn.net/ajax/libs/mathjax/4.0.0-alpha.1/es5/tex-svg.js"></script>
+	<script>
+	MathJax = {
+		tex: {
+			//inlineMath: [['$', '$'], ['\\(', '\\)']]
+			inlineMath: [['$', '$'], ['\\$$', '\\$$']]
+		},
+		svg: {
+			fontCache: 'global'
+		}
+	};
+	</script>
+	<!--highlight.js，负责代码高亮-->
+	<link href="https://cdn.bootcdn.net/ajax/libs/highlight.js/11.9.0/styles/github-dark-dimmed.min.css#Github" rel="stylesheet">
+	<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
+	<script>
+		window.onload=hljs.highlightAll;
+	</script>
+	```
+	再看看效果？
+	
+	![alt text](./image/image-19.png)
+	
+	第二步：让文档呈现更加丰富的内容
+	---
+	众所周知，markdown 其实是 html 的一个子集，那么 html 本身又有什么功能呢？让我们从几个「标签」聊起。
+	
+	### 一个 html 文档的整体框架
+	
+	一般来说，一个 html 文档由以下几部分构成：
+	
+	```html
+	<!DOCTYPE html><!--说明这是一个 html 文件,一定要有-->
+	<html>
+	<head>
+		<!--head标签中的内容通常不会显示,用来放一些脚本,比如上文的LaTeX,marked和hljs(都是用来配置 markdown 的工具,在上文中出现过)应该写在这里-->
+	</head>
+	<body>
+		<!--body是文档的主体,内容应该写在这里-->
+	</body>
+	</html>
+	```
+	但是出于减少文件大小和简洁的目的，我一般遵循[Google Style Guide for HTML（中文翻译见下图）](https://google.github.io/styleguide/htmlcssguide.html#Optional_Tags)，省略所有可以省略的标签。
+	
+	![alt text](./image/image-23.png)
+	
+	于是文档变成这样:
+	```html
+	<!DOCTYPE html><!--说明这是一个 html 文件,一定要有-->
+		<!--脚本放这里-->
+	
+		<!--内容放这里-->
+	```
+	
+	### 常见 markdown 样式与 html 标签的一一对应
+	此处直接放一张表。
+	
+	| 描述	| markdown	| HTML TAG |
+	| ------------- |:-------------:|:-----:|
+	| 标题 | `# 一级标题 ## 二级标题…` | h1,h2…h6 |
+	| 粗体	| `**粗体**` | b , strong |
+	| 斜体 | `*斜体*` | em, i |
+	| 分割线 |	`---`	| hr |
+	| 无序列表 |	`* 1 或-  1或 + 1` | ul |
+	| 有序列表 |	`1.	` | ol |
+	| 引用 |	`>	` | blockquote |
+	| 超链接 |	`[url](url)` | a |
+	| 图片 |	`![img](imgUrl)` | img |
+	| 表格 |	见下	 | table |
+	| 代码段 |  \`\`\` your code\`\`\`	 | code |
+	| 段落	| 无特殊表示 | p | |
+	
+	```
+	//一个表格
+	
+	| Tables        | Are           | Wonderful!  |
+	
+	| ------------- |:-------------:| -----:|
+	
+	| cool is      | right-aligned | 0 or 1 |
+	```
+	
+	### markdown中没有的标签
+	- `<sub>`：下标文本，与之对应的还有`<sup> `：上标文本
+	-  `<details>`和`<summary>`：可折叠文本。一个如下的示例：
+	```html
+	<details open><summary>hello,</summary>world!</details>
+	<details><summary>hello,</summary>world!</details>
+	```
+	![alt text](./image/image-24.png)
+	
+	所以，html 本身并不难上手。
+	
+	### 进阶：卡片效果
+	在[我的 2022：HTML、数字生活和写作方法论](https://sspai.com/post/77319)中介绍过，	
 </template>

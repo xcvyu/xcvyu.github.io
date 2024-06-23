@@ -417,20 +417,37 @@
 	
     @font-face {
         font-family: OPPOSans;
-	    src:url("./fonts/OPPOSans.ttf");
+	    src:url("./fonts/OPPOSans-Regular.ttf");
 	    font-weight: 100;
 	} 
 	body{
 		font-family: PingFangSC-Light,OPPOSans,SourceHanSansCN-ExtraLight;
 	}*/
 </style>
+<template id="font-styler">
+	<style id="fonter">
+		#rooter {
+			font-family: {{font-family}};
+		}
+	</style>
+</template>
 <script>
-function fontment(){
-	let fonter=document.createElement("style");
-	fonter.innerHTML="\n#rooter \{\nfont-family\: OPPOSans,SourceHanSansCN-ExtraLight\;\n\}";
-	fonter.id="fonter";
+function fontswitch(i){
+	let fontfamily=[
+		{
+			"name":"OPPOSans-Regular",
+			"link":"url('./fonts/OPPOSans-Regular.ttf')"
+		},
+		{
+			"name":"PingFangSC-Light",
+			"link":"url('./fonts/PingFangSC-Light.ttf')"
+		}
+	];
+	let fonter=document.getElementById("font-styler").content.querySelector("style");
+	console.log(fonter);
+	fonter.innerHTML=fonter.innerHTML.replace("{{font-family}}",fontfamily[i].name);
 	document.head.appendChild(fonter);
-	let font = new FontFace("OPPOSans", "url('https://xcvyu.github.io/fonts/OPPOSans-Regular.ttf')", {	weight: "100",});
+	let font = new FontFace(fontfamily[i].name, fontfamily[i].link, {	weight: "100",});
 	document.fonts.add(font);
 }
 </script>
@@ -616,6 +633,16 @@ function vditorinit(){
 		base.href=src;
 		document.getElementsByTagName("style")[0].before(base);
 	}
+	function imgonerror(){
+		for(let i of document.getElementsByTagName("img")){
+			i.onerror=function(){
+				let g=document.createElement("mark");
+				g.innerHTML="image 404!";
+				this.before(g);
+				this.remove();
+			}
+		}
+	}
 	function onloaders(){
 		if(onloader)return;
 		onloader=true;
@@ -629,6 +656,7 @@ function vditorinit(){
 		// eruda.init();
 		// baser(document.location.href);
 		// MathJax.typeset();
+		imgonerror();
 	}
 	window.onload = function(){onloaders();}
 	setTimeout(()=>{onloaders()}, 2048);
@@ -672,20 +700,20 @@ function vditorinit(){
 				document.getElementById("inputer_deleter").innerHTML="delete:"+inputer_count;
 			}
 			function inputer_scriptfinder(obj){
-				for(let i=0; i< obj.children.length;i++){
-					if(obj.children[i].tagName=='SCRIPT'){
+				for(let i of obj.children){
+					if(i.tagName=='SCRIPT'){
 						let g = document.createElement("script");
-						g.text = obj.children[i].innerHTML;
-						if(obj.children[i].src!=''){
-							g.src=obj.children[i].src;
-							g.charset = obj.children[i].charset;
-							g.async=obj.children[i].async;
-							g.defer=obj.children[i].defer;
+						g.text = i.innerHTML;
+						if(i.src!=''){
+							g.src=i.src;
+							g.charset = i.charset;
+							g.async=i.async;
+							g.defer=i.defer;
 						}
-						obj.children[i].before(g);
+						i.before(g);
 						g.remove();
 					}
-					inputer_scriptfinder(obj.children[i]);
+					inputer_scriptfinder(i);
 				}
 			}
 			let inputer_visibler=0;
@@ -3671,9 +3699,9 @@ print(c)
 			<li><a href="https://www.aliyundrive.com/s/ytDnZfLQp6j">我的阿里云盘</a></li>
 			<li>也许有用
 				<ul>
-					<li>目前的服务器路径:http://0.0.0.0:8080/ = /storage/emulated/0</li>
-					<li>若更换服务器，则查找 0.0.0.0:8080 并替换为 IP:端口号形式</li>
-					<li>若没有服务器，则将所有附件拷贝到 index.html 所在路径并将 http://0.0.0.0:8080 替换掉</li>
+					<li>目前的服务器路径:http://0.0.0.0:8000/ = /storage/emulated/0</li>
+					<li>若更换服务器，则查找 0.0.0.0:8000 并替换为 IP:端口号形式</li>
+					<li>若没有服务器，则将所有附件拷贝到 index.html 所在路径并将 http://0.0.0.0:8000 替换掉</li>
 					<li>如未能找到，请前往网盘碰碰运气！</li>
 					<li>可能的多媒体引用路径（所有文件的原路径均为SPN-AL00）
 						<ul>
@@ -5893,8 +5921,7 @@ print(c)
 <li class="card">2022.11.26
 	<ul>
 		<li>早起有无数宏伟蓝图，一吵架全部泡汤，还不叫我看会手机缓解心情，哭了一上午眼睛肿痛，下午打米哈游十分失败，这~ <del>谢谢关心</del></li>
-		<li id="双链/椒盐音乐/出">感动哭了...我当然不会打开！(截图见<img
-				src="https://cdn.sspai.com/2022/12/26/b938f177aafafb0093facc1777b728be.jpg" />)<a href="#双链/椒盐音乐/进">#双链/椒盐音乐</a></li>
+		<li id="双链/椒盐音乐/出">感动哭了...我当然不会打开！<a href="#双链/椒盐音乐/进">#双链/椒盐音乐</a></li>
 	</ul>
 </li>
 <li id="一起看世界杯/2022.11.27">2022.11.27<a href="#.一起看世界杯">#一起看世界杯</a>C组第二轮 阿根廷VS墨西哥</li>
@@ -6659,7 +6686,7 @@ print(c)
 					<p>第三步的意思是，<code>ls</code> 列出文件夹内所有笔记文件，然后通过 <code>shuf</code> 来随机选出一个文件，再交由 <code>cat</code>
 						把内容展示出来。</p>
 					<p>一个最基础的随机回顾就实现了。另外，如果你跟我一样用 fish shell，最后一条命令要改为 <code>cat (ls | shuf -n 1)</code> 。如图：</p>
-					<p><img src="https://cdn.sspai.com/2022/03/11/article/ee6c404a5afe975ca01332f6ac6320ed" /></p>
+					<!-- <p><img src="https://cdn.sspai.com/2022/03/11/article/ee6c404a5afe975ca01332f6ac6320ed" /></p> -->
 					<p>还可以有几个进阶操作：</p>
 					<p>操作一：安装 <a href="https://codeberg.org/flausch/mdcat">mdcat</a> ，以支持图片和 Markdown 格式渲染，然后把命令里的
 						<code>cat</code> 改为 <code>mdcat</code> 就可以了。
@@ -6684,7 +6711,7 @@ print(c)
 						<code>my/folder/</code> 改为自己的卡片盒路径，末尾的 <code>/</code> 别忘啦。
 					</p>
 					<p>效果如图：</p>
-					<p><img src="https://cdn.sspai.com/2022/03/11/article/c62e5be1e02dccd698b8e382c24c1949" /></p>
+					<!-- <p><img src="https://cdn.sspai.com/2022/03/11/article/c62e5be1e02dccd698b8e382c24c1949" /></p> -->
 					<p>步骤二：刚刚随机翻看的笔记，已经复制了文件名，现在要在编辑器打开。代码如下，仍是以 Bash 为例：</p>
 					<pre><code language="bash">
 		function edit () {
@@ -6697,6 +6724,7 @@ print(c)
 					<p><code>editor</code> 后面的 <code>Byword</code> 是我举例用的编辑器名称，你可以随意改为自己用的。</p>
 					<p>同样，还是把代码复制到 <code>.bashrc</code> ，然后保存，重启终端，就能在随机回顾完某条笔记后，输入 <code>edit</code> 修改了。</p>
 					--摘自<a href="https://sspai.com/post/71997">4 年写了 2000+ 卡片后，我的笔记心得 - 少数派</a>
+					<p>P.S.20240623.文章已经被删很久，图片打不开了，所以我把图片注释啦</p>
 				</blockquote>
 			</details>
 		</li>
@@ -7498,9 +7526,9 @@ playMusic(musicList.reverse(),"musicplay");
 						再往前走，我看到了一些军事装备，包括飞机、坦克、装甲车等。甚至还有导弹！<br />
 						我看到右边灯火灿烂，里面好像还有一些冰雕。还有其他一些军事装备。但是靠近才知道那是冰雪大世界，是需要掏门票的。最终我没有进去。<br />
 						最终，我怀着欢乐的心情离开了。就在我离开时，我看到那些像铁疙瘩一样的蒸汽机车全都亮起了探照灯，仿佛重新焕发起了活力。<br />
-						<img src="http://0.0.0.0:8080/DCIM/Camera/IMG_20230204_182212.jpg" /><br />
+						<img src="http://0.0.0.0:8000/DCIM/Camera/IMG_20230204_182212.jpg" /><br />
 						同时，我还看到冰雪大世界璀璨而一望无际的光芒。<br />
-						<img src="http://0.0.0.0:8080/DCIM/Camera/IMG_20230204_181347.jpg" />
+						<img src="http://0.0.0.0:8000/DCIM/Camera/IMG_20230204_181347.jpg"/>
 					</p>
 				</li>
 			</ul>

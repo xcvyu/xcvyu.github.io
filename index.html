@@ -424,15 +424,9 @@
 		font-family: PingFangSC-Light,OPPOSans,SourceHanSansCN-ExtraLight;
 	}*/
 </style>
-<template id="font-styler">
-	<style id="fonter">
-		#rooter {
-			font-family: {{font-family}};
-		}
-	</style>
-</template>
 <script>
-function fontswitch(i){
+function fontswitch(fonter){
+	if(fonter==undefined||null)fonter=0;
 	let fontfamily=[
 		{
 			"name":"OPPOSans-Regular",
@@ -443,12 +437,8 @@ function fontswitch(i){
 			"link":"url('./fonts/PingFangSC-Light.ttf')"
 		}
 	];
-	let fonter=document.getElementById("font-styler").content.querySelector("style");
-	console.log(fonter);
-	fonter.innerHTML=fonter.innerHTML.replace("{{font-family}}",fontfamily[i].name);
-	document.head.appendChild(fonter);
-	let font = new FontFace(fontfamily[i].name, fontfamily[i].link, {	weight: "100",});
-	document.fonts.add(font);
+	document.getElementById("rooter").style="font-family: "+fontfamily[fonter]['name'];
+	document.fonts.add(new FontFace(fontfamily[fonter]['name'], fontfamily[fonter]['link'], { weight: "100" }));
 }
 </script>
 <!--<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/themes/vue.css"/>
@@ -648,7 +638,6 @@ function vditorinit(){
 		onloader=true;
 		// inboxchange("inboxed",document.getElementById("rooter"));
 		// sourcechange();
-		// inboxchange("sspai",document.getElementById("rooter"));
 		pbrowser();
 		// vditorinit();
 		highlightjser();
@@ -7170,11 +7159,9 @@ playMusic(musicList.reverse(),"musicplay");
 						break;
 				}
 			}
-		</script>
-		<script>
 			function playMusic(musicobjection) {
 				let musicList=musicobjection.list.reverse();
-				let wid=musicobjection.name;
+				if(musicobjection.name!=undefined)var wid=musicobjection.name;
 				let israndom = false;
 				function objecter(obj) {
 					let object = (obj.tag != undefined) ? document.createElement(obj.tag) : obj.method;
@@ -9847,265 +9834,4 @@ Q：在学习的道路上是什么一直支撑你坚持走下去(既有学文科
 置身于毕业班会的我想：和这样好的同学们和老师们走完了这三年，我接收了这么多的美好与能量，高考也没那么可怕了，它与其说是“生死攸关”的考核，不如说是为我的高中生活画上句号的成人式和典礼。
 和身边的朋友们一起为了奇奇怪怪的笑话笑到肚子疼、一起打沙包踢毽子、一起为了繁重任务而痛苦、在看到对方的脆弱时相互拥抱、在黄昏的操场聊着天跑步、在图书馆并肩作战……那种带着青春与二中独特烙印的直率、璀璨、清新气息穿过记忆的隧道扑面而来。
 现在想起来还是忍不住在心里叹：相遇，陪伴，何其有幸。
-</template>
-<template id="sspai">
-	![](./image/image/banner.png)
-
-	# 把主动权「完全」握在自己手里：HTML 个人电子工作台搭建指南
-	
-	本文参加「自力更生」征文活动。
-	
-	* * *
-	
-	看到了首页许多关于自托管服务的文章，容易发现它们常有一个共同特点：均对服务器/NAS有刚需，且配置过程冗余。同时，这些服务虽然提供了相对较高的自由度，但仍然有一定的限制，很难完全满足每个人的需求。从某种程度上讲，这些服务的主动权并不完全在你手里：倘若这些服务的开发者对其进行大幅迭代，甚至改的面目全非，你可能就要背起数据「行囊」，走向另一个服务。
-	
-	在尝试N多种工具（见[我的 2022：HTML、数字生活和写作方法论](https://sspai.com/post/77319)）后，我选择彻底从头开始，迭代一个属于自己的数据记录系统，乃至——电子工作台。从 2022 年到如今，也逾一年半载，在此把我的心得体会记录在这里。
-	
-	这么高的自由度是如何实现的？上手门槛高吗？
-	---
-	
-	这主要归功于这个工作台的实现方式。
-	
-	受 [译文 | 过去 12 年里，我的生产力工具只是一个 .txt 文件](https://sspai.com/post/71705) 的启发，我将所有笔记写在了同一个 HTML 文件里，HTML 最大的优势就是能够与 css /JavaScript 密切配合，[CSS：层叠样式表](https://developer.mozilla.org/zh-CN/docs/Web/CSS)是一种[样式表](https://developer.mozilla.org/zh-CN/docs/Web/API/StyleSheet)语言，用来描述 [HTML](https://developer.mozilla.org/zh-CN/docs/Web/HTML) 或 [XML](https://developer.mozilla.org/zh-CN/docs/Web/XML/XML_introduction)（包括如 [SVG](https://developer.mozilla.org/zh-CN/docs/Web/SVG)、[MathML](https://developer.mozilla.org/zh-CN/docs/Web/MathML) 或 [XHTML](https://developer.mozilla.org/zh-CN/docs/Glossary/XHTML) 之类的 XML 分支语言）文档的呈现方式。它提供了强大的表现力从而允许我完全自定义我的文档的样式。而 [JavaScript](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript) 则是一种强大的编程语言，允许我定义网站的行为。这也是文档进化为「电子工作台」的基础。
-	
-	至于上手门槛...这取决于你的需求。如果你仅仅是想要获取能够安心记录的、颜值相对高的、可自定义性强的一个记录处，那么它很好入手；如果你想像我一样将它打造成一个独属于自己的「个人电子工作台」，那么你可能需要颇费一番周折（我本人用了整整两年半），并学习一些 CSS 和 JavaScript 的相关知识才能把它配置的称心如意。不过，这一套组合拳其实并不难学，这主要取决于你自定义的愿望是否足够强烈；同时我也会提供一些功能模块供大家使用。
-	
-	如果你感兴趣，就接着往下看。
-	
-	第零步：挑一个顺手的编辑器
-	---
-	工欲善其事，必先利其器。我们要撰写的 HTML 文档属于代码的一种，一个好用的编辑器能极大提高美观度与效率。这里推荐 Visual Studio Code ，它最大的特点是简单易上手，便于新手使用。在桌面上新建一个名为"index.html"的文件，开始我们的旅程吧！
-	
-	第一步：先从 markdown 开始
-	---
-	
-	在我派对 markdown 有诸多介绍，你可以参考[这篇文章](https://sspai.com/post/25137)快速入门。以下主要介绍 markdown 如何便捷的插入 HTML 文档块中。
-	
-	```html
-	<!DOCTYPE html>
-	<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-	<div id="inbox">
-	## 这里是你的 markdown 内容。
-	***hello,world!***
-	- 写少数派投稿
-	- 看世界杯预选赛
-	</div>
-	<script>
-		document.getElementById("inbox").innerHTML=marked.parse(document.getElementById("inbox").innerHTML);
-	</script>
-	```
-	这样，就实现了一份markdown文档的渲染，其实十分容易。
-	
-	### 看看效果
-	
-	渲染 HTML 文档用的是浏览器，直接双击写好的文件，然后就可以看到效果。
-	
-	![alt text](./image/image-16.png)
-	
-	不过确实页面有一点素，接下来轮到 css 登场！
-	
-	### 美化页面
-	
-	将以下内容粘贴到新建好的文档的最上方。
-	
-	```html
-	<style type="text/css">
-		h2 {
-			border-bottom: 2px solid #b0b7bf;
-			width: 100%;
-			padding-bottom: 2px;
-			color: #2e80f2;
-		}
-	
-		h3 {
-			color: #2e80f2;
-		}
-	
-		h4 {
-			color: SlateBlue;
-		}
-	
-		b,
-		strong,
-		i,
-		em {
-			color: #ff82b2;
-		}
-	
-		a:link[href^="#"],
-		a:visited[href^="#"] {
-			padding: 1px 10px;
-			text-decoration: none;
-			color: #557ded;
-			border-radius: 4px;
-			background-color: #eef3fe;
-		}
-	
-		a:hover[href^="#"] {
-			padding: 1px 10px;
-			text-decoration: none;
-			color: #e1eafa;
-			border-radius: 4px;
-			background-color: #557ded;
-		}
-	
-		a {
-			color: #50aaef;
-			text-decoration: none;
-			background-color: #fff7c3;
-		}
-	
-		mark {
-			background-color: #fff7c3;
-			border-radius: 5px;
-		}
-	
-		ul {
-			list-style-type: disc;
-		}
-	
-		ul li::marker,
-		ol li::marker {
-			color: #b0b7bf;
-		}
-	</style>
-	```
-	
-	再观察以下效果：
-	
-	![这下好看多了！](./image/image-17.png)
-	
-	可以看到好看了许多。这其实就是 css 在调整页面的样式。那如果你想将二级标题改为红色呢？只需删掉h2及其后面{}内包裹的内容，并添加以下内容：
-	
-	```css
-	h2 {
-			border-bottom: 2px solid #b0b7bf;
-			width: 100%;
-			padding-bottom: 2px;
-			color: red;
-		}
-	```
-	
-	![alt text](./image/image-18.png)
-	
-	可以看到标题的确变为了红色。
-	
-	本段的最后再给大家推荐几个样式主题，注意要使用的话记得先把上面我的自定义样式删除，以免导致渲染问题。
-	
-	```html
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify@4/themes/vue.css"/>
-	```
-	![alt text](./image/image-20.png)
-	
-	```html
-	<link href="https://cubox.pro/article/css/reader.css" rel="stylesheet" />
-	```
-	
-	![alt text](./image/image-21.png)
-	
-	参考文章：
-	- [如何使用 CSS 改出一个令我满意的 Obsidian 外观？](https://sspai.com/post/75363)，通俗解释了 css 对文章样式的影响；
-	- [如何自定义你的 typora 主题，以少数派为例](https://sspai.com/post/59450)，此文针对 Typora ，但其中对获取/修改 css 的介绍对本文也有用。
-	
-	### 特殊需求：代码高亮/公式
-	
-	一般的 markdown 编辑器都会自带代码块高亮和 LaTeX 公式插入，但 HTML 并没有自带支持。好在已经有热心的开发者为我们做好适配，我们只需要在`<div id="inbox">`前插入以下代码：
-	
-	```html
-	<!-- LaTeX嵌入网页 -->
-	<script id="MathJax-script" async src="https://cdn.bootcdn.net/ajax/libs/mathjax/4.0.0-alpha.1/es5/tex-svg.js"></script>
-	<script>
-	MathJax = {
-		tex: {
-			//inlineMath: [['$', '$'], ['\\(', '\\)']]
-			inlineMath: [['$', '$'], ['\\$$', '\\$$']]
-		},
-		svg: {
-			fontCache: 'global'
-		}
-	};
-	</script>
-	<!--highlight.js，负责代码高亮-->
-	<link href="https://cdn.bootcdn.net/ajax/libs/highlight.js/11.9.0/styles/github-dark-dimmed.min.css#Github" rel="stylesheet">
-	<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
-	<script>
-		window.onload=hljs.highlightAll;
-	</script>
-	```
-	再看看效果？
-	
-	![alt text](./image/image-19.png)
-	
-	第二步：让文档呈现更加丰富的内容
-	---
-	众所周知，markdown 其实是 html 的一个子集，那么 html 本身又有什么功能呢？让我们从几个「标签」聊起。
-	
-	### 一个 html 文档的整体框架
-	
-	一般来说，一个 html 文档由以下几部分构成：
-	
-	```html
-	<!DOCTYPE html><!--说明这是一个 html 文件,一定要有-->
-	<html>
-	<head>
-		<!--head标签中的内容通常不会显示,用来放一些脚本,比如上文的LaTeX,marked和hljs(都是用来配置 markdown 的工具,在上文中出现过)应该写在这里-->
-	</head>
-	<body>
-		<!--body是文档的主体,内容应该写在这里-->
-	</body>
-	</html>
-	```
-	但是出于减少文件大小和简洁的目的，我一般遵循[Google Style Guide for HTML（中文翻译见下图）](https://google.github.io/styleguide/htmlcssguide.html#Optional_Tags)，省略所有可以省略的标签。
-	
-	![alt text](./image/image-23.png)
-	
-	于是文档变成这样:
-	```html
-	<!DOCTYPE html><!--说明这是一个 html 文件,一定要有-->
-		<!--脚本放这里-->
-	
-		<!--内容放这里-->
-	```
-	
-	### 常见 markdown 样式与 html 标签的一一对应
-	此处直接放一张表。
-	
-	| 描述	| markdown	| HTML TAG |
-	| ------------- |:-------------:|:-----:|
-	| 标题 | `# 一级标题 ## 二级标题…` | h1,h2…h6 |
-	| 粗体	| `**粗体**` | b , strong |
-	| 斜体 | `*斜体*` | em, i |
-	| 分割线 |	`---`	| hr |
-	| 无序列表 |	`* 1 或-  1或 + 1` | ul |
-	| 有序列表 |	`1.	` | ol |
-	| 引用 |	`>	` | blockquote |
-	| 超链接 |	`[url](url)` | a |
-	| 图片 |	`![img](imgUrl)` | img |
-	| 表格 |	见下	 | table |
-	| 代码段 |  \`\`\` your code\`\`\`	 | code |
-	| 段落	| 无特殊表示 | p | |
-	
-	```
-	//一个表格
-	
-	| Tables        | Are           | Wonderful!  |
-	
-	| ------------- |:-------------:| -----:|
-	
-	| cool is      | right-aligned | 0 or 1 |
-	```
-	
-	### markdown中没有的标签
-	- `<sub>`：下标文本，与之对应的还有`<sup> `：上标文本
-	-  `<details>`和`<summary>`：可折叠文本。一个如下的示例：
-	```html
-	<details open><summary>hello,</summary>world!</details>
-	<details><summary>hello,</summary>world!</details>
-	```
-	![alt text](./image/image-24.png)
-	
-	所以，html 本身并不难上手。
-	
-	### 进阶：卡片效果
-	在[我的 2022：HTML、数字生活和写作方法论](https://sspai.com/post/77319)中介绍过，	
 </template>

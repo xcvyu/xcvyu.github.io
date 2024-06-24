@@ -107,7 +107,7 @@
 		color: #50aaef;
 		text-decoration: none;
 		background-color: #fff7c3;
-		border-radius: 5px;
+		border-radius: 7px;
 	}
 
 	mark {
@@ -662,29 +662,28 @@ function vditorinit(){
 				}
 				inputer_reader.readAsText(document.getElementById("filePicker_inputer").files[0]);
 			}
-			function inputer_download(){ 
+			function inputer_download(name){ 
 				let inputer_blob = new Blob([document.getElementById("inputer_content").value]);
 				let inputer_anchor = document.createElement("a"); 
 				inputer_anchor.href = window.URL.createObjectURL(inputer_blob);
-				inputer_anchor.download = document.getElementById("inputer_name").value;
+				inputer_anchor.download = name;
 				inputer_anchor.target ="_blank";
 				inputer_anchor.style.display = "none"; // just to be safe! 
 				document.body.appendChild(inputer_anchor); 
 				inputer_anchor.click(); 
 				document.body.removeChild(inputer_anchor); 
 			}
-			function inputer_runCode(obj){
+			function inputer_newopen(obj){
 				let inputer_window=window.open();
 				inputer_window.opener = null;
 				inputer_window.document.write(obj);
 				inputer_window.document.close();
 			}
-			function inputer_insert(obj,identify){
+			function inputer_insert(obj){
 				let inputer_inserter=document.createElement("div");
-				inputer_inserter.id=identify;
 				inputer_inserter.innerHTML = obj;
 				document.getElementById('inputer').appendChild(inputer_inserter);
-				inputer_scriptfinder(document.getElementById(identify));
+				inputer_scriptfinder(inputer_inserter);
 				inputer_count+=1;
 				document.getElementById("inputer_deleter").innerHTML="delete:"+inputer_count;
 			}
@@ -712,18 +711,27 @@ function vditorinit(){
 				inputer_visibler=!inputer_visibler;
 			}
 			function inputer_delete(){
-				document.querySelector('#inputer :last-child').remove();
+				// document.querySelector('#inputer :last-child').remove();
+				document.getElementById("inputer").lastChild.remove();
 				inputer_count-=1;
 				document.getElementById("inputer_deleter").innerHTML="delete:"+inputer_count;
+			}
+			function inputer_enjoy(shell){
+				if(shell=="new()"||shell=="new window open")inputer_newopen(document.getElementById('inputer_content').value);
+				else if(shell=="del()"||shell=="delete()")inputer_delete();
+				else eval(shell);
 			}
 		</script>
 		<input type="file" name="file" id="filePicker_inputer" onchange="inputer_show()"  /><br />
 		<textarea id="inputer_content" cols="40%" rows="15"></textarea><br />
-		<textarea id="inputer_name" cols="40%" rows="1">index.html</textarea><br />
-		<button type="button" onclick="inputer_download()">download</button>
-		<button type="button" onclick="inputer_runCode(this.offsetParent.getElementsByTagName('textarea')[0].value)">new window open</button>
-		<button type="button" onclick="inputer_insert(document.getElementById('inputer_content').value,document.getElementById('inputer_name').value)">insert!</button>
-		<button type="button" onclick="inputer_delete()" id="inputer_deleter">delete：0</button>
+		<textarea id="inputer_name" cols="40%" rows="1"></textarea><br />
+		<button type="button" onclick="inputer_enjoy(document.getElementById('inputer_name').value)">enjoy!</button>
+		<p id="inputer_deleter">delete：0	</p>
+		<ul>
+			<li>inputer_insert(document.getElementById('inputer_content').value)</li>
+			<li>inputer_download("index.html")</li>
+			<li>console.log(this.offsetParent.getElementsByTagName('textarea')[0].value)</li>
+		</ul>
 	</li>
 	<li class="card">
 		<script>

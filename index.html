@@ -717,21 +717,32 @@ function vditorinit(){
 				document.getElementById("inputer_deleter").innerHTML="delete:"+inputer_count;
 			}
 			function inputer_enjoy(shell){
-				if(shell=="new()"||shell=="new window open")inputer_newopen(document.getElementById('inputer_content').value);
-				else if(shell=="del()"||shell=="delete()")inputer_delete();
-				else eval(shell);
+				let tool={
+					insert:function(){
+						inputer_insert(document.getElementById('inputer_content').value)
+					},
+					download:function(name){
+						inputer_download(name)
+					},
+					new:function(){
+						inputer_newopen(document.getElementById('inputer_content').value);
+					},
+					delete:function(){
+						inputer_delete();
+					},
+					del:function(){
+						inputer_delete();
+					}
+				}
+				eval(shell);
 			}
+			// console.log(this.offsetParent.getElementsByTagName('textarea')[0].value)
 		</script>
 		<input type="file" name="file" id="filePicker_inputer" onchange="inputer_show()"  /><br />
 		<textarea id="inputer_content" cols="40%" rows="15"></textarea><br />
-		<textarea id="inputer_name" cols="40%" rows="1"></textarea><br />
+		<textarea id="inputer_name" cols="40%" rows="1">tool.</textarea><br />
 		<button type="button" onclick="inputer_enjoy(document.getElementById('inputer_name').value)">enjoy!</button>
 		<p id="inputer_deleter">delete：0	</p>
-		<ul>
-			<li>inputer_insert(document.getElementById('inputer_content').value)</li>
-			<li>inputer_download("index.html")</li>
-			<li>console.log(this.offsetParent.getElementsByTagName('textarea')[0].value)</li>
-		</ul>
 	</li>
 	<li class="card">
 		<script>

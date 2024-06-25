@@ -655,7 +655,7 @@ function vditorinit(){
 	<li class="card" id="inputer">
 		<script>
 			let inputer_count=0;
-			function inputer_show(){
+			function inputer_upload(){
 				let inputer_reader = new FileReader();
 				inputer_reader.onload = function(){
 					document.getElementById("inputer_content").value=this.result;
@@ -685,7 +685,6 @@ function vditorinit(){
 				document.getElementById('inputer').appendChild(inputer_inserter);
 				inputer_scriptfinder(inputer_inserter);
 				inputer_count+=1;
-				document.getElementById("inputer_deleter").innerHTML="delete:"+inputer_count;
 			}
 			function inputer_scriptfinder(obj){
 				for(let i of obj.children){
@@ -714,35 +713,24 @@ function vditorinit(){
 				// document.querySelector('#inputer :last-child').remove();
 				document.getElementById("inputer").lastChild.remove();
 				inputer_count-=1;
-				document.getElementById("inputer_deleter").innerHTML="delete:"+inputer_count;
 			}
-			function inputer_enjoy(shell){
-				let tool={
-					insert:function(){
-						inputer_insert(document.getElementById('inputer_content').value)
-					},
-					download:function(name){
-						inputer_download(name)
-					},
-					new:function(){
-						inputer_newopen(document.getElementById('inputer_content').value);
-					},
-					delete:function(){
-						inputer_delete();
-					},
-					del:function(){
-						inputer_delete();
-					}
+			function inputer_enjoy(){
+				let u={
+					insert:function(){inputer_insert(document.getElementById('inputer_content').value)},
+					download:function(name){inputer_download(name)},
+					new:function(){inputer_newopen(document.getElementById('inputer_content').value)},
+					delete:()=>{inputer_delete()},
+					del:()=>{inputer_delete()},
+					isdel:()=>{alert("delete:"+inputer_count)}
 				}
-				eval(shell);
+				eval(document.getElementById('inputer_shell').value);
 			}
 			// console.log(this.offsetParent.getElementsByTagName('textarea')[0].value)
 		</script>
-		<input type="file" name="file" id="filePicker_inputer" onchange="inputer_show()"  /><br />
-		<textarea id="inputer_content" cols="40%" rows="15"></textarea><br />
-		<textarea id="inputer_name" cols="40%" rows="1">tool.</textarea><br />
-		<button type="button" onclick="inputer_enjoy(document.getElementById('inputer_name').value)">enjoy!</button>
-		<p id="inputer_deleter">delete：0	</p>
+		<input type="file" name="file" id="filePicker_inputer" onchange="inputer_upload()"  /><br />
+		<textarea id="inputer_content" cols="40%" rows="20"></textarea><br />
+		<textarea id="inputer_shell" cols="40%" rows="4">u.</textarea><br />
+		<button type="button" onclick="inputer_enjoy()">enjoy!</button>
 	</li>
 	<li class="card">
 		<script>

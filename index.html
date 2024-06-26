@@ -680,7 +680,7 @@ function vditorinit(){
 					let inputerInserter=document.createElement("div");
 					inputerInserter.innerHTML = obj;
 					document.getElementById('inputer').appendChild(inputerInserter);
-					inputer.scriptfinder(inputerInserter);
+					this.scriptfinder(inputerInserter);
 					inputerDeleter+=1;
 				},
 				scriptfinder:function (obj){
@@ -697,7 +697,7 @@ function vditorinit(){
 							i.before(g);
 							g.remove();
 						}
-						inputer.scriptfinder(i);
+						this.scriptfinder(i);
 					}
 				},
 				visible:()=>{
@@ -730,11 +730,10 @@ function vditorinit(){
 			}
 			function inputer_enjoy(){
 				let u=deepClone(inputer);
-				console.log(u);
-				u["insert"]=()=>{inputer.insert(document.getElementById('inputerContent').value)};
-				u["download"]=function(name){inputer.download(name)};
-				u["new"]=()=>{inputer.newopen(document.getElementById('inputerContent').value)};
-				u["del"]=()=>{inputer.delete()};
+				u.i=()=>{inputer.insert(document.getElementById('inputerContent').value)};
+				u.s=u.download;
+				u.new=()=>{inputer.newopen(document.getElementById('inputerContent').value)};
+				u.del=u.delete;
 				eval(document.getElementById('inputerShell').value);
 			}
 			// console.log(this.offsetParent.getElementsByTagName('textarea')[0].value)

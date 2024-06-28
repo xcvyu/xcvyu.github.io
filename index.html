@@ -799,9 +799,7 @@ function vditorinit(){
 			<li id="#website source browse"><a href="#website source browse">website source browse</a></li>
 			<li id="#musicplayer"><a href="#musicplayer">musicplayer</a></li>
 			<li id="#read board"><a href="#read board">read board</a></li>
-			<li id="#第一周课程表"><a href="#第一周课程表">第一周课程表</a></li>
 			<li><a href="#青科赛">青科赛</a></li>
-			<li><a href="#三体分享会">三体分享会</a></li>
 			<li id=".一起看世界杯"><div class="tag">#一起看世界杯</div>
 				<ul>
 					<li><a href="#一起看世界杯/2022.11.27">2022.11.27</a></li>
@@ -6976,26 +6974,25 @@ $("html").html();
 				</li>
 			</ul>
 		</li>
-		<li><details ontoggle="sourcetoggle()"><summary>finally result</summary>
+		<li><details ontoggle="sourcetoggle(this)"><summary>finally result</summary>
 				<script>
 					$(document).ready(function () {
 						$.get(window.location.href, function (source) {
 							sourcer=source;
 						});
 					});
-					/* let r = new Promise((resolve) =>{
+					/* new Promise((resolve) =>{
 					　　let timer = setInterval(() =>{
 						　　if(document.getElementById("SourceCode").parentNode.parentNode.open){
 						　　　　clearInterval(timer);
 						　　　　resolve(true);
 						　　}
 					　　},100)
-					})	
-					r.then((res) =>{
+					}).then(() =>{
 						document.getElementById("SourceCode").innerText= sourcer;
 					}) */
-					function sourcetoggle() {
-						if (document.getElementById("SourceCode").parentNode.parentNode.open) {
+					function sourcetoggle(toggler) {
+						if (toggler.open) {
 							document.getElementById("SourceCode").innerText= sourcer;
 					  } else {
 							document.getElementById("SourceCode").innerText= "";
@@ -7303,7 +7300,7 @@ playMusic(musicList.reverse(),"musicplay");
 					return playwer(src);
 				}
 				function music_random() {
-					return playwer(musicList[randomNum(1, musicList.length)]);
+					return playwer(musicList[randomNum(0, musicList.length-1)]);
 				}
 				function music_src() {
 					return (israndom) ? music_random() : music_next();
@@ -7342,11 +7339,12 @@ playMusic(musicList.reverse(),"musicplay");
 		<textarea id="song_sheet" rows="15" cols="40%">
 {
 	"list":[
-		"http://music.163.com/song/media/outer/url?id=1950343972#可能",
-		"http://music.163.com/song/media/outer/url?id=2160850755#未行之路",
-		"http://music.163.com/song/media/outer/url?id=2155423468#希望有羽毛和翅膀",
-		"http://music.163.com/song/media/outer/url?id=2155422573#使一颗心免于哀伤",
-		"http://music.163.com/song/media/outer/url?id=2155423467#在银河中孤独摇摆",
+		"http://music.163.com/song/media/outer/url?id=2144805050.mp3#人生是旷野",
+		"http://music.163.com/song/media/outer/url?id=1950343972.mp3#可能",
+		"http://music.163.com/song/media/outer/url?id=2160850755.mp3#未行之路",
+		"http://music.163.com/song/media/outer/url?id=2155423468.mp3#希望有羽毛和翅膀",
+		"http://music.163.com/song/media/outer/url?id=2155422573.mp3#使一颗心免于哀伤",
+		"http://music.163.com/song/media/outer/url?id=2155423467.mp3#在银河中孤独摇摆",
 		"http://music.163.com/song/media/outer/url?id=2112196350.mp3#浮光",
 		"http://music.163.com/song/media/outer/url?id=1959528822.mp3#紫荆花盛开",
 		"/music/终焉×end of all[原神 2024 新春会].mp3",
@@ -9188,7 +9186,7 @@ playMusic(musicList.reverse(),"musicplay");
 	</li>
 	</ul>
 </li>
-<li class="card" id="三体分享会">2024.05.03
+<li class="card">2024.05.03
 	<ul>
 	<li>《三体》分享会
 		<ul>
@@ -9293,7 +9291,10 @@ playMusic(musicList.reverse(),"musicplay");
 【第一阶段结束进入2分钟切换阶段】
 
 - 切换阶段：安装摄像头，（去掉遥控器接收器），去掉车头前方的两个叉叉方便车走
-- 第二阶段：用蓝色小球引导小车识别5-1和5-2区域的两张卡片之后返回finishi 区域完成比赛![](image-14.png)</vue-markdown>
+- 第二阶段：用蓝色小球引导小车识别5-1和5-2区域的两张卡片之后返回finishi 区域完成比赛![](image-14.png)
+---
+[P.S.2024.06.28 入围国赛！嘿嘿嘿](http://qgqks.cngef.org.cn/dasai/item-2012.html)
+</vue-markdown>
 		<script>
 			Vue.use(VueMarkdown);
 			new Vue({
@@ -9635,7 +9636,7 @@ playMusic(musicList.reverse(),"musicplay");
 </li>
 <li class="card">2024.06.14 选课啦！
 	<ul>
-		<li id="第一周课程表"><a href="##第一周课程表">第一周课程表</a>
+		<li>第一周课程表
 		<table border="1">
 			<caption><h2>第一周课程表</h2></caption>
 			<tr>

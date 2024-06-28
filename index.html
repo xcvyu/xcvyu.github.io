@@ -419,10 +419,10 @@
 		font-weight: 100;
 	}
 	
-    @font-face {
-        font-family: OPPOSans;
-	    src:url("./fonts/OPPOSans-Regular.ttf");
-	    font-weight: 100;
+	@font-face {
+		font-family: OPPOSans;
+		src:url("./fonts/OPPOSans-Regular.ttf");
+		font-weight: 100;
 	} 
 	body{
 		font-family: PingFangSC-Light,OPPOSans,SourceHanSansCN-ExtraLight;
@@ -6976,16 +6976,16 @@ $("html").html();
 				</li>
 			</ul>
 		</li>
-		<li><details><summary>finally result</summary>
+		<li><details ontoggle="sourcetoggle()"><summary>finally result</summary>
 				<script>
 					$(document).ready(function () {
 						$.get(window.location.href, function (source) {
 							sourcer=source;
 						});
 					});
-					let r = new Promise((resolve) =>{
+					/* let r = new Promise((resolve) =>{
 					　　let timer = setInterval(() =>{
-						　　if(document.getElementById("SourceCode").parentNode.parentNode.open==true){
+						　　if(document.getElementById("SourceCode").parentNode.parentNode.open){
 						　　　　clearInterval(timer);
 						　　　　resolve(true);
 						　　}
@@ -6993,7 +6993,14 @@ $("html").html();
 					})	
 					r.then((res) =>{
 						document.getElementById("SourceCode").innerText= sourcer;
-					})
+					}) */
+					function sourcetoggle() {
+						if (document.getElementById("SourceCode").parentNode.parentNode.open) {
+							document.getElementById("SourceCode").innerText= sourcer;
+					  } else {
+							document.getElementById("SourceCode").innerText= "";
+					  }
+					}
 					function source_download(obj){ 
 						let source_blob = new Blob([obj]);
 						let source_anchor = document.createElement("a");

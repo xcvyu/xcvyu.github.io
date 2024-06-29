@@ -31,6 +31,10 @@ outsider
 滚灯之所以能保持平衡，是因为其独特的负反馈系统；它之所以不完全稳定，是因为负反馈系统不精确，存在过反馈/反馈不足的现象。
 
 物理学越深入，物理规律愈趋向于统一，而数学却愈加复杂，这说明是最深层规律在向浅层规律推导，推导过程越长，逻辑力消耗越大。
+
+indigenous adj.本地的,土生土长的
+quest n.(长期的)寻求,探索,追求
+previous 以前的,先前的
 </div>-->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
@@ -598,6 +602,10 @@ function vditorinit(){
 <script src="https://cdn.bootcdn.net/ajax/libs/vConsole/3.15.1/vconsole.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/eruda"></script>
 <!--window.onload-->
+<template id="pbrowser_template">
+	<a href="#未完成/研究/persistent" id="pbrowser/{{i}}">persistent(浏览器)</a>
+	<li><a href="#pbrowser/{{i}}">#pbrowser{{i}}</a></li>
+</template>
 <script>
 	let onloader=false;
 	function inboxchange(identify,where){
@@ -620,23 +628,25 @@ function vditorinit(){
 			where.appendChild(inboxNode);
 		}
 	}
-	function sourcechange(){
-		const websiteSourceNode = document.createElement("li");
-		// const websiteSourceNode = document.getElementById("sourcebrowsefir").assign();
-		websiteSourceNode.className="card";
-		websiteSourceNode.innerHTML=document.getElementById("sourcebrowsefir").innerHTML;
-		document.getElementById("rooter").appendChild(websiteSourceNode);
-		document.getElementById("sourcebrowsefir").remove();
+	function wherechange(object , destination , method){
+		const Node = object.cloneNode(true);
+		if(method=="inner")destination.appendChild(Node);
+		else if(method=="upper")destination.before(Node);
+		else if(method=="lower")destination.after(Node);
+		else console.error("insert method is wrong!");
+		object.remove();
 	}
 	function pbrowser(){
-		for(let i=1;i<5;i++){
-			document.getElementsByTagName('html')[0].innerHTML = document.getElementsByTagName('html')[0].innerHTML.replaceAll("p(浏览器)"+i,"\<a href\=\"#未完成/研究/persistent\" id\=\"pbrowser/"+i+"\"\>persistent\(浏览器\)\<\/a\>");
-			let pfbrowser=document.createElement('li');
-			let pfbrowsertest=document.createElement('a');
-			pfbrowsertest.href="#pbrowser/"+i;
-			pfbrowsertest.innerHTML="#pbrowser"+i;
-			document.getElementById('p.browser').appendChild(pfbrowser);
-			pfbrowser.appendChild(pfbrowsertest);
+		for(let i of document.getElementsByTagName("persistent")){
+			let pfbrowser=document.importNode(document.getElementById("pbrowser_template").content.querySelector("a"), true);
+			pfbrowser.id=pfbrowser.id.replace(/{{i}}/g, i.innerHTML);
+			i.before(pfbrowser);
+			let pfbrowser2=document.importNode(document.getElementById("pbrowser_template").content.querySelector("li"), true);
+			pfbrowser2.innerHTML=pfbrowser2.innerHTML.replace(/{{i}}/g, i.innerHTML);
+			document.getElementById('p.browser').appendChild(pfbrowser2);
+		}
+		while(document.getElementsByTagName("persistent").length>0){
+			document.getElementsByTagName("persistent")[0].remove();
 		}
 	}
 	function baser(src){
@@ -658,7 +668,8 @@ function vditorinit(){
 		if(onloader)return;
 		onloader=true;
 		// inboxchange("inboxed",document.getElementById("rooter"));
-		// sourcechange();
+		wherechange(document.getElementById("sourcebrowsefir"),document.getElementById("rooter"),"inner");
+		wherechange(document.getElementById("documenter"),document.getElementById("sourcebrowsefir"),"upper");
 		pbrowser();
 		// vditorinit();
 		highlightjser();
@@ -966,7 +977,7 @@ function vditorinit(){
 							<li><a href="https://blog.csdn.net/Dai_sir_man/article/details/129219890">零成本在家搭建自己的私人服务器解决方案_CSDN博客</a></li>
 						</ul>
 					</li>
-					<li><a href="https://zhuanlan.zhihu.com/p/26427701">开个脑洞：用浏览器做服务器</a>p(浏览器)1</li>
+					<li><a href="https://zhuanlan.zhihu.com/p/26427701">开个脑洞：用浏览器做服务器</a><persistent>1</persistent></li>
 					<li><a href="https://juejin.cn/post/7032798274880798751">还能把浏览器当作 Web 服务器？骚操作，学废了~ - 掘金</a></li>
 					<li>关于 web 服务器软件
 						<ul>
@@ -7511,7 +7522,7 @@ playMusic(musicList.reverse(),"musicplay");
 		</li>
 		<li>
 			<details>
-				<summary>HTTP服务器 --百度百科</summary>p(浏览器)2
+				<summary>HTTP服务器 --百度百科</summary><persistent>2</persistent>
 				<ul>
 					<li>一般指网站服务器，是指驻留于因特网上某种类型计算机的程序，可以处理浏览器等Web客户端的请求并返回相应响应，也可以放置网站文件，让全世界浏览；可以放置数据文件，让全世界下载。最主流的三个Web服务器是Apache、
 						Nginx
@@ -7546,8 +7557,7 @@ playMusic(musicList.reverse(),"musicplay");
 		<li>关于服务器和 nodejs 的相关研究
 			<ul>
 				<li><a href="https://blog.csdn.net/weixin_27298377/article/details/118301403">npm的插件如何直接在html中使用,webpack中html-webpack-plugin插件的使用（生成多个html页面，引入不一样的js文件）..._Florelle的博客-CSDN博客</a></li>
-				<li><a href="https://mp.weixin.qq.com/s?__biz=MzI2MzEwNTY3OQ==&mid=2648985262&idx=1&sn=2362bcc87a1027e80a49a6d6e3fc2fe4">一日一技：如何在浏览器中使用npm包？</a>p(浏览器)3
-				</li>
+				<li><a href="https://mp.weixin.qq.com/s/7UvyKYxvSOSg6RsYZdgICw">一日一技：如何在浏览器中使用npm包？</a><persistent>3</persistent></li>
 			</ul>
 		</li>
 	</ul>
@@ -8118,7 +8128,7 @@ playMusic(musicList.reverse(),"musicplay");
 				<li><a href="https://m.baidu.com/s?&word=微前端">微前端 - 百度</a></li>
 				<li><a href="https://baike.baidu.com/item/https://baike.baidu.com/item/组件对象模型">组件对象模型_百度百科</a></li>
 				<li><a href="https://baike.baidu.com/item/运行时">运行时_百度百科</a></li>
-				<li><a href="https://juejin.cn/post/7032798274880798751">还能把浏览器当作 Web 服务器？骚操作，学废了~</a>p(浏览器)4</li>
+				<li><a href="https://juejin.cn/post/7032798274880798751">还能把浏览器当作 Web 服务器？骚操作，学废了~</a><persistent>4</persistent></li>
 				<li><a href="https://juejin.cn/post/6844904083715784717">浏览器环境下的文件读写</a></li>
 				<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/File">File - Web API 接口参考 | MDN</a></li>
 			</ul>
@@ -9224,6 +9234,11 @@ playMusic(musicList.reverse(),"musicplay");
 		</li>
 	</ul>
 </li>
+<li>2024.5.8 
+	<ul>
+	<li>一直认为,世界的本质就是一组规律.这一组规律描绘了这世界的本质图景,并决定宇宙的未来,而人类所要做的,就是尽可能地接近这一组规律.有人把这组规律看作哲学,于是他们发展出经验主义/理性主义/唯物论/唯心论/可知论/不可知论等等;有人把这组规律看作物理学,于是出现了光学、热力学 分析力学,电磁学,相对论,量子力学等等;当然绝大多数人并不关心整个世界,而着眼这组规律的一个切片(或者说,一种推导得到的结论?),也就是我们生存其中的社会,于是出现了社会学,心理学,文学,经济学,历史……应当说,一切人类知识,都会是这组规律的一个推导结论或是一个切面。但规律本身究竟是什么样呢?<br />可以换种想法,将规律定义为某种更深层规律的有机组合.一般认为地球围绕太阳转是一个规律,但它不过是将万有定律应用到这一种日地位置的关系上的一个次级规律罢了.但组合成有无穷多种,若将地球移到距离太阳足够远的地方,地球围绕太阳转这一规律就会失效。所以,或许现有的物理学定律也不过是某种定律的组合,或许换一种时空条件,现有物理学定律就不再成立.<br />但这更深层的规律是什么呢?<br />nobody knows.<br />但终会找到,对吧?</li>
+	</ul>
+</li>
 <li class="card" id="未完成/研究/2024.5.11">宇宙学运动方程<a href="#.未完成/研究">#未完成/研究</a>
 	<ul>
 	<li><a href="https://mp.weixin.qq.com/s/e5O9dtXqqr7lDBkXf_xq0A">100年后，物理学家终于找到宇宙学运动方程的解析解</a></li>
@@ -9360,7 +9375,7 @@ playMusic(musicList.reverse(),"musicplay");
 	</ul>
 </li>
 <li class="card">feeder：时隔一年多的长期项目取得阶段性进展
-	<template>
+	<template id="feed_template">
 	<div class="feeder-style">
 		<a href="{{link}}"><h3>{{title}}</h3></a>
 		<p>{{pubdate}}</p>
@@ -9573,7 +9588,7 @@ playMusic(musicList.reverse(),"musicplay");
 			readals.appendChild(readals_channel_title);
 			document.getElementById("rss").appendChild(readals);
 			for (let i of items) {
-				item=document.getElementsByTagName("template")[0].content.querySelector("div");
+				item=document.getElementById("feed_template").content.querySelector("div");
 				readal=document.importNode(item, true);
 				let objecter={
 					"{{link}}" : i.getElementsByTagName("link")[0].innerHTML ,
@@ -9636,16 +9651,16 @@ playMusic(musicList.reverse(),"musicplay");
 			</svg></p>
 	<div id="rss"></div>
 </li>
-<li class="card">
+<li class="card"  id="documenter">
 	<details>
-		<summary>document browse<button id="documenter" onclick="documentCode()">refresh!</button></summary>
+		<summary>document browse<button onclick="documentCode()">refresh!</button></summary>
 		<template id="documenter_template"><pre><code id="documentCode" language="html" class="language-html"></code></pre></template>
 		<script>
 			function documentCode(){
 				if(document.getElementById('documentCode')!=undefined)document.getElementById('documentCode').remove();
-				let documentary=document.importNode(document.getElementById('documenter_template').content.querySelector("pre"), true);
+				let documentary=document.importNode(document.getElementById("documenter_template").content.querySelector("pre"), true);
 				documentary.querySelector("code").innerHTML=HtmlUtil.html2Escape(document.documentElement.outerHTML);
-				document.getElementById('documenter_template').parentNode.appendChild(documentary);
+				document.getElementById("documenter_template").parentNode.appendChild(documentary);
 				hljs.highlightElement(document.getElementById('documentCode'));
 			}
 		</script>

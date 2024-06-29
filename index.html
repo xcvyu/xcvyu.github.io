@@ -608,7 +608,7 @@ function vditorinit(){
 </template>
 <script>
 	let onloader=false;
-	function inboxchange(identify,where){
+	function inboxchange(identify,destination){
 		if(identify=="inboxer"){
 			const inboxsaver=document.documentElement.innerHTML;
 			document.documentElement.innerHTML=document.documentElement.innerHTML.replace('\<!--','');
@@ -625,7 +625,7 @@ function vditorinit(){
 			document.getElementById("rooter").appendChild(inboxNode);
 			document.getElementById(identify).remove();
 		}else{
-			where.appendChild(inboxNode);
+			destination.appendChild(inboxNode);
 		}
 	}
 	function wherechange(object , destination , method){
@@ -637,7 +637,7 @@ function vditorinit(){
 		object.remove();
 	}
 	function pbrowser(){
-		for(let i of document.getElementsByTagName("persistent")){
+		for(let i of document.getElementsByTagName("p-browser")){
 			let pfbrowser=document.importNode(document.getElementById("pbrowser_template").content.querySelector("a"), true);
 			pfbrowser.id=pfbrowser.id.replace(/{{i}}/g, i.innerHTML);
 			i.before(pfbrowser);
@@ -645,8 +645,8 @@ function vditorinit(){
 			pfbrowser2.innerHTML=pfbrowser2.innerHTML.replace(/{{i}}/g, i.innerHTML);
 			document.getElementById('p.browser').appendChild(pfbrowser2);
 		}
-		while(document.getElementsByTagName("persistent").length>0){
-			document.getElementsByTagName("persistent")[0].remove();
+		while(document.getElementsByTagName("p-browser").length>0){
+			document.getElementsByTagName("p-browser")[0].remove();
 		}
 	}
 	function baser(src){
@@ -977,7 +977,7 @@ function vditorinit(){
 							<li><a href="https://blog.csdn.net/Dai_sir_man/article/details/129219890">零成本在家搭建自己的私人服务器解决方案_CSDN博客</a></li>
 						</ul>
 					</li>
-					<li><a href="https://zhuanlan.zhihu.com/p/26427701">开个脑洞：用浏览器做服务器</a><persistent>1</persistent></li>
+					<li><a href="https://zhuanlan.zhihu.com/p/26427701">开个脑洞：用浏览器做服务器</a><p-browser>1</p-browser></li>
 					<li><a href="https://juejin.cn/post/7032798274880798751">还能把浏览器当作 Web 服务器？骚操作，学废了~ - 掘金</a></li>
 					<li>关于 web 服务器软件
 						<ul>
@@ -6873,14 +6873,14 @@ print(c)
 				<li><button onclick="show_HtmlUtil(this)">P.S.2024.06.09 获取更加准确的转义信息</button></li>
 			</ul>
 			<script>
-				function show_HtmlUtil(where){
-					let hi=document.createElement("code");
-					hi.innerText=document.getElementById('htmlEscape').innerHTML;
-					hi.class="language-javascript";
-					let hihi=document.createElement("pre");
-					hihi.appendChild(hi);
-					where.parentNode.appendChild(hihi);
-					where.remove();
+				function show_HtmlUtil(destination){
+					let HtmlUtil_shower=document.importNode(document.getElementById("documenter_template").content.querySelector("pre"), true);
+					HtmlUtil_shower.children[0].innerHTML=HtmlUtil.htmlEncode(document.getElementById('htmlEscape').innerHTML);
+					HtmlUtil_shower.children[0].class="language-javascript";
+					HtmlUtil_shower.children[0].id="HtmlUtil_shower";
+					destination.parentNode.appendChild(HtmlUtil_shower);
+					hljs.highlightElement(document.getElementById("HtmlUtil_shower"));
+					destination.remove();
 				}</script>
 			<script id="htmlEscape">
 				HtmlUtil = {
@@ -7522,7 +7522,7 @@ playMusic(musicList.reverse(),"musicplay");
 		</li>
 		<li>
 			<details>
-				<summary>HTTP服务器 --百度百科</summary><persistent>2</persistent>
+				<summary>HTTP服务器 --百度百科</summary><p-browser>2</p-browser>
 				<ul>
 					<li>一般指网站服务器，是指驻留于因特网上某种类型计算机的程序，可以处理浏览器等Web客户端的请求并返回相应响应，也可以放置网站文件，让全世界浏览；可以放置数据文件，让全世界下载。最主流的三个Web服务器是Apache、
 						Nginx
@@ -7557,7 +7557,7 @@ playMusic(musicList.reverse(),"musicplay");
 		<li>关于服务器和 nodejs 的相关研究
 			<ul>
 				<li><a href="https://blog.csdn.net/weixin_27298377/article/details/118301403">npm的插件如何直接在html中使用,webpack中html-webpack-plugin插件的使用（生成多个html页面，引入不一样的js文件）..._Florelle的博客-CSDN博客</a></li>
-				<li><a href="https://mp.weixin.qq.com/s/7UvyKYxvSOSg6RsYZdgICw">一日一技：如何在浏览器中使用npm包？</a><persistent>3</persistent></li>
+				<li><a href="https://mp.weixin.qq.com/s/7UvyKYxvSOSg6RsYZdgICw">一日一技：如何在浏览器中使用npm包？</a><p-browser>3</p-browser></li>
 			</ul>
 		</li>
 	</ul>
@@ -8128,7 +8128,7 @@ playMusic(musicList.reverse(),"musicplay");
 				<li><a href="https://m.baidu.com/s?&word=微前端">微前端 - 百度</a></li>
 				<li><a href="https://baike.baidu.com/item/https://baike.baidu.com/item/组件对象模型">组件对象模型_百度百科</a></li>
 				<li><a href="https://baike.baidu.com/item/运行时">运行时_百度百科</a></li>
-				<li><a href="https://juejin.cn/post/7032798274880798751">还能把浏览器当作 Web 服务器？骚操作，学废了~</a><persistent>4</persistent></li>
+				<li><a href="https://juejin.cn/post/7032798274880798751">还能把浏览器当作 Web 服务器？骚操作，学废了~</a><p-browser>4</p-browser></li>
 				<li><a href="https://juejin.cn/post/6844904083715784717">浏览器环境下的文件读写</a></li>
 				<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/File">File - Web API 接口参考 | MDN</a></li>
 			</ul>
@@ -9657,11 +9657,11 @@ playMusic(musicList.reverse(),"musicplay");
 		<template id="documenter_template"><pre><code id="documentCode" language="html" class="language-html"></code></pre></template>
 		<script>
 			function documentCode(){
-				if(document.getElementById('documentCode')!=undefined)document.getElementById('documentCode').remove();
+				if(document.getElementById("documentCode")!=undefined)document.getElementById('documentCode').remove();
 				let documentary=document.importNode(document.getElementById("documenter_template").content.querySelector("pre"), true);
 				documentary.querySelector("code").innerHTML=HtmlUtil.html2Escape(document.documentElement.outerHTML);
 				document.getElementById("documenter_template").parentNode.appendChild(documentary);
-				hljs.highlightElement(document.getElementById('documentCode'));
+				hljs.highlightElement(document.getElementById("documentCode"));
 			}
 		</script>
 	</details>

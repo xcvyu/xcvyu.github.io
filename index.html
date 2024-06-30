@@ -7107,9 +7107,8 @@ $("html").html();
 	&lt;/div&gt;
 	</code></pre></li>
 	<li>P.S.2024.5.24 经过两个多月的努力，终于，它成功了！
-		<pre><code class="language-html">
-&lt;div id="musicplayer"&gt;
-&lt;script&gt;
+		<pre><code class="language-html" id="musicold"><!--mu<div id="musicplayer">
+<script>
 	var israndom = false;
 	function randomNum(minNum, maxNum) {
 		switch (arguments.length) {
@@ -7172,9 +7171,9 @@ $("html").html();
 		document.getElementById(getid+".looped").innerText="isloop:"+document.getElementById(getid).loop;
 	}
 	function begin_music() {eval(document.getElementById("song_sheet").value);}
-&lt;/script&gt;
-&lt;mark&gt;仅限配置 server 后可用&lt;/mark&gt;&lt;br /&gt;
-&lt;textarea id="song_sheet" rows="15" cols="40%"&gt;
+</script>
+<mark>仅限配置 server 后可用</mark><br />
+<textarea id="song_sheet" rows="15" cols="40%">
 var musicList = [
 "http://music.163.com/song/media/outer/url?id=1960415980#此时此刻",
 "http://music.163.com/song/media/outer/url?id=2112196350.mp3#浮光",
@@ -7276,12 +7275,19 @@ var musicList = [
 "/music/青春跃起来 (Live) .mp3"
 ];
 playMusic(musicList.reverse(),"musicplay");
-&lt;/textarea&gt;&lt;br /&gt;
-&lt;button type="button" onclick="begin_music()"&gt;enjoy!&lt;/button&gt;
-&lt;a href="javascript:israndom=!israndom" class="musicontorl"&gt;random!&lt;/a&gt;
-&lt;br /&gt;
-&lt;/div&gt;
-		</code></pre>
+</textarea><br />
+<button type="button" onclick="begin_music()">enjoy!</button>
+<a href="javascript:israndom=!israndom" class="musicontorl">random!</a>
+<br />
+</div>mu-->	</code></pre>
+		<script>
+			let musicold = document.getElementById("musicold").innerHTML;
+			musicold = musicold.replace("<!--mu", "");
+			musicold = musicold.replace("mu-->", "");
+			musicold = musicold.replace(/</g, "&lt;");
+			musicold = musicold.replace(/>/g, "&gt;");
+			document.getElementById("musicold").innerHTML = musicold;
+		</script>
 	</li>
 	<li id="musicplayer">P.S.2024.6.4 进行了重构，将主体函数化、模板化，体现高内聚、低耦合特点，并增加播放控件<a href="##musicplayer">标签面板</a>
 		<script>
@@ -10077,15 +10083,15 @@ Q：在学习的道路上是什么一直支撑你坚持走下去(既有学文科
 					player.loop = false;
 					player.autoplay = true;
 					this.final.appendChild(player);
-					this.final.appendChild(document.createElement('br'));
+					let musicInforUrl=document.createElement("p");
+					this.final.appendChild(musicInforUrl);
 					let musiclooping=document.createElement('a');
 					musiclooping.href="javascript:void(0);";
 					musiclooping.addEventListener("click", music_looping, false);
 					musiclooping.innerText="PlayLoop!:false"
 					musiclooping.className="musicontorl";
 					this.final.appendChild(musiclooping);
-					var musicInforUrl=document.createElement("p");
-					this.final.appendChild(musicInforUrl);
+					this.final.appendChild(document.createElement("br"));
 					let musicrandoming=document.createElement('a');
 					musicrandoming.href="javascript:void(0);";
 					musicrandoming.innerText="randomer!:false";
@@ -10094,12 +10100,12 @@ Q：在学习的道路上是什么一直支撑你坚持走下去(既有学文科
 					this.final.appendChild(musicrandoming);
 					let musiccontrolup=document.createElement('a');
 					musiccontrolup.href="javascript:void(0);";
-					musiccontrolup.innerText="up!";
+					musiccontrolup.innerText="upper!";
 					musiccontrolup.addEventListener("click", music_next, false);
 					musiccontrolup.className="musicontorl";
 					let musiccontroldown=document.createElement('a');
 					musiccontroldown.href="javascript:void(0);";
-					musiccontroldown.innerText="down!";
+					musiccontroldown.innerText="lower!";
 					musiccontroldown.addEventListener("click", music_last, false);
 					musiccontroldown.className="musicontorl";
 					this.final.appendChild(document.createElement('br'));
@@ -10261,3 +10267,4 @@ Q：在学习的道路上是什么一直支撑你坚持走下去(既有学文科
 			<button type="button" onclick="document.body.appendChild(new playMusic(JSON.parse(document.getElementById('song_sheet').value).list).final);">enjoy!</button>
 	</div>
 </template>
+<!--NodeChange(document.getElementById("musicstructure.html").content.getElementById("musicplayer"),document.getElementById("rooter"),"inner",false);-->

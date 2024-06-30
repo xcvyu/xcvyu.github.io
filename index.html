@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <title>xcvyu-log</title>
-<!--<div id="inboxer">
+<!--inboxer<div id="inboxer">
 - 这里就是速记板啦~
 - 第二期报纸问题梳理
 	- 第一版写的2024 6.7：这是开始撰写的日期，后续会改成出版日期
@@ -35,7 +35,7 @@ outsider
 indigenous adj.本地的,土生土长的
 quest n.(长期的)寻求,探索,追求
 previous 以前的,先前的
-</div>-->
+</div>inboxer-->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
 <meta name="color-scheme" content="light dark">
@@ -609,33 +609,35 @@ function vditorinit(){
 </template>
 <script>
 	let onloader=false;
-	function inboxchange(identify,destination){
-		if(identify=="inboxer"){
-			const inboxsaver=document.documentElement.innerHTML;
-			document.documentElement.innerHTML=document.documentElement.innerHTML.replace('\<!--','');
-			document.documentElement.innerHTML=document.documentElement.innerHTML.replace('--\>','');
-		}
-		let inboxNode = document.createElement("li");
-		inboxNode.className="card";
-		inboxNode.id="inbox";
-		inboxNode.innerHTML=marked.parse(document.getElementById(identify).innerHTML);
-		console.log(inboxNode);
-		if(identify=="inboxer"){
-			// document.write(inboxsaver);
-			document.documentElement.innerHTML=inboxsaver;
-			document.getElementById("rooter").appendChild(inboxNode);
-			document.getElementById(identify).remove();
-		}else{
-			destination.appendChild(inboxNode);
+	let markeder={
+		changer:function (obj){
+			obj.innerHTML=marked.parse(obj.innerHTML);
+			return obj;
+		},
+		maker:function (tagName,copy){
+			let newNode=document.createElement(tagName);
+			newNode.innerHTML=marked.parse(copy.innerHTML);
+			return newNode;
 		}
 	}
-	function wherechange(object , destination , method){
-		const Node = object.cloneNode(true);
-		if(method=="inner")destination.appendChild(Node);
-		else if(method=="upper")destination.before(Node);
-		else if(method=="lower")destination.after(Node);
+	function inboxerhelp(){
+		let inboxsaver=document.documentElement.innerHTML;
+		inboxsaver=inboxsaver.replace("<!--inboxer","");
+		inboxsaver=inboxsaver.replace("inboxer-->","");
+		let inboxNode = document.createElement("li");
+		inboxNode.className="card";
+		inboxNode.innerHTML=document.getElementById("inboxer").innerHTML;
+		markeder.changer(inboxNode);
+		// document.write(inboxsaver);
+		document.getElementById("rooter").appendChild(inboxNode);
+		document.getElementById("inboxer").remove();
+	}
+	function NodeChange(from , to , method , isexist){
+		let Node = isexist ? document.adoptNode(from) : from.cloneNode(true);
+		if(method=="inner")to.appendChild(Node);
+		else if(method=="upper")to.before(Node);
+		else if(method=="lower")to.after(Node);
 		else console.error("insert method is wrong!");
-		object.remove();
 	}
 	function pbrowser(){
 		for(let i of document.getElementsByTagName("p-browser")){
@@ -668,9 +670,13 @@ function vditorinit(){
 	function onloaders(){
 		if(onloader)return;
 		onloader=true;
-		// inboxchange("inboxed",document.getElementById("rooter"));
-		wherechange(document.getElementById("sourcebrowsefir"),document.getElementById("rooter"),"inner");
-		wherechange(document.getElementById("documenter"),document.getElementById("sourcebrowsefir"),"upper");
+		for(let i of document.getElementById("rooter").children)i.setAttribute("class","card");
+		// inboxerhelp();
+		let inboxedNode=markeder.maker("li",document.getElementById("inboxed"));
+		inboxedNode.className="card";
+		NodeChange(inboxedNode,document.getElementById("rooter"),"inner",false);
+		NodeChange(document.getElementById("sourcebrowsefir"),document.getElementById("rooter"),"inner",true);
+		NodeChange(document.getElementById("documenter"),document.getElementById("sourcebrowsefir"),"upper",true);
 		pbrowser();
 		// vditorinit();
 		highlightjser();
@@ -685,7 +691,7 @@ function vditorinit(){
 </script>
 
 <ul id="rooter">
-	<li class="card" id="inputer">
+	<li id="inputer">
 		<script>
 			let inputerDeleter=0,inputerVisibler=0;
 			let inputer={
@@ -769,14 +775,13 @@ function vditorinit(){
 				u.del=u.delete;
 				eval(document.getElementById('inputerShell').value);
 			}
-			// console.log(this.offsetParent.getElementsByTagName('textarea')[0].value)
 		</script>
 		<input type="file" name="file" id="filePicker_inputer" onchange="inputer.upload()"  /><br />
 		<textarea id="inputerContent" cols="40%" rows="20"></textarea><br />
 		<textarea id="inputerShell" cols="40%" rows="4">u.</textarea><br />
 		<button type="button" onclick="inputer_enjoy()">enjoy!</button>
 	</li>
-	<li class="card">
+	<li>
 		<script>
 		let fufu_visibler=0;
 		let all_visibler=1;
@@ -823,7 +828,7 @@ function vditorinit(){
 		<div id="flashcard_flow"></div>
 		<button onclick="flashcard_next()" id="flashcard_button">flow</button>
 	</li>
-	<li class="card">标签面板
+	<li>标签面板
 		<ul>
 			<li id="#website source browse"><a href="#website source browse">website source browse</a></li>
 			<li id="#musicplayer"><a href="#musicplayer">musicplayer</a></li>
@@ -861,7 +866,7 @@ function vditorinit(){
 			</li>
 		</ul>
 	</li>
-	<li class="card">
+	<li>
 		<table border="1">
 			<caption><h2>课程表</h2></caption>
 			<tr>
@@ -939,7 +944,7 @@ function vditorinit(){
 			</tr>
 			</table>
 	</li>
-	<li class="card">My Information
+	<li>My Information
 		<ul>
 			<li><a href="http://site-561001-4224-70.sxl.cn/">my-上线了</a></li>
 			<li><a href="xcvyu.github.io">我的网站</a></li>
@@ -954,7 +959,7 @@ function vditorinit(){
 			<li>QQ 邮箱:1509592414@qq.com</li>
 		</ul>
 	</li>
-	<li class="card">不小的愿望
+	<li>不小的愿望
 		<ul>
 			<li>韶音Aeropex骨传导耳机
 				<ul>
@@ -1018,7 +1023,7 @@ function vditorinit(){
 			</li>
 		</ul>
 	</li>
-	<li class="card">read board
+	<li>read board
 		<ul>
 		<li><a href="https://pwa.sspai.com">少数派</a></li>
 		<li>待读
@@ -1068,7 +1073,7 @@ function vditorinit(){
 		<li id="read board"><a href="##read board">标签面板</a></li>
 		</ul>
 	</li>
-	<li class="card">Bookmarks
+	<li>Bookmarks
 		<ul>
 			<li><a href="https://alternativeto.net/">AlternativeTo</a></li>
 			<li><a href="https://www.icourse163.org/course/BUAA-217001">微积分启蒙_北京航空航天大学_中国大学MOOC(慕课)</a></li>
@@ -1780,7 +1785,7 @@ function vditorinit(){
 			</code></pre></li>
 		</ul>
 	</li>
-	<li class="card">(Android)Schemer
+	<li>(Android)Schemer
 		<ul>
 			<li><a href="mtplugin://">MT Manager 1</a></li>
 			<li><a href="qwallet1105061912://">MT Manager 2</a></li>
@@ -1790,7 +1795,7 @@ function vditorinit(){
 			<li><a href="weixin://">wechat</a></li>
 		</ul>
 	</li>
-	<li class="card">cpp
+	<li>cpp
 		<ul>
 			<li>help.cpp
 				<pre><code language="c++" id="cpphelp"><!--
@@ -3060,7 +3065,7 @@ function vditorinit(){
 			</li>
 		</ul>
 	</li>
-	<li class="card">Lua
+	<li>Lua
 		<ul>
 			<li>help.lua
 				<pre><code language="lua">
@@ -3309,7 +3314,7 @@ print(c)
 			</li>
 		</ul>
 	</li>
-	<li class="card">yaml_refcard.yaml
+	<li>yaml_refcard.yaml
 		<pre><code language="yaml">
 	%YAML 1.1   # Reference card
 	---
@@ -3377,7 +3382,7 @@ print(c)
 	```
 </code></pre>
 	</li>
-	<li class="card">Python
+	<li>Python
 		<ul>
 			<li>一些被封装的函数
 				<pre><code language="python">
@@ -3798,7 +3803,7 @@ print(c)
 			<li>Python 快速启动服务器：<code>python -m http.server 8080 -b 0.0.0.0 -d /sdcard</code></li>
 		</ul>
 	</li>
-	<li class="card">cnpm安装
+	<li>cnpm安装
 		<pre><code language="shell">
 		npm install -g cnpm --registry=https://registry.npmmirror.com #安装 cnpm
 		cnpm install -g nodemon #全局安装
@@ -3808,8 +3813,8 @@ print(c)
 			<li><a href="https://npmmirror.com/">npmmirror 中国镜像站</a></li>
 		</ul>
 	</li>
-	<li class="card">nodejs 架设服务器：<code>cnpm install -g http-server</code></li>
-	<li class="card"><a href="#.外部资源引用管理" id="外部资源引用管理">外部资源引用管理</a>
+	<li>nodejs 架设服务器：<code>cnpm install -g http-server</code></li>
+	<li><a href="#.外部资源引用管理" id="外部资源引用管理">外部资源引用管理</a>
 		<ul>
 			<li><a href="https://pan.baidu.com/disk/main?from=homeFlow#/index?category=all">我的百度网盘</a></li>
 			<li><a href="https://sspai.com/u/hkenfkm3/bookmark_posts">我的少数派收藏</a></li>
@@ -3831,14 +3836,14 @@ print(c)
 			</li>
 		</ul>
 	</li>
-	<li class="card">“知识管理”
+	<li>“知识管理”
 		<ul>
 			<li>用双链做标签</li>
 			<li>用双链做大纲（面向主题，可参考<a href="https://www.yuque.com/deerain/gannbs/hb0gsd#b098e8c7">MOC-管理链接而非本体_语雀</a>）</li>
 			<li>标签作为数据库的元数据</li>
 		</ul>
 	</li>
-	<li class="card">睡前小记
+	<li>睡前小记
 		<table>
 			<tr>
 				<th>日期</th>
@@ -4844,7 +4849,7 @@ print(c)
 			</tr>
 		</table>
 	</li>
-	<li class="card"><mark>实在性哲学</mark>
+	<li><mark>实在性哲学</mark>
 		<ul>
 			<li>唯心主义与唯物主义，既为「主义」，那就不过是认识、描绘世界的理论罢了。</li>
 			<li>如果无论怎么描绘，都不会改变世界本身，那只颉取简洁、客观的就好。</li>
@@ -5107,7 +5112,7 @@ print(c)
 			</li>
 		</ul>
 	</li>
-	<li class="card">书、笔、音乐、小吃
+	<li>书、笔、音乐、小吃
 		<ul>
 			<li><a href="https://main.m.taobao.com/detail/index.html?&id=574972883190">晨光大赤兔</a></li>
 			<li>《梦蝶：一百万个可能》</li>
@@ -5124,13 +5129,13 @@ print(c)
 			<li><a href="https://new.m.taobao.com/detail.htm?id=655511408368">武汉热干面</a></li>
 		</ul>
 	</li>
-	<li class="card">2018.07.26
+	<li>2018.07.26
 		<ul>
 			<li>提到慢生活，很多人有这样的要求：少吃快餐，拥有更多的假日……但，这就是真正的慢生活吗？<br />
 				其实慢生活是一种享受时光的感觉，不是所谓的更多的假日。享受时光的感觉就是把时间当成一杯咖啡一点一点品味。</li>
 		</ul>
 	</li>
-	<li class="card">2018.07.29
+	<li>2018.07.29
 		<ul>
 			<li>我一直感觉,人生就像羽毛，在天空中飞翔，感受，享受时光的美好。而文字作为这一切的载体，有很多描绘享受时光的词语：梦想、激情、快乐……<br />
 				人，会有这样的感觉：只要有个可能性、有选择的自由性在那里，心理上就不一样。<br />
@@ -5138,7 +5143,7 @@ print(c)
 				心灵是非常神奇的一样东西。</li>
 		</ul>
 	</li>
-	<li class="card">2020.08.27:回忆
+	<li>2020.08.27:回忆
 		<ul>
 			<li>新中学报名相关
 				<ul>
@@ -5448,22 +5453,22 @@ print(c)
 	</li>
 </ul>
 </li>
-<li class="card">2021.02.14
+<li>2021.02.14
 	<ul>
 		<li><a href="https://baike.baidu.com/item/计算机科学/9132">「计算机科学」不等价于「编程」</a></li>
 	</ul>
 </li>
-<li class="card">2021.02.18
+<li>2021.02.18
 	<ul>
 		<li><a href="https://3g.163.com/dy/article/G1OBKHED0516C1LE.html">中国省份变迁</a></li>
 	</ul>
 </li>
-<li class="card">2021.02.21
+<li>2021.02.21
 	<ul>
 		<li><a href="https://m.bilibili.com/bangumi/play/ss33585">《中国通史》</a></li>
 	</ul>
 </li>
-<li class="card">2021.4.28，晴
+<li>2021.4.28，晴
 	<ul>
 		<li>题目：照片里的故事<br />
 			在翻看照片时，我看到了……<br />
@@ -5478,7 +5483,7 @@ print(c)
 		<li>P.S.2022.7.17.虽然现在不是朋友了······但我会怀念这段时光的!</li>
 	</ul>
 </li>
-<li class="card">2022.3.23，晴
+<li>2022.3.23，晴
 	<ul>
 		<li>北京科技馆的主会场，新疆和西藏的分会场以及运行的近地轨道上的“天和”核心舱，构成了这个课堂。三位航天员，在太空中进行了四个实验，比如绝无仅有的液桥实验、借助冰墩墩进行的对牛顿第一定律的验证、过饱和溶液结晶以及水油分离实验--在地球上甩，可以融合水和油；在太空中甩，却可以分离水和油。其中，叶光富航天员充当了“人工离心机”角色。（另外，他们还幽默地回答了网友和同学们的问题。）在课程的最后，三位航天员激励同学们为科学探索事业不懈奋斗。我，将实现奔向星辰大海的梦想！<br />
 			Only have a try ,but try my best to do it!<br />
@@ -5495,7 +5500,7 @@ print(c)
 		</li>
 	</ul>
 </li>
-<li class="card">2022.4.28，晴
+<li>2022.4.28，晴
 	<ul>
 		<li>我的生日</li>
 		<li>在意林面包店挑选蛋糕
@@ -5537,36 +5542,36 @@ print(c)
 		</li>
 	</ul>
 </li>
-<li class="card">2022.4.29，晴
+<li>2022.4.29，晴
 	<ul>
 		<li>今天我观看了“青年大学习”网上主题团课，回顾了中国的社会主义建设史，惊于青年在社会主义建设中发挥的生力军作用。他们参与了抗美援朝，在一五计划的建设中默默耕耘。他们隐姓埋名 30
 			年，只为“两弹一星”工程的圆满成功。甚至，还有 12 名烈士长眠于青海。我们新一代青年要接过老一辈的接力棒，在充满不确定性的社会中努力充实自己。青春必须奋斗，绽放青春光彩！</li>
 	</ul>
 </li>
-<li class="card">2022.4.30，晴
+<li>2022.4.30，晴
 	<ul>
 		<li>21 个月之后，今天我配了第二副眼镜。我的近视度数仍然保持负 500 不变，但是出现了散光。度数基本不变，可喜可贺。（散光在换算后，相当于增加左眼 37.5 度，右眼 25 度）<br />
 			当初当我得知自己-500 时，我的心情很绝望，以为没有了挽回的余地。但健康的生活方式和愉悦、放松的心情给我转机。</li>
 		<li>P.S.2022.07.19.现在散光度数左眼上了两百...这可咋整?只能说爱眼护眼之路漫长无休。</li>
 	</ul>
 </li>
-<li class="card">2022.05.10
+<li>2022.05.10
 	<ul>
 		<li>咸海面积变小的原因：蒸发量大，降水量小，沿岸地区用水增加导致河流流入水量小</li>
 	</ul>
 </li>
-<li class="card">2022.05.11
+<li>2022.05.11
 	<ul>
 		<li><q>写作之难，在于把<b>网状</b>的思考，用<b>树状</b>的语法结构，转换成<b>线性</b>字符串。（"The Web, the Tree, and the String"）。 --史蒂芬•平克</q>
 		</li>
 	</ul>
 </li>
-<li class="card">2022.05.13
+<li>2022.05.13
 	<ul>
 		<li><a href="https://cdn.sspai.com/2020/08/07/737c8c50efe1a775b32331a18322fe09.png?imageView2/2/w/1120/q/90/interlace/1/ignore-error/1">笔记防沉没</a></li>
 	</ul>
 </li>
-<li class="card">2022.05.28:开本
+<li>2022.05.28:开本
 	<ul>
 		<li>可能挑选本子的第一步就是考虑开本，即本子的大小。常见笔记本的开本一般是 A4-A6，还有更小的一些便签本可能会到 A7 或者 A8。<br />
 			本子的开本选择首先需要考虑你所要记录的篇幅。如果你每次的记录需要集中在同一张纸上，就需要选择大一点的 B5 开本。甚至有些专业的学生需要绘图，就需要选择更大的 A4 开本。<br />
@@ -5576,7 +5581,7 @@ print(c)
 			另外也要考虑收纳问题。如果你平时收纳本的空间有限，就不建议选择较大的开本，选择相对小一些的开本（比如 A5）比较好一些。还有如果你需要一个随身便携的本子，A6 大小的本子就比较合适。</li>
 	</ul>
 </li>
-<li class="card">2022.07.08 前半年回忆
+<li>2022.07.08 前半年回忆
 	<ul>
 		<li>体测又进步了</li>
 		<li>拿什么来证明我存在过于这世界上？</li>
@@ -5641,7 +5646,7 @@ print(c)
 		</li>
 	</ul>
 </li>
-<li class="card">2022.07.11
+<li>2022.07.11
 	<ul>
 		<li>考试心情:
 			<ul>
@@ -5669,7 +5674,7 @@ print(c)
 		</li>
 	</ul>
 </li>
-<li class="card">2022.07.16
+<li>2022.07.16
 	<ul>
 		<li>《开讲啦》对话程永茂
 			<ul>
@@ -5753,7 +5758,7 @@ print(c)
 		</li>
 	</ul>
 </li>
-<li class="card">2022.07.22
+<li>2022.07.22
 	<ul>
 		<li>自己是谁：身份认同</li>
 		<li>从哪里来：经历/阅历</li>
@@ -5764,7 +5769,7 @@ print(c)
 		</li>
 	</ul>
 </li>
-<li class="card">2022.07.23
+<li>2022.07.23
 	<ul>
 		<li>一位老奶奶
 			<ul>
@@ -5774,14 +5779,14 @@ print(c)
 		</li>
 	</ul>
 </li>
-<li class="card">
+<li>
 	今天是大暑，<br />
 	本来应是最热的一天，<br />
 	但那段最热的时间早已过去<br />
 	那是拼搏的一段<br />
 	中考的第一枪
 </li>
-<li class="card">2022.07.24
+<li>2022.07.24
 	<ul>
 		<li>候机时的我早已按捺不住，却正似那被镇在五行山下的孙悟空，脱身无法，正可谓“度时如年”！</li>
 		<li>好容易熬到登机时间，我骄傲的冲上了飞机，找到了自己的座位——像小鹿一般横冲乱撞——幸亏没像孙猴儿初出五行山一般吓人！</li>
@@ -5794,14 +5799,14 @@ print(c)
 		<li>我拉上窗板，看着周围的人们。这可不比公交车——人们都沉沉的睡去了。我不禁怀疑这满飞机的乘客中有几个是活着的？</li>
 	</ul>
 </li>
-<li class="card">2022.07.26
+<li>2022.07.26
 	<ul>
 		<li>这正是历史知识的矛盾。知识如果不能改变行为，就没有用处。但知识一旦改变了行为，本身就立刻失去意义。我们拥有越多数据，对历史了解越深入，历史的轨迹就改变得越快，我们的知识也过时得越快。
 			如果把它用在物理学上呢？那么，我们不仅仅要刻画理论，还要刻画理论的变化率Δ。</li>
 		<li>沙尘遮天迷人眼，才泛河水没人腰</li>
 	</ul>
 </li>
-<li class="card">2022.08.16
+<li>2022.08.16
 	<ul>
 		<li>嗯，看起来矫正牙齿更有希望了！
 			<ul>
@@ -5813,7 +5818,7 @@ print(c)
 		<li>哦豁～休息一下吧 - 9:00</li>
 	</ul>
 </li>
-<li class="card">2022.08.28
+<li>2022.08.28
 	<ul>
 		<li>和原神再见(；一_一)的第一天
 			<ul>
@@ -5824,7 +5829,7 @@ print(c)
 		<li>雨落在水洼里，像一朵朵小浪花一样绽放</li>
 	</ul>
 </li>
-<li class="card">2022.08.30-31
+<li>2022.08.30-31
 	<ul>
 		<li>疯狂补作业的一天</li>
 		<li>换老师了
@@ -5840,7 +5845,7 @@ print(c)
 		</li>
 	</ul>
 </li>
-<li class="card">2022.08.someday
+<li>2022.08.someday
 	<ul>
 		<li>给航天员写封信:结束
 			<ul>
@@ -5861,7 +5866,7 @@ print(c)
 		</li>
 	</ul>
 </li>
-<li class="card">2022.09.03
+<li>2022.09.03
 	<ul>
 		<li>听着熟悉的歌，却没有了熟悉的心境。不，是没有意识到，还有一首歌的旋律，响在耳边。</li>
 		<li>市政府广场的有色喷泉
@@ -5888,7 +5893,7 @@ print(c)
 		</li>
 	</ul>
 </li>
-<li class="card">2022.09.11
+<li>2022.09.11
 	<ul>
 		<li>《开讲啦》对话武向平
 			<ul>
@@ -5968,24 +5973,24 @@ print(c)
 		</li>
 	</ul>
 </li>
-<li class="card">那些过去的事情，那些已经无法改变的事情，被我远远甩掉后，却纷纷堆积到我的未来。绕不过去，怎么也绕不过去。-- 李娟《小学坡》</li>
-<li class="card">2022.10.16
+<li>那些过去的事情，那些已经无法改变的事情，被我远远甩掉后，却纷纷堆积到我的未来。绕不过去，怎么也绕不过去。-- 李娟《小学坡》</li>
+<li>2022.10.16
 	<ul>
 		<li>党的二十大</li>
 		<li>聆听了习总书记的报告</li>
 	</ul>
 </li>
-<li class="card">2022.10.21
+<li>2022.10.21
 	<ul>
 		<li>终于冲破了稻妻的封锁！</li>
 	</ul>
 </li>
-<li class="card">2022.11.07:立冬
+<li>2022.11.07:立冬
 	<ul>
 		<li>我就是愣了半晌，夏天挥挥手，走了，秋天连手都没挥，也走了，冬天来了[微笑]</li>
 	</ul>
 </li>
-<li class="card">2022.11.17
+<li>2022.11.17
 	<ul>
 		<li>今天的英语课遭到了一些人的入侵
 			<ul>
@@ -5996,7 +6001,7 @@ print(c)
 		</li>
 	</ul>
 </li>
-<li class="card">2022.11.23
+<li>2022.11.23
 	<ul>
 		<li>14:38 开始上政治课</li>
 		<li>15:31 补政治笔记，上物理课，好好学动态电路！
@@ -6014,7 +6019,7 @@ print(c)
 		<li>18:14-18:34 整理并提交历史笔记、原神探索派遣</li>
 	</ul>
 </li>
-<li class="card">2022.11.24
+<li>2022.11.24
 	<ul>
 		<li>语文课听得较完整</li>
 		<li>8:00-12:00 16:30-18:10(由于复习的原因？)摸鱼变本加厉</li>
@@ -6030,27 +6035,27 @@ print(c)
 		</li>
 	</ul>
 </li>
-<li class="card">2022.11.25
+<li>2022.11.25
 	<ul>
 		<li>成功在Windows7上的VMWare中启动了FydeOS</li>
 	</ul>
 </li>
-<li class="card">2022.11.26
+<li>2022.11.26
 	<ul>
 		<li>早起有无数宏伟蓝图，一吵架全部泡汤，还不叫我看会手机缓解心情，哭了一上午眼睛肿痛，下午打米哈游十分失败，这~ <del>谢谢关心</del></li>
 		<li id="双链/椒盐音乐/出">感动哭了...我当然不会打开！<a href="#双链/椒盐音乐/进">#双链/椒盐音乐</a></li>
 	</ul>
 </li>
-<li class="card" id="一起看世界杯/2022.11.27">2022.11.27<a href="#.一起看世界杯">#一起看世界杯</a>C组第二轮 阿根廷VS墨西哥</li>
-<li class="card" id="一起看世界杯/2022.11.28">2022.11.28<a href="#.一起看世界杯">#一起看世界杯</a> C组第一轮 阿根廷VS沙特阿拉伯 下半场</li>
-<li class="card" id="一起看世界杯/2022.11.?">2022.11.?<a href="#.一起看世界杯">#一起看世界杯</a>德国VS日本</li>
-<li class="card">2022.11.29 00:05 一整天没有摸鱼，非常好[点赞]</li>
-<li class="card">2022.12.01
+<li id="一起看世界杯/2022.11.27">2022.11.27<a href="#.一起看世界杯">#一起看世界杯</a>C组第二轮 阿根廷VS墨西哥</li>
+<li id="一起看世界杯/2022.11.28">2022.11.28<a href="#.一起看世界杯">#一起看世界杯</a> C组第一轮 阿根廷VS沙特阿拉伯 下半场</li>
+<li id="一起看世界杯/2022.11.?">2022.11.?<a href="#.一起看世界杯">#一起看世界杯</a>德国VS日本</li>
+<li>2022.11.29 00:05 一整天没有摸鱼，非常好[点赞]</li>
+<li>2022.12.01
 	<ul>
 		<li>数学综合练习22:07开始；</li>
 	</ul>
 </li>
-<li class="card">2022.12.03
+<li>2022.12.03
 	<ul>
 		<li>历史16、17课习题（选择题）
 			<ul>
@@ -6074,7 +6079,7 @@ print(c)
 	</ul>
 </li>
 <li id="一起看世界杯/2022.12.06">2022.12.06<a href="#.一起看世界杯">#一起看世界杯</a>曾经的迷惑：葡萄牙守门员差点丢球</li>
-<li class="card">2022.12.07
+<li>2022.12.07
 	<ul>
 		<li>物流终于通了
 			<ul>
@@ -6096,7 +6101,7 @@ print(c)
 		<li>蒙古国是1921年独立的</li>
 	</ul>
 </li>
-<li class="card">2022.12.09
+<li>2022.12.09
 	<ul>
 		<li id="一起看世界杯/2022.12.09"><a href="#.一起看世界杯">#一起看世界杯</a>00:26 好久没看世界杯了!</li>
 		<li>07:44
@@ -6165,7 +6170,7 @@ print(c)
 		</li>
 	</ul>
 </li>
-<li class="card">2022.12.11
+<li>2022.12.11
 	<ul>
 		<li>从某种意义上讲，人的大脑就是一台最为复杂最为精密的计算机，按照一个同样复杂和精密的程序（软件）运行，实现使人成其为人的各种意识活动。以前，由于技术的限制，我们无法读出“人脑计算机”的程序，即使能读出，也不能在以前的冯。诺依曼结构的计算机上运行，因为这种只有一个CPU的计算机在信息处理方式和拓朴结构上和人脑完全不同。但今天的有巨量CPU的神经元结构计算机，是对人脑拓朴结构和并行信息处理方式的仿生，现在的大型电脑无论从内存容量上还是从处理速度上，都具备了运行人脑中的那个神奇程序的能力，只等待从人脑中取出那个程序的所有代码，并输入我们的电脑。
 		</li>
@@ -6174,7 +6179,7 @@ print(c)
 			2.38%。对于移动市场，安卓占 70.96%，iOS 28.43%。</li>
 	</ul>
 </li>
-<li class="card">2022.12.12
+<li>2022.12.12
 	<ul>
 		<li>
 			<table>
@@ -6233,7 +6238,7 @@ print(c)
 		</li>
 	</ul>
 </li>
-<li class="card">2022.12.13
+<li>2022.12.13
 	<ul>
 		<li>
 			<table>
@@ -6279,8 +6284,8 @@ print(c)
 		</li>
 	</ul>
 </li>
-<li class="card">2022.12.14 23:? 好烦啊！！！</li>
-<li class="card">2022.12.15
+<li>2022.12.14 23:? 好烦啊！！！</li>
+<li>2022.12.15
 	<ul>
 		<li>21:27在努力工作半晚上之后，我躺在床上，空中蹬车
 			<ul>
@@ -6292,7 +6297,7 @@ print(c)
 		<li id="一起看世界杯/2022.12.15"><a href="#.一起看世界杯">#一起看世界杯</a>据说阿根廷队闯入了卡塔尔世界杯半决赛！为他们高兴！<a href="https://m.baidu.com/s?&word=梅西传射+阿根廷进决赛">梅西传射 阿根廷进决赛 - 百度 </a></li>
 	</ul>
 </li>
-<li class="card">2022.12.17
+<li>2022.12.17
 	<ul>
 		<li>英语知识
 			<ul>
@@ -6320,8 +6325,8 @@ print(c)
 		</li>
 	</ul>
 </li>
-<li class="card">2022.12.20 00:27 凌晨的星空好美！</li>
-<li class="card">2022.12.19-2? 《关于我阳了这件事》
+<li>2022.12.20 00:27 凌晨的星空好美！</li>
+<li>2022.12.19-2? 《关于我阳了这件事》
 	<ul>
 		<li>12.19 星期一 一醒来就发现不对劲，头一次数学课没忍住睡着了...而且这一整天都很疲惫</li>
 		<li>12.20 星期二 疲惫的症状延续着...浑身疼</li>
@@ -6329,7 +6334,7 @@ print(c)
 		<li>12.22 星期四 一觉醒来</li>
 	</ul>
 </li>
-<li class="card">2022.12.27
+<li>2022.12.27
 	<ul>
 		<li>“生活记录电子化”项目正式立项！
 			<ul>
@@ -6344,7 +6349,7 @@ print(c)
 
 	</ul>
 </li>
-<li class="card">2022.12.28
+<li>2022.12.28
 	<ul>
 		<li>
 			<table>
@@ -6456,7 +6461,7 @@ print(c)
 		</li>
 	</ul>
 </li>
-<li class="card">2022.12.29
+<li>2022.12.29
 	<ul>
 		<li>周三历史打卡
 			<ul>
@@ -6497,7 +6502,7 @@ print(c)
 		</li>
 	</ul>
 </li>
-<li class="card">2022.12.30
+<li>2022.12.30
 	<ul>
 		<li><a href="https://baike.baidu.com/item/三公九卿/">三公九卿制构成</a>
 			<ul>
@@ -6601,7 +6606,7 @@ print(c)
 		</li>
 	</ul>
 </li>
-<li class="card">2022.12.31
+<li>2022.12.31
 	<ul>
 		<li id="未完成/研究/2022.12.31"><a href="https://baike.baidu.com/item/五服/1712234">五服制度</a><a href="#.未完成/研究">#未完成/研究</a>
 			<ul>
@@ -6641,7 +6646,7 @@ print(c)
 		</li>
 	</ul>
 </li>
-<li class="card">2023.01.01
+<li>2023.01.01
 	<ul>
 		<li>01:31:45 和烙饼跨完年，该回家了。停留一下，看看天</li>
 		<li>今日物理作业（全部正确）
@@ -6663,7 +6668,7 @@ print(c)
 		<li>观测是一种相对真实，物理学也是。</li>
 	</ul>
 </li>
-<li class="card">2023.01.02
+<li>2023.01.02
 	<ul>
 		<li>vditor（一个html实现的markdown编辑器）
 			<ul>
@@ -6699,7 +6704,7 @@ print(c)
 		</li>
 	</ul>
 </li>
-<li class="card">2023.01.03
+<li>2023.01.03
 	<ul>
 		<li>
 			<details open>
@@ -6787,7 +6792,7 @@ print(c)
 		</li>
 	</ul>
 </li>
-<li class="card">2023.01.04
+<li>2023.01.04
 	<ul>
 		<li>
 			<details>
@@ -6847,8 +6852,8 @@ print(c)
 		</li>
 	</ul>
 </li>
-<li class="card">2023.01.05:看过《长津湖之水门桥》</li>
-<li class="card">2023.01.07
+<li>2023.01.05:看过《长津湖之水门桥》</li>
+<li>2023.01.07
 	<ul>
 		<li>关于学习计划...
 			<ul>
@@ -6863,7 +6868,7 @@ print(c)
 		</li>
 	</ul>
 </li>
-<li class="card">2023.01.15
+<li>2023.01.15
 	<ul>
 		<li>HTML转义参考(原)
 			<ul>
@@ -6952,7 +6957,7 @@ print(c)
 		<li>怕相思，已相思，轮到相思没处辞，眉间露一丝。 ——长相思·折花枝</li>
 	</ul>
 </li>
-<li class="card">2023.01.16
+<li>2023.01.16
 	<ul>
 		<li>
 			<details>
@@ -6968,7 +6973,7 @@ print(c)
 		</li>
 	</ul>
 </li>
-<li class="card" id="sourcebrowsefir">website source browse
+<li id="sourcebrowsefir">website source browse
 	<ul>
 		<li>P.S.ended on 2023.01.19</li>
 		<li id="website source browse"><a href="##website source browse">标签面板</a></li>
@@ -7045,7 +7050,7 @@ $("html").html();
 		</li>
 	</ul>
 </li>
-<li class="card">2023.01.23
+<li>2023.01.23
 	<ul>
 		<li>未关闭的标签页
 			<ul>
@@ -7062,7 +7067,7 @@ $("html").html();
 		</li>
 	</ul>
 </li>
-<li class="card">2023.01.19-:新的项目--JS自制音乐播放器（尚未成功）
+<li>2023.01.19-:新的项目--JS自制音乐播放器（尚未成功）
 	<ul>
 	<li><pre><code language="HTML">
 	&lt;div id="法1"&gt;
@@ -7480,7 +7485,7 @@ playMusic(musicList.reverse(),"musicplay");
 	</li>
 	</ul>
 </li>
-<li class="card">2023.01.26
+<li>2023.01.26
 	<ul>
 		<li>收听过的播客节目
 			<ul>
@@ -7490,7 +7495,7 @@ playMusic(musicList.reverse(),"musicplay");
 		</li>
 	</ul>
 </li>
-<li class="card">2023.01.27-- 关于highlight.js
+<li>2023.01.27-- 关于highlight.js
 	<ul>
 		<li><a href="https://www.cnblogs.com/ermu-learn/p/5993025.html">highlight.js教程</a></li>
 		<li><a href="https://www.oschina.net/p/highlight_js?hmsr=aladdin1e1">highlight.js中文源码地址</a></li>
@@ -7514,7 +7519,7 @@ playMusic(musicList.reverse(),"musicplay");
 		</li>
 	</ul>
 </li>
-<li class="card">2023.01.30
+<li>2023.01.30
 	<ul>
 		<li>在内蒙古展览馆走九曲，走了两圈。第一圈自己走的，走的快；第二次我妈陪我走的，走的慢。
 			<ul>
@@ -7534,7 +7539,7 @@ playMusic(musicList.reverse(),"musicplay");
 		</li>
 	</ul>
 </li>
-<li class="card">2023.01.31
+<li>2023.01.31
 	<ul>
 		<li>收听过的播客节目
 			<ul>
@@ -7543,7 +7548,7 @@ playMusic(musicList.reverse(),"musicplay");
 		</li>
 	</ul>
 </li>
-<li class="card">2023.02.01
+<li>2023.02.01
 	<ul>
 		<li>英语作业
 			<ol>
@@ -7563,7 +7568,7 @@ playMusic(musicList.reverse(),"musicplay");
 		</li>
 	</ul>
 </li>
-<li class="card">2023.02.02
+<li>2023.02.02
 	<ul>
 		<li><input type="checkbox" />2 月 2 日语文
 			<ul>
@@ -7597,7 +7602,7 @@ playMusic(musicList.reverse(),"musicplay");
 		</li>
 	</ul>
 </li>
-<li class="card">2023.02.03
+<li>2023.02.03
 	<ul>
 		<li><input type="checkbox" checked="" />2 月 2 日语文
 			<ul>
@@ -7614,7 +7619,7 @@ playMusic(musicList.reverse(),"musicplay");
 		</li>
 	</ul>
 </li>
-<li class="card">2023.02.04
+<li>2023.02.04
 	<ul>
 		<li><input type="checkbox" checked="" />2 月 4 日英语
 			<ul>
@@ -7656,7 +7661,7 @@ playMusic(musicList.reverse(),"musicplay");
 		</li>
 	</ul>
 </li>
-<li class="card">2023.02.05
+<li>2023.02.05
 	<ul>
 		<li><input type="checkbox" checked="" />2 月 5 日英语
 			<ul>
@@ -7737,7 +7742,7 @@ playMusic(musicList.reverse(),"musicplay");
 		</li>
 	</ul>
 </li>
-<li class="card">2023.02.06
+<li>2023.02.06
 	<ul>
 		<li><input type="checkbox" checked="" />2 月 6 日英语
 			<ul>
@@ -7771,7 +7776,7 @@ playMusic(musicList.reverse(),"musicplay");
 		</li>
 	</ul>
 </li>
-<li class="card">2023.02.07
+<li>2023.02.07
 	<ul>
 		<li><input type="checkbox" />写一篇日记</li>
 		<li><input type="checkbox" checked="" />2 月 7 日英语
@@ -7817,7 +7822,7 @@ playMusic(musicList.reverse(),"musicplay");
 		</li>
 	</ul>
 </li>
-<li class="card">2023.02.08
+<li>2023.02.08
 	<ul>
 		<li><input type="checkbox" />写一篇日记</li>
 		<li><input type="checkbox" checked="" />2 月 8日英语
@@ -7833,7 +7838,7 @@ playMusic(musicList.reverse(),"musicplay");
 			压强</li>
 	</ul>
 </li>
-<li class="card">2023.02.09
+<li>2023.02.09
 	<ul>
 		<li><input type="checkbox" checked="" />写一篇日记</li>
 		<li><input type="checkbox" checked="" />2 月 9 日英语
@@ -7847,7 +7852,7 @@ playMusic(musicList.reverse(),"musicplay");
 		<li><input type="checkbox" checked="" />化学《基础快速复习》的35至46页，并用红笔判、改错</li>
 	</ul>
 </li>
-<li class="card">2023.02.10
+<li>2023.02.10
 	<ul>
 		<li><input type="checkbox" />写一篇日记</li>
 		<li><input type="checkbox" />2 月 10 日英语
@@ -7864,7 +7869,7 @@ playMusic(musicList.reverse(),"musicplay");
 		</li>
 	</ul>
 </li>
-<li class="card"><input type="checkbox" checked="" />2 月 11 日英语
+<li><input type="checkbox" checked="" />2 月 11 日英语
 	<ul>
 		<li><input type="checkbox" checked="" />八下2模单词(72分以上同学发挡住英语看着汉语口头拼单词视频，72分以下同学抄写单词，3+1)</li>
 		<li><input type="checkbox" checked="" />分类真题14页话题8完形passage1</li>
@@ -7872,7 +7877,7 @@ playMusic(musicList.reverse(),"musicplay");
 		<li><input type="checkbox" checked="" />分类真题62页passage11.要求:红笔判改后提交。</li>
 	</ul>
 </li>
-<li class="card"><input type="checkbox" checked="" /> 2 月 12 日英语
+<li><input type="checkbox" checked="" /> 2 月 12 日英语
 	<ul>
 		<li><input type="checkbox" checked="" />大声朗读八下3模对话，课文，单词1遍(语音提交)</li>
 		<li><input type="checkbox" checked="" />第15页完形passage2</li>
@@ -7880,7 +7885,7 @@ playMusic(musicList.reverse(),"musicplay");
 		<li>[#A] 2 月 13 日开学！</li>
 	</ul>
 </li>
-<li class="card">2023.02.13
+<li>2023.02.13
 	<p>“叮铃铃……”随着闹钟声音的响起，我迎来了开学第一天。
 		就在我兴致高昂之时，我猛然发现时间不够用了——离6：50（往常的早自习时间）仅剩15分钟！<br />
 		那一刻我真是使出了浑身解数。
@@ -7902,7 +7907,7 @@ playMusic(musicList.reverse(),"musicplay");
 		最后简略说一下收作业情况：语文收了，政治在收但我不交，历史老师却一个一个查了--我想说我是白补作业了吗？写了的一个不查，没写的全查了？？？
 	</p>
 </li>
-<li class="card">2023.02.18
+<li>2023.02.18
 	<ul>
 		<li>给温硕过生日
 			<p>这天下午，我早早的就到达了会场。
@@ -7940,7 +7945,7 @@ playMusic(musicList.reverse(),"musicplay");
 		</li>
 	</ul>
 </li>
-<li class="card">2023.02.19
+<li>2023.02.19
 	<ul>
 		<li>vue-markdown demo
 			<div id="vue-markdown">
@@ -8027,7 +8032,7 @@ playMusic(musicList.reverse(),"musicplay");
 		</li>
 	</ul>
 </li>
-<li class="card">2023.02.20
+<li>2023.02.20
 	<ul>
 		<li>简略描述一下考试的心情
 			<ul>
@@ -8039,7 +8044,7 @@ playMusic(musicList.reverse(),"musicplay");
 		</li>
 	</ul>
 </li>
-<li class="card">2023.02.24
+<li>2023.02.24
 	<ul>
 		<li>docsify 典型代码
 			<pre><code language="HTML">
@@ -8074,7 +8079,7 @@ playMusic(musicList.reverse(),"musicplay");
 		</li>
 	</ul>
 </li>
-<li class="card">2023.03.05
+<li>2023.03.05
 	<ul>
 		<li>《深中通道》纪录片第一集
 			<ul>
@@ -8108,7 +8113,7 @@ playMusic(musicList.reverse(),"musicplay");
 		</li>
 	</ul>
 </li>
-<li class="card">2023.03.10
+<li>2023.03.10
 	<ul>
 		<li>未关闭的标签页
 			<ul>
@@ -8136,7 +8141,7 @@ playMusic(musicList.reverse(),"musicplay");
 		</li>
 	</ul>
 </li>
-<li class="card">2023.03.26
+<li>2023.03.26
 	<ul>
 		<li>有奖话题：聊聊「我与少数派」
 			<ul>
@@ -8165,7 +8170,7 @@ playMusic(musicList.reverse(),"musicplay");
 		</li>
 	</ul>
 </li>
-<li class="card">2023.04.02
+<li>2023.04.02
 	<ul>
 		<li>做 index.html 筛选的一些构想：
 			<ul>
@@ -8563,7 +8568,7 @@ playMusic(musicList.reverse(),"musicplay");
 		</li>
 	</ul>
 </li>
-<li class="card">2023.04.15
+<li>2023.04.15
 	<ul>
 		<li>储能电站
 			<ul>
@@ -8619,7 +8624,7 @@ playMusic(musicList.reverse(),"musicplay");
 		</li>
 	</ul>
 </li>
-<li class="card">2023.05.20
+<li>2023.05.20
 	<ul>
 		<li>透视新科技：《宇宙深处的超级强光》
 			<ul>
@@ -8685,7 +8690,7 @@ playMusic(musicList.reverse(),"musicplay");
 		</li>
 	</ul>
 </li>
-<li class="card">2023.06.20
+<li>2023.06.20
 	<p>物理老师提早十分钟下课。The time is 9:40.<br />
 		我想，这么好的一个课间，一定不要浪费呀。然而，打羽毛球我没能参与，篮球、乒乓球估计也插不进去，甚至去找生物老师也没找到……<br />
 		我顺着三楼的楼道走过去，——这属于他们，也属于曾经的我，——我听到一阵悠扬的，弦声。<br />
@@ -8693,10 +8698,10 @@ playMusic(musicList.reverse(),"musicplay");
 		他们练了一会儿，那个女孩为了练手，弹了一首欢快的曲子，我问她，她说，叫《井冈山上太阳红》。<br />
 		我想，为了这美妙的音乐，我也要坚强地活下去！</p>
 </li>
-<li class="card">2023.06.21(夏至) 我们毕业啦！</li>
-<li class="card">2023.07.07 为什么沙漠中的生物是灰色的，与沙漠融为一体；然而绿色森林中的生物，毛色同样呈灰色？</li>
-<li class="card">2023.07.15 $y=-\lvert 2x^2 \rvert+\lvert 4x \rvert$</li>
-<li class="card">2023.09.13
+<li>2023.06.21(夏至) 我们毕业啦！</li>
+<li>2023.07.07 为什么沙漠中的生物是灰色的，与沙漠融为一体；然而绿色森林中的生物，毛色同样呈灰色？</li>
+<li>2023.07.15 $y=-\lvert 2x^2 \rvert+\lvert 4x \rvert$</li>
+<li>2023.09.13
 	<ul>
 		<li>月相观测活动
 			<ul>
@@ -8748,7 +8753,7 @@ playMusic(musicList.reverse(),"musicplay");
 		</li>
 	</ul>
 </li>
-<li class="card">2023.09.16
+<li>2023.09.16
 	<ul>
 		<li>作业(合计：约7小时)
 			<ul>
@@ -8768,7 +8773,7 @@ playMusic(musicList.reverse(),"musicplay");
 		</li>
 	</ul>
 </li>
-<li class="card" id="未完成/研究/2023.10.05">图灵完备<a href="#.未完成/研究">#未完成/研究</a>
+<li id="未完成/研究/2023.10.05">图灵完备<a href="#.未完成/研究">#未完成/研究</a>
 	<ul>
 		<li><a href="https://zhuanlan.zhihu.com/p/408498000">证明 JS 和 TS 类型编程是图灵完备的 - 知乎</a></li>
 		<li><a href="https://zhuanlan.zhihu.com/p/590271873">递归论与可计算性 - 知乎</a></li>
@@ -8792,7 +8797,7 @@ playMusic(musicList.reverse(),"musicplay");
 		<li><a href="#未完成/研究/2024.5.23">2024.5.23(图灵度)</a></li>
 	</ul>
 </li>
-<li class="card" id="未完成/研究/2023.11.26">Emacs<a href="#.未完成/研究">#未完成/研究</a>
+<li id="未完成/研究/2023.11.26">Emacs<a href="#.未完成/研究">#未完成/研究</a>
 	<ul>
 		<li><a href="https://zhuanlan.zhihu.com/p/61722510">Emacs 安装与配置 - 知乎</a></li>
 		<li><a href="https://www.zhihu.com/question/26901116/answer/34559832">如何总结和整理学术文献？ - 知乎</a></li>
@@ -8803,7 +8808,7 @@ playMusic(musicList.reverse(),"musicplay");
 		<li><a href="https://zhuanlan.zhihu.com/p/319394318">10 个让你进入 Emacs 世界的技巧 | Linux 中国 - 知乎</a></li>
 	</ul>
 </li>
-<li class="card" id="未完成/研究/2023.11.26-2">数理逻辑<a href="#.未完成/研究">#未完成/研究</a>
+<li id="未完成/研究/2023.11.26-2">数理逻辑<a href="#.未完成/研究">#未完成/研究</a>
 	<ul>
 		<li><a href="https://www.zhihu.com/question/22949842">有人熟悉Isabelle定理证明器的么？ - 知乎</a></li>
 		<li><a href="https://www.cnblogs.com/chenshu/p/12634595.html">浅析逻辑代数、命题逻辑、一阶逻辑、高阶逻辑和数理逻辑 - 辰述 - 博客园</a></li>
@@ -8827,7 +8832,7 @@ playMusic(musicList.reverse(),"musicplay");
 				博客园</a></li>
 	</ul>
 </li>
-<li class="card">2024.02
+<li>2024.02
 	<ul>
 	<li>位置矢量：某一时刻，以坐标原点为起点，以运动质点所在位置为终点的矢量。</li>	
 	<li>基矢：
@@ -8895,14 +8900,14 @@ playMusic(musicList.reverse(),"musicplay");
 	</li>
 	</ul>
 </li>
-<li class="card">2024.02.26
+<li>2024.02.26
 	<ul>
 		<li>开学第一天，寒假又荒废了~</li>
 		<li>班干部竞选无人参加，我挺身而出~</li>
 		<li>最终没有接着当组织委员，而是去当了纪律委员，嘶~</li>
 	</ul>
 </li>
-<li class="card">2024.02.27
+<li>2024.02.27
 	<ul>
 		<li>今天维护纪律的效果还不错~</li>
 		<li>今日单词
@@ -8946,7 +8951,7 @@ playMusic(musicList.reverse(),"musicplay");
 		</li>
 	</ul>
 </li>
-<li class="card">2024.02.28
+<li>2024.02.28
 	<ul>
 		<li>纪委不好当啊~要不要管全凭直觉</li>
 		<li>今日单词
@@ -8959,7 +8964,7 @@ playMusic(musicList.reverse(),"musicplay");
 		</li>
 	</ul>
 </li>
-<li class="card">2024.02.29
+<li>2024.02.29
 	<ul>
 		<li>明天就4.5前瞻，期待枫原万叶~</li>
 		<li>今日单词
@@ -9034,7 +9039,7 @@ playMusic(musicList.reverse(),"musicplay");
 		<li>近代中国西方化的过程,其实也是逐渐抛弃本土文化的过程,起初是技术,然后是制度,最后是文化.</li>
 	</ul>
 </li>
-<li class="card">2024.03.04
+<li>2024.03.04
 	<ul>
 		<li>今日作业
 			<ul>
@@ -9057,7 +9062,7 @@ playMusic(musicList.reverse(),"musicplay");
 	</ul>
 	&lt;默写《子路、曾皙、冉有、公西华侍坐》(Tuesday)
 </li>
-<li class="card">2024.03.05
+<li>2024.03.05
 	<ul>
 		<li>由于在班里和杜浩然玩原神被胡冰把手机收了，停更几天~</li>
 		<li>今日惊蛰
@@ -9073,7 +9078,7 @@ playMusic(musicList.reverse(),"musicplay");
 	</ul>
 	&lt;续借图书馆的书
 </li>
-<li class="card">2024.03.13
+<li>2024.03.13
 	<ul>
 		<li>今日单词
 			<ul>
@@ -9176,12 +9181,12 @@ playMusic(musicList.reverse(),"musicplay");
 		</li>
 	</ul>
 </li>
-<li class="card">2024.03.24
+<li>2024.03.24
 	<ul>
 		<li>张量积空间：$T:\bigotimes\limits^p V^* \bigotimes\limits^q V \to \mathbb{R}\\$</li>
 	</ul>
 </li>
-<li class="card">2024.03.27
+<li>2024.03.27
 	<ul>
 		<li>各位剧组成员：
 			在大家的不懈努力下，我班心理剧初选阶段录制工作宣告胜利结束(๑>ڡ<)，在这里首先要和从上学期奋斗到这学期、为剧组初选工作付出大量努力的同学们道一声：“大家辛苦啦！(≧∇≦)”
@@ -9191,7 +9196,7 @@ playMusic(musicList.reverse(),"musicplay");
 				当然如果未能入选也没有关系，这是独属于我们剧组的珍贵回忆，具有参加比赛之外的不可磨灭的价值。 另：我班其他同学对我们的成果很感兴趣，如将最终录像向全班同学播放，大家是否会有抵触？ </li>
 	</ul>
 </li>
-<li class="card">2024.03.27
+<li>2024.03.27
 	<ul>
 		<li>交了满满智商税的一天🥴</li>
 		<li>score the goal射门得分
@@ -9199,13 +9204,13 @@ playMusic(musicList.reverse(),"musicplay");
 			This is ... time + 完成时从句</li>
 	</ul>
 </li>
-<li class="card">
+<li>
 	<ul>
 		<li>有人的地方就有故事。我们都有（或许）痛苦的童年，但由于经历的不同，我们不能相互理解；我们都有自己的戏份和轨迹，但我总想跨轨而行</li>
 	</ul>
 </li>
-<li class="card">2024.04.17-19-...	began a new impact with Meillewur(Yan Yue) . Maybe is romantic?</li>
-<li class="card">2024.04.21
+<li>2024.04.17-19-...	began a new impact with Meillewur(Yan Yue) . Maybe is romantic?</li>
+<li>2024.04.21
 	<ul>
 	<li>加油稿
 		<ol>
@@ -9215,7 +9220,7 @@ playMusic(musicList.reverse(),"musicplay");
 	</li>
 	</ul>
 </li>
-<li class="card">2024.05.03
+<li>2024.05.03
 	<ul>
 	<li>《三体》分享会
 		<ul>
@@ -9236,12 +9241,12 @@ playMusic(musicList.reverse(),"musicplay");
 		</li>
 	</ul>
 </li>
-<li class="card">2024.5.8 
+<li>2024.5.8 
 	<ul>
 	<li>一直认为,世界的本质就是一组规律.这一组规律描绘了这世界的本质图景,并决定宇宙的未来,而人类所要做的,就是尽可能地接近这一组规律.有人把这组规律看作哲学,于是他们发展出经验主义/理性主义/唯物论/唯心论/可知论/不可知论等等;有人把这组规律看作物理学,于是出现了光学、热力学 分析力学,电磁学,相对论,量子力学等等;当然绝大多数人并不关心整个世界,而着眼这组规律的一个切片(或者说,一种推导得到的结论?),也就是我们生存其中的社会,于是出现了社会学,心理学,文学,经济学,历史……应当说,一切人类知识,都会是这组规律的一个推导结论或是一个切面。但规律本身究竟是什么样呢?<br />可以换种想法,将规律定义为某种更深层规律的有机组合.一般认为地球围绕太阳转是一个规律,但它不过是将万有定律应用到这一种日地位置的关系上的一个次级规律罢了.但组合成有无穷多种,若将地球移到距离太阳足够远的地方,地球围绕太阳转这一规律就会失效。所以,或许现有的物理学定律也不过是某种定律的组合,或许换一种时空条件,现有物理学定律就不再成立.<br />但这更深层的规律是什么呢?<br />nobody knows.<br />但终会找到,对吧?</li>
 	</ul>
 </li>
-<li class="card" id="未完成/研究/2024.5.11">宇宙学运动方程<a href="#.未完成/研究">#未完成/研究</a>
+<li id="未完成/研究/2024.5.11">宇宙学运动方程<a href="#.未完成/研究">#未完成/研究</a>
 	<ul>
 	<li><a href="https://mp.weixin.qq.com/s/e5O9dtXqqr7lDBkXf_xq0A">100年后，物理学家终于找到宇宙学运动方程的解析解</a></li>
 	<li><a href="https://www.zhihu.com/question/386138910">什么是「闵可夫斯基几何」？</a></li>
@@ -9251,14 +9256,14 @@ playMusic(musicList.reverse(),"musicplay");
 		(and a clue to the cosmological constant)”arXiv:2210.01142v2 [gr-qc]</a></li>
 	</ul>
 </li>
-<li class="card" id="未完成/研究/2024.5.19">加速器<a href="#.未完成/研究">#未完成/研究</a>
+<li id="未完成/研究/2024.5.19">加速器<a href="#.未完成/研究">#未完成/研究</a>
 	<ul>
 	<li><a href="https://mp.weixin.qq.com/s/Im7MKkJWWfiYTggdZT9e-g">三体人为什么那么害怕地球人的加速器？</a></li>
 	<li><a href="https://www.zhihu.com/question/50323247">宇宙中有哪些天然的粒子加速器和对撞机？假如想要用它们来代替人造加速器，人类需要克服哪些困难？</a></li>
 	<li><a href="https://zhuanlan.zhihu.com/p/92303020">从文明奇观到千家万户——粒子加速器菜鸟笔记</a></li>
 	</ul>
 </li>
-<li class="card">2024.05.19
+<li>2024.05.19
 	<ul>
 	<li>getVM
 		<ul>
@@ -9269,14 +9274,14 @@ playMusic(musicList.reverse(),"musicplay");
 	</li>
 	</ul>
 </li>
-<li class="card" id="未完成/研究/2024.5.23">图灵度<a href="#.未完成/研究">#未完成/研究</a>
+<li id="未完成/研究/2024.5.23">图灵度<a href="#.未完成/研究">#未完成/研究</a>
 	<ul>
 	<li><a href="#未完成/研究/2023.10.05">图灵完备</a></li>
 	<li><a href="https://www.zhihu.com/question/21579465">有没有比图灵机能力更强的计算模型？ - 知乎</a></li>
 	<li><a href="https://www.zhihu.com/question/44486071">图灵度有什么直观的解释？ - 知乎</a></li>
 	</ul>
 </li>
-<li class="card">2024.05.25
+<li>2024.05.25
 	<ul>
 	<li id="未完成/研究/2024.5.25">可逆计算<a href="#.未完成/研究">#未完成/研究</a>
 		<ul>
@@ -9303,7 +9308,7 @@ playMusic(musicList.reverse(),"musicplay");
 	</li>
 	</ul>
 </li>
-<li class="card">2024.06.01
+<li>2024.06.01
 	<ul>
 	<li>青科赛注意事项
 		<div id="青科赛"><vue-markdown>
@@ -9364,7 +9369,7 @@ playMusic(musicList.reverse(),"musicplay");
 	</li>
 	</ul>
 </li>
-<li class="card">2024.06.06
+<li>2024.06.06
 	<ul>
 	<li>雨中漫步有感
 		<ul>
@@ -9376,7 +9381,7 @@ playMusic(musicList.reverse(),"musicplay");
 	<li>今天是农历儿童节...应该是吧。</li>
 	</ul>
 </li>
-<li class="card">feeder：时隔一年多的长期项目取得阶段性进展
+<li>feeder：时隔一年多的长期项目取得阶段性进展
 	<template id="feed_template">
 	<div class="feeder-style">
 		<a href="{{link}}"><h3>{{title}}</h3></a>
@@ -9653,7 +9658,7 @@ playMusic(musicList.reverse(),"musicplay");
 			</svg></p>
 	<div id="rss"></div>
 </li>
-<li class="card"  id="documenter">
+<li  id="documenter">
 	<details>
 		<summary>document browse<button onclick="documentCode()">refresh!</button></summary>
 		<template id="documenter_template"><pre><code id="documentCode" language="html" class="language-html"></code></pre></template>
@@ -9668,7 +9673,7 @@ playMusic(musicList.reverse(),"musicplay");
 		</script>
 	</details>
 </li>
-<li class="card">2024.06.14 选课啦！
+<li>2024.06.14 选课啦！
 	<ul>
 		<li>第一周课程表
 		<table border="1">

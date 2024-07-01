@@ -7300,8 +7300,7 @@ playMusic(musicList.reverse(),"musicplay");
 				let musicold=i.innerHTML;
 				musicold = musicold.replace("<!--mu", "");
 				musicold = musicold.replace("mu-->", "");
-				musicold = musicold.replace(/</g, "&lt;");
-				musicold = musicold.replace(/>/g, "&gt;");
+				musicold = HtmlUtil.html2Escape(musicold)
 				i.innerHTML = musicold;
 		}
 		</script>
@@ -7335,7 +7334,7 @@ playMusic(musicList.reverse(),"musicplay");
 				this.final=document.createElement("div");
 				this.final.className="musicDiv";
 				this.israndom=false;
-                let torandom=this.israndom;
+				torandom=this.israndom;
 				let player = new Audio();
 				player.preload = true;
 				player.controls = true;
@@ -7351,7 +7350,12 @@ playMusic(musicList.reverse(),"musicplay");
 				this.final.appendChild(document.createElement("br"));
 				let musicrandoming=document.createElement('a');
 				musicrandoming.innerText = "randomer!:" + this.israndom;
-				musicrandoming.addEventListener("click", music_randoming, false);
+				musicrandoming.addEventListener("click",()=>{
+					this.israndom = !this.israndom;
+					torandom=this.israndom;
+					musicrandoming.innerText = "randomer!:" + this.israndom;
+          console.log(torandom);
+				}, false);
 				this.final.appendChild(musicrandoming);
 				this.final.appendChild(document.createElement("br"));
 				let musiccontrolup=document.createElement('a');
@@ -7384,12 +7388,7 @@ playMusic(musicList.reverse(),"musicplay");
 					return playwer(musicList[randomNum(1, musicList.length)]);
 				}
 				function music_src() {
-					return (this.israndom) ? music_random() : music_next();
-				}
-				function music_randoming() {
-					torandom = !torandom;
-					musicrandoming.innerText = "randomer!:" + torandom;
-                    console.log(torandom);
+					return (torandom) ? music_random() : music_next();
 				}
 				function music_looping() {
 					player.loop= !player.loop;
@@ -8221,11 +8220,11 @@ playMusic(musicList.reverse(),"musicplay");
 						<li>
 							<details>
 								<summary>一个完整的 flomo 实例：</summary>
-								<pre><code>
-		  &lt;!DOCTYPE html&gt;
-		  &lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot;&gt;
-		  &lt;title&gt;flomo · 浮墨笔记&lt;/title&gt;
-		  &lt;style type=&quot;text/css&quot;&gt;
+								<pre><code class="language-html flomo.html">
+<!--flomo<!DOCTYPE html>
+<meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot;>
+<title>flomo · 浮墨笔记</title>
+<style type=&quot;text/css&quot;>
 			* {
 			  margin: 0;
 			  padding: 0;
@@ -8316,8 +8315,8 @@ playMusic(musicList.reverse(),"musicplay");
 			  border-radius: 4px;
 			  margin: 6px 0;
 			}
-		  &lt;/style&gt;
-		  &lt;style&gt;
+</style>
+<style>
 		  .custom-select {
 			position: relative;
 			font-size: 14px;
@@ -8401,94 +8400,94 @@ playMusic(musicList.reverse(),"musicplay");
 		  .same-as-selected {
 			background-color: rgba(0, 0, 0, 0.1);
 		  }
-		&lt;/style&gt;
-		&lt;/head&gt;
-		&lt;body&gt;
-		&lt;header&gt;
-		  &lt;div class=&quot;logo&quot;&gt;
-			&lt;svg width=&quot;96&quot; height=&quot;31&quot; viewBox=&quot;0 0 96 31&quot; fill=&quot;none&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot;&gt;
-			  &lt;path fill-rule=&quot;evenodd&quot; clip-rule=&quot;evenodd&quot; d=&quot;M4.87056 9.11086C4.87056 6.25522 5.89594 4.89539 7.81854 4.89539H12.5609V0H7.81854C2.69163 0 0 3.39957 0 9.11086V10.8786V14.9581V30.3242H4.87056V15.3661H12.5609V10.8786H4.87056V9.11086ZM79.5937 27.8765C81.3881 29.7803 83.6952 30.7321 86.3868 30.7321C89.0785 30.7321 91.2574 29.7803 93.18 27.8765C95.1026 25.9727 95.9998 23.525 95.9998 20.5334C95.9998 17.5418 94.9744 15.0941 93.18 13.1903C91.2574 11.2866 89.0785 10.3347 86.3868 10.3347C83.6952 10.3347 81.5163 11.2866 79.5937 13.1903C77.6711 15.0941 76.7739 17.5418 76.7739 20.5334C76.7739 23.525 77.7993 25.9727 79.5937 27.8765ZM81.6444 20.5334C81.6444 17.5418 83.6952 15.502 86.3868 15.502C89.0785 15.502 91.2574 17.5418 91.1292 20.5334C91.1292 23.661 89.0785 25.7008 86.3868 25.7008C83.6952 25.7008 81.6444 23.661 81.6444 20.5334ZM32.8147 30.7321C30.1231 30.7321 27.816 29.7802 26.0215 27.8765C24.2271 25.9727 23.2017 23.661 23.2017 20.6694C23.2017 17.6777 24.0989 15.23 26.0215 13.3263C27.9441 11.4225 30.1231 10.4706 32.8147 10.4706C35.5063 10.4706 37.6853 11.4225 39.6079 13.3263C41.5305 15.23 42.4277 17.6777 42.4277 20.6694C42.4277 23.661 41.5305 26.1087 39.6079 28.0124C37.6853 29.9162 35.5063 30.7321 32.8147 30.7321ZM32.8147 15.502C30.1231 15.502 28.0723 17.5418 28.0723 20.5334C28.0723 23.661 30.1231 25.7007 32.8147 25.7007C35.5063 25.7007 37.5571 23.661 37.5571 20.5334C37.5571 17.5418 35.5063 15.502 32.8147 15.502ZM62.0358 19.9894V30.4601H57.2934V19.7175C57.2934 17.1338 55.8835 15.502 53.9609 15.502C51.7819 15.502 50.1157 16.8618 50.1157 19.9894V30.4601H45.3733V10.8786H50.1157V13.7342C51.0129 11.5585 53.32 10.4706 55.3708 10.4706C58.3187 10.6066 60.2413 11.8305 61.2667 14.1422C62.5484 11.6945 64.471 10.4706 67.0345 10.4706C71.5205 10.4706 74.084 13.5982 74.084 19.3095V30.4601H69.3416V19.8535C69.3416 17.1338 67.9317 15.502 65.8809 15.502C63.5738 15.502 62.0358 17.1338 62.0358 19.9894ZM15.6366 4.89539V0H20.379V30.4602H15.6366V7.2071V4.89539Z&quot; fill=&quot;#292929&quot;/&gt;
-			&lt;/svg&gt;
-		  &lt;/div&gt;
-		  &lt;div class=&quot;top&quot;&gt;
-			&lt;div class=&quot;user&quot;&gt;
-			  &lt;div class=&quot;name&quot;&gt;@xcvyu&lt;/div&gt;
-			  &lt;div class=&quot;date&quot;&gt;于 2023-4-1 导出 5 条 MEMO&lt;/div&gt;
-			&lt;/div&gt;
-			&lt;div class=&quot;filter&quot;&gt;
-			  &lt;div class=&#x27;custom-select&#x27;&gt;
-				  &lt;select name=&quot;date&quot; id=&quot;date&quot;&gt;
-					&lt;option value=&quot;&quot;&gt;选择年月&lt;/option&gt;
-					&lt;option value=&quot;2023-03&quot;&gt;2023-03&lt;/option&gt;
-				  &lt;/select&gt;
-			  &lt;/div&gt;
-			  &lt;div class=&#x27;custom-select&#x27;&gt;
-				&lt;select name=&quot;tag&quot; id=&quot;tag&quot;&gt;
-				  &lt;option value=&quot;&quot;&gt;选择标签&lt;/option&gt;
-				  &lt;option value=&quot;欢迎&quot;&gt;欢迎&lt;/option&gt;&lt;option value=&quot;欢迎/简介&quot;&gt;欢迎/简介&lt;/option&gt;&lt;option value=&quot;欢迎/指南&quot;&gt;欢迎/指南&lt;/option&gt;
-				&lt;/select&gt;
-			  &lt;/div&gt;
-			  &lt;button&gt;筛选&lt;/button&gt;
-			&lt;/div&gt;
-		  &lt;/div&gt;
-		&lt;/header&gt;
+		</style>
+		</head>
+		<body>
+		<header>
+<div class=&quot;logo&quot;>
+			<svg width=&quot;96&quot; height=&quot;31&quot; viewBox=&quot;0 0 96 31&quot; fill=&quot;none&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot;>
+	<path fill-rule=&quot;evenodd&quot; clip-rule=&quot;evenodd&quot; d=&quot;M4.87056 9.11086C4.87056 6.25522 5.89594 4.89539 7.81854 4.89539H12.5609V0H7.81854C2.69163 0 0 3.39957 0 9.11086V10.8786V14.9581V30.3242H4.87056V15.3661H12.5609V10.8786H4.87056V9.11086ZM79.5937 27.8765C81.3881 29.7803 83.6952 30.7321 86.3868 30.7321C89.0785 30.7321 91.2574 29.7803 93.18 27.8765C95.1026 25.9727 95.9998 23.525 95.9998 20.5334C95.9998 17.5418 94.9744 15.0941 93.18 13.1903C91.2574 11.2866 89.0785 10.3347 86.3868 10.3347C83.6952 10.3347 81.5163 11.2866 79.5937 13.1903C77.6711 15.0941 76.7739 17.5418 76.7739 20.5334C76.7739 23.525 77.7993 25.9727 79.5937 27.8765ZM81.6444 20.5334C81.6444 17.5418 83.6952 15.502 86.3868 15.502C89.0785 15.502 91.2574 17.5418 91.1292 20.5334C91.1292 23.661 89.0785 25.7008 86.3868 25.7008C83.6952 25.7008 81.6444 23.661 81.6444 20.5334ZM32.8147 30.7321C30.1231 30.7321 27.816 29.7802 26.0215 27.8765C24.2271 25.9727 23.2017 23.661 23.2017 20.6694C23.2017 17.6777 24.0989 15.23 26.0215 13.3263C27.9441 11.4225 30.1231 10.4706 32.8147 10.4706C35.5063 10.4706 37.6853 11.4225 39.6079 13.3263C41.5305 15.23 42.4277 17.6777 42.4277 20.6694C42.4277 23.661 41.5305 26.1087 39.6079 28.0124C37.6853 29.9162 35.5063 30.7321 32.8147 30.7321ZM32.8147 15.502C30.1231 15.502 28.0723 17.5418 28.0723 20.5334C28.0723 23.661 30.1231 25.7007 32.8147 25.7007C35.5063 25.7007 37.5571 23.661 37.5571 20.5334C37.5571 17.5418 35.5063 15.502 32.8147 15.502ZM62.0358 19.9894V30.4601H57.2934V19.7175C57.2934 17.1338 55.8835 15.502 53.9609 15.502C51.7819 15.502 50.1157 16.8618 50.1157 19.9894V30.4601H45.3733V10.8786H50.1157V13.7342C51.0129 11.5585 53.32 10.4706 55.3708 10.4706C58.3187 10.6066 60.2413 11.8305 61.2667 14.1422C62.5484 11.6945 64.471 10.4706 67.0345 10.4706C71.5205 10.4706 74.084 13.5982 74.084 19.3095V30.4601H69.3416V19.8535C69.3416 17.1338 67.9317 15.502 65.8809 15.502C63.5738 15.502 62.0358 17.1338 62.0358 19.9894ZM15.6366 4.89539V0H20.379V30.4602H15.6366V7.2071V4.89539Z&quot; fill=&quot;#292929&quot;/>
+			</svg>
+</div>
+<div class=&quot;top&quot;>
+			<div class=&quot;user&quot;>
+	<div class=&quot;name&quot;>@xcvyu</div>
+	<div class=&quot;date&quot;>于 2023-4-1 导出 5 条 MEMO</div>
+			</div>
+			<div class=&quot;filter&quot;>
+	<div class=&#x27;custom-select&#x27;>
+		<select name=&quot;date&quot; id=&quot;date&quot;>
+					<option value=&quot;&quot;>选择年月</option>
+					<option value=&quot;2023-03&quot;>2023-03</option>
+		</select>
+	</div>
+	<div class=&#x27;custom-select&#x27;>
+				<select name=&quot;tag&quot; id=&quot;tag&quot;>
+		<option value=&quot;&quot;>选择标签</option>
+		<option value=&quot;欢迎&quot;>欢迎</option><option value=&quot;欢迎/简介&quot;>欢迎/简介</option><option value=&quot;欢迎/指南&quot;>欢迎/指南</option>
+				</select>
+	</div>
+	<button>筛选</button>
+			</div>
+</div>
+		</header>
 				  
-		&lt;div class=&quot;memo&quot;&gt;
-			&lt;div class=&quot;time&quot;&gt;2023-03-24 23:21:00&lt;/div&gt;
-			&lt;div class=&quot;content&quot;&gt;&lt;p&gt;&lt;strong&gt;无题眠随意乱写。。不算诗不算散文随笔罢&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;一两诗酒，半盏残风。一扇长窗，两种天色。你说春光明媚，那将冬做否？冥冥间将我踩碎，随着北方全吹没。我化作影吧，只是不语，就包裹你窗。眠风也未了，水怎将溪。梧桐压秋，莲百簇眠。君眠酒煮，几个春秋。若不许，缠枝梦。欲等雨，舞细浪。上一的另篇，即变视角重拾。自己的东西不存在寻章摘句与否，恰姊妹篇参半。乱写。。杂乱无章的没有韵脚的。随意的。即刻感受罢。&lt;/p&gt;&lt;/div&gt;
-		&lt;/div&gt;
+		<div class=&quot;memo&quot;>
+			<div class=&quot;time&quot;>2023-03-24 23:21:00</div>
+			<div class=&quot;content&quot;><p><strong>无题眠随意乱写。。不算诗不算散文随笔罢</strong></p><p></p><p>一两诗酒，半盏残风。一扇长窗，两种天色。你说春光明媚，那将冬做否？冥冥间将我踩碎，随着北方全吹没。我化作影吧，只是不语，就包裹你窗。眠风也未了，水怎将溪。梧桐压秋，莲百簇眠。君眠酒煮，几个春秋。若不许，缠枝梦。欲等雨，舞细浪。上一的另篇，即变视角重拾。自己的东西不存在寻章摘句与否，恰姊妹篇参半。乱写。。杂乱无章的没有韵脚的。随意的。即刻感受罢。</p></div>
+		</div>
 		
-		&lt;div class=&quot;memo&quot;&gt;
-			&lt;div class=&quot;time&quot;&gt;2023-03-24 23:20:43&lt;/div&gt;
-			&lt;div class=&quot;content&quot;&gt;&lt;ul&gt;&lt;li&gt;&lt;p&gt;Standard Notes：端到端加密笔记应用&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;pyLauncher：在服务器上启动脚本&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;Share via HTTP：文件共享工具&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;Nix-on-Droid：用于Android的Nix包管理器 文件共享工具&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;Metro：Android Best material design music player&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;RustDesk：开源远程桌面应用，开源TeamViewer替代方案&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;Sharik：通过 Wi-FI 共享文件，一个开源跨平台的本地网络文件分享解决方案&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;Share to Computer&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;华夏风物&lt;/p&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;
-		&lt;/div&gt;
+		<div class=&quot;memo&quot;>
+			<div class=&quot;time&quot;>2023-03-24 23:20:43</div>
+			<div class=&quot;content&quot;><ul><li><p>Standard Notes：端到端加密笔记应用</p></li><li><p>pyLauncher：在服务器上启动脚本</p></li><li><p>Share via HTTP：文件共享工具</p></li><li><p>Nix-on-Droid：用于Android的Nix包管理器 文件共享工具</p></li><li><p>Metro：Android Best material design music player</p></li><li><p>RustDesk：开源远程桌面应用，开源TeamViewer替代方案</p></li><li><p>Sharik：通过 Wi-FI 共享文件，一个开源跨平台的本地网络文件分享解决方案</p></li><li><p>Share to Computer</p></li><li><p>华夏风物</p></li></ul></div>
+		</div>
 		
-		&lt;div class=&quot;memo&quot;&gt;
-			&lt;div class=&quot;time&quot;&gt;2023-03-24 23:18:57&lt;/div&gt;
-			&lt;div class=&quot;content&quot;&gt;&lt;p&gt;&lt;strong&gt;👋，吾友&lt;/strong&gt;&lt;/p&gt;
-			&lt;p&gt;&lt;/p&gt;
-			&lt;p&gt;flomo 是新一代的极简备忘录，帮你降低记录成本，积累知识的复利。&lt;/p&gt;
-			&lt;p&gt;&lt;/p&gt;
-			&lt;p&gt;除了在这个页面&lt;strong&gt;像发微博一样&lt;/strong&gt;快速输入&lt;/p&gt;
-			&lt;p&gt;&lt;strong&gt;你还可以通过「flomo」服务号输入&lt;/strong&gt;（微信搜索 flomoapp 关注）&lt;/p&gt;
-			&lt;p&gt;&lt;/p&gt;
-			&lt;p&gt;快去试试吧~ 如有问题，也欢迎加入共建微信群，戳↓&lt;/p&gt;&lt;p&gt;https://help.flomoapp.com/community/wechat-group.html&lt;/p&gt;&lt;/div&gt;
-		&lt;/div&gt;
+		<div class=&quot;memo&quot;>
+			<div class=&quot;time&quot;>2023-03-24 23:18:57</div>
+			<div class=&quot;content&quot;><p><strong>👋，吾友</strong></p>
+			<p></p>
+			<p>flomo 是新一代的极简备忘录，帮你降低记录成本，积累知识的复利。</p>
+			<p></p>
+			<p>除了在这个页面<strong>像发微博一样</strong>快速输入</p>
+			<p><strong>你还可以通过「flomo」服务号输入</strong>（微信搜索 flomoapp 关注）</p>
+			<p></p>
+			<p>快去试试吧~ 如有问题，也欢迎加入共建微信群，戳↓</p><p>https://help.flomoapp.com/community/wechat-group.html</p></div>
+		</div>
 		
-		&lt;div class=&quot;memo&quot;&gt;
-			&lt;div class=&quot;time&quot;&gt;2023-03-24 23:18:57&lt;/div&gt;
-			&lt;div class=&quot;content&quot;&gt;&lt;p&gt;&lt;strong&gt;🤔 除了微信输入，你还可以&lt;/strong&gt;&lt;/p&gt;
-			&lt;p&gt;&lt;/p&gt;
-			&lt;ul&gt;
-				&lt;li&gt;&lt;p&gt;访问网页版：https://v.flomoapp.com&lt;/p&gt;&lt;/li&gt;
-				&lt;li&gt;&lt;p&gt;下载手机/电脑客户端：https://help.flomoapp.com/basic/app.html&lt;/p&gt;&lt;/li&gt;
-				&lt;li&gt;&lt;p&gt;导入微信读书、Kindle 等各种进阶功能：https://help.flomoapp.com/advance/extension/&lt;/p&gt;&lt;/li&gt;
-			&lt;/ul&gt;
-			&lt;p&gt;&lt;/p&gt;
-			&lt;p&gt;#欢迎/指南&lt;/p&gt;&lt;/div&gt;
-		&lt;/div&gt;
+		<div class=&quot;memo&quot;>
+			<div class=&quot;time&quot;>2023-03-24 23:18:57</div>
+			<div class=&quot;content&quot;><p><strong>🤔 除了微信输入，你还可以</strong></p>
+			<p></p>
+			<ul>
+				<li><p>访问网页版：https://v.flomoapp.com</p></li>
+				<li><p>下载手机/电脑客户端：https://help.flomoapp.com/basic/app.html</p></li>
+				<li><p>导入微信读书、Kindle 等各种进阶功能：https://help.flomoapp.com/advance/extension/</p></li>
+			</ul>
+			<p></p>
+			<p>#欢迎/指南</p></div>
+		</div>
 		
-		&lt;div class=&quot;memo&quot;&gt;
-			&lt;div class=&quot;time&quot;&gt;2023-03-24 23:18:57&lt;/div&gt;
-			&lt;div class=&quot;content&quot;&gt;&lt;p&gt;&lt;strong&gt;何谓 flomo？&lt;/strong&gt;flomo = flow + memo&lt;/p&gt;
-			&lt;p&gt;&lt;/p&gt;
-			&lt;p&gt;真正好的笔记产品，应该能让你&lt;strong&gt;记录得更多&lt;/strong&gt;。&lt;/p&gt;
-			&lt;p&gt;因为&lt;strong&gt;记录下来的想法才有价值&lt;/strong&gt;，而&lt;strong&gt;记录是为了更好地思考。&lt;/strong&gt;&lt;/p&gt;
-			&lt;p&gt;&lt;/p&gt;
-			&lt;p&gt;&lt;strong&gt;更多 flomo 用法、帮助、隐私等介绍，请点击&lt;/strong&gt; → https://help.flomoapp.com/&lt;/p&gt;
-			&lt;p&gt;&lt;/p&gt;
-			&lt;p&gt;#欢迎/简介&lt;/p&gt;&lt;/div&gt;
-		&lt;/div&gt;
-		&lt;script&gt;
+		<div class=&quot;memo&quot;>
+			<div class=&quot;time&quot;>2023-03-24 23:18:57</div>
+			<div class=&quot;content&quot;><p><strong>何谓 flomo？</strong>flomo = flow + memo</p>
+			<p></p>
+			<p>真正好的笔记产品，应该能让你<strong>记录得更多</strong>。</p>
+			<p>因为<strong>记录下来的想法才有价值</strong>，而<strong>记录是为了更好地思考。</strong></p>
+			<p></p>
+			<p><strong>更多 flomo 用法、帮助、隐私等介绍，请点击</strong> → https://help.flomoapp.com/</p>
+			<p></p>
+			<p>#欢迎/简介</p></div>
+		</div>
+		<script>
 		const memos = document.querySelectorAll(&quot;.memo&quot;);
 		const dateSelect = document.querySelector(&quot;#date&quot;);
 		const tagSelect = document.querySelector(&quot;#tag&quot;);
 		const filterBtn = document.querySelector(&quot;button&quot;);
-		filterBtn.addEventListener(&quot;click&quot;, () =&gt; {
+		filterBtn.addEventListener(&quot;click&quot;, () => {
 		  const date = dateSelect.value;
 		  const tag = tagSelect.value;
 		
-		  memos.forEach((memo) =&gt; {
+		  memos.forEach((memo) => {
 			const time = memo.querySelector(&quot;.time&quot;).innerText;
 			const content = memo.querySelector(&quot;.content&quot;).innerText;
 			const isDateMatch = time.includes(date);
@@ -8504,7 +8503,7 @@ playMusic(musicList.reverse(),"musicplay");
 		var x, i, j, l, ll, selElmnt, a, b, c;
 			x = document.getElementsByClassName(&quot;custom-select&quot;);
 			l = x.length;
-			for (i = 0; i &lt; l; i++) {
+			for (i = 0; i < l; i++) {
 				selElmnt = x[i].getElementsByTagName(&quot;select&quot;)[0];
 				ll = selElmnt.length;
 				a = document.createElement(&quot;DIV&quot;);
@@ -8513,7 +8512,7 @@ playMusic(musicList.reverse(),"musicplay");
 				x[i].appendChild(a);
 				b = document.createElement(&quot;DIV&quot;);
 				b.setAttribute(&quot;class&quot;, &quot;select-items select-hide&quot;);
-				for (j = 0; j &lt; ll; j++) {
+				for (j = 0; j < ll; j++) {
 					c = document.createElement(&quot;DIV&quot;);
 					c.innerHTML = selElmnt.options[j].innerHTML;
 					c.addEventListener(&quot;click&quot;, function (e) {
@@ -8521,13 +8520,13 @@ playMusic(musicList.reverse(),"musicplay");
 						s = this.parentNode.parentNode.getElementsByTagName(&quot;select&quot;)[0];
 						sl = s.length;
 						h = this.parentNode.previousSibling;
-						for (i = 0; i &lt; sl; i++) {
+						for (i = 0; i < sl; i++) {
 							if (s.options[i].innerHTML == this.innerHTML) {
 								s.selectedIndex = i;
 								h.innerHTML = this.innerHTML;
 								y = this.parentNode.getElementsByClassName(&quot;same-as-selected&quot;);
 								yl = y.length;
-								for (k = 0; k &lt; yl; k++) {
+								for (k = 0; k < yl; k++) {
 									y[k].removeAttribute(&quot;class&quot;);
 								}
 								this.setAttribute(&quot;class&quot;, &quot;same-as-selected&quot;);
@@ -8557,14 +8556,14 @@ playMusic(musicList.reverse(),"musicplay");
 				y = document.getElementsByClassName(&quot;select-selected&quot;);
 				xl = x.length;
 				yl = y.length;
-				for (i = 0; i &lt; yl; i++) {
+				for (i = 0; i < yl; i++) {
 					if (elmnt == y[i]) {
 						arrNo.push(i);
 					} else {
 						y[i].classList.remove(&quot;select-arrow-active&quot;);
 					}
 				}
-				for (i = 0; i &lt; xl; i++) {
+				for (i = 0; i < xl; i++) {
 					if (arrNo.indexOf(i)) {
 						x[i].classList.add(&quot;select-hide&quot;);
 					}
@@ -8573,10 +8572,19 @@ playMusic(musicList.reverse(),"musicplay");
 		
 			document.addEventListener(&quot;click&quot;, closeAllSelect);
 		
-		&lt;/script&gt;
-			&lt;/body&gt;
-		&lt;/html&gt;
+	</script>
+	</body>
+</html>flomo-->
 			</code></pre>
+			<script>
+						for(let i of document.getElementsByClassName("flomo.html")){
+				let flomo=i.innerHTML;
+				flomo = flomo.replace("<!--flomo", "");
+				flomo = flomo.replace("flomo-->", "");
+				flomo = HtmlUtil.html2Escape(flomo)
+				i.innerHTML = flomo;
+		}
+			</script>
 							</details>
 						</li>
 					</ul>

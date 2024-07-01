@@ -5,12 +5,12 @@
 <meta name="color-scheme" content="light dark">
 <meta http-equiv="Access-Control-Allow-Origin" content="*">
 <style>
-	mark {
+    mark {
 		/* background-color: #cddaa5;*/
 		/* background-color: #b3cad8; 莫兰迪蓝*/
-		background-color: #ffffe0;/* Things 黄*/
+		background-color: #ffffe0; Things 黄
 		border-radius: 5px;
-	}
+	}	
 	.musicDiv {
 		width: 75%;
 		border: 1px solid skyblue;
@@ -19,7 +19,7 @@
 		padding-top: 15px;
 		overflow: auto;
 	}
-
+	
 	a:link[href^="#"],
 	a:visited[href^="#"] {
 		padding: 1px 10px;
@@ -47,6 +47,13 @@
 <a href="./music.html">点开有惊喜!</a>
 <div id="musicplayer">
 		<script>
+			function upload(){
+				let musicReader = new FileReader();
+				musicReader.onload = function(){
+				document.getElementById("song_sheet").value=this.result;
+			}
+				musicReader.readAsText(document.getElementById("filePicker_music").files[0]);
+			}
 			function randomNum(minNum, maxNum) {
 				switch (arguments.length) {
 					case 1:
@@ -74,7 +81,7 @@
 				this.final=document.createElement("div");
 				this.final.className="musicDiv";
 				this.israndom=false;
-                let torandom=this.israndom;
+				torandom=this.israndom;
 				let player = new Audio();
 				player.preload = true;
 				player.controls = true;
@@ -90,7 +97,12 @@
 				this.final.appendChild(document.createElement("br"));
 				let musicrandoming=document.createElement('a');
 				musicrandoming.innerText = "randomer!:" + this.israndom;
-				musicrandoming.addEventListener("click", music_randoming, false);
+				musicrandoming.addEventListener("click",()=>{
+					this.israndom = !this.israndom;
+					torandom=this.israndom;
+					musicrandoming.innerText = "randomer!:" + this.israndom;
+          console.log(torandom);
+				}, false);
 				this.final.appendChild(musicrandoming);
 				this.final.appendChild(document.createElement("br"));
 				let musiccontrolup=document.createElement('a');
@@ -123,12 +135,7 @@
 					return playwer(musicList[randomNum(1, musicList.length)]);
 				}
 				function music_src() {
-					return (this.israndom) ? music_random() : music_next();
-				}
-				function music_randoming() {
-					torandom = !torandom;
-					musicrandoming.innerText = "randomer!:" + torandom;
-                    console.log(torandom);
+					return (torandom) ? music_random() : music_next();
 				}
 				function music_looping() {
 					player.loop= !player.loop;

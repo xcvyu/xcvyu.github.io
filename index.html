@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <title>xcvyu-log</title>
 <!--inboxer<div id="inboxer">
@@ -678,7 +679,7 @@ function vditorinit(){
 		// vditorinit();
 		highlightjser();
 		// new VConsole();
-		// eruda.init();
+		eruda.init();
 		// baser(document.location.href);
 		// MathJax.typeset();
 		imgonerror();
@@ -7012,16 +7013,6 @@ $("html").html();
 							sourcer=source;
 						});
 					});
-					/* new Promise((resolve) =>{
-					　　let timer = setInterval(() =>{
-						　　if(document.getElementById("SourceCode").parentNode.parentNode.open){
-						　　　　clearInterval(timer);
-						　　　　resolve(true);
-						　　}
-					　　},100)
-					}).then(() =>{
-						document.getElementById("SourceCode").innerText= sourcer;
-					}) */
 					function sourcetoggle(toggler) {
 						if (toggler.open) {
 							document.getElementById("SourceCode").innerText= sourcer;
@@ -7062,452 +7053,6 @@ $("html").html();
 				<li>https://www.angrymiao.com/am-65-less/</li>
 			</ul>
 		</li>
-	</ul>
-</li>
-<li>2023.01.19-:新的项目--JS自制音乐播放器（尚未成功）
-	<ul>
-	<li><pre><code language="HTML" class="musicold"><!--mu<div id="法1">
-<script>
-	//document.getElementsByTagName("audio").setAttribute('src,'http://192.168.5.69:8080/music/孤勇者.mp3');
-</script>
-<audio controls></audio>
-</div>
-<div id="法2">
-	<audio src="" id="work" controls loop></audio>
-	<script>
-		let i=1;
-		function runCode(){
-			let source = document.documentElement.outerHTML;
-			source = source.replace("let i=1","let i=1\;\n		i = i+1");
-			let newwin=window.open();  //打开一个窗口并赋给变量newwin。
-			newwin.opener = null // 防止代码修改页面
-			newwin.document.write(source);  //向这个打开的窗口中写入内容。
-			newwin.document.close();
-		}
-		let song = {
-			a:'http://192.168.5.69:8080/music/孤勇者.mp3',
-			b:'http://192.168.5.69:8080/music/Moonlight Sonata.mp3'
-		};
-		let number=[
-			song['a'],
-			song['b']
-		];
-		music=number[i];
-		document.getElementById("work").src=music;
-	</script>
-	<button onclick="runCode()">下一曲</button>
-</div>
-<div id="法3">
-	<script>let music = "http://127.0.0.1:8080/music/孤勇者.mp3";</script>
-	<audio controls src="JavaScript://music"></audio>
-</div>mu--></code></pre></li>
-	<li>P.S.2024.5.24 经过两个多月的努力，终于，它成功了！
-		<pre><code class="language-html musicold"><!--mu<div id="musicplayer">
-<script>
-	var israndom = false;
-	function randomNum(minNum, maxNum) {
-		switch (arguments.length) {
-			case 1:
-				return parseInt(Math.random() * minNum + 1, 10);
-				break;
-			case 2:
-				return parseInt(Math.random() * (maxNum - minNum + 1) + minNum, 10);
-				break;
-			default:
-				return 0;
-				break;
-		}
-	}
-	function playMusic(musicList,wid) {
-		var player = new Audio();
-		// var playbox=document.createElement('div');
-		// playbox.className="musicDiv";
-		var src = israndom? musicList [randomNum(1,musicList.length)]:musicList.pop();
-		player.preload = true;
-		player.id=wid;
-		player.controls = true;
-		player.loop = false;
-		player.src = src;
-		player.autoplay = true;
-		// musiclooping=document.createElement('a');
-		// musiclooping.href="javascript:looping\(\""+wid+"\"\)";
-		// musiclooping.innerHTML=wid+".playLoop!";
-		// musiclooping.className="musicontorl";
-		// musicInforUrl=document.createElement("li");
-		// musicInforUrl.innerText="url:"+src;
-		// musicInforLoop=document.createElement("li");
-		// musicInforLoop.id=wid+".looped";
-		// musicInforLoop.innerText="isloop:"+player.loop;
-		// musicInfor=document.createElement('ul');
-		// musicInfor.id=wid+".Infor";
-		// musicInfor.appendChild(musicInforUrl);
-		// musicInfor.appendChild(musicInforLoop);
-		if(!israndom)musicList.unshift(src);
-		player.addEventListener("ended", playEndedHandler, false);
-		player.play();
-		// playbox.appendChild(document.createElement('br'));
-		// playbox.appendChild(player);
-		// playbox.appendChild(musiclooping);
-		// playbox.appendChild(document.createElement('br'));
-		// playbox.appendChild(musicInfor);
-		// document.getElementById("musicplayer").appendChild(playbox);
-		document.getElementById("musicplayer").appendChild(player);
-		function playEndedHandler() {
-			src = israndom?musicList [randomNum(1,musicList.length)]:musicList.pop();
-			// player.load();
-			player.src = src;
-			// musicInforUrl.innerText="url:"+src;
-			if(!israndom)musicList.unshift(src);
-			player.play();
-		}
-	}
-	function looping(getid){
-		document.getElementById(getid).loop=!document.getElementById(getid).loop;
-		document.getElementById(getid+".looped").innerText="isloop:"+document.getElementById(getid).loop;
-	}
-	function begin_music() {eval(document.getElementById("song_sheet").value);}
-</script>
-<mark>仅限配置 server 后可用</mark><br />
-<textarea id="song_sheet" rows="15" cols="40%">
-var musicList = [
-"http://music.163.com/song/media/outer/url?id=1960415980#此时此刻",
-"http://music.163.com/song/media/outer/url?id=2112196350.mp3#浮光",
-"http://music.163.com/song/media/outer/url?id=1959528822.mp3#紫荆花盛开",
-"http://music.163.com/song/media/outer/url?id=2100372359.mp3#轻涟 Chinese",
-"http://music.163.com/song/media/outer/url?id=2100334024.mp3#轻涟 France",
-"http://music.163.com/song/media/outer/url?id=2026286081.mp3#舍离去",
-"http://music.163.com/song/media/outer/url?id=31234244.mp3#blessing(world))",
-"http://music.163.com/song/media/outer/url?id=2026565329.mp3#da capo",
-"http://music.163.com/song/media/outer/url?id=1859652717.mp3#moon halo",
-"/music/终焉×end of all[原神 2024 新春会].mp3"
-];
-playMusic(musicList.reverse(),"musicplay");
-</textarea><br />
-<button type="button" onclick="begin_music()">enjoy!</button>
-<a href="javascript:israndom=!israndom" class="musicontorl">random!</a>
-<br />
-</div>mu-->	</code></pre>
-	</li>
-	<li>P.S.2024.6.4 进行了重构，将主体函数化、模板化，体现高内聚、低耦合特点，并增加播放控件
-		<pre><code class="language-html musicold"><!--mu<div id="musicplayer">
-<script>
-	function randomNum(minNum, maxNum) {
-		switch (arguments.length) {
-			case 1:
-				return parseInt(Math.random() * minNum + 1, 10);
-				break;
-			case 2:
-				return parseInt(Math.random() * (maxNum - minNum + 1) + minNum, 10);
-				break;
-			default:
-				return 0;
-				break;
-		}
-	}
-	function playMusic(musicobjection) {
-		let musicList=musicobjection.list.reverse();
-		if(musicobjection.name!=undefined)var wid=musicobjection.name;
-		let israndom = false;
-		function objecter(obj) {
-			let object = (obj.tag != undefined) ? document.createElement(obj.tag) : obj.method;
-			if(obj.parent!=undefined)obj.parent.appendChild(object);
-			if (obj.identity != undefined) {
-				object.id = wid + '.' + obj.identity;
-				eval(obj.identity + '\= object');
-			}
-			if(obj.features!=undefined)for (let i of Object.keys(obj.features)) object[i]=obj.features[i];
-			if (obj.eventer != undefined) document.getElementById(object.id).addEventListener("click", obj.eventer);
-		}
-		function checkInfor(obj) {
-			return obj.identity == "Infor";
-		}
-		function playwer(src) {
-			player.load();
-			player.src = src;
-			document.getElementById(wid + '.InforUrl').innerHTML = "url:" + src;
-			setTimeout(() => {
-				player.play();
-			}, 512);
-		}
-		function music_next() {
-			let src = musicList.pop();
-			musicList.unshift(src);
-			return playwer(src);
-		}
-		function music_last() {
-			let src = musicList.shift();
-			musicList.push(src);
-			return playwer(src);
-		}
-		function music_random() {
-			return playwer(musicList[randomNum(0, musicList.length-1)]);
-		}
-		function music_src() {
-			return (israndom) ? music_random() : music_next();
-		}
-		function music_looping(getid) {
-			document.getElementById(getid + ".player").loop = !document.getElementById(getid + ".player").loop;
-			document.getElementById(getid + ".InforLoop").innerText = "isloop:" + document.getElementById(getid + ".player").loop;
-		}
-		function music_randoming(getid) {
-			israndom = !israndom;
-			document.getElementById(getid + ".InforRandom").innerText = "israndom:" + israndom;
-		}
-		objecter({ identity: "playbox", tag: "div", features: { className: "musicDiv" }, parent: document.getElementById("musicplayer") });
-		objecter({ identity: "player", method: new Audio(), features: { preload: true, controls: true, loop: false, autoplay: true }, parent: playbox });
-		let music_object = [
-			{ tag: "br", parent: playbox },
-			{ identity: "randomer", tag: "a", features: { innerHTML: wid + ".randomer", className: "musicontorl" }, parent: playbox, eventer: function () { music_randoming(wid); } },
-			{ tag: "br", parent: playbox },
-			{ identity: "looping", tag: "a", features: { innerHTML: wid + ".playLoop!", className: "musicontorl" }, parent: playbox, eventer: function () { music_looping(wid); } },
-			{ identity: "Infor", tag: "ul", parent: playbox },
-			{ identity: "controlup", tag: "button", features: { innerHTML: wid + ".up" }, parent: playbox, eventer: music_next },
-			{ identity: "controldown", tag: "button", features: { innerHTML: wid + ".down" }, parent: playbox, eventer: music_last }
-		];
-		for (let i of music_object) objecter(i);
-		music_object.filter(checkInfor)[0].children = [
-			{ identity: "InforLoop", tag: "li", features: { innerHTML: "isloop:" + player.loop }, parent: Infor },
-			{ identity: "InforRandom", tag: "li", features: { innerHTML: "israndom:" + israndom }, parent: Infor },
-			{ identity: "InforUrl", tag: "li", parent: Infor }
-		];
-		for (let i of music_object.filter(checkInfor)[0].children) objecter(i);
-		let musicer =music_src();
-		player.addEventListener("ended", music_src, false);
-	}
-</script>
-<mark>仅限配置 server 后可加载本地音乐</mark><br />
-<textarea id="song_sheet" rows="15" cols="40%">
-{
-	"list":[
-		"http://music.163.com/song/media/outer/url?id=1960415980#此时此刻",
-		"http://music.163.com/song/media/outer/url?id=2112196350.mp3#浮光",
-		"http://music.163.com/song/media/outer/url?id=1959528822.mp3#紫荆花盛开",
-		"http://music.163.com/song/media/outer/url?id=2100372359.mp3#轻涟 Chinese",
-		"http://music.163.com/song/media/outer/url?id=2100334024.mp3#轻涟 France",
-		"http://music.163.com/song/media/outer/url?id=2026286081.mp3#舍离去",
-		"http://music.163.com/song/media/outer/url?id=31234244.mp3#blessing(world))",
-		"http://music.163.com/song/media/outer/url?id=2026565329.mp3#da capo",
-		"http://music.163.com/song/media/outer/url?id=1859652717.mp3#moon halo",
-		"/music/终焉×end of all[原神 2024 新春会].mp3"
-	],
-	"name":"musicplay"
-}
-</textarea><br />
-<button type="button" onclick="playMusic(JSON.parse(document.getElementById('song_sheet').value));">enjoy!</button>
-</div>mu--></code></pre>
-		<script>
-			for(let i of document.getElementsByClassName("musicold")){
-				let musicold=i.innerHTML;
-				musicold = musicold.replace("<!--mu", "");
-				musicold = musicold.replace("mu-->", "");
-				musicold = HtmlUtil.html2Escape(musicold)
-				i.innerHTML = musicold;
-		}
-		</script>
-	</li>
-	<li id="musicplayer">P.S.2024.7.1 舍弃了复杂的 id 操作，以后不用给每个播放器一个独立 id 了！<a href="##musicplayer">标签面板</a>
-		<script>
-			function randomNum(minNum, maxNum) {
-				switch (arguments.length) {
-					case 1:
-						return parseInt(Math.random() * minNum + 1, 10);
-						break;
-					case 2:
-						return parseInt(Math.random() * (maxNum - minNum + 1) + minNum, 10);
-						break;
-					default:
-						return 0;
-						break;
-				}
-			}
-            function randSort(arr) {
-                for(var i = 0, len = arr.length; i < len; i++) {
-                    var rand = parseInt(Math.random() * len);
-                    var temp = arr[rand];
-                    arr[rand] = arr[i];
-                    arr[i] = temp;
-                }
-                return arr;
-            }
-			function playMusic(musicList) {
-				musicList=musicList.reverse();
-				musiciv=document.createElement("div");
-				musiciv.className="musicDiv";
-				let israndom=false;
-				let player = new Audio();
-				player.preload = true;
-				player.controls = true;
-				player.loop = false;
-				player.autoplay = true;
-				musiciv.appendChild(player);
-				let musicInforUrl=document.createElement("p");
-				musiciv.appendChild(musicInforUrl);
-				let musiclooping=document.createElement('a');
-				musiclooping.innerText = "PlayLoop!:" + player.loop;
-				musiclooping.addEventListener("click", music_looping, false);
-				musiciv.appendChild(musiclooping);
-				musiciv.appendChild(document.createElement("br"));
-				let musicrandoming=document.createElement('a');
-				musicrandoming.innerText = "randomer!:" + israndom;
-				musicrandoming.addEventListener("click",()=>{
-					israndom = !israndom;
-					musicrandoming.innerText = "randomer!:" + israndom;
-				}, false);
-				musiciv.appendChild(musicrandoming);
-				musiciv.appendChild(document.createElement("br"));
-				let musiccontrolup=document.createElement('a');
-				musiccontrolup.innerText="upper!";
-				musiccontrolup.addEventListener("click", music_next, false);
-				musiciv.appendChild(musiccontrolup);
-				let musiccontroldown=document.createElement('a');
-				musiccontroldown.innerText="lower!";
-				musiccontroldown.addEventListener("click", music_last, false);
-				musiciv.appendChild(musiccontroldown);
-				function playwer(src) {
-					player.load();
-					player.src = src;
-					musicInforUrl.innerHTML = "url:" + src;
-					setTimeout(() => {
-						player.play();
-					}, 512);
-				}
-				function music_next() {
-					let src = musicList.pop();
-					musicList.unshift(src);
-					return playwer(src);
-				}
-				function music_last() {
-					let src = musicList.shift();
-					musicList.push(src);
-					return playwer(src);
-				}
-				function music_random() {
-					return playwer(musicList[randomNum(1, musicList.length)]);
-				}
-				function music_src() {
-					return (israndom) ? music_random() : music_next();
-				}
-				function music_looping() {
-					player.loop= !player.loop;
-					musiclooping.innerText = "PlayLoop!:" + player.loop;
-				}
-				player.loop = false;
-				let musicer =music_src();
-				player.addEventListener("ended", music_src, false);
-				return musiciv;
-			}
-		</script>
-		<mark>仅限配置 server 后可加载本地音乐</mark><br />
-		<input type="file" name="file" id="filePicker_music" onchange="upload()"  /><br />
-		<textarea id="song_sheet" rows="15" cols="40%">
-[
-		"http://music.163.com/song/media/outer/url?id=2144805050.mp3#人生是旷野",
-		"http://music.163.com/song/media/outer/url?id=1950343972#可能",
-		"http://music.163.com/song/media/outer/url?id=2160850755#未行之路",
-		"http://music.163.com/song/media/outer/url?id=2155423468#希望有羽毛和翅膀",
-		"http://music.163.com/song/media/outer/url?id=2155422573#使一颗心免于哀伤",
-		"http://music.163.com/song/media/outer/url?id=2155423467#在银河中孤独摇摆",
-		"http://music.163.com/song/media/outer/url?id=2112196350.mp3#浮光",
-		"http://music.163.com/song/media/outer/url?id=1959528822.mp3#紫荆花盛开",
-		"/music/终焉×end of all[原神 2024 新春会].mp3",
-		"http://music.163.com/song/media/outer/url?id=2100372359.mp3#轻涟 Chinese",
-		"http://music.163.com/song/media/outer/url?id=2100334024.mp3#轻涟 France",
-		"http://music.163.com/song/media/outer/url?id=2026286081.mp3#舍离去",
-		"http://music.163.com/song/media/outer/url?id=31234244.mp3#blessing(world))",
-		"http://music.163.com/song/media/outer/url?id=2026565329.mp3#da capo",
-		"http://music.163.com/song/media/outer/url?id=1859652717.mp3#moon halo",
-		"/music/G大调弦乐小乐曲.mp3",
-		"/music/春.mp3",
-		"/music/Interstellar Main Theme.mp3",
-		"/music/ryukyuvania.m4a",
-		"/music/诀别书.mp3",
-		"/music/rise(heroes).mp3",
-		"/music/野火.mp3",
-		"/music/双笙（陈元汐） - 女孩你为何踮脚尖.mp3",
-		"/music/Alone.mp3",
-		"/music/At The Edge.mp3",
-		"/music/Crying In The Sun.mp3",
-		"/music/Energy Drink.mp3",
-		"/music/HOYO-MiX - Hustle and Bustle of Ormos 喧繁之港 [qmms2].flac",
-		"/music/KemimikE - Mountains (Original Mix).mp3",
-		"/music/Masked Heroes.mp3",
-		"/music/Middle Of The Night-Original Mix.mp3",
-		"/music/Monsters-Katie Sky.flac",
-		"/music/Moonlight Sonata.mp3",
-		"/music/Nevada.mp3",
-		"/music/Rise - Epic Music.mp3",
-		"/music/Sold Out-Hawk Nelson.flac",
-		"/music/Sorry-Alan Walker.mp3",
-		"/music/Sunburst.mp3",
-		"/music/Tabata W.O.D.mp3",
-		"/music/Unstoppable-Sia.flac",
-		"/music/Unstoppable-The Score.mp3",
-		"/music/X-Ray Dog - Playing Through [qmms2].mp3",
-		"/music/You Are My Everything.mp3",
-		"/music/drown.mp3",
-		"/music/experience.mp3",
-		"/music/faded.mp3",
-		"/music/obj_wo3DlMOGwrbDjj7DisKw_29253109197_3954_2add_4962_b0882f751376ef4722bb96fc1e1a0a63.mp3",
-		"/music/一路生花.mp3",
-		"/music/万里归途.mp3",
-		"/music/下山.mp3",
-		"/music/不屈的信仰-张艺兴.mp3",
-		"/music/你从未离去.wav",
-		"/music/你的酒馆对我打了烊-陈雪凝.flac",
-		"/music/侧脸.mp3",
-		"/music/出山.mp3",
-		"/music/加油 ! 向未来.mp3",
-		"/music/发光时代.mp3",
-		"/music/和平精英-717电音节主题bgm.mp3",
-		"/music/回到那一天.flac",
-		"/music/外婆的澎湖湾.mp3",
-		"/music/夜空中最亮的星.mp3",
-		"/music/夜航星.mp3",
-		"/music/夜航星伴奏.flac",
-		"/music/她的微笑（ Original Mix ).mp3",
-		"/music/如愿.mp3",
-		"/music/姚六一-雾里.mp3",
-		"/music/孤勇者.mp3",
-		"/music/小梦想.mp3",
-		"/music/少年.mp3",
-		"/music/平凡之路(中秋晚会).mp3",
-		"/music/平凡之路.mp3",
-		"/music/平凡的一天.mp3",
-		"/music/悲伤的旋律.mp3",
-		"/music/所念皆星河.mp3",
-		"/music/无名之辈.mp3",
-		"/music/时光洪流.flac",
-		"/music/旺仔小乔-雾里.mp3",
-		"/music/明天会更好.mp3",
-		"/music/星辰大海.mp3",
-		"/music/是你.flac",
-		"/music/最美的光.mp3",
-		"/music/有我.mp3",
-		"/music/本草纲目.mp3",
-		"/music/李峪钊-翻山越岭.mp3",
-		"/music/溜冰圆舞曲.mp3",
-		"/music/玫瑰少年.mp3",
-		"/music/生僻字.mp3",
-		"/music/破茧.mp3",
-		"/music/离别开出花.mp3",
-		"/music/第九交响曲.mp3",
-		"/music/翻山越岭.mp3",
-		"/music/耍把戏-张东尼.mp3",
-		"/music/耍把戏-阿禹ayy.mp3",
-		"/music/芒种.mp3",
-		"/music/葬花.mp3",
-		"/music/蓝莲花.mp3",
-		"/music/蜜雪冰城主题曲.mp3",
-		"/music/调查中.mp3",
-		"/music/起风了.mp3",
-		"/music/量子力学之歌.mp3",
-		"/music/错位时空-五四特别版.mp3",
-		"/music/错位时空.mp3",
-		"/music/青春跃起来 (Live) .mp3"
-	]
-		</textarea><br />
-		<button type="button" onclick="document.getElementById('musicplayer').appendChild(new playMusic(JSON.parse(document.getElementById('song_sheet').value)))">enjoy!</button>
-	</li>
 	</ul>
 </li>
 <li>2023.01.26
@@ -8203,26 +7748,28 @@ playMusic(musicList.reverse(),"musicplay");
 					<ul>
 						<li>已知的必须信息：
 							<pre><code class="language-html">
-				class=&quot;memo&quot;（最外层）
-				&lt;div class=&quot;time&quot;&gt;&lt;/div&gt;（第二层）
-				&lt;div class=&quot;content&quot;&gt;有效文本和标签所在位置，标签格式：#文本，可嵌套&lt;/div&gt;（第二层）
+class=&quot;memo&quot;（最外层）
+&lt;div class=&quot;time&quot;&gt;&lt;/div&gt;（第二层）
+&lt;div class=&quot;content&quot;&gt;有效文本和标签所在位置，标签格式：#文本，可嵌套&lt;/div&gt;（第二层）
 				</code></pre>
 						</li>
 						<li>这意味着将 index.html 里的 <code>&lt;li class=”card”&gt;</code>替换为
 							<pre><code class="language-html">
-				&lt;li class=&quot;memo&quot;&gt;
-				&lt;div class=&quot;time&quot;&gt;&lt;/div&gt;
-				&lt;div class=&quot;content&quot;&gt;
+&lt;li class=&quot;memo&quot;&gt;
+&lt;div class=&quot;time&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;content&quot;&gt;
 			</code></pre>即可。
 						</li>
 						<li>
 							<details>
 								<summary>一个完整的 flomo 实例：</summary>
-								<pre><code class="language-html flomo.html">
-<!--flomo<!DOCTYPE html>
-<meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot;>
-<title>flomo · 浮墨笔记</title>
-<style type=&quot;text/css&quot;>
+								<pre class="flomo">
+<!--<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>flomo · 浮墨笔记</title>
+		<style type="text/css">
 			* {
 			  margin: 0;
 			  padding: 0;
@@ -8314,7 +7861,7 @@ playMusic(musicList.reverse(),"musicplay");
 			  margin: 6px 0;
 			}
 </style>
-<style>
+		<style>
 		  .custom-select {
 			position: relative;
 			font-size: 14px;
@@ -8337,7 +7884,7 @@ playMusic(musicList.reverse(),"musicplay");
 		
 		  .select-selected:after {
 			position: absolute;
-			content: &quot;&quot;;
+			content: "";
 			top: 14px;
 			right: 10px;
 			width: 0;
@@ -8399,135 +7946,157 @@ playMusic(musicList.reverse(),"musicplay");
 			background-color: rgba(0, 0, 0, 0.1);
 		  }
 		</style>
-		</head>
-		<body>
+	</head>
+	<body>
 		<header>
-<div class=&quot;logo&quot;>
-			<svg width=&quot;96&quot; height=&quot;31&quot; viewBox=&quot;0 0 96 31&quot; fill=&quot;none&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot;>
-	<path fill-rule=&quot;evenodd&quot; clip-rule=&quot;evenodd&quot; d=&quot;M4.87056 9.11086C4.87056 6.25522 5.89594 4.89539 7.81854 4.89539H12.5609V0H7.81854C2.69163 0 0 3.39957 0 9.11086V10.8786V14.9581V30.3242H4.87056V15.3661H12.5609V10.8786H4.87056V9.11086ZM79.5937 27.8765C81.3881 29.7803 83.6952 30.7321 86.3868 30.7321C89.0785 30.7321 91.2574 29.7803 93.18 27.8765C95.1026 25.9727 95.9998 23.525 95.9998 20.5334C95.9998 17.5418 94.9744 15.0941 93.18 13.1903C91.2574 11.2866 89.0785 10.3347 86.3868 10.3347C83.6952 10.3347 81.5163 11.2866 79.5937 13.1903C77.6711 15.0941 76.7739 17.5418 76.7739 20.5334C76.7739 23.525 77.7993 25.9727 79.5937 27.8765ZM81.6444 20.5334C81.6444 17.5418 83.6952 15.502 86.3868 15.502C89.0785 15.502 91.2574 17.5418 91.1292 20.5334C91.1292 23.661 89.0785 25.7008 86.3868 25.7008C83.6952 25.7008 81.6444 23.661 81.6444 20.5334ZM32.8147 30.7321C30.1231 30.7321 27.816 29.7802 26.0215 27.8765C24.2271 25.9727 23.2017 23.661 23.2017 20.6694C23.2017 17.6777 24.0989 15.23 26.0215 13.3263C27.9441 11.4225 30.1231 10.4706 32.8147 10.4706C35.5063 10.4706 37.6853 11.4225 39.6079 13.3263C41.5305 15.23 42.4277 17.6777 42.4277 20.6694C42.4277 23.661 41.5305 26.1087 39.6079 28.0124C37.6853 29.9162 35.5063 30.7321 32.8147 30.7321ZM32.8147 15.502C30.1231 15.502 28.0723 17.5418 28.0723 20.5334C28.0723 23.661 30.1231 25.7007 32.8147 25.7007C35.5063 25.7007 37.5571 23.661 37.5571 20.5334C37.5571 17.5418 35.5063 15.502 32.8147 15.502ZM62.0358 19.9894V30.4601H57.2934V19.7175C57.2934 17.1338 55.8835 15.502 53.9609 15.502C51.7819 15.502 50.1157 16.8618 50.1157 19.9894V30.4601H45.3733V10.8786H50.1157V13.7342C51.0129 11.5585 53.32 10.4706 55.3708 10.4706C58.3187 10.6066 60.2413 11.8305 61.2667 14.1422C62.5484 11.6945 64.471 10.4706 67.0345 10.4706C71.5205 10.4706 74.084 13.5982 74.084 19.3095V30.4601H69.3416V19.8535C69.3416 17.1338 67.9317 15.502 65.8809 15.502C63.5738 15.502 62.0358 17.1338 62.0358 19.9894ZM15.6366 4.89539V0H20.379V30.4602H15.6366V7.2071V4.89539Z&quot; fill=&quot;#292929&quot;/>
-			</svg>
-</div>
-<div class=&quot;top&quot;>
-			<div class=&quot;user&quot;>
-	<div class=&quot;name&quot;>@xcvyu</div>
-	<div class=&quot;date&quot;>于 2023-4-1 导出 5 条 MEMO</div>
+			<div class="logo">
+				<svg width="96" height="31" viewbox="0 0 96 31" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M4.87056 9.11086C4.87056 6.25522 5.89594 4.89539 7.81854 4.89539H12.5609V0H7.81854C2.69163 0 0 3.39957 0 9.11086V10.8786V14.9581V30.3242H4.87056V15.3661H12.5609V10.8786H4.87056V9.11086ZM79.5937 27.8765C81.3881 29.7803 83.6952 30.7321 86.3868 30.7321C89.0785 30.7321 91.2574 29.7803 93.18 27.8765C95.1026 25.9727 95.9998 23.525 95.9998 20.5334C95.9998 17.5418 94.9744 15.0941 93.18 13.1903C91.2574 11.2866 89.0785 10.3347 86.3868 10.3347C83.6952 10.3347 81.5163 11.2866 79.5937 13.1903C77.6711 15.0941 76.7739 17.5418 76.7739 20.5334C76.7739 23.525 77.7993 25.9727 79.5937 27.8765ZM81.6444 20.5334C81.6444 17.5418 83.6952 15.502 86.3868 15.502C89.0785 15.502 91.2574 17.5418 91.1292 20.5334C91.1292 23.661 89.0785 25.7008 86.3868 25.7008C83.6952 25.7008 81.6444 23.661 81.6444 20.5334ZM32.8147 30.7321C30.1231 30.7321 27.816 29.7802 26.0215 27.8765C24.2271 25.9727 23.2017 23.661 23.2017 20.6694C23.2017 17.6777 24.0989 15.23 26.0215 13.3263C27.9441 11.4225 30.1231 10.4706 32.8147 10.4706C35.5063 10.4706 37.6853 11.4225 39.6079 13.3263C41.5305 15.23 42.4277 17.6777 42.4277 20.6694C42.4277 23.661 41.5305 26.1087 39.6079 28.0124C37.6853 29.9162 35.5063 30.7321 32.8147 30.7321ZM32.8147 15.502C30.1231 15.502 28.0723 17.5418 28.0723 20.5334C28.0723 23.661 30.1231 25.7007 32.8147 25.7007C35.5063 25.7007 37.5571 23.661 37.5571 20.5334C37.5571 17.5418 35.5063 15.502 32.8147 15.502ZM62.0358 19.9894V30.4601H57.2934V19.7175C57.2934 17.1338 55.8835 15.502 53.9609 15.502C51.7819 15.502 50.1157 16.8618 50.1157 19.9894V30.4601H45.3733V10.8786H50.1157V13.7342C51.0129 11.5585 53.32 10.4706 55.3708 10.4706C58.3187 10.6066 60.2413 11.8305 61.2667 14.1422C62.5484 11.6945 64.471 10.4706 67.0345 10.4706C71.5205 10.4706 74.084 13.5982 74.084 19.3095V30.4601H69.3416V19.8535C69.3416 17.1338 67.9317 15.502 65.8809 15.502C63.5738 15.502 62.0358 17.1338 62.0358 19.9894ZM15.6366 4.89539V0H20.379V30.4602H15.6366V7.2071V4.89539Z" fill="#292929" />
+				</svg>
 			</div>
-			<div class=&quot;filter&quot;>
-	<div class=&#x27;custom-select&#x27;>
-		<select name=&quot;date&quot; id=&quot;date&quot;>
-					<option value=&quot;&quot;>选择年月</option>
-					<option value=&quot;2023-03&quot;>2023-03</option>
-		</select>
-	</div>
-	<div class=&#x27;custom-select&#x27;>
-				<select name=&quot;tag&quot; id=&quot;tag&quot;>
-		<option value=&quot;&quot;>选择标签</option>
-		<option value=&quot;欢迎&quot;>欢迎</option><option value=&quot;欢迎/简介&quot;>欢迎/简介</option><option value=&quot;欢迎/指南&quot;>欢迎/指南</option>
-				</select>
-	</div>
-	<button>筛选</button>
+			<div class="top">
+				<div class="user">
+					<div class="name">
+						@xcvyu
+					</div>
+					<div class="date">
+						于 2023-4-1 导出 5 条 MEMO
+					</div>
+				</div>
+				<div class="filter">
+					<div class="'custom-select'"><select name="date" id="date"> <option value="">选择年月</option> <option value="2023-03">2023-03</option> </select>
+					</div>
+					<div class="'custom-select'"><select name="tag" id="tag"> <option value="">选择标签</option> <option value="欢迎">欢迎</option><option value="欢迎/简介">欢迎/简介</option><option value="欢迎/指南">欢迎/指南</option> </select>
+					</div> <button>筛选</button>
+				</div>
 			</div>
-</div>
 		</header>
-				  
-		<div class=&quot;memo&quot;>
-			<div class=&quot;time&quot;>2023-03-24 23:21:00</div>
-			<div class=&quot;content&quot;><p><strong>无题眠随意乱写。。不算诗不算散文随笔罢</strong></p><p></p><p>一两诗酒，半盏残风。一扇长窗，两种天色。你说春光明媚，那将冬做否？冥冥间将我踩碎，随着北方全吹没。我化作影吧，只是不语，就包裹你窗。眠风也未了，水怎将溪。梧桐压秋，莲百簇眠。君眠酒煮，几个春秋。若不许，缠枝梦。欲等雨，舞细浪。上一的另篇，即变视角重拾。自己的东西不存在寻章摘句与否，恰姊妹篇参半。乱写。。杂乱无章的没有韵脚的。随意的。即刻感受罢。</p></div>
+		<div class="memo">
+			<div class="time">
+				2023-03-24 23:21:00
+			</div>
+			<div class="content">
+				<p><strong>无题眠随意乱写。。不算诗不算散文随笔罢</strong></p>
+				<p></p>
+				<p>一两诗酒，半盏残风。一扇长窗，两种天色。你说春光明媚，那将冬做否？冥冥间将我踩碎，随着北方全吹没。我化作影吧，只是不语，就包裹你窗。眠风也未了，水怎将溪。梧桐压秋，莲百簇眠。君眠酒煮，几个春秋。若不许，缠枝梦。欲等雨，舞细浪。上一的另篇，即变视角重拾。自己的东西不存在寻章摘句与否，恰姊妹篇参半。乱写。。杂乱无章的没有韵脚的。随意的。即刻感受罢。</p>
+			</div>
 		</div>
-		
-		<div class=&quot;memo&quot;>
-			<div class=&quot;time&quot;>2023-03-24 23:20:43</div>
-			<div class=&quot;content&quot;><ul><li><p>Standard Notes：端到端加密笔记应用</p></li><li><p>pyLauncher：在服务器上启动脚本</p></li><li><p>Share via HTTP：文件共享工具</p></li><li><p>Nix-on-Droid：用于Android的Nix包管理器 文件共享工具</p></li><li><p>Metro：Android Best material design music player</p></li><li><p>RustDesk：开源远程桌面应用，开源TeamViewer替代方案</p></li><li><p>Sharik：通过 Wi-FI 共享文件，一个开源跨平台的本地网络文件分享解决方案</p></li><li><p>Share to Computer</p></li><li><p>华夏风物</p></li></ul></div>
+		<div class="memo">
+			<div class="time">
+				2023-03-24 23:20:43
+			</div>
+			<div class="content">
+				<ul>
+					<li><p>Standard Notes：端到端加密笔记应用</p></li>
+					<li><p>pyLauncher：在服务器上启动脚本</p></li>
+					<li><p>Share via HTTP：文件共享工具</p></li>
+					<li><p>Nix-on-Droid：用于Android的Nix包管理器 文件共享工具</p></li>
+					<li><p>Metro：Android Best material design music player</p></li>
+					<li><p>RustDesk：开源远程桌面应用，开源TeamViewer替代方案</p></li>
+					<li><p>Sharik：通过 Wi-FI 共享文件，一个开源跨平台的本地网络文件分享解决方案</p></li>
+					<li><p>Share to Computer</p></li>
+					<li><p>华夏风物</p></li>
+				</ul>
+			</div>
 		</div>
-		
-		<div class=&quot;memo&quot;>
-			<div class=&quot;time&quot;>2023-03-24 23:18:57</div>
-			<div class=&quot;content&quot;><p><strong>👋，吾友</strong></p>
-			<p></p>
-			<p>flomo 是新一代的极简备忘录，帮你降低记录成本，积累知识的复利。</p>
-			<p></p>
-			<p>除了在这个页面<strong>像发微博一样</strong>快速输入</p>
-			<p><strong>你还可以通过「flomo」服务号输入</strong>（微信搜索 flomoapp 关注）</p>
-			<p></p>
-			<p>快去试试吧~ 如有问题，也欢迎加入共建微信群，戳↓</p><p>https://help.flomoapp.com/community/wechat-group.html</p></div>
+		<div class="memo">
+			<div class="time">
+				2023-03-24 23:18:57
+			</div>
+			<div class="content">
+				<p><strong>👋，吾友</strong></p>
+				<p></p>
+				<p>flomo 是新一代的极简备忘录，帮你降低记录成本，积累知识的复利。</p>
+				<p></p>
+				<p>除了在这个页面<strong>像发微博一样</strong>快速输入</p>
+				<p><strong>你还可以通过「flomo」服务号输入</strong>（微信搜索 flomoapp 关注）</p>
+				<p></p>
+				<p>快去试试吧~ 如有问题，也欢迎加入共建微信群，戳↓</p>
+				<p>https://help.flomoapp.com/community/wechat-group.html</p>
+			</div>
 		</div>
-		
-		<div class=&quot;memo&quot;>
-			<div class=&quot;time&quot;>2023-03-24 23:18:57</div>
-			<div class=&quot;content&quot;><p><strong>🤔 除了微信输入，你还可以</strong></p>
-			<p></p>
-			<ul>
-				<li><p>访问网页版：https://v.flomoapp.com</p></li>
-				<li><p>下载手机/电脑客户端：https://help.flomoapp.com/basic/app.html</p></li>
-				<li><p>导入微信读书、Kindle 等各种进阶功能：https://help.flomoapp.com/advance/extension/</p></li>
-			</ul>
-			<p></p>
-			<p>#欢迎/指南</p></div>
+		<div class="memo">
+			<div class="time">
+				2023-03-24 23:18:57
+			</div>
+			<div class="content">
+				<p><strong>🤔 除了微信输入，你还可以</strong></p>
+				<p></p>
+				<ul>
+					<li><p>访问网页版：https://v.flomoapp.com</p></li>
+					<li><p>下载手机/电脑客户端：https://help.flomoapp.com/basic/app.html</p></li>
+					<li><p>导入微信读书、Kindle 等各种进阶功能：https://help.flomoapp.com/advance/extension/</p></li>
+				</ul>
+				<p></p>
+				<p>#欢迎/指南</p>
+			</div>
 		</div>
-		
-		<div class=&quot;memo&quot;>
-			<div class=&quot;time&quot;>2023-03-24 23:18:57</div>
-			<div class=&quot;content&quot;><p><strong>何谓 flomo？</strong>flomo = flow + memo</p>
-			<p></p>
-			<p>真正好的笔记产品，应该能让你<strong>记录得更多</strong>。</p>
-			<p>因为<strong>记录下来的想法才有价值</strong>，而<strong>记录是为了更好地思考。</strong></p>
-			<p></p>
-			<p><strong>更多 flomo 用法、帮助、隐私等介绍，请点击</strong> → https://help.flomoapp.com/</p>
-			<p></p>
-			<p>#欢迎/简介</p></div>
+		<div class="memo">
+			<div class="time">
+				2023-03-24 23:18:57
+			</div>
+			<div class="content">
+				<p><strong>何谓 flomo？</strong>flomo = flow + memo</p>
+				<p></p>
+				<p>真正好的笔记产品，应该能让你<strong>记录得更多</strong>。</p>
+				<p>因为<strong>记录下来的想法才有价值</strong>，而<strong>记录是为了更好地思考。</strong></p>
+				<p></p>
+				<p><strong>更多 flomo 用法、帮助、隐私等介绍，请点击</strong> → https://help.flomoapp.com/</p>
+				<p></p>
+				<p>#欢迎/简介</p>
+			</div>
 		</div>
 		<script>
-		const memos = document.querySelectorAll(&quot;.memo&quot;);
-		const dateSelect = document.querySelector(&quot;#date&quot;);
-		const tagSelect = document.querySelector(&quot;#tag&quot;);
-		const filterBtn = document.querySelector(&quot;button&quot;);
-		filterBtn.addEventListener(&quot;click&quot;, () => {
+		const memos = document.querySelectorAll(".memo");
+		const dateSelect = document.querySelector("#date");
+		const tagSelect = document.querySelector("#tag");
+		const filterBtn = document.querySelector("button");
+		filterBtn.addEventListener("click", () => {
 		  const date = dateSelect.value;
 		  const tag = tagSelect.value;
 		
 		  memos.forEach((memo) => {
-			const time = memo.querySelector(&quot;.time&quot;).innerText;
-			const content = memo.querySelector(&quot;.content&quot;).innerText;
+			const time = memo.querySelector(".time").innerText;
+			const content = memo.querySelector(".content").innerText;
 			const isDateMatch = time.includes(date);
 			const isTagMatch = content.includes(tag);
 			if (isDateMatch &amp;&amp; isTagMatch) {
-			  memo.style.display = &quot;block&quot;;
+			  memo.style.display = "block";
 			} else {
-			  memo.style.display = &quot;none&quot;;
+			  memo.style.display = "none";
 			}
 		  });
 		});
 		
 		var x, i, j, l, ll, selElmnt, a, b, c;
-			x = document.getElementsByClassName(&quot;custom-select&quot;);
+			x = document.getElementsByClassName("custom-select");
 			l = x.length;
 			for (i = 0; i < l; i++) {
-				selElmnt = x[i].getElementsByTagName(&quot;select&quot;)[0];
+				selElmnt = x[i].getElementsByTagName("select")[0];
 				ll = selElmnt.length;
-				a = document.createElement(&quot;DIV&quot;);
-				a.setAttribute(&quot;class&quot;, &quot;select-selected&quot;);
+				a = document.createElement("DIV");
+				a.setAttribute("class", "select-selected");
 				a.innerHTML = selElmnt.options[selElmnt.selectedIndex].innerHTML;
 				x[i].appendChild(a);
-				b = document.createElement(&quot;DIV&quot;);
-				b.setAttribute(&quot;class&quot;, &quot;select-items select-hide&quot;);
+				b = document.createElement("DIV");
+				b.setAttribute("class", "select-items select-hide");
 				for (j = 0; j < ll; j++) {
-					c = document.createElement(&quot;DIV&quot;);
+					c = document.createElement("DIV");
 					c.innerHTML = selElmnt.options[j].innerHTML;
-					c.addEventListener(&quot;click&quot;, function (e) {
+					c.addEventListener("click", function (e) {
 						var y, i, k, s, h, sl, yl;
-						s = this.parentNode.parentNode.getElementsByTagName(&quot;select&quot;)[0];
+						s = this.parentNode.parentNode.getElementsByTagName("select")[0];
 						sl = s.length;
 						h = this.parentNode.previousSibling;
 						for (i = 0; i < sl; i++) {
 							if (s.options[i].innerHTML == this.innerHTML) {
 								s.selectedIndex = i;
 								h.innerHTML = this.innerHTML;
-								y = this.parentNode.getElementsByClassName(&quot;same-as-selected&quot;);
+								y = this.parentNode.getElementsByClassName("same-as-selected");
 								yl = y.length;
 								for (k = 0; k < yl; k++) {
-									y[k].removeAttribute(&quot;class&quot;);
+									y[k].removeAttribute("class");
 								}
-								this.setAttribute(&quot;class&quot;, &quot;same-as-selected&quot;);
+								this.setAttribute("class", "same-as-selected");
 								break;
 							}
 						}
@@ -8536,11 +8105,11 @@ playMusic(musicList.reverse(),"musicplay");
 					b.appendChild(c);
 				}
 				x[i].appendChild(b);
-				a.addEventListener(&quot;click&quot;, function (e) {
+				a.addEventListener("click", function (e) {
 					e.stopPropagation();
 					closeAllSelect(this);
-					this.nextSibling.classList.toggle(&quot;select-hide&quot;);
-					this.classList.toggle(&quot;select-arrow-active&quot;);
+					this.nextSibling.classList.toggle("select-hide");
+					this.classList.toggle("select-arrow-active");
 				});
 			}
 			function closeAllSelect(elmnt) {
@@ -8550,38 +8119,46 @@ playMusic(musicList.reverse(),"musicplay");
 					xl,
 					yl,
 					arrNo = [];
-				x = document.getElementsByClassName(&quot;select-items&quot;);
-				y = document.getElementsByClassName(&quot;select-selected&quot;);
+				x = document.getElementsByClassName("select-items");
+				y = document.getElementsByClassName("select-selected");
 				xl = x.length;
 				yl = y.length;
 				for (i = 0; i < yl; i++) {
 					if (elmnt == y[i]) {
 						arrNo.push(i);
 					} else {
-						y[i].classList.remove(&quot;select-arrow-active&quot;);
+						y[i].classList.remove("select-arrow-active");
 					}
 				}
 				for (i = 0; i < xl; i++) {
 					if (arrNo.indexOf(i)) {
-						x[i].classList.add(&quot;select-hide&quot;);
+						x[i].classList.add("select-hide");
 					}
 				}
 			}
 		
-			document.addEventListener(&quot;click&quot;, closeAllSelect);
+			document.addEventListener("click", closeAllSelect);
 		
 	</script>
 	</body>
-</html>flomo-->
-			</code></pre>
+</html>--></pre>
 			<script>
-						for(let i of document.getElementsByClassName("flomo.html")){
-				let flomo=i.innerHTML;
-				flomo = flomo.replace("<!--flomo", "");
-				flomo = flomo.replace("flomo-->", "");
-				flomo = HtmlUtil.html2Escape(flomo)
-				i.innerHTML = flomo;
-		}
+				for(let i of document.getElementsByClassName("flomo")){
+					new Promise((resolve) =>{
+					　　let timer = setInterval(() =>{
+						　　if(i.parentNode.open){
+						　　　　clearInterval(timer);
+						　　　　resolve(true);
+						　　}
+					　　},100)
+					}).then(() =>{
+						let flomor = document.createElement("code");
+						flomor.className="language-html";
+						flomor.innerHTML=HtmlUtil.html2Escape(Array.from(i.childNodes).find(node => node.nodeType === Node.COMMENT_NODE && node.textContent.trim()).textContent.trim());
+						i.appendChild(flomor);
+						hljs.highlightElement(flomor);
+					})
+				}
 			</script>
 							</details>
 						</li>
@@ -8725,7 +8302,7 @@ playMusic(musicList.reverse(),"musicplay");
 	</ul>
 </li>
 <li>2023.06.20
-	<p>物理老师提早十分钟下课。The time is 9:40.<br />
+	<p>物理老师提早十分钟下课。The time is 9:40.<br />
 		我想，这么好的一个课间，一定不要浪费呀。然而，打羽毛球我没能参与，篮球、乒乓球估计也插不进去，甚至去找生物老师也没找到……<br />
 		我顺着三楼的楼道走过去，——这属于他们，也属于曾经的我，——我听到一阵悠扬的，弦声。<br />
 		走进班级，三个面目清秀的女孩，两个在练一种中国古代弦乐器，还有一位在吹管（也许是......小号？），"不知何处吹芦管"！她们和一位弹吉他的男孩一起练一首歌，《我和我的祖国》。<br />
@@ -9707,6 +9284,441 @@ playMusic(musicList.reverse(),"musicplay");
 		</script>
 	</details>
 </li>
+<li>musicplayer
+	<ul>
+	<li><details><summary>P.S.2023.01.19-:新的项目--JS自制音乐播放器（尚未成功）</summary><pre class="flomo"><!--<div id="法1">
+<script>
+	//document.getElementsByTagName("audio").setAttribute('src,'http://192.168.5.69:8080/music/孤勇者.mp3');
+</script>
+<audio controls></audio>
+</div>
+<div id="法2">
+	<audio src="" id="work" controls loop></audio>
+	<script>
+		let i=1;
+		function runCode(){
+			let source = document.documentElement.outerHTML;
+			source = source.replace("let i=1","let i=1\;\n		i = i+1");
+			let newwin=window.open();  //打开一个窗口并赋给变量newwin。
+			newwin.opener = null // 防止代码修改页面
+			newwin.document.write(source);  //向这个打开的窗口中写入内容。
+			newwin.document.close();
+		}
+		let song = {
+			a:'http://192.168.5.69:8080/music/孤勇者.mp3',
+			b:'http://192.168.5.69:8080/music/Moonlight Sonata.mp3'
+		};
+		let number=[
+			song['a'],
+			song['b']
+		];
+		music=number[i];
+		document.getElementById("work").src=music;
+	</script>
+	<button onclick="runCode()">下一曲</button>
+</div>
+<div id="法3">
+	<script>let music = "http://127.0.0.1:8080/music/孤勇者.mp3";</script>
+	<audio controls src="JavaScript://music"></audio>
+</div>--></pre></details></li>
+	<li><details><summary>P.S.2024.5.24 经过两个多月的努力，终于，它成功了！</summary><pre class="flomo"><!--<div id="musicplayer">
+<script>
+	var israndom = false;
+	function randomNum(minNum, maxNum) {
+		switch (arguments.length) {
+			case 1:
+				return parseInt(Math.random() * minNum + 1, 10);
+				break;
+			case 2:
+				return parseInt(Math.random() * (maxNum - minNum + 1) + minNum, 10);
+				break;
+			default:
+				return 0;
+				break;
+		}
+	}
+	function playMusic(musicList,wid) {
+		var player = new Audio();
+		// var playbox=document.createElement('div');
+		// playbox.className="musicDiv";
+		var src = israndom? musicList [randomNum(1,musicList.length)]:musicList.pop();
+		player.preload = true;
+		player.id=wid;
+		player.controls = true;
+		player.loop = false;
+		player.src = src;
+		player.autoplay = true;
+		// musiclooping=document.createElement('a');
+		// musiclooping.href="javascript:looping\(\""+wid+"\"\)";
+		// musiclooping.innerHTML=wid+".playLoop!";
+		// musiclooping.className="musicontorl";
+		// musicInforUrl=document.createElement("li");
+		// musicInforUrl.innerText="url:"+src;
+		// musicInforLoop=document.createElement("li");
+		// musicInforLoop.id=wid+".looped";
+		// musicInforLoop.innerText="isloop:"+player.loop;
+		// musicInfor=document.createElement('ul');
+		// musicInfor.id=wid+".Infor";
+		// musicInfor.appendChild(musicInforUrl);
+		// musicInfor.appendChild(musicInforLoop);
+		if(!israndom)musicList.unshift(src);
+		player.addEventListener("ended", playEndedHandler, false);
+		player.play();
+		// playbox.appendChild(document.createElement('br'));
+		// playbox.appendChild(player);
+		// playbox.appendChild(musiclooping);
+		// playbox.appendChild(document.createElement('br'));
+		// playbox.appendChild(musicInfor);
+		// document.getElementById("musicplayer").appendChild(playbox);
+		document.getElementById("musicplayer").appendChild(player);
+		function playEndedHandler() {
+			src = israndom?musicList [randomNum(1,musicList.length)]:musicList.pop();
+			// player.load();
+			player.src = src;
+			// musicInforUrl.innerText="url:"+src;
+			if(!israndom)musicList.unshift(src);
+			player.play();
+		}
+	}
+	function looping(getid){
+		document.getElementById(getid).loop=!document.getElementById(getid).loop;
+		document.getElementById(getid+".looped").innerText="isloop:"+document.getElementById(getid).loop;
+	}
+	function begin_music() {eval(document.getElementById("song_sheet").value);}
+</script>
+<mark>仅限配置 server 后可用</mark><br />
+<textarea id="song_sheet" rows="15" cols="40%">
+var musicList = [
+"http://music.163.com/song/media/outer/url?id=1960415980#此时此刻",
+"http://music.163.com/song/media/outer/url?id=2112196350.mp3#浮光",
+"http://music.163.com/song/media/outer/url?id=1959528822.mp3#紫荆花盛开",
+"http://music.163.com/song/media/outer/url?id=2100372359.mp3#轻涟 Chinese",
+"http://music.163.com/song/media/outer/url?id=2100334024.mp3#轻涟 France",
+"http://music.163.com/song/media/outer/url?id=2026286081.mp3#舍离去",
+"http://music.163.com/song/media/outer/url?id=31234244.mp3#blessing(world))",
+"http://music.163.com/song/media/outer/url?id=2026565329.mp3#da capo",
+"http://music.163.com/song/media/outer/url?id=1859652717.mp3#moon halo",
+"/music/终焉×end of all[原神 2024 新春会].mp3"
+];
+playMusic(musicList.reverse(),"musicplay");
+</textarea><br />
+<button type="button" onclick="begin_music()">enjoy!</button>
+<a href="javascript:israndom=!israndom" class="musicontorl">random!</a>
+<br />
+</div>--></pre></details>
+	</li>
+	<li><details><summary>P.S.2024.6.4 进行了重构，将主体函数化、模板化，体现高内聚、低耦合特点，并增加播放控件</summary><pre class="flomo"><!--<div id="musicplayer">
+<script>
+	function randomNum(minNum, maxNum) {
+		switch (arguments.length) {
+			case 1:
+				return parseInt(Math.random() * minNum + 1, 10);
+				break;
+			case 2:
+				return parseInt(Math.random() * (maxNum - minNum + 1) + minNum, 10);
+				break;
+			default:
+				return 0;
+				break;
+		}
+	}
+	function playMusic(musicobjection) {
+		let musicList=musicobjection.list.reverse();
+		if(musicobjection.name!=undefined)var wid=musicobjection.name;
+		let israndom = false;
+		function objecter(obj) {
+			let object = (obj.tag != undefined) ? document.createElement(obj.tag) : obj.method;
+			if(obj.parent!=undefined)obj.parent.appendChild(object);
+			if (obj.identity != undefined) {
+				object.id = wid + '.' + obj.identity;
+				eval(obj.identity + '\= object');
+			}
+			if(obj.features!=undefined)for (let i of Object.keys(obj.features)) object[i]=obj.features[i];
+			if (obj.eventer != undefined) document.getElementById(object.id).addEventListener("click", obj.eventer);
+		}
+		function checkInfor(obj) {
+			return obj.identity == "Infor";
+		}
+		function playwer(src) {
+			player.load();
+			player.src = src;
+			document.getElementById(wid + '.InforUrl').innerHTML = "url:" + src;
+			setTimeout(() => {
+				player.play();
+			}, 512);
+		}
+		function music_next() {
+			let src = musicList.pop();
+			musicList.unshift(src);
+			return playwer(src);
+		}
+		function music_last() {
+			let src = musicList.shift();
+			musicList.push(src);
+			return playwer(src);
+		}
+		function music_random() {
+			return playwer(musicList[randomNum(0, musicList.length-1)]);
+		}
+		function music_src() {
+			return (israndom) ? music_random() : music_next();
+		}
+		function music_looping(getid) {
+			document.getElementById(getid + ".player").loop = !document.getElementById(getid + ".player").loop;
+			document.getElementById(getid + ".InforLoop").innerText = "isloop:" + document.getElementById(getid + ".player").loop;
+		}
+		function music_randoming(getid) {
+			israndom = !israndom;
+			document.getElementById(getid + ".InforRandom").innerText = "israndom:" + israndom;
+		}
+		objecter({ identity: "playbox", tag: "div", features: { className: "musicDiv" }, parent: document.getElementById("musicplayer") });
+		objecter({ identity: "player", method: new Audio(), features: { preload: true, controls: true, loop: false, autoplay: true }, parent: playbox });
+		let music_object = [
+			{ tag: "br", parent: playbox },
+			{ identity: "randomer", tag: "a", features: { innerHTML: wid + ".randomer", className: "musicontorl" }, parent: playbox, eventer: function () { music_randoming(wid); } },
+			{ tag: "br", parent: playbox },
+			{ identity: "looping", tag: "a", features: { innerHTML: wid + ".playLoop!", className: "musicontorl" }, parent: playbox, eventer: function () { music_looping(wid); } },
+			{ identity: "Infor", tag: "ul", parent: playbox },
+			{ identity: "controlup", tag: "button", features: { innerHTML: wid + ".up" }, parent: playbox, eventer: music_next },
+			{ identity: "controldown", tag: "button", features: { innerHTML: wid + ".down" }, parent: playbox, eventer: music_last }
+		];
+		for (let i of music_object) objecter(i);
+		music_object.filter(checkInfor)[0].children = [
+			{ identity: "InforLoop", tag: "li", features: { innerHTML: "isloop:" + player.loop }, parent: Infor },
+			{ identity: "InforRandom", tag: "li", features: { innerHTML: "israndom:" + israndom }, parent: Infor },
+			{ identity: "InforUrl", tag: "li", parent: Infor }
+		];
+		for (let i of music_object.filter(checkInfor)[0].children) objecter(i);
+		let musicer =music_src();
+		player.addEventListener("ended", music_src, false);
+	}
+</script>
+<mark>仅限配置 server 后可加载本地音乐</mark><br />
+<textarea id="song_sheet" rows="15" cols="40%">
+{
+	"list":[
+		"http://music.163.com/song/media/outer/url?id=1960415980#此时此刻",
+		"http://music.163.com/song/media/outer/url?id=2112196350.mp3#浮光",
+		"http://music.163.com/song/media/outer/url?id=1959528822.mp3#紫荆花盛开",
+		"http://music.163.com/song/media/outer/url?id=2100372359.mp3#轻涟 Chinese",
+		"http://music.163.com/song/media/outer/url?id=2100334024.mp3#轻涟 France",
+		"http://music.163.com/song/media/outer/url?id=2026286081.mp3#舍离去",
+		"http://music.163.com/song/media/outer/url?id=31234244.mp3#blessing(world))",
+		"http://music.163.com/song/media/outer/url?id=2026565329.mp3#da capo",
+		"http://music.163.com/song/media/outer/url?id=1859652717.mp3#moon halo",
+		"/music/终焉×end of all[原神 2024 新春会].mp3"
+	],
+	"name":"musicplay"
+}
+</textarea><br />
+<button type="button" onclick="playMusic(JSON.parse(document.getElementById('song_sheet').value));">enjoy!</button>
+</div>--></pre></details>
+	</li>
+	<li id="musicplayer">P.S.2024.7.1 舍弃了复杂的 id 操作，以后不用给每个播放器一个独立 id 了！<a href="##musicplayer">标签面板</a>
+		<script>
+			function randomNum(minNum, maxNum) {
+				switch (arguments.length) {
+					case 1:
+						return parseInt(Math.random() * minNum + 1, 10);
+						break;
+					case 2:
+						return parseInt(Math.random() * (maxNum - minNum + 1) + minNum, 10);
+						break;
+					default:
+						return 0;
+						break;
+				}
+			}
+			function randSort(arr) {
+				for(var i = 0, len = arr.length; i < len; i++) {
+					var rand = parseInt(Math.random() * len);
+					var temp = arr[rand];
+					arr[rand] = arr[i];
+					arr[i] = temp;
+				}
+				return arr;
+			}
+			function playMusic(musicList) {
+				musicList=musicList.reverse();
+				musiciv=document.createElement("div");
+				musiciv.className="musicDiv";
+				let israndom=false;
+				let player = new Audio();
+				player.preload = true;
+				player.controls = true;
+				player.loop = false;
+				player.autoplay = true;
+				musiciv.appendChild(player);
+				let musicInforUrl=document.createElement("p");
+				musiciv.appendChild(musicInforUrl);
+				let musiclooping=document.createElement('a');
+				musiclooping.innerText = "PlayLoop!:" + player.loop;
+				musiclooping.addEventListener("click", music_looping, false);
+				musiciv.appendChild(musiclooping);
+				musiciv.appendChild(document.createElement("br"));
+				let musicrandoming=document.createElement('a');
+				musicrandoming.innerText = "randomer!:" + israndom;
+				musicrandoming.addEventListener("click",()=>{
+					israndom = !israndom;
+					musicrandoming.innerText = "randomer!:" + israndom;
+				}, false);
+				musiciv.appendChild(musicrandoming);
+				musiciv.appendChild(document.createElement("br"));
+				let musiccontrolup=document.createElement('a');
+				musiccontrolup.innerText="upper!";
+				musiccontrolup.addEventListener("click", music_next, false);
+				musiciv.appendChild(musiccontrolup);
+				let musiccontroldown=document.createElement('a');
+				musiccontroldown.innerText="lower!";
+				musiccontroldown.addEventListener("click", music_last, false);
+				musiciv.appendChild(musiccontroldown);
+				function playwer(src) {
+					player.load();
+					player.src = src;
+					musicInforUrl.innerHTML = "url:" + src;
+					setTimeout(() => {
+						player.play();
+					}, 512);
+				}
+				function music_next() {
+					let src = musicList.pop();
+					musicList.unshift(src);
+					return playwer(src);
+				}
+				function music_last() {
+					let src = musicList.shift();
+					musicList.push(src);
+					return playwer(src);
+				}
+				function music_random() {
+					return playwer(musicList[randomNum(1, musicList.length)]);
+				}
+				function music_src() {
+					return (israndom) ? music_random() : music_next();
+				}
+				function music_looping() {
+					player.loop= !player.loop;
+					musiclooping.innerText = "PlayLoop!:" + player.loop;
+				}
+				player.loop = false;
+				let musicer =music_src();
+				player.addEventListener("ended", music_src, false);
+				return musiciv;
+			}
+		</script>
+		<mark>仅限配置 server 后可加载本地音乐</mark><br />
+		<input type="file" name="file" id="filePicker_music" onchange="upload()"  /><br />
+		<textarea id="song_sheet" rows="15" cols="40%">
+[
+		"http://music.163.com/song/media/outer/url?id=2144805050.mp3#人生是旷野",
+		"http://music.163.com/song/media/outer/url?id=1950343972#可能",
+		"http://music.163.com/song/media/outer/url?id=2160850755#未行之路",
+		"http://music.163.com/song/media/outer/url?id=2155423468#希望有羽毛和翅膀",
+		"http://music.163.com/song/media/outer/url?id=2155422573#使一颗心免于哀伤",
+		"http://music.163.com/song/media/outer/url?id=2155423467#在银河中孤独摇摆",
+		"http://music.163.com/song/media/outer/url?id=2112196350.mp3#浮光",
+		"http://music.163.com/song/media/outer/url?id=1959528822.mp3#紫荆花盛开",
+		"/music/终焉×end of all[原神 2024 新春会].mp3",
+		"http://music.163.com/song/media/outer/url?id=2100372359.mp3#轻涟 Chinese",
+		"http://music.163.com/song/media/outer/url?id=2100334024.mp3#轻涟 France",
+		"http://music.163.com/song/media/outer/url?id=2026286081.mp3#舍离去",
+		"http://music.163.com/song/media/outer/url?id=31234244.mp3#blessing(world))",
+		"http://music.163.com/song/media/outer/url?id=2026565329.mp3#da capo",
+		"http://music.163.com/song/media/outer/url?id=1859652717.mp3#moon halo",
+		"/music/G大调弦乐小乐曲.mp3",
+		"/music/春.mp3",
+		"/music/Interstellar Main Theme.mp3",
+		"/music/ryukyuvania.m4a",
+		"/music/诀别书.mp3",
+		"/music/rise(heroes).mp3",
+		"/music/野火.mp3",
+		"/music/双笙（陈元汐） - 女孩你为何踮脚尖.mp3",
+		"/music/Alone.mp3",
+		"/music/At The Edge.mp3",
+		"/music/Crying In The Sun.mp3",
+		"/music/Energy Drink.mp3",
+		"/music/HOYO-MiX - Hustle and Bustle of Ormos 喧繁之港 [qmms2].flac",
+		"/music/KemimikE - Mountains (Original Mix).mp3",
+		"/music/Masked Heroes.mp3",
+		"/music/Middle Of The Night-Original Mix.mp3",
+		"/music/Monsters-Katie Sky.flac",
+		"/music/Moonlight Sonata.mp3",
+		"/music/Nevada.mp3",
+		"/music/Rise - Epic Music.mp3",
+		"/music/Sold Out-Hawk Nelson.flac",
+		"/music/Sorry-Alan Walker.mp3",
+		"/music/Sunburst.mp3",
+		"/music/Tabata W.O.D.mp3",
+		"/music/Unstoppable-Sia.flac",
+		"/music/Unstoppable-The Score.mp3",
+		"/music/X-Ray Dog - Playing Through [qmms2].mp3",
+		"/music/You Are My Everything.mp3",
+		"/music/drown.mp3",
+		"/music/experience.mp3",
+		"/music/faded.mp3",
+		"/music/obj_wo3DlMOGwrbDjj7DisKw_29253109197_3954_2add_4962_b0882f751376ef4722bb96fc1e1a0a63.mp3",
+		"/music/一路生花.mp3",
+		"/music/万里归途.mp3",
+		"/music/下山.mp3",
+		"/music/不屈的信仰-张艺兴.mp3",
+		"/music/你从未离去.wav",
+		"/music/你的酒馆对我打了烊-陈雪凝.flac",
+		"/music/侧脸.mp3",
+		"/music/出山.mp3",
+		"/music/加油 ! 向未来.mp3",
+		"/music/发光时代.mp3",
+		"/music/和平精英-717电音节主题bgm.mp3",
+		"/music/回到那一天.flac",
+		"/music/外婆的澎湖湾.mp3",
+		"/music/夜空中最亮的星.mp3",
+		"/music/夜航星.mp3",
+		"/music/夜航星伴奏.flac",
+		"/music/她的微笑（ Original Mix ).mp3",
+		"/music/如愿.mp3",
+		"/music/姚六一-雾里.mp3",
+		"/music/孤勇者.mp3",
+		"/music/小梦想.mp3",
+		"/music/少年.mp3",
+		"/music/平凡之路(中秋晚会).mp3",
+		"/music/平凡之路.mp3",
+		"/music/平凡的一天.mp3",
+		"/music/悲伤的旋律.mp3",
+		"/music/所念皆星河.mp3",
+		"/music/无名之辈.mp3",
+		"/music/时光洪流.flac",
+		"/music/旺仔小乔-雾里.mp3",
+		"/music/明天会更好.mp3",
+		"/music/星辰大海.mp3",
+		"/music/是你.flac",
+		"/music/最美的光.mp3",
+		"/music/有我.mp3",
+		"/music/本草纲目.mp3",
+		"/music/李峪钊-翻山越岭.mp3",
+		"/music/溜冰圆舞曲.mp3",
+		"/music/玫瑰少年.mp3",
+		"/music/生僻字.mp3",
+		"/music/破茧.mp3",
+		"/music/离别开出花.mp3",
+		"/music/第九交响曲.mp3",
+		"/music/翻山越岭.mp3",
+		"/music/耍把戏-张东尼.mp3",
+		"/music/耍把戏-阿禹ayy.mp3",
+		"/music/芒种.mp3",
+		"/music/葬花.mp3",
+		"/music/蓝莲花.mp3",
+		"/music/蜜雪冰城主题曲.mp3",
+		"/music/调查中.mp3",
+		"/music/起风了.mp3",
+		"/music/量子力学之歌.mp3",
+		"/music/错位时空-五四特别版.mp3",
+		"/music/错位时空.mp3",
+		"/music/青春跃起来 (Live) .mp3"
+	]
+		</textarea><br />
+		<button type="button" onclick="document.getElementById('musicplayer').appendChild(new playMusic(JSON.parse(document.getElementById('song_sheet').value)))">enjoy!</button>
+	</li>
+	</ul>
+</li>
 <li>2024.06.14 选课啦！
 	<ul>
 		<li>第一周课程表
@@ -9800,7 +9812,7 @@ playMusic(musicList.reverse(),"musicplay");
 	- 一般人体的电阻约为 10000 欧姆左右
 	- 在出汗或手脚湿水时，人体电阻可能降到 400 欧姆左右。
 - [*Minimal* 的官方文档](https://minimal.guide/Home)
-- **Minimal CSS helper classes** 可以实现多种卡片效果（如卡片封面、不同比例的图片卡片、图文卡片等），及多种表格和数据可视化效果。
+- **Minimal CSS helper classes** 可以实现多种卡片效果（如卡片封面、不同比例的图片卡片、图文卡片等），及多种表格和数据可视化效果。
 - [ChatGPT](https://chat.openai.com/chat)
 - Can be task.
 	- [ ] 伟大的coding计划
@@ -10010,7 +10022,7 @@ Q：在学习的道路上是什么一直支撑你坚持走下去(既有学文科
 
 二中学习和生活期间印象最深刻的一次活动
 应该是毕业班会吧。其实二中的很多活动都特别可爱特别生动，运动会、开放日、校庆节目等等等等，不过我现在回想，留下最深印迹的是高考前杨旭光老师给我们班和9班共同开的毕业班会。温柔又含着巨大能量，让临近考试焦虑迷茫的我一下子安心下来。
-杨老师从高考的每一个流程、每一个细节，谈到假期和未来的规划，详细到我甚至觉得能想象到每一个场面。听着杨老师一如往常的幽默而柔和的叮嘱，我们像从前一样不时一起笑起来，也不由得红了眼眶。和身边的同学们相视，眼中是如出一辙的清澈与感动。  一起朗诵“竹杖芒鞋轻胜马，谁怕？一蓑烟雨任平生。”，一帧一帧的画面在眼前回放，杨老师“充电站”一样拥有神奇力量的班会、充满了欢声笑语的语文习题课、他每一次真诚的注视和回应……
+杨老师从高考的每一个流程、每一个细节，谈到假期和未来的规划，详细到我甚至觉得能想象到每一个场面。听着杨老师一如往常的幽默而柔和的叮嘱，我们像从前一样不时一起笑起来，也不由得红了眼眶。和身边的同学们相视，眼中是如出一辙的清澈与感动。  一起朗诵“竹杖芒鞋轻胜马，谁怕？一蓑烟雨任平生。”，一帧一帧的画面在眼前回放，杨老师“充电站”一样拥有神奇力量的班会、充满了欢声笑语的语文习题课、他每一次真诚的注视和回应……
 
 毕业后我在回顾的文章里写：“在恩师的爱与关怀中，我保持了感性的本能，也成长为了更淡然、勇敢的人。“莫愁前路无知己，天下谁人不识君。”少年人的豪气从未被磨灭，以潇潇风骨与赤子之心面对世界，以纯粹的爱彼此连接。这就是我们。最好的我们。”
 
